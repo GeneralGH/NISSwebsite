@@ -1,0 +1,31 @@
+{
+  "name": "NISSWebsite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prepare": "node -e \"if(require('fs').existsSync('.git')){process.exit(1)}\" || is-ci || husky install"
+  },
+  "devDependencies": {
+    "vite": "^3.1.0",
+    "vite-plugin-vue2": "^2.0.2",
+    "vue-template-compiler": "~2.6.14"
+  },
+  "dependencies": {
+    "autofit.js": "^3.1.0",
+    "less": "^4.2.0",
+    "path": "^0.12.7",
+    "postcss-px2rem": "^0.3.0",
+    "postcss-pxtorem": "^6.1.0",
+    "px2rem-loader": "^0.1.9",
+    "tdesign-icons-vue": "latest",
+    "tdesign-vue": "latest",
+    "vite-plugin-vue2-svg": "^0.3.0",
+    "vue": "~2.6.14",
+    "vue-router": "^3.0.0"
+  },
+  "description": "学院官网"
+}

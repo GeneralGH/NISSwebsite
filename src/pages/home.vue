@@ -1,0 +1,359 @@
+<!--  -->
+<template>
+    <div>
+        <pageHeader />
+
+        <div class="content-one">
+            <div class="subtitle">
+                To cultivate high-level talents integrating <br>
+                Chinese and Western and connecting theory with practice
+            </div>
+            <div class="title">培养融贯中西、知行合一的<br>高层次人才</div>
+            <div class="content-info">
+                <div class="info-left">
+                    <img src="../../assets/home/contentOne.png" alt="">
+                </div>
+                <div class="info-right">
+                    <div class="info-item" v-for="(item, index) in infoList">
+                        <div>
+                            <div class="info-title">{{ item.title }}</div>
+                            <div class="info-subTitle">{{ item.subTitle }}</div>
+                        </div>
+                        <div v-show="index == 0">
+                            <img class="homeRightArrow" src="../../assets/home/homeRightArrow.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-two">
+            <div class="content-info">
+                <div class="info-left">
+                    <div class="title">成为最具价值的终身学习平台</div>
+                    <div class="subTitle">To be an invaluable</div>
+                    <img src="../../assets/home/contentTwo.png" alt="">
+                </div>
+                <div class="info-right">
+                    <div class="info-item" v-for="(item, index) in infoTwoList" :key="index">
+                        <div class="title">{{ item.title }}</div>
+                        <div class="subTitle">{{ item.subTitle }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-three">
+            <div class="title">校友寄语</div>
+            <div class="subTitle">Their Stories</div>
+
+            <div class="alumni-scroll" v-horizontal-scroll>
+                <div class="alumni-item" v-for="(item, index) in alumniList">
+                    <div v-show="index % 2 === 0" style="position: relative;">
+                        <img class="dialog-bg" src="../../assets/home/topDialog.png" alt="">
+                        <div class="dialog-content" style="padding-top: 50px">{{ item.content }}</div>
+                    </div>
+                    <div v-show="index % 2 !== 0">
+                        <div class="alumni-info">
+                            {{ item.name }}<br>
+                            {{ item.info }}
+                        </div>
+                        <div class="alumni-class">{{ item.class }}</div>
+                    </div>
+                    <img class="alumni-img" src="../../assets/home/contentTwo.png" alt="">
+                    <div v-show="index % 2 === 0">
+                        <div class="alumni-info">
+                            {{ item.name }}<br>
+                            {{ item.info }}
+                        </div>
+                        <div class="alumni-class">{{ item.class }}</div>
+                    </div>
+                    <div v-show="index % 2 !== 0" style="position: relative;">
+                        <img class="dialog-bg" src="../../assets/home/buttonDialog.png" alt="">
+                        <div class="dialog-content" style="padding-top: 70px;">{{ item.content }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <PageFooter />
+    </div>
+</template>
+
+<script>
+//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
+//例如：import 《组件名称》 from '《组件路径》';
+
+export default {
+    //import引入的组件需要注入到对象中才能使用
+    components: {},
+    data() {
+        //这里存放数据
+        return {
+            infoList: [
+                { title: 'MBA', subTitle: '暨南大学新加坡中文MBA项目' },
+                { title: 'DBA', subTitle: '法国南特商学院新加坡DBA项目' },
+                { title: '高等教育管理', subTitle: '企业定制化课程' }
+            ],
+            infoTwoList: [
+                { title: '1个平台', subTitle: '终身学习平台' },
+                { title: '2证文凭', subTitle: '“211工程”大学 “双一流”建设高校' },
+                { title: '3冠认证', subTitle: 'AACSB认证 & AMBA认证 & B' },
+                { title: '9大体系', subTitle: '融合中国商业文化与现代管理智慧' },
+                { title: '百年名校', subTitle: '中国百年名校 华侨最高学府' },
+                { title: '1+1+N+2', subTitle: '全面赋能职业发展' }
+            ],
+            alumniList: [
+                {
+                    content: '认知高度是发展的天花板，我坚信MBA之旅，能让我成为更优秀的个体，实现自我价值，给两个孩子做好榜样。',
+                    name: '张亚男',
+                    info: 'LINKAGE HR PTE.LTD执行董事',
+                    class: '暨南大学新加坡MBA项目2024级春季班'
+                },
+                {
+                    content: '对我来说，这不仅是一次学术上的追求，更是个人成长和职业发展的重要跳板。实现自我超越。实现梦想的旅程。',
+                    name: '杨洋',
+                    info: '新加坡华文教研中心 业务发展主任',
+                    class: '暨南大学新加坡MBA项目2024级春季班'
+                },
+                {
+                    content: '认知高度是发展的天花板，我坚信MBA之旅，能让我成为更优秀的个体，实现自我价值，给两个孩子做好榜样。',
+                    name: '张亚男',
+                    info: 'LINKAGE HR PTE.LTD执行董事',
+                    class: '暨南大学新加坡MBA项目2024级春季班'
+                },
+                {
+                    content: '认知高度是发展的天花板，我坚信MBA之旅，能让我成为更优秀的个体，实现自我价值，给两个孩子做好榜样。',
+                    name: '张亚男',
+                    info: 'LINKAGE HR PTE.LTD执行董事',
+                    class: '暨南大学新加坡MBA项目2024级春季班'
+                }
+            ]
+        };
+    },
+    directives: {
+        'horizontal-scroll': {
+            bind: function (el) {
+                el.addEventListener('wheel', function (event) {
+                    event.preventDefault();
+                    el.scrollLeft += event.deltaY;
+                });
+            }
+        }
+    },
+    //监听属性 类似于data概念
+    computed: {},
+    //监控data中的数据变化
+    watch: {},
+    //方法集合
+    methods: {
+    },
+    //生命周期 - 创建完成（可以访问当前this实例）
+    created() {
+
+    },
+    //生命周期 - 挂载完成（可以访问DOM元素）
+    mounted() {
+
+    },
+    beforeCreate() { }, //生命周期 - 创建之前
+    beforeMount() { }, //生命周期 - 挂载之前
+    beforeUpdate() { }, //生命周期 - 更新之前
+    updated() { }, //生命周期 - 更新之后
+    beforeDestroy() { }, //生命周期 - 销毁之前
+    destroyed() { }, //生命周期 - 销毁完成
+    activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
+}
+</script>
+
+<style scoped lang="less">
+.content-one {
+    padding-top: 100px;
+    padding-bottom: 123px;
+
+    .subtitle {
+        font-weight: 300;
+        font-size: 24px;
+        color: #E98225;
+        text-align: center;
+    }
+
+    .title {
+        font-weight: bold;
+        font-size: 52px;
+        color: #172C47;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .content-info {
+        display: flex;
+        align-items: center;
+        margin-top: 120px;
+        justify-content: center;
+
+        .info-left {
+            img {
+                width: 636px;
+                height: 410px;
+            }
+        }
+
+        .info-right {
+            width: 523px;
+            margin-left: 40px;
+            border-top: 2px solid rgba(3, 73, 158, 0.11);
+
+            .info-item {
+                height: 136px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 2px solid rgba(3, 73, 158, 0.11);
+
+                .info-title {
+                    font-weight: 500;
+                    font-size: 32px;
+                    color: #172C47;
+                }
+
+                .info-subTitle {
+                    font-weight: 300;
+                    font-size: 20px;
+                    color: #172C47;
+                    opacity: 50%;
+                }
+
+                .homeRightArrow {
+                    width: 60px;
+                    height: 60px;
+                }
+            }
+        }
+    }
+}
+
+.content-two {
+    height: 1740px;
+    background: linear-gradient(180deg, #121212 0%, #1A3461 100%);
+    padding-top: 130px;
+
+    .content-info {
+        display: flex;
+        justify-content: center;
+
+        .info-left {
+            color: white;
+
+            .title {
+                font-size: 40px;
+                font-weight: bold;
+                margin-bottom: 15px;
+            }
+
+            .subTitle {
+                font-size: 22px;
+                font-weight: 300;
+                margin-bottom: 60px;
+            }
+
+            img {
+                width: 570px;
+                height: 363px;
+            }
+        }
+
+        .info-right {
+            margin-left: 150px;
+            margin-top: -30px;
+
+            .info-item {
+                .title {
+                    font-size: 110px;
+                    font-weight: bold;
+                    background: linear-gradient(-90deg, #03499E 30%, #F9C99F 59%, #FF9C00 100%);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    color: transparent;
+                }
+
+                .subTitle {
+                    font-weight: 300;
+                    font-size: 20px;
+                    color: #FFFFFF;
+                    margin: 20px 0 100px 0;
+                }
+            }
+        }
+    }
+}
+
+.content-three {
+    padding: 140px 0 140px 360px;
+
+    .title {
+        font-weight: bold;
+        font-size: 56px;
+        color: #172C47;
+        margin-bottom: 15px;
+    }
+
+    .subTitle {
+        font-weight: 300;
+        font-size: 22px;
+        color: #172C47;
+    }
+
+    .alumni-scroll {
+        width: 99%;
+        overflow-x: hidden;
+        white-space: nowrap;
+        margin-top: 50px;
+
+        .alumni-item {
+            display: inline-block;
+            margin-right: 55px;
+
+            .dialog-bg {
+                width: 570px;
+                height: 224px;
+            }
+
+            .dialog-content {
+                font-weight: 500;
+                font-size: 24px;
+                color: #172C47;
+                position: absolute;
+                width: 570px;
+                height: 224px;
+                white-space: break-spaces;
+                left: 0%;
+                top: 0%;
+                padding: 0 50px;
+                box-sizing: border-box;
+            }
+        }
+
+        .alumni-img {
+            width: 570px;
+            height: 362px;
+            display: block;
+            margin: 20px 0;
+        }
+
+        .alumni-info {
+            font-weight: 500;
+            font-size: 32px;
+            color: #172C47;
+            line-height: 42px;
+        }
+
+        .alumni-class {
+            margin-top: 25px;
+            font-weight: 300;
+            font-size: 20px;
+            color: #172C47;
+        }
+    }
+}
+</style>
