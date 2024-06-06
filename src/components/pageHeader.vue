@@ -1,7 +1,16 @@
 <!--  -->
 <template>
     <div id="container" :style="bgHeigth" class="header-area">
-        <img id="image" ref="headerBg" :src="imageUrl" class="header-bg">
+        <img v-if="currentPath == '/'" id="image" ref="headerBg" src="../../assets/header/homeHeaderBg.png"
+            class="header-bg">
+        <img v-if="currentPath == '/courseProjects'" id="image" ref="headerBg"
+            src="../../assets/header/courseProjectsHeaderBg.png" class="header-bg">
+        <img v-if="currentPath == '/teachingStaff'" id="image" ref="headerBg"
+            src="../../assets/header/teachingHeaderBg.png" class="header-bg">
+        <img v-if="currentPath == '/aboutUs'" id="image" ref="headerBg" src="../../assets/header/aboutUsHeaderBg.png"
+            class="header-bg">
+        <img v-if="currentPath == '/alumniStyle'" id="image" ref="headerBg"
+            src="../../assets/header/aboutUsHeaderBg.png" class="header-bg">
         <div style="position: absolute; top: 0; width: 100%;">
             <div class="header-content">
                 <div class="logo">
@@ -32,6 +41,13 @@
             <AboutUsHeader v-if="currentPath == '/aboutUs'" />
             <AlumniStyleHeader v-if="currentPath == '/alumniStyle'" />
         </div>
+
+        <div class="sidebar">
+            <div class="sidebar-item" v-for="sildebar in sidebarList">
+                <img :src="sildebar.imgPath" alt="">
+                <div>{{ sildebar.name }}</div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -59,7 +75,12 @@ export default {
                 { name: '校友风采', path: '/alumniStyle' }
             ],
             currentPath: '/',
-            bgHeigth: ''
+            bgHeigth: '',
+            sidebarList: [
+                { name: '立即申请', path: '', imgPath: '../../assets/header/silderIcon/Apply.png' },
+                { name: '项目导览', path: '', imgPath: '../../assets/header/silderIcon/Project.png' },
+                { name: '1对1咨询', path: '', imgPath: '../../assets/header/silderIcon/Chat.png' }
+            ]
         };
     },
     //监听属性 类似于data概念
@@ -77,34 +98,13 @@ export default {
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
-        this.currentPath = this.$route.path
-        switch (this.currentPath) {
-            case '/':
-                this.imageUrl = '../../assets/header/home-header-bg.png'
-                break
-            case '/courseProjects':
-                this.imageUrl = '../../assets/header/courseProjects-header-bg.png'
-                break
-            case '/teachingStaff':
-                this.imageUrl = '../../assets/header/teaching-header-bg.png'
-                break
-            case '/aboutUs':
-                this.imageUrl = '../../assets/header/aboutUs-header-bg.png'
-                break
-            case '/alumniStyle':
-                this.imageUrl = '../../assets/header/aboutUs-header-bg.png'
-                break
-        }
+
 
 
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-
-        /* const container = document.getElementById('container');
-        const image = document.getElementById('image');
-
-        console.log(image.offsetHeight + 'px', this.$refs.headerBg.offsetHeight) */
+        this.currentPath = this.$route.path
 
     },
     beforeCreate() { }, //生命周期 - 创建之前
@@ -197,6 +197,35 @@ export default {
                 display: block;
             }
         }
+    }
+}
+
+.sidebar {
+    position: absolute;
+    width: 91px;
+    height: 295px;
+    background: #FFFFFF;
+    border-radius: 20px 0px 0px 20px;
+    right: 0;
+    bottom: 46px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    .sidebar-item {
+        width: 100%;
+        text-align: center;
+        color: #172C47;
+        cursor: pointer;
+    }
+
+    img {
+        width: 47px;
+        height: 47px;
     }
 }
 </style>
