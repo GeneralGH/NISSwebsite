@@ -11,6 +11,8 @@
             class="header-bg">
         <img v-if="currentPath == '/alumniStyle'" id="image" ref="headerBg"
             src="../../assets/header/aboutUsHeaderBg.png" class="header-bg">
+        <img v-if="currentPath == '/consultationForm'" id="image" ref="headerBg"
+            src="../../assets/header/aboutUsHeaderBg.png" class="header-bg">
         <div style="position: absolute; top: 0; width: 100%;">
             <div class="header-content">
                 <div class="logo">
@@ -40,10 +42,11 @@
             <TeachingStaffHeader v-if="currentPath == '/teachingStaff'" />
             <AboutUsHeader v-if="currentPath == '/aboutUs'" />
             <AlumniStyleHeader v-if="currentPath == '/alumniStyle'" />
+            <ConsultationFormHeader  v-if="currentPath == '/consultationForm'" />
         </div>
 
         <div class="sidebar">
-            <div class="sidebar-item" v-for="sildebar in sidebarList">
+            <div class="sidebar-item" v-for="sildebar in sidebarList" @click="toPage(sildebar)">
                 <img :src="sildebar.imgPath" alt="">
                 <div>{{ sildebar.name }}</div>
             </div>
@@ -59,10 +62,11 @@ import CourseProjects from './headerContent/courseProjectsHeader.vue'
 import TeachingStaffHeader from './headerContent/teachingStaffHeader.vue'
 import AboutUsHeader from './headerContent/aboutUsHeader.vue'
 import AlumniStyleHeader from './headerContent/alumniStyleHeader.vue'
+import ConsultationFormHeader from './headerContent/consultationFormHeader.vue'
 
 export default {
     //import引入的组件需要注入到对象中才能使用
-    components: { HomeHeader, CourseProjects, TeachingStaffHeader, AboutUsHeader, AlumniStyleHeader },
+    components: { HomeHeader, CourseProjects, TeachingStaffHeader, AboutUsHeader, AlumniStyleHeader, ConsultationFormHeader },
     data() {
         //这里存放数据
         return {
@@ -79,7 +83,7 @@ export default {
             sidebarList: [
                 { name: '立即申请', path: '', imgPath: '../../assets/header/silderIcon/Apply.png' },
                 { name: '项目导览', path: '', imgPath: '../../assets/header/silderIcon/Project.png' },
-                { name: '1对1咨询', path: '', imgPath: '../../assets/header/silderIcon/Chat.png' }
+                { name: '1对1咨询', path: '/consultationForm', imgPath: '../../assets/header/silderIcon/Chat.png' }
             ]
         };
     },
