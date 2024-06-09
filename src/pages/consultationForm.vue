@@ -14,13 +14,137 @@
                 </div>
             </div>
 
-            <div>
-                <t-select :options="options1" clearable placeholder="请选择云解决方案">
-                    <div slot="panelTopContent" style="padding: 6px 6px 0 6px">
-                        <div>上午</div>
-                        <div>下午</div>
+            <!-- 表单 -->
+            <div class="form-area">
+                <div class="form-row">
+                    <div class="form-item normal-item">
+                        <div class="form-item-label">姓名<span>*</span></div>
+                        <div>
+                            <sInput :placeholder="'请填写您的姓名'" />
+                        </div>
                     </div>
-                </t-select>
+                    <div class="form-item normal-item">
+                        <div class="form-item-label">国籍<span>*</span></div>
+                        <div style="position: relative;">
+                            <sSelect style="position: absolute;" :options="nationalityOptions"
+                                :placeholder="'请填写您的国籍'" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-item normal-item">
+                        <div class="form-item-label">所持新加坡居留身份<span>*</span></div>
+                        <div style="position: relative;">
+                            <sSelect style="position: absolute;" :options="residenceStatusOptions"
+                                :placeholder="'请选择您的新加坡居留身份'" />
+                        </div>
+                    </div>
+                    <div class="form-item normal-item">
+                        <div class="form-item-label">最高学历<span>*</span></div>
+                        <div style="position: relative;">
+                            <sSelect style="position: absolute;" :options="highestEducationalOptions"
+                                :placeholder="'请选择您的最高学历'" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item full-item">
+                        <div class="form-item-label">已在中国境外居住时间<span
+                                style="font-weight: 500; color: #172C47;">（不包括留学及公派出国的时间）</span><span>*</span></div>
+                        <div style="position: relative;">
+                            <sSelect style="position: absolute;" :options="outsideTimeOptions"
+                                :placeholder="'请选择已在中国境外居住时间'" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item full-item">
+                        <div class="form-item-label">公司<span>*</span></div>
+                        <div>
+                            <sInput :placeholder="'请填写您的公司'" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item full-item">
+                        <div class="form-item-label">职位<span>*</span></div>
+                        <div>
+                            <sInput :placeholder="'请填写您的职位'" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item areaCode-item">
+                        <div class="form-item-label">区号</div>
+                        <div>
+                            <sInput :placeholder="'区号'" />
+                        </div>
+                    </div>
+                    <div class="form-item phone-item">
+                        <div class="form-item-label">手机号码<span>*</span></div>
+                        <div>
+                            <sInput :placeholder="'请填写您的手机号码'" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item full-item">
+                        <div class="form-item-label">邮箱地址<span>*</span></div>
+                        <div>
+                            <sInput :placeholder="'请填写您的E-mail邮箱地址'" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item full-item">
+                        <div class="form-item-label">您希望以何种方式进行咨询<span>*</span></div>
+                        <div style="position: relative;">
+                            <sSelect style="position: absolute;" :options="consultingServiceOptions"
+                                :placeholder="'请选择你倾向的咨询沟通方式'" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item full-item">
+                        <div class="form-item-label">如何得知暨南大学新加坡MBA硕士学位项目<span>*</span></div>
+                        <div style="position: relative;">
+                            <sSelect style="position: absolute;" :options="knowingChannelOptions"
+                                :placeholder="'请选择您得知的渠道'" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row" style="height: auto;">
+                    <div class="form-item full-item">
+                        <div class="form-item-label">隐私政策<span>*</span></div>
+                        <div style="display: flex;">
+                            <t-radio v-model="ok" @click="ok = !ok"></t-radio>
+                            <div class="tips">
+                                <div class="tips-title">By filling in and submitting the form, you agree to our Privacy
+                                    Policy below. </div>
+                                <div class="tips-content">I hereby authorise, agree and consent to allow Nanyang
+                                    Institute of Social Sciences (NISS) to collect, use, disclose and/or process my
+                                    personal data for the purpose of facilitating, processing, dealing with,
+                                    administering, managing and/or maintaining my relationship with NISS, including but
+                                    not limited to informing me of NISS's latest courses, services, marketing events,
+                                    etc.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-item full-item" style="display: flex; align-items: center; justify-content: center;">
+                        <div class="submit-btn"><t-button size="large" style="width: 100%; height: 100%;border-radius: 16px;font-size: 20px;background-color: #03499E;">确定，提交表格</t-button></div>
+                    </div>
+                </div>
             </div>
         </div>
         <PageFooter />
@@ -30,18 +154,61 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
+import sInput from '../components/formControl/sInput.vue';
+import sSelect from '../components/formControl/sSelect.vue';
 
 export default {
     //import引入的组件需要注入到对象中才能使用
-    components: {},
+    components: { sInput, sSelect },
     data() {
         //这里存放数据
         return {
-            options1: [
-        { label: '云服务器', value: '1' },
-        { label: '云数据库', value: '2' },
-        { label: '域名注册', value: '3' },
-      ]
+            nationalityOptions: [
+                { label: '新加坡 ｜ Singapo', value: 1 },
+                { label: '中国 ｜ China', value: 2 },
+                { label: '其他', value: 3 }
+            ],
+            residenceStatusOptions: [
+                { label: '新加坡公民', value: 1 },
+                { label: 'PR', value: 2 },
+                { label: 'EP', value: 3 },
+                { label: 'SP', value: 4 },
+                { label: 'WP', value: 5 },
+                { label: '其他', value: 6 }
+            ],
+            highestEducationalOptions: [
+                { label: '博士', value: 1 },
+                { label: '硕士', value: 2 },
+                { label: '本科', value: 3 },
+                { label: '大专', value: 4 },
+                { label: '其他', value: 5 }
+            ],
+            outsideTimeOptions: [
+                { label: '5年及以上', value: 1 },
+                { label: '4-5年', value: 2 },
+                { label: '3-4年', value: 3 },
+                { label: '2-3年', value: 4 },
+                { label: '1-2年', value: 5 },
+                { label: '1年及以下', value: 6 }
+            ],
+            consultingServiceOptions: [
+                { label: '面谈（强烈推荐）', value: 1 },
+                { label: '视频', value: 2 },
+                { label: '电话', value: 3 }
+            ],
+            knowingChannelOptions: [
+                { label: '微信公众号', value: 1 },
+                { label: '微信朋友圈', value: 2 },
+                { label: '小红书', value: 3 },
+                { label: '邮件', value: 4 },
+                { label: 'Linkedin', value: 5 },
+                { label: 'Facebook', value: 6 },
+                { label: 'YouTube', value: 7 },
+                { label: '微博', value: 8 },
+                { label: '同事、朋友等介绍', value: 9 },
+                { label: '其他', value: 10 }
+            ],
+            ok: false
         };
     },
     //监听属性 类似于data概念
@@ -71,6 +238,37 @@ export default {
 </script>
 
 <style scoped lang="less">
+.submit-btn {
+    width: 223px;
+    height: 73px;
+}
+
+/deep/.t-radio__input {
+    width: 26px;
+    height: 26px;
+}
+
+/deep/.t-radio__input::after {
+    transform: translate(-50%, -50%) !important;
+    margin: 0;
+}
+
+.tips {
+    margin-left: 20px;
+    margin-top: -5px;
+
+    .tips-title {
+        font-weight: 500;
+        font-size: 28px;
+        color: #172C47;
+        margin-bottom: 20px;
+    }
+
+    font-weight: 300;
+    font-size: 20px;
+    color: #172C47;
+}
+
 /deep/.page-area {
     width: 1200px;
     margin: 0 auto;
@@ -92,6 +290,54 @@ export default {
                 font-size: 24px;
                 line-height: 43px;
             }
+        }
+    }
+}
+
+.customInput {
+    margin-bottom: 50px;
+}
+
+.form-area {
+    box-sizing: border-box;
+    padding: 0 40px;
+    min-height: 800px;
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        height: 180px;
+    }
+
+    .form-item {}
+
+    .normal-item {
+        width: 530px;
+    }
+
+    .full-item {
+        width: 100%;
+    }
+
+    .areaCode-item {
+        width: 15%;
+    }
+
+    .phone-item {
+        width: 82%;
+    }
+
+    .form-item-label {
+        font-weight: bold;
+        font-size: 28px;
+        color: #172C47;
+        line-height: 34px;
+        margin-bottom: 40px;
+
+        span {
+            color: #E98225;
+            margin-left: 5px;
         }
     }
 }

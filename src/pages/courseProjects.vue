@@ -186,7 +186,7 @@ export default {
 .templateCss {
     margin-top: -20px;
     width: 77%;
-    margin-left: 80px;
+    margin-left: 240px;
 }
 
 .btn {

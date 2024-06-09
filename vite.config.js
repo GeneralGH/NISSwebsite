@@ -14,7 +14,7 @@ import px2rem from 'postcss-px2rem';
 
 
 const postcss = px2rem({
-    remUnit: 18  //基准大小 baseSize，需要和rem.js中相同
+    remUnit: 20  //基准大小 baseSize，需要和rem.js中相同
 })
 
 export default {

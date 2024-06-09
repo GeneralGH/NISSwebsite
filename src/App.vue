@@ -39,7 +39,7 @@ body {
   right: -3px;
   bottom: -3px;
   z-index: -1;
-  background-image: linear-gradient(to left top, #04499F, #68AAEC, #FFCC9E, #FF9C00, #74B6EB);
+  background-image: repeating-linear-gradient(125deg, #FF9C00, #FFCC9E, #74B6EB 80%, #68AAEC, #04499F);
   border-radius: 20px;
   outline: 2px solid transparent;
   outline-offset: -2px;

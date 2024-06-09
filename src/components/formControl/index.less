@@ -1,0 +1,28 @@
+.item-area {
+    width: 100%;
+    min-height: 80px;
+    border-radius: 16px;
+    border: 1px solid #172C47;
+    box-sizing: border-box;
+    position: relative;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.gradient-border {
+    border-color: transparent;
+}
+
+.gradient-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    background-image: repeating-linear-gradient(125deg, #FF9C00, #FFCC9E, #74B6EB 80%, #68AAEC, #04499F);
+    border-radius: 20px;
+    outline: 2px solid transparent;
+    outline-offset: -2px;
+}
