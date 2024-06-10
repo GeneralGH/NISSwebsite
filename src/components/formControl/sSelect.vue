@@ -51,6 +51,7 @@ export default {
         optionChange(item) {
             this.chooseLabel = item.label
             this.isRotated = false
+            this.$emit('optionChange', item)
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）

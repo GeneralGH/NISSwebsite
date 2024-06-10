@@ -46,9 +46,17 @@
         </div>
 
         <div class="sidebar">
-            <div class="sidebar-item" v-for="sildebar in sidebarList" @click="toPage(sildebar)">
-                <img :src="sildebar.imgPath" alt="">
-                <div>{{ sildebar.name }}</div>
+            <div class="sidebar-item" @click="toPage({path: ''})">
+                <img src="../../assets/header/silderIcon/Apply.png" alt="">
+                <div>立即申请</div>
+            </div>
+            <div class="sidebar-item" @click="toPage({path: ''})">
+                <img src="../../assets/header/silderIcon/Project.png" alt="">
+                <div>项目导览</div>
+            </div>
+            <div class="sidebar-item" @click="toPage({path: '/consultationForm'})">
+                <img src="../../assets/header/silderIcon/Chat.png" alt="">
+                <div>1对1咨询</div>
             </div>
         </div>
     </div>

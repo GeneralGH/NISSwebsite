@@ -121,6 +121,15 @@
                     </div>
                 </div>
 
+                <div class="form-row">
+                    <div class="form-item normal-item">
+                        <div class="form-item-label">预约咨询日期<span>*</span></div>
+                        <div style="position: relative;">
+                            <sDatePicker :placeholder="'请选择日期'" />
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-row" style="height: auto;">
                     <div class="form-item full-item">
                         <div class="form-item-label">隐私政策<span>*</span></div>
@@ -141,8 +150,11 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-item full-item" style="display: flex; align-items: center; justify-content: center;">
-                        <div class="submit-btn"><t-button size="large" style="width: 100%; height: 100%;border-radius: 16px;font-size: 20px;background-color: #03499E;">确定，提交表格</t-button></div>
+                    <div class="form-item full-item"
+                        style="display: flex; align-items: center; justify-content: center;">
+                        <div class="submit-btn"><t-button size="large"
+                                style="width: 100%; height: 100%;border-radius: 16px;font-size: 20px;background-color: #03499E;">确定，提交表格</t-button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -156,10 +168,11 @@
 //例如：import 《组件名称》 from '《组件路径》';
 import sInput from '../components/formControl/sInput.vue';
 import sSelect from '../components/formControl/sSelect.vue';
+import sDatePicker from '../components/formControl/sDatePicker.vue';
 
 export default {
     //import引入的组件需要注入到对象中才能使用
-    components: { sInput, sSelect },
+    components: { sInput, sSelect, sDatePicker },
     data() {
         //这里存放数据
         return {
