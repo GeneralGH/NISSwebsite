@@ -14,13 +14,18 @@
                     <img src="../../assets/home/contentOne.png" alt="">
                 </div>
                 <div class="info-right">
-                    <div class="info-item" v-for="(item, index) in infoList">
+                    <div class="info-item" v-for="(item, index) in infoList" @mouseover="isHovered = index" @mouseleave="isHovered = -1" @click="jump(item.path)">
                         <div>
-                            <div class="info-title">{{ item.title }}</div>
+                            <div class="info-title">
+                                <div>{{ item.title }}</div>
+                                <div class="info-line">
+                                    <div v-show="isHovered == index"></div>
+                                </div>
+                            </div>
                             <div class="info-subTitle">{{ item.subTitle }}</div>
                         </div>
-                        <div v-show="index == 0">
-                            <img class="homeRightArrow" src="../../assets/home/homeRightArrow.png" alt="">
+                        <div>
+                            <img v-show="isHovered == index" class="homeRightArrow" src="../../assets/home/homeRightArrow.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -31,7 +36,7 @@
             <div class="content-info">
                 <div class="info-left">
                     <div class="title">成为最具价值的终身学习平台</div>
-                    <div class="subTitle">To be an invaluable</div>
+                    <div class="subTitle">To be an invaluable lifelong learning platform</div>
                     <img src="../../assets/home/contentTwo.png" alt="">
                 </div>
                 <div class="info-right">
@@ -91,7 +96,7 @@ export default {
         //这里存放数据
         return {
             infoList: [
-                { title: 'MBA', subTitle: '暨南大学新加坡中文MBA项目' },
+                { title: 'MBA', subTitle: '暨南大学新加坡中文MBA项目', path: '/courseProjects' },
                 { title: 'DBA', subTitle: '法国南特商学院新加坡DBA项目' },
                 { title: '高等教育管理', subTitle: '企业定制化课程' }
             ],
@@ -128,7 +133,8 @@ export default {
                     info: 'LINKAGE HR PTE.LTD执行董事',
                     class: '暨南大学新加坡MBA项目2024级春季班'
                 }
-            ]
+            ],
+            isHovered: -1
         };
     },
     directives: {
@@ -147,6 +153,12 @@ export default {
     watch: {},
     //方法集合
     methods: {
+        jump(path) {
+            if (!path) {
+                return
+            }
+            this.$router.push(path)
+        }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
@@ -210,11 +222,28 @@ export default {
                 align-items: center;
                 justify-content: space-between;
                 border-bottom: 2px solid rgba(3, 73, 158, 0.11);
+                cursor: pointer;
 
                 .info-title {
-                    font-weight: 500;
+                    font-weight: 600;
                     font-size: 32px;
                     color: #172C47;
+                    margin-bottom: 10px;
+                    width: fit-content;
+                    height: 44px;
+                }
+
+                .info-line {
+                    width: 100%;
+                    height: 6px;
+                }
+
+                .info-line div{
+                    width: 100%;
+                    height: 3px;
+                    background-color: #FF9C00;
+                    border-radius: 20px;
+                    margin-top: 2px;
                 }
 
                 .info-subTitle {

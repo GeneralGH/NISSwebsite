@@ -101,6 +101,7 @@ export default {
 
 .item-unit {
     font-size: 32px;
+    font-weight: 600;
 }
 
 .item-name {

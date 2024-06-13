@@ -15,7 +15,7 @@
                 <div class="info">
                     <div class="schoolItem" v-for="item in schoolList">
                         <div class="schoolItem-img">
-                            <img :src="'../../../assets/courseProjects/' + item.img" alt="">
+                            <img :src="item.img" alt="">
                             <div>{{ item.name }}</div>
                         </div>
                         <div class="schools">
@@ -53,6 +53,15 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 
+import France from "../../../assets/courseProjects/France.png";
+import Finland from "../../../assets/courseProjects/Finland.png";
+import Italy from "../../../assets/courseProjects/Italy.png";
+import Japan from "../../../assets/courseProjects/Japan.png";
+import Korea from "../../../assets/courseProjects/Korea.png";
+import Thailand from "../../../assets/courseProjects/Thailand.png";
+import Greece from "../../../assets/courseProjects/Greece.png";
+import Chile from "../../../assets/courseProjects/Chile.png";
+
 export default {
     //import引入的组件需要注入到对象中才能使用
     components: {},
@@ -60,14 +69,14 @@ export default {
         //这里存放数据
         return {
             schoolList: [
-                { img: 'France.png', name: '法国', list: ['北方高等商学院 EDHEC Business school', '里昂商学院 EM Lyon Business School', '蒙彼利埃商学院 Montpellier Business School'] },
-                { img: 'Finland.png', name: '芬兰', list: ['瓦萨大学 University of Vaasa'] },
-                { img: 'Italy.png', name: '意大利', list: ['萨兰托大学 University del Salento'] },
-                { img: 'Japan.png', name: '日本', list: ['名古屋商学院 Nagoya University of Commerce and Business'] },
-                { img: 'Korea.png', name: '韩国', list: ['仁荷大学 Inha University'] },
-                { img: 'Thailand.png', name: '泰国', list: ['国立法证大学 Thammasat University Business School'] },
-                { img: 'Greece.png', name: '希腊', list: ['阿尔巴商学院 Alba Graduate Business School'] },
-                { img: 'Chile.png', name: '智利', list: ['智利大学 University of Chile'] },
+                { img: France, name: '法国', list: ['北方高等商学院 EDHEC Business school', '里昂商学院 EM Lyon Business School', '蒙彼利埃商学院 Montpellier Business School'] },
+                { img: Finland, name: '芬兰', list: ['瓦萨大学 University of Vaasa'] },
+                { img: Italy, name: '意大利', list: ['萨兰托大学 University del Salento'] },
+                { img: Japan, name: '日本', list: ['名古屋商学院 Nagoya University of Commerce and Business'] },
+                { img: Korea, name: '韩国', list: ['仁荷大学 Inha University'] },
+                { img: Thailand, name: '泰国', list: ['国立法证大学 Thammasat University Business School'] },
+                { img: Greece, name: '希腊', list: ['阿尔巴商学院 Alba Graduate Business School'] },
+                { img: Chile, name: '智利', list: ['智利大学 University of Chile'] },
             ],
             networkingList: [
                 { name: '主力年龄', value: '31-40' },
@@ -88,7 +97,6 @@ export default {
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
-
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {

@@ -6,7 +6,7 @@
 
         <div class="search-area">
             <div class="search-title">姓名搜索</div>
-            <div class="search-bg" style="background-image: url('../../../assets/teachingStaff/searchBg.png');">
+            <div class="search-bg" style="background-image: url('/assets/teachingStaff/searchBg.png');">
                 <!-- <input type="text"> -->
             </div>
             <div class="initial-area">
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <TeacherList />
+        <TeacherList :isNomral="true" />
     </div>
 </template>
 

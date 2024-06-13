@@ -152,8 +152,7 @@
                 <div class="form-row">
                     <div class="form-item full-item"
                         style="display: flex; align-items: center; justify-content: center;">
-                        <div class="submit-btn"><t-button size="large"
-                                style="width: 100%; height: 100%;border-radius: 16px;font-size: 20px;background-color: #03499E;">确定，提交表格</t-button>
+                        <div class="submit-btn"><t-button size="large" class="btn">确定，提交表格</t-button>
                         </div>
                     </div>
                 </div>
@@ -254,6 +253,10 @@ export default {
 .submit-btn {
     width: 223px;
     height: 73px;
+
+    .btn {
+        width: 100%; height: 100%;border-radius: 16px;font-size: 20px;background-color: #03499E;
+    }
 }
 
 /deep/.t-radio__input {

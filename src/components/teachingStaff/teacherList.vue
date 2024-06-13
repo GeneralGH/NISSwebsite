@@ -1,7 +1,7 @@
 <!--  -->
 <template>
     <div class="teacher-list-area">
-        <div class="firstName">A</div>
+        <div class="firstName" v-if="isNomral">A</div>
         <div class="teacher-list">
             <div class="teacher-item">
                 <div class="teacher-img">
@@ -58,6 +58,9 @@ export default {
         return {
 
         };
+    },
+    props: {
+        isNomral: { type: Boolean, default: false }
     },
     //监听属性 类似于data概念
     computed: {},
