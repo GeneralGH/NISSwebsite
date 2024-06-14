@@ -73,7 +73,7 @@ export default {
     data() {
         //这里存放数据
         return {
-            currentTemplate: 1,
+            currentTemplate: 'options1',
             optionsList: [
                 {
                     name: '项目概述',
