@@ -5,8 +5,8 @@
 
         <div class="pageBody">
             <div class="content-body">
-                <div style="width: 25%;">
-                    <div class="leftList" :class="{ sticky: isSticky }">
+                <div style="width: 25%; position: relative;">
+                    <div class="leftList" :class="{ sticky: isSticky, absot: isAbsot }">
                         <div class="title"> 暨南大学<br>新加坡MBA项目 </div>
                         <div class="optionsList">
                             <div class="list-line-area">
@@ -111,7 +111,8 @@ export default {
                     ]
                 }
             ],
-            isSticky: false
+            isSticky: false,
+            isAbsot: false
         };
     },
     //监听属性 类似于data概念
@@ -132,18 +133,25 @@ export default {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
             const documentHeight = document.documentElement.scrollHeight;
+            const contentBodyHeight = document.querySelector('.content-body').offsetHeight;
+            console.log(scrollTop + windowHeight, contentBodyHeight + 1000)
 
-            if (scrollTop + windowHeight >= documentHeight - 450) {
-                // 当视窗滚动到接近底部时，停止将 leftList 设置为 fixed
+            if (scrollTop + windowHeight >=  contentBodyHeight + 900) {
+                // 当 leftList 到达 content-body 底部时停止跟随滚动
                 this.isSticky = false;
+                this.isAbsot = true
             } else if (scrollTop > 800) {
                 // 滚动超过 800px 时，将 leftList 设置为 fixed
                 this.isSticky = true;
+                this.isAbsot = false
             } else {
                 // 其他情况下，leftList 不是 fixed
                 this.isSticky = false;
+                this.isAbsot = false
             }
         }
+
+
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
@@ -172,6 +180,11 @@ export default {
     position: fixed;
     top: 20px;
     /* 其他样式 */
+}
+
+.absot {
+    position: absolute;
+    bottom: 0;
 }
 
 .list-line-area {

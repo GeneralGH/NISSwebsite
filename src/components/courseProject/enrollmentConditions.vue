@@ -75,7 +75,7 @@
                 对于2022年9月（秋季入学）入学的学生，如已修满所有学分并通过论文答辩，将在2024年8月毕业。
             </div>
 
-            <div class="ps">
+            <div class="ps last-ps">
                 * 具体日期以校历为准。
             </div>
         </div>
@@ -128,6 +128,10 @@ export default {
     font-weight: 500;
     margin-left: 20px;
     margin-top: -35px;
+}
+
+.last-ps {
+    margin-top: 20px !important;
 }
 
 .info-content {
