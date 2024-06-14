@@ -1,10 +1,10 @@
 <!--  -->
 <template>
     <div>
-        <div class="content-item">
+        <div class="content-item" id="options2-1">
             <div class="title">必修模块</div>
             <div class="line"></div>
-            <div class="info-content" style="margin-top: 60px;">
+            <div class="info-content">
                 <div>必修模块的课程在第一学年完成，包括方法论基础、管理核心课程和中国国情课程等。</div>
                 <div class="module-card-list">
                     <div class="module-card" v-for="item in oneCardList">
@@ -18,10 +18,10 @@
             </div>
         </div>
 
-        <div class="content-item">
+        <div class="content-item" id="options2-2">
             <div class="title">选修模块</div>
             <div class="line"></div>
-            <div class="info-content" style="margin-top: 60px;">
+            <div class="info-content">
                 <div>6大模块，28门选修课，学生可以根据自己的兴趣进行深入研究，探索更多领域的知识。</div>
                 <div class="module-card-list">
                     <div class="module-card" v-for="item in twoCardList">
@@ -127,6 +127,10 @@ export default {
     display: flex;
     flex-wrap: wrap;
     margin-top: 30px;
+}
+
+.info-content {
+    margin-top: 45px;
 }
 
 .item-footer {

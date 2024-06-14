@@ -1,7 +1,7 @@
 <!--  -->
 <template>
     <div>
-        <div class="content-item">
+        <div class="content-item" id="options4-1">
             <div class="title">独特价值</div>
             <div class="line"></div>
             <div class="info-content" style="margin-bottom: 40px;">
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="content-item">
+        <div class="content-item" id="options4-2">
             <div class="title">人脉优势</div>
             <div class="line"></div>
             <div class="info-content" style="margin-bottom: 40px;">

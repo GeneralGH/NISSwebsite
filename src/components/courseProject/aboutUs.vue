@@ -1,7 +1,7 @@
 <!--  -->
 <template>
     <div>
-        <div class="content-item">
+        <div class="content-item" id="options1-1">
             <div class="title">关于暨南大学</div>
             <div class="line"></div>
             <div class="info">
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="content-item">
+        <div class="content-item" id="options1-2">
             <div class="title">项目介绍</div>
             <div class="line"></div>
             <div class="info-content" style="margin-bottom: 40px;">
@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div class="content-item">
+        <div class="content-item" id="options1-3">
             <div class="title">项目优势</div>
             <div class="line"></div>
             <div class="info">
@@ -115,6 +115,7 @@ export default {
     display: flex;
     align-items: center;
     margin-top: 40px;
+    padding: 0 30px;
 
     img {
         width: 260px;
@@ -128,6 +129,8 @@ export default {
     align-items: center;
     justify-content: space-around;
     text-align: center;
+    box-sizing: border-box;
+    padding: 0 40px;
 
     .img-item {
         width: 98px;

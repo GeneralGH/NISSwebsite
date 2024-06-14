@@ -1,7 +1,7 @@
 <!--  -->
 <template>
     <div>
-        <div class="content-item">
+        <div class="content-item" id="options3-1">
             <div class="title">招生条件</div>
             <div class="line"></div>
             <div class="info-content" style="margin-bottom: 40px;">
@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <div class="content-item">
+        <div class="content-item" id="options3-2">
             <div class="title">申请流程</div>
             <div class="line"></div>
             <div style="margin-top: 60px;">
@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div class="content-item">
+        <div class="content-item" id="options3-3">
             <div class="title">招生批次</div>
             <div class="line"></div>
             <div style="margin-top: 60px;">
@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <div class="content-item">
+        <div class="content-item" id="options3-4">
             <div class="title">入学与毕业时间</div>
             <div class="line"></div>
             <div style="margin-top: 60px;">
@@ -127,6 +127,7 @@ export default {
     font-size: 16px;
     font-weight: 500;
     margin-left: 20px;
+    margin-top: -35px;
 }
 
 .info-content {

@@ -54,8 +54,35 @@
             <div class="title">校友寄语</div>
             <div class="subTitle">Their Stories</div>
 
-            <div class="alumni-scroll" id="nav">
-                <div class="alumni-item" v-for="(item, index) in alumniList">
+            <div class="alumni-scroll" >
+                <vue-seamless-scroll :data="alumniList" :class-option="classOption">
+                    <div class="alumni-item" v-for="(item, index) in alumniList">
+                        <div v-show="index % 2 === 0" style="position: relative;">
+                            <img class="dialog-bg" src="../../assets/home/topDialog.png" alt="">
+                            <div class="dialog-content" style="padding-top: 50px">{{ item.content }}</div>
+                        </div>
+                        <div v-show="index % 2 !== 0">
+                            <div class="alumni-info">
+                                {{ item.name }}<br>
+                                {{ item.info }}
+                            </div>
+                            <div class="alumni-class">{{ item.class }}</div>
+                        </div>
+                        <img class="alumni-img" :src="item.imgPath" alt="">
+                        <div v-show="index % 2 === 0">
+                            <div class="alumni-info">
+                                {{ item.name }}<br>
+                                {{ item.info }}
+                            </div>
+                            <div class="alumni-class">{{ item.class }}</div>
+                        </div>
+                        <div v-show="index % 2 !== 0" style="position: relative;">
+                            <img class="dialog-bg" src="../../assets/home/buttonDialog.png" alt="">
+                            <div class="dialog-content" style="padding-top: 70px;">{{ item.content }}</div>
+                        </div>
+                    </div>
+                </vue-seamless-scroll>
+                <!-- <div class="alumni-item" v-for="(item, index) in alumniList">
                     <div v-show="index % 2 === 0" style="position: relative;">
                         <img class="dialog-bg" src="../../assets/home/topDialog.png" alt="">
                         <div class="dialog-content" style="padding-top: 50px">{{ item.content }}</div>
@@ -67,7 +94,7 @@
                         </div>
                         <div class="alumni-class">{{ item.class }}</div>
                     </div>
-                    <img class="alumni-img" src="../../assets/home/contentTwo.png" alt="">
+                    <img class="alumni-img" :src="item.imgPath" alt="">
                     <div v-show="index % 2 === 0">
                         <div class="alumni-info">
                             {{ item.name }}<br>
@@ -79,7 +106,7 @@
                         <img class="dialog-bg" src="../../assets/home/buttonDialog.png" alt="">
                         <div class="dialog-content" style="padding-top: 70px;">{{ item.content }}</div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -115,28 +142,36 @@ export default {
                     content: '认知高度是发展的天花板，我坚信MBA之旅，能让我成为更优秀的个体，实现自我价值，给两个孩子做好榜样。',
                     name: '张亚男',
                     info: 'LINKAGE HR PTE.LTD执行董事',
-                    class: '暨南大学新加坡MBA项目2024级春季班'
+                    class: '暨南大学新加坡MBA项目2024级春季班',
+                    imgPath: 'https://inews.gtimg.com/om_bt/OHyQqgC_5oi4Vm0tlH49XvJzqNBHo2Zryxx5F_be5N2cIAA/1000'
                 },
                 {
                     content: '对我来说，这不仅是一次学术上的追求，更是个人成长和职业发展的重要跳板。实现自我超越。实现梦想的旅程。',
                     name: '杨洋',
                     info: '新加坡华文教研中心 业务发展主任',
-                    class: '暨南大学新加坡MBA项目2024级春季班'
+                    class: '暨南大学新加坡MBA项目2024级春季班',
+                    imgPath: 'https://inews.gtimg.com/om_bt/ORJxmJ_hryXf-hfuC7Sf214TDfWVPFfq6GZZ82VUUhpioAA/641'
                 },
                 {
                     content: '认知高度是发展的天花板，我坚信MBA之旅，能让我成为更优秀的个体，实现自我价值，给两个孩子做好榜样。',
                     name: '张亚男',
                     info: 'LINKAGE HR PTE.LTD执行董事',
-                    class: '暨南大学新加坡MBA项目2024级春季班'
+                    class: '暨南大学新加坡MBA项目2024级春季班',
+                    imgPath: 'https://inews.gtimg.com/om_bt/OFuK1kztRd-zzktobCmipDb_VsuROWK19OklC1qTaTK_gAA/641'
                 },
                 {
                     content: '认知高度是发展的天花板，我坚信MBA之旅，能让我成为更优秀的个体，实现自我价值，给两个孩子做好榜样。',
                     name: '张亚男',
                     info: 'LINKAGE HR PTE.LTD执行董事',
-                    class: '暨南大学新加坡MBA项目2024级春季班'
+                    class: '暨南大学新加坡MBA项目2024级春季班',
+                    imgPath: 'https://inews.gtimg.com/om_bt/OMvPDmiuH_X5Vq1YLNgbFEzD2h_-2dCfWQ7xZFcKFSEsAAA/641'
                 }
             ],
-            isHovered: -1
+            isHovered: -1,
+            classOption: {
+                limitMoveNum: 2,
+                direction: 2,
+            }
         };
     },
     //监听属性 类似于data概念
@@ -145,64 +180,6 @@ export default {
     watch: {},
     //方法集合
     methods: {
-        scrollInit() {
-            let that = this;
-            const nav = document.getElementById("nav");
-            let flag; // 鼠标按下
-            let downX; // 鼠标点击的x坐标
-            let scrollLeft; // 当前元素滚动条的偏移量
-            const maxScrollLeft = nav.scrollWidth - nav.clientWidth; // 滚动到最右边时的偏移量
-            const threshold = 300; // 用于判断距离最右边的阈值
-            let throttled = false; // 节流标志
-
-            function throttle(func, delay) {
-                if (!throttled) {
-                    func();
-                    throttled = true;
-                    setTimeout(() => {
-                        throttled = false;
-                    }, delay);
-                }
-            }
-
-            nav.addEventListener("mousedown", function (event) {
-                flag = true;
-                downX = event.clientX;
-                scrollLeft = this.scrollLeft;
-            });
-
-            nav.addEventListener("mousemove", function (event) {
-                if (flag) {
-                    const moveX = event.clientX;
-                    const scrollX = moveX - downX;
-                    this.scrollLeft = scrollLeft - scrollX;
-                    console.log(this.scrollLeft);
-
-                    // 判断滚动到了最左边或最右边
-                    if (this.scrollLeft === 0) {
-                        console.log("已滚动到最左边");
-                    } else if (this.scrollLeft >= maxScrollLeft - threshold) {
-                        throttle(function () {
-                            console.log("距离最右边很近");
-                            const firstAlumni = that.alumniList.shift();
-                            that.alumniList.push(firstAlumni);
-                            // 更新滚动项 DOM 结构或重新渲染列表
-                        }, 2000); // 设置节流的延迟时间
-                    }
-                }
-            });
-
-            nav.addEventListener("mouseup", function () {
-                flag = false;
-            });
-
-            nav.addEventListener("mouseleave", function () {
-                flag = false;
-            });
-        }
-        ,
-
-
         jump(path) {
             if (!path) {
                 return
@@ -216,7 +193,6 @@ export default {
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-        this.scrollInit();
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前
@@ -430,6 +406,7 @@ export default {
             height: 362px;
             display: block;
             margin: 20px 0;
+            border-radius: 15px;
         }
 
         .alumni-info {

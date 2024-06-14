@@ -6,6 +6,9 @@ import router from './router.js';
 import PageHeader from './components/pageHeader.vue';
 import PageFooter from './components/pageFooter.vue';
 import axiosInstance from './util/request';
+import scroll from 'vue-seamless-scroll'
+Vue.use(scroll)
+Vue.use(scroll,{componentName: 'scroll-seamless'})
 // import './util/flexible.js'
 import './util/rem'
 

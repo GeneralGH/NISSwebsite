@@ -46,17 +46,10 @@
         </div>
 
         <div class="sidebar">
-            <div class="sidebar-item" @click="toPage({path: ''})">
-                <img src="../../assets/header/silderIcon/Apply.png" alt="">
-                <div>立即申请</div>
-            </div>
-            <div class="sidebar-item" @click="toPage({path: ''})">
-                <img src="../../assets/header/silderIcon/Project.png" alt="">
-                <div>项目导览</div>
-            </div>
-            <div class="sidebar-item" @click="toPage({path: '/consultationForm'})">
-                <img src="../../assets/header/silderIcon/Chat.png" alt="">
-                <div>1对1咨询</div>
+            <div class="sidebar-item" v-for="(item, index) in sidebarList" @click="toPage({path: item.path})"  @mouseover="isHovered = index"
+            @mouseleave="isHovered = -1">
+                <img :src="isHovered == index ? item.imgPath : item.unImgPath" alt="">
+                <div>{{ item.name }}</div>
             </div>
         </div>
     </div>
@@ -71,6 +64,14 @@ import TeachingStaffHeader from './headerContent/teachingStaffHeader.vue'
 import AboutUsHeader from './headerContent/aboutUsHeader.vue'
 import AlumniStyleHeader from './headerContent/alumniStyleHeader.vue'
 import ConsultationFormHeader from './headerContent/consultationFormHeader.vue'
+
+import ApplyImg from '../../assets/header/silderIcon/Apply.png'
+import ProjectImg from '../../assets/header/silderIcon/Project.png'
+import ChatImg from '../../assets/header/silderIcon/Chat.png'
+
+import unApplyImg from '../../assets/header/silderIcon/uncheckApply.png'
+import unProjectImg from '../../assets/header/silderIcon/uncheckProject.png'
+import unChatImg from '../../assets/header/silderIcon/uncheckSide.png'
 
 export default {
     //import引入的组件需要注入到对象中才能使用
@@ -89,10 +90,11 @@ export default {
             currentPath: '/',
             bgHeigth: '',
             sidebarList: [
-                { name: '立即申请', path: '', imgPath: '../../assets/header/silderIcon/Apply.png' },
-                { name: '项目导览', path: '', imgPath: '../../assets/header/silderIcon/Project.png' },
-                { name: '1对1咨询', path: '/consultationForm', imgPath: '../../assets/header/silderIcon/Chat.png' }
-            ]
+                { name: '立即申请', path: '', imgPath: ApplyImg, unImgPath: unApplyImg },
+                { name: '项目导览', path: '', imgPath: ProjectImg, unImgPath: unProjectImg },
+                { name: '1对1咨询', path: '/consultationForm', imgPath: ChatImg, unImgPath: unChatImg }
+            ],
+            isHovered: -1
         };
     },
     //监听属性 类似于data概念
@@ -213,13 +215,13 @@ export default {
 }
 
 .sidebar {
-    position: absolute;
+    position: fixed;
     width: 91px;
     height: 295px;
     background: #FFFFFF;
     border-radius: 20px 0px 0px 20px;
     right: 0;
-    bottom: 46px;
+    bottom: 50%;
     font-weight: bold;
     font-size: 16px;
     line-height: 24px;
@@ -227,6 +229,8 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    z-index: 110;
+    box-shadow:  0 4px 16px  rgba(17,17,26,0.1), -20px 0 22px 5px rgba(135, 135, 135, 0.25);
 
     .sidebar-item {
         width: 100%;
