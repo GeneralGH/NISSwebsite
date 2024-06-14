@@ -14,7 +14,8 @@
                     <img src="../../assets/home/contentOne.png" alt="">
                 </div>
                 <div class="info-right">
-                    <div class="info-item" v-for="(item, index) in infoList" @mouseover="isHovered = index" @mouseleave="isHovered = -1" @click="jump(item.path)">
+                    <div class="info-item" v-for="(item, index) in infoList" @mouseover="isHovered = index"
+                        @mouseleave="isHovered = -1" @click="jump(item.path)">
                         <div>
                             <div class="info-title">
                                 <div>{{ item.title }}</div>
@@ -25,7 +26,8 @@
                             <div class="info-subTitle">{{ item.subTitle }}</div>
                         </div>
                         <div>
-                            <img v-show="isHovered == index" class="homeRightArrow" src="../../assets/home/homeRightArrow.png" alt="">
+                            <img v-show="isHovered == index" class="homeRightArrow"
+                                src="../../assets/home/homeRightArrow.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -52,7 +54,7 @@
             <div class="title">校友寄语</div>
             <div class="subTitle">Their Stories</div>
 
-            <div class="alumni-scroll" v-horizontal-scroll>
+            <div class="alumni-scroll" id="nav">
                 <div class="alumni-item" v-for="(item, index) in alumniList">
                     <div v-show="index % 2 === 0" style="position: relative;">
                         <img class="dialog-bg" src="../../assets/home/topDialog.png" alt="">
@@ -137,22 +139,70 @@ export default {
             isHovered: -1
         };
     },
-    directives: {
-        'horizontal-scroll': {
-            bind: function (el) {
-                el.addEventListener('wheel', function (event) {
-                    event.preventDefault();
-                    el.scrollLeft += event.deltaY;
-                });
-            }
-        }
-    },
     //监听属性 类似于data概念
     computed: {},
     //监控data中的数据变化
     watch: {},
     //方法集合
     methods: {
+        scrollInit() {
+            let that = this;
+            const nav = document.getElementById("nav");
+            let flag; // 鼠标按下
+            let downX; // 鼠标点击的x坐标
+            let scrollLeft; // 当前元素滚动条的偏移量
+            const maxScrollLeft = nav.scrollWidth - nav.clientWidth; // 滚动到最右边时的偏移量
+            const threshold = 300; // 用于判断距离最右边的阈值
+            let throttled = false; // 节流标志
+
+            function throttle(func, delay) {
+                if (!throttled) {
+                    func();
+                    throttled = true;
+                    setTimeout(() => {
+                        throttled = false;
+                    }, delay);
+                }
+            }
+
+            nav.addEventListener("mousedown", function (event) {
+                flag = true;
+                downX = event.clientX;
+                scrollLeft = this.scrollLeft;
+            });
+
+            nav.addEventListener("mousemove", function (event) {
+                if (flag) {
+                    const moveX = event.clientX;
+                    const scrollX = moveX - downX;
+                    this.scrollLeft = scrollLeft - scrollX;
+                    console.log(this.scrollLeft);
+
+                    // 判断滚动到了最左边或最右边
+                    if (this.scrollLeft === 0) {
+                        console.log("已滚动到最左边");
+                    } else if (this.scrollLeft >= maxScrollLeft - threshold) {
+                        throttle(function () {
+                            console.log("距离最右边很近");
+                            const firstAlumni = that.alumniList.shift();
+                            that.alumniList.push(firstAlumni);
+                            // 更新滚动项 DOM 结构或重新渲染列表
+                        }, 2000); // 设置节流的延迟时间
+                    }
+                }
+            });
+
+            nav.addEventListener("mouseup", function () {
+                flag = false;
+            });
+
+            nav.addEventListener("mouseleave", function () {
+                flag = false;
+            });
+        }
+        ,
+
+
         jump(path) {
             if (!path) {
                 return
@@ -166,7 +216,7 @@ export default {
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-
+        this.scrollInit();
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前
@@ -238,7 +288,7 @@ export default {
                     height: 6px;
                 }
 
-                .info-line div{
+                .info-line div {
                     width: 100%;
                     height: 3px;
                     background-color: #FF9C00;
@@ -334,10 +384,22 @@ export default {
     }
 
     .alumni-scroll {
+        user-select: none;
+        /* 禁止元素内的文本选择 */
+        -webkit-user-select: none;
+        /* 兼容性处理：禁止元素内的文本选择 */
+        -moz-user-select: none;
+        /* 兼容性处理：禁止元素内的文本选择 */
+        -ms-user-select: none;
+        /* 兼容性处理：禁止元素内的文本选择 */
         width: 99%;
         overflow-x: hidden;
         white-space: nowrap;
         margin-top: 50px;
+
+        img {
+            pointer-events: none;
+        }
 
         .alumni-item {
             display: inline-block;
