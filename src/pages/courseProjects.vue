@@ -134,7 +134,6 @@ export default {
             const windowHeight = window.innerHeight || document.documentElement.clientHeight;
             const documentHeight = document.documentElement.scrollHeight;
             const contentBodyHeight = document.querySelector('.content-body').offsetHeight;
-            console.log(scrollTop + windowHeight, contentBodyHeight + 1000)
 
             if (scrollTop + windowHeight >=  contentBodyHeight + 900) {
                 // 当 leftList 到达 content-body 底部时停止跟随滚动
