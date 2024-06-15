@@ -13,7 +13,7 @@
             src="../../assets/header/aboutUsHeaderBg.png" class="header-bg">
         <img v-if="currentPath == '/consultationForm'" id="image" ref="headerBg"
             src="../../assets/header/aboutUsHeaderBg.png" class="header-bg">
-        <div style="position: absolute; top: 0; width: 100%;">
+        <div class="header-nav-area">
             <div class="header-content">
                 <div class="logo">
                     <img src="../../assets/header/logo.png" alt="">
@@ -44,6 +44,7 @@
             <AlumniStyleHeader v-if="currentPath == '/alumniStyle'" />
             <ConsultationFormHeader  v-if="currentPath == '/consultationForm'" />
         </div>
+        <div class="articleHeader" v-if="currentPath == '/article'"></div>
 
         <div class="sidebar">
             <div class="sidebar-item" v-for="(item, index) in sidebarList" @click="toPage({path: item.path})"  @mouseover="isHovered = index"
@@ -132,6 +133,19 @@ export default {
 </script>
 
 <style scoped lang="less">
+.articleHeader {
+    width: 100%;
+    height: 100px;
+    background-color: #0B1420;
+}
+
+.header-nav-area {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100px;
+}
+
 .header-area {
     width: 100%;
     position: relative;
@@ -143,7 +157,8 @@ export default {
 
     .header-content {
         z-index: 10;
-        padding: 27px 87px 0 120px;
+        padding: 0 87px 0 120px;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;

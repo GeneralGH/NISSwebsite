@@ -5,6 +5,7 @@ import TeachingStaff from './pages/teachingStaff.vue';
 import AboutUs from './pages/aboutUs.vue'
 import AlumniStyle from './pages/alumniStyle.vue'
 import ConsultationForm from './pages/consultationForm.vue'
+import Article from './pages/article.vue'
 import Vue from 'vue';
 
 Vue.use(VueRouter)
@@ -40,6 +41,11 @@ const routes = [
         name: 'consultationForm',
         path: '/consultationForm',
         component: ConsultationForm
+    },
+    {
+        name: 'article',
+        path: '/article',
+        component: Article
     },
 ]
 
