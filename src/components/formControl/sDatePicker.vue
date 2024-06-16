@@ -4,7 +4,8 @@
         :style="isRotated ? 'z-index: 100;' : ''">
         <div class="select-area" @click="rotateArrow">
             <div class="select-top">
-                <div :style="!chooseLabel ? 'color: #999;' : ''">{{ chooseLabel ? chooseLabel : placeholder }}</div>
+                <div class="placeholder" :style="!chooseLabel ? 'color: #999;' : ''">{{ chooseLabel ? chooseLabel :
+                    placeholder }}</div>
                 <div class="arrow-container">
                     <ChevronUpIcon class="arrow" :class="{ rotated: isRotated }" />
                 </div>
@@ -14,10 +15,12 @@
             <div class="date">
                 <div class="year-month-area">
                     <div class="month">
-                        <sSelect @optionChange="monthChange" :options="monthOptions" :placeholder="'请选择月份'" />
+                        <sSelect ref="monthSelect" @optionChange="monthChange" :options="monthOptions"
+                            :placeholder="'请选择月份'" />
                     </div>
                     <div class="year">
-                        <sSelect @optionChange="yearChange" :options="yearOptions" :placeholder="'请选择年份'" />
+                        <sSelect ref="yearSelect" @optionChange="yearChange" :options="yearOptions"
+                            :placeholder="'请选择年份'" />
                     </div>
                 </div>
 
@@ -100,17 +103,28 @@ export default {
         rotateArrow() {
             this.isRotated = !this.isRotated
             if (this.isRotated) {
+                document.addEventListener('click', this.handleClickOutside);
                 this.yearOptions = []
                 const currentYear = new Date().getFullYear()
                 for (let i = 0; i < 6; i++) {
                     this.yearOptions.push({ label: currentYear + i, value: currentYear + i })
                 }
+            } else {
+                document.removeEventListener('click', this.handleClickOutside);
             }
         },
 
         initDate() {
-            // 获取从今年开始到后五年的年份
-
+            const date = new Date();
+            /* console.log(date, 'date') */
+            let year = date.getFullYear().toString();
+            let month = (date.getMonth() + 1).toString();
+            const monthItem = this.monthOptions.find(option => option.value === month);
+            this.$refs.monthSelect.chooseLabel = monthItem.label
+            this.$refs.yearSelect.chooseLabel = year
+            // 执行函数获取日期和上个月天数
+            this.yearChange({ value: year })
+            this.monthChange({ value: month })
         },
 
         monthChange(e) {
@@ -129,7 +143,7 @@ export default {
             this.year = e.value;
             if (this.month) {
                 this.dates = this.getDaysInMonth(this.year, this.month);
-            this.getPreMonthDays()
+                this.getPreMonthDays()
             } else {
                 this.dates = []
             }
@@ -162,19 +176,26 @@ export default {
             }
             // 获取上个月的天数
             const days = moment(`${year}-${month}`).daysInMonth();
-            console.log(days)
             this.preDays = days;
-            // this.$forceupdate()
         },
 
         clickDay(item) {
             this.currentDate = item.date
             this.isRotated = false
             this.chooseLabel = `${this.year}-${this.month}-${item.date}`
+            this.$emit('optionChange', this.chooseLabel)
+        },
+
+        handleClickOutside(event) {
+            if (!this.$el.contains(event.target)) {
+                this.isRotated = false;
+            }
         },
         //生命周期 - 创建完成（可以访问当前this实例）
         created() {
-            this.initDate()
+
+            /* this.dates = this.getDaysInMonth(this.year, this.month);
+            this.getPreMonthDays(); */
         },
         //生命周期 - 挂载完成（可以访问DOM元素）
         mounted() {
@@ -183,7 +204,7 @@ export default {
         beforeMount() { }, //生命周期 - 挂载之前
         beforeUpdate() { }, //生命周期 - 更新之前
         updated() { }, //生命周期 - 更新之后
-        beforeDestroy() { }, //生命周期 - 销毁之前
+        beforeDestroy() {  }, //生命周期 - 销毁之前
         destroyed() { }, //生命周期 - 销毁完成
         activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
     }
@@ -192,6 +213,11 @@ export default {
 
 <style scoped lang="less">
 @import url('./index.less');
+
+.placeholder {
+    font-size: 28px;
+    color: #172C47;
+}
 
 .weekDays {
     width: 100%;
@@ -211,6 +237,11 @@ export default {
         margin: 0 auto;
         cursor: pointer;
         margin: 5px 0;
+    }
+
+    .day-item:hover {
+        background: #172C47;
+        color: #FF9C00;
     }
 
     .day-item-check {

@@ -4,7 +4,7 @@
         <t-swiper :duration="300" :interval="2000" :navigation="{ size: 'large' }">
             <t-swiper-item v-for="item in list" :key="item.id">
                 <div class="swiper-item" @click="jump(item)">
-                    <t-image class="swiper-img" :src="item.previewImgUrl" fit="cover" position="center" />
+                    <t-image class="swiper-img" :src="item.previewImgUrl" fit="cover" position="center" :lazy="true" />
                 </div>
             </t-swiper-item>
         </t-swiper>

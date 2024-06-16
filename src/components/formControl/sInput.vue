@@ -19,7 +19,8 @@ export default {
     },
     props: {
         placeholder: { type: String, default: '' },
-        value: { type: String, default: '' }
+        value: { type: String, default: '' },
+        isAreaCode: { type: Boolean, default: false }
     },
     //监听属性 类似于data概念
     computed: {},
@@ -49,6 +50,10 @@ export default {
 
 <style scoped lang="less">
 @import url('./index.less');
+.item-area {
+    display: flex;
+    align-items: center;
+}
 input {
     border: none;
     width: 100%;

@@ -3,7 +3,7 @@
     <div class="alumni-list">
         <div class="alumni-item" v-for="item in list" :key="item.id">
             <div class="alumni-img">
-                <t-image class="alumni-cover" :src="item.url" fit="cover" position="center" />
+                <t-image class="alumni-cover" :src="item.url" fit="cover" position="center" :lazy="true" />
                 <div class="alumni-title">{{ item.grade }}</div>
             </div>
             <div class="alumni-name">{{ item.name }}</div>

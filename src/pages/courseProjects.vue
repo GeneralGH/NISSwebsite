@@ -127,7 +127,7 @@ export default {
                 element.scrollIntoView({ behavior: 'smooth' });
                 setTimeout(() => {
                     this.currentTemplate = anchor
-                }, 1200);
+                }, 1000);
             }
         },
 

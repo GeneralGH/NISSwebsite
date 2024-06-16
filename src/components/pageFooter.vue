@@ -36,7 +36,7 @@
                     <img src="../../assets/footer/Side.png" alt="">
                 </div>
                 <div class="back-top">
-                    <img src="../../assets/footer/backTop.png" alt="" @click="toTop">
+                    <img src="../../assets/footer/backTop.png" alt="" @click.stop="toTop">
                 </div>
             </div>
         </div>

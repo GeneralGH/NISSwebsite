@@ -250,7 +250,7 @@ export default {
   ,
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    window.addEventListener('mousewheel', this.handleWheel, { passive: false });
+    /* window.addEventListener('mousewheel', this.handleWheel, { passive: false }); */
 
     const inner = document.getElementById('contentTwoRight');
     this.numberScorll = inner.clientHeight / 3;
@@ -443,7 +443,8 @@ body {
       margin-left: 150px;
       margin-top: -30px;
       height: 45rem;
-      overflow-y: scroll;
+      // overflow-y: scroll;
+      overflow-y: hidden;
 
       .info-item {
         .title {
