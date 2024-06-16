@@ -1,8 +1,8 @@
 <!--  -->
 <template>
     <div id="container" :style="bgHeigth" class="header-area">
-        <img v-if="currentPath == '/'" id="image" ref="headerBg" src="../../assets/header/homeHeaderBg.png"
-            class="header-bg">
+        <!-- <img v-if="currentPath == '/'" id="image" ref="headerBg" src="../../assets/header/homeHeaderBg.png"
+            class="header-bg"> -->
         <img v-if="currentPath == '/courseProjects'" id="image" ref="headerBg"
             src="../../assets/header/courseProjectsHeaderBg.png" class="header-bg">
         <img v-if="currentPath == '/teachingStaff'" id="image" ref="headerBg"
@@ -37,7 +37,6 @@
             </div>
 
             <!-- 各个页面不同展示 -->
-            <HomeHeader v-if="currentPath == '/'" />
             <CourseProjects v-if="currentPath == '/courseProjects'" />
             <TeachingStaffHeader v-if="currentPath == '/teachingStaff'" />
             <AboutUsHeader v-if="currentPath == '/aboutUs'" />
@@ -45,6 +44,7 @@
             <ConsultationFormHeader  v-if="currentPath == '/consultationForm'" />
         </div>
         <div class="articleHeader" v-if="currentPath == '/article'"></div>
+        <HomeHeader v-if="currentPath == '/'" />
 
         <div class="sidebar">
             <div class="sidebar-item" v-for="(item, index) in sidebarList" @click="toPage({path: item.path})"  @mouseover="isHovered = index"
@@ -144,6 +144,7 @@ export default {
     top: 0;
     width: 100%;
     height: 100px;
+    z-index: 100;
 }
 
 .header-area {

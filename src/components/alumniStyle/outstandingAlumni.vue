@@ -1,40 +1,13 @@
 <!--  -->
 <template>
     <div class="alumni-list">
-        <div class="alumni-item">
-            <div class="alumni-img" style="background-image: url('../../../assets/teachingStaff/teacherimg.png');">
-                <div class="alumni-title">暨南大学校友会成员</div>
+        <div class="alumni-item" v-for="item in list" :key="item.id">
+            <div class="alumni-img">
+                <t-image class="alumni-cover" :src="item.url" fit="cover" position="center" />
+                <div class="alumni-title">{{ item.grade }}</div>
             </div>
-            <div class="alumni-name">苏炳添</div>
-            <div class="alumni-position">中国男子短跑运动员</div>
-        </div>
-        <div class="alumni-item">
-            <div class="alumni-img" style="background-image: url('../../../assets/teachingStaff/teacherimg.png');">
-                <div class="alumni-title">暨南大学校友会成员</div>
-            </div>
-            <div class="alumni-name">苏炳添</div>
-            <div class="alumni-position">中国男子短跑运动员</div>
-        </div>
-        <div class="alumni-item">
-            <div class="alumni-img" style="background-image: url('../../../assets/teachingStaff/teacherimg.png');">
-                <div class="alumni-title">暨南大学校友会成员</div>
-            </div>
-            <div class="alumni-name">苏炳添</div>
-            <div class="alumni-position">中国男子短跑运动员</div>
-        </div>
-        <div class="alumni-item">
-            <div class="alumni-img" style="background-image: url('../../../assets/teachingStaff/teacherimg.png');">
-                <div class="alumni-title">暨南大学校友会成员</div>
-            </div>
-            <div class="alumni-name">苏炳添</div>
-            <div class="alumni-position">中国男子短跑运动员</div>
-        </div>
-        <div class="alumni-item">
-            <div class="alumni-img" style="background-image: url('../../../assets/teachingStaff/teacherimg.png');">
-                <div class="alumni-title">暨南大学校友会成员</div>
-            </div>
-            <div class="alumni-name">苏炳添</div>
-            <div class="alumni-position">中国男子短跑运动员</div>
+            <div class="alumni-name">{{ item.name }}</div>
+            <div class="alumni-position">{{ item.workPost }}</div>
         </div>
     </div>
 </template>
@@ -42,6 +15,7 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
+import outstanding from '../../api/outstanding';
 
 export default {
     //import引入的组件需要注入到对象中才能使用
@@ -49,7 +23,12 @@ export default {
     data() {
         //这里存放数据
         return {
-
+            listQuery: {
+                current: 1,
+                size: 6,
+                language: ''
+            },
+            list: []
         };
     },
     //监听属性 类似于data概念
@@ -58,7 +37,16 @@ export default {
     watch: {},
     //方法集合
     methods: {
-
+        initList() {
+            this.$request.post(outstanding.getOutstandingListPageUrl, this.listQuery)
+                .then(res => {
+                    res.data.data.list = res.data.data.list.map((item) => { return {
+                    ...item,
+                    url: JSON.parse(item.image).url
+                } })
+                    this.list = res.data.data.list
+                })
+        },
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
@@ -66,7 +54,7 @@ export default {
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-
+        this.initList()
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前
@@ -91,10 +79,13 @@ export default {
         .alumni-img {
             width: 100%;
             height: 472px;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
             position: relative;
+
+            .alumni-cover {
+                position: absolute;
+                width: 354px;
+                height: 472px;
+            }
 
             .alumni-title {
                 position: absolute;
@@ -108,6 +99,7 @@ export default {
                 font-size: 24px;
                 color: #FFFFFF;
                 line-height: 60px;
+                z-index: 100;
             }
         }
 

@@ -42,7 +42,7 @@
                 <div class="party-line"></div>
 
                 <div class="party-content">
-                    <News />
+                    <News :list="list" />
                 </div>
             </div>
         </div>
@@ -55,6 +55,7 @@
 //例如：import 《组件名称》 from '《组件路径》';
 import News from '../components/common/news.vue'
 import OutstandingAlumni from '../components/alumniStyle/outstandingAlumni.vue'
+import news from '../api/news';
 
 export default {
     //import引入的组件需要注入到对象中才能使用
@@ -62,7 +63,12 @@ export default {
     data() {
         //这里存放数据
         return {
-
+            listQuery: {
+                current: 1,
+                size: 10,
+                type: 2
+            },
+            list: []
         };
     },
     //监听属性 类似于data概念
@@ -71,7 +77,17 @@ export default {
     watch: {},
     //方法集合
     methods: {
-
+        initList() {
+            this.$request.post(news.getNewsListPageUrl, this.listQuery)
+            .then(res => {
+                res.data.data.list = res.data.data.list.map((item) => { return {
+                    ...item,
+                    url: JSON.parse(item.annex).url
+                } })
+                this.list = this.list.length ? this.list.concat(res.data.data.list) : res.data.data.list
+                // console.log(this.list)
+            })
+        }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
@@ -79,7 +95,7 @@ export default {
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-
+        this.initList()
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前

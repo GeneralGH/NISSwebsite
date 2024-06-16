@@ -1,22 +1,20 @@
 <!--  -->
 <template>
     <div class="content-area">
-        <div class="title">
-            暨南大学<br>新加坡<br>中文MBA项目
-        </div>
-        <div class="sub-title">
-            2024年秋季申请开放中
-        </div>
-        <div class="btn">
-            <div>了解更多</div>
-            <img class="rightArrow" src="../../../assets/header/rightArrow.png" alt="">
-        </div>
+        <t-swiper :duration="300" :interval="2000" :navigation="{ size: 'large' }">
+            <t-swiper-item v-for="item in list" :key="item.id">
+                <div class="swiper-item" @click="jump(item)">
+                    <t-image class="swiper-img" :src="item.previewImgUrl" fit="cover" position="center" />
+                </div>
+            </t-swiper-item>
+        </t-swiper>
     </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
+import banner from '../../api/banner'
 
 export default {
     //import引入的组件需要注入到对象中才能使用
@@ -24,7 +22,12 @@ export default {
     data() {
         //这里存放数据
         return {
-
+            list: [],
+            listQuery: {
+                current: 1,
+                size: 10,
+                isShow: 1
+            }
         };
     },
     //监听属性 类似于data概念
@@ -33,7 +36,26 @@ export default {
     watch: {},
     //方法集合
     methods: {
+        initList() {
+            this.$request.post(banner.getBannerListPageUrl, this.listQuery)
+                .then(res => {
+                    this.list = res.data.data.list.map((item) => { return { ...item, delShow: false, imgViewShow: false, previewImgUrl: JSON.parse(item.imageUrl).url } })
+                    // console.log(this.list)
+                })
+        },
 
+        jump(item) {
+            let targetUrl = JSON.parse(item.targetUrl)
+            if (targetUrl.type == 1) {
+                this.$router.push(targetUrl.value)
+            }
+            if (targetUrl.type == 2) {
+                this.$router.push({ name: 'courseProjects', params: { anchor: targetUrl.value } })
+            }
+            if (targetUrl.type == 3) {
+                this.$router.push({ name: 'article', params: { id: targetUrl.value } })
+            }
+        }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
@@ -41,7 +63,7 @@ export default {
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-
+        this.initList()
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前
@@ -55,8 +77,12 @@ export default {
 
 <style scoped>
 .content-area {
-    margin-left: 360px;
-    margin-top: 110px;
+    height: 900px;
+    margin: 0 auto;
+}
+
+.swiper-img {
+    height: 900px;
 }
 
 .title {
@@ -90,5 +116,9 @@ export default {
 .rightArrow {
     width: 21px;
     height: 21px;
+}
+
+.swiper-item {
+    cursor: pointer;
 }
 </style>

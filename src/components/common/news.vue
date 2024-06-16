@@ -57,6 +57,10 @@ export default {
 
         toDetail(item) {
             this.$router.push({ name: 'article', params: { id: item.id } })
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // 可选，使用平滑滚动效果
+            });
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）

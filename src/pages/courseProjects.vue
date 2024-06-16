@@ -125,7 +125,9 @@ export default {
             const element = document.getElementById(anchor);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
-                this.currentTemplate = anchor
+                setTimeout(() => {
+                    this.currentTemplate = anchor
+                }, 1200);
             }
         },
 
@@ -135,7 +137,7 @@ export default {
             const documentHeight = document.documentElement.scrollHeight;
             const contentBodyHeight = document.querySelector('.content-body').offsetHeight;
 
-            if (scrollTop + windowHeight >=  contentBodyHeight + 900) {
+            if (scrollTop + windowHeight >= contentBodyHeight + 900) {
                 // 当 leftList 到达 content-body 底部时停止跟随滚动
                 this.isSticky = false;
                 this.isAbsot = true
@@ -148,6 +150,35 @@ export default {
                 this.isSticky = false;
                 this.isAbsot = false
             }
+        },
+
+        fllowUpdate() {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    const targetTop = entry.boundingClientRect.top;
+                    const scrollThreshold = window.innerHeight * 0.1; // 定义滚动的顶部区域阈值为视口高度的30%
+
+                    if (targetTop <= scrollThreshold) {
+                        this.currentTemplate = entry.target.id;
+                    }
+                });
+            });
+
+            const elements = document.querySelectorAll('[id]');
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+
+            window.addEventListener('floowscroll', () => {
+                elements.forEach(element => {
+                    const targetTop = element.getBoundingClientRect().top;
+                    const scrollThreshold = window.innerHeight * 0.3; // 定义滚动的顶部区域阈值为视口高度的30%
+
+                    if (targetTop <= scrollThreshold) {
+                        this.currentTemplate = element.id;
+                    }
+                });
+            });
         }
 
 
@@ -159,6 +190,12 @@ export default {
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
         window.addEventListener('scroll', this.handleScroll);
+        if (this.$route.params.anchor) {
+            let str = 'options' + this.$route.params.anchor
+            this.scrollToAnchor(str)
+        }
+
+        this.fllowUpdate()
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前

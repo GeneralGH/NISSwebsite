@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div ref="appContainer" id="appContainer" style="overflow-y: scroll;">
+  <div ref="appContainer" id="appContainer">
     <pageHeader />
 
     <div class="content-one">
@@ -58,58 +58,39 @@
       <div class="subTitle">Their Stories</div>
 
       <div class="alumni-scroll">
-        <vue-seamless-scroll :data="alumniList" :class-option="classOption">
+        <vue-seamless-scroll :data="alumniList" :class-option="classOption" id="vueSeamlessScroll"
+          ref="vueSeamlessScroll">
           <div class="alumni-item" v-for="(item, index) in alumniList">
             <div v-show="index % 2 === 0" style="position: relative;">
               <img class="dialog-bg" src="../../assets/home/topDialog.png" alt="">
-              <div class="dialog-content" style="padding-top: 50px">{{ item.content }}</div>
+              <div class="dialog-content dialog-content-top">
+                <div>{{ item.wrote }}</div>
+              </div>
             </div>
             <div v-show="index % 2 !== 0">
               <div class="alumni-info">
-                {{ item.name }}<br>
-                {{ item.info }}
+                {{ item.company }}<br>
+                {{ item.workPost }}
               </div>
-              <div class="alumni-class">{{ item.class }}</div>
+              <div class="alumni-class">{{ item.grade }}</div>
             </div>
-            <img class="alumni-img" :src="item.imgPath" alt="">
+            <t-image class="alumni-img" :src="item.imgPath" fit="cover" position="center" />
+            <!-- <img class="alumni-img" :src="item.imgPath" alt=""> -->
             <div v-show="index % 2 === 0">
               <div class="alumni-info">
-                {{ item.name }}<br>
-                {{ item.info }}
+                {{ item.company }}<br>
+                {{ item.workPost }}
               </div>
-              <div class="alumni-class">{{ item.class }}</div>
+              <div class="alumni-class">{{ item.grade }}</div>
             </div>
             <div v-show="index % 2 !== 0" style="position: relative;">
               <img class="dialog-bg" src="../../assets/home/buttonDialog.png" alt="">
-              <div class="dialog-content" style="padding-top: 70px;">{{ item.content }}</div>
+              <div class="dialog-content dialog-content-bottom">
+                <div>{{ item.wrote }}</div>
+              </div>
             </div>
           </div>
         </vue-seamless-scroll>
-        <!-- <div class="alumni-item" v-for="(item, index) in alumniList">
-            <div v-show="index % 2 === 0" style="position: relative;">
-                <img class="dialog-bg" src="../../assets/home/topDialog.png" alt="">
-                <div class="dialog-content" style="padding-top: 50px">{{ item.content }}</div>
-            </div>
-            <div v-show="index % 2 !== 0">
-                <div class="alumni-info">
-                    {{ item.name }}<br>
-                    {{ item.info }}
-                </div>
-                <div class="alumni-class">{{ item.class }}</div>
-            </div>
-            <img class="alumni-img" :src="item.imgPath" alt="">
-            <div v-show="index % 2 === 0">
-                <div class="alumni-info">
-                    {{ item.name }}<br>
-                    {{ item.info }}
-                </div>
-                <div class="alumni-class">{{ item.class }}</div>
-            </div>
-            <div v-show="index % 2 !== 0" style="position: relative;">
-                <img class="dialog-bg" src="../../assets/home/buttonDialog.png" alt="">
-                <div class="dialog-content" style="padding-top: 70px;">{{ item.content }}</div>
-            </div>
-        </div> -->
       </div>
     </div>
 
@@ -120,10 +101,10 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
+import Alumni from '../api/Alumni'
 
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {},
   data() {
     //这里存放数据
     return {
@@ -140,41 +121,13 @@ export default {
         { title: '百年名校', subTitle: '中国百年名校 华侨最高学府', "isOpacity": false, },
         { title: '1+1+N+2', subTitle: '全面赋能职业发展', "isOpacity": false, }
       ],
-      alumniList: [
-        {
-          content: '认知高度是发展的天花板，我坚信MBA之旅，能让我成为更优秀的个体，实现自我价值，给两个孩子做好榜样。',
-          name: '张亚男',
-          info: 'LINKAGE HR PTE.LTD执行董事',
-          class: '暨南大学新加坡MBA项目2024级春季班',
-          imgPath: 'https://inews.gtimg.com/om_bt/OHyQqgC_5oi4Vm0tlH49XvJzqNBHo2Zryxx5F_be5N2cIAA/1000'
-        },
-        {
-          content: '对我来说，这不仅是一次学术上的追求，更是个人成长和职业发展的重要跳板。实现自我超越。实现梦想的旅程。',
-          name: '杨洋',
-          info: '新加坡华文教研中心 业务发展主任',
-          class: '暨南大学新加坡MBA项目2024级春季班',
-          imgPath: 'https://inews.gtimg.com/om_bt/ORJxmJ_hryXf-hfuC7Sf214TDfWVPFfq6GZZ82VUUhpioAA/641'
-        },
-        {
-          content: '认知高度是发展的天花板，我坚信MBA之旅，能让我成为更优秀的个体，实现自我价值，给两个孩子做好榜样。',
-          name: '张亚男',
-          info: 'LINKAGE HR PTE.LTD执行董事',
-          class: '暨南大学新加坡MBA项目2024级春季班',
-          imgPath: 'https://inews.gtimg.com/om_bt/OFuK1kztRd-zzktobCmipDb_VsuROWK19OklC1qTaTK_gAA/641'
-        },
-        {
-          content: '认知高度是发展的天花板，我坚信MBA之旅，能让我成为更优秀的个体，实现自我价值，给两个孩子做好榜样。',
-          name: '张亚男',
-          info: 'LINKAGE HR PTE.LTD执行董事',
-          class: '暨南大学新加坡MBA项目2024级春季班',
-          imgPath: 'https://inews.gtimg.com/om_bt/OMvPDmiuH_X5Vq1YLNgbFEzD2h_-2dCfWQ7xZFcKFSEsAAA/641'
-        }
-      ],
+      alumniList: [],
       isHovered: -1,
       classOption: {
         limitMoveNum: 2,
         direction: 2,
       },
+
       contentTwoScrollTop: false,
       contentTwoRightMax: false,
       scollTop: 0,
@@ -183,6 +136,16 @@ export default {
       windowScreen: 0,
       outerScrollTop: 0,
       numberScorll: 0,
+      moveFlag: false,
+      downX: 0,
+      scrollLeft: 0,
+      vueSeamlessScroll: null,
+      vueSeamlessScrollXPos: 0,
+      listQuery: {
+        current: 1,
+        size: 20,
+        language: ''
+      }
     };
   },
   //监听属性 类似于data概念
@@ -244,12 +207,6 @@ export default {
       let currentHeight = 0;
       for (let i = 0; i < this.infoTwoList.length; i++) {
         currentHeight += this.numberScorll;
-        // console.log(currentHeight, scrollHeight,clientHeight, inner.scrollTop);
-        // if (inner.scrollTop + clientHeight >= currentHeight) {
-        //   this.infoTwoList[i].isOpacity = false;
-        // } else {
-        //   this.infoTwoList[i].isOpacity = true;
-        // }
         if ((scrollTop + clientHeight) > (currentHeight - this.scollInv) && currentHeight > (scrollTop - this.scollInv)) {
           this.infoTwoList[i].isOpacity = false;
         } else {
@@ -266,15 +223,24 @@ export default {
       if (scrollTop == scrollHeight || scrollTop == 0) {
         this.contentTwoScrollTop = false;
       }
-      // console.log(this.contentTwoRightMax, 'contentTwoRightMax');
-      // console.log(this.contentTwoScrollTop, 'contentTwoScrollTop');
     },
     jump(path) {
       if (!path) {
         return
       }
       this.$router.push(path)
-    }
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // 可选，使用平滑滚动效果
+      });
+    },
+
+    initList() {
+      this.$request.post(Alumni.getAlumniListPageUrl, this.listQuery)
+        .then(res => {
+          this.alumniList = res.data.data.list.map((item) => { return { ...item, imgPath: JSON.parse(item.image).url } })
+        })
+    },
   }
   ,
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -285,10 +251,43 @@ export default {
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     window.addEventListener('mousewheel', this.handleWheel, { passive: false });
+
     const inner = document.getElementById('contentTwoRight');
     this.numberScorll = inner.clientHeight / 3;
-    console.log(inner.scrollHeight, inner.scrollTop, inner.clientHeight)
+    this.vueSeamlessScroll = document.getElementById('vueSeamlessScroll');
+    let that = this;
+    this.vueSeamlessScroll.addEventListener("mousedown", function (event) {
+      that.moveFlag = true;
+      that.downX = event.clientX; // 获取到点击的x下标
+      that.scrollLeft = this.scrollLeft; // 获取当前元素滚动条的偏移量
+      that.vueSeamlessScrollXPos = that.$refs.vueSeamlessScroll.xPos;
+    });
+    this.vueSeamlessScroll.addEventListener("mousemove", function (event) {
+      if (that.moveFlag) { // 判断是否是鼠标按下滚动元素区域
+        let moveX = event.clientX; // 获取移动的x轴
+        let scrollX = moveX - that.downX; // 当前移动的x轴下标减去刚点击下去的x轴下标得到鼠标滑动距离
+        let xPos = that.vueSeamlessScrollXPos + scrollX;
 
+        if (Math.abs(xPos) > that.$refs.vueSeamlessScroll.realBoxWidth / 2) {
+          xPos = that.$refs.vueSeamlessScroll.realBoxWidth / 2 + xPos;
+        } else if (xPos > 0) {
+          xPos = -(that.$refs.vueSeamlessScroll.realBoxWidth / 2) + xPos;
+        } else {
+          // that.$refs.vueSeamlessScroll.xPos  = xPos;
+        }
+        that.$refs.vueSeamlessScroll.xPos = xPos;
+      }
+    });
+    // 鼠标抬起停止拖动
+    this.vueSeamlessScroll.addEventListener("mouseup", function () {
+      that.moveFlag = false;
+    });
+    // 鼠标离开元素停止拖动
+    this.vueSeamlessScroll.addEventListener("mouseleave", function (event) {
+      that.moveFlag = false;
+    });
+
+    this.initList()
   }
   ,
   beforeCreate() {
@@ -522,6 +521,29 @@ body {
         top: 0%;
         padding: 0 50px;
         box-sizing: border-box;
+
+        div {
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          word-break: break-all;
+        }
+      }
+
+      .dialog-content-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 15px;
+      }
+
+      .dialog-content-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 15px;
       }
     }
 
