@@ -1,45 +1,37 @@
 <!--  -->
 <template>
     <div class="teacher-list-area">
-        <div class="firstName" v-if="isNomral">A</div>
-        <div class="teacher-list">
-            <div class="teacher-item">
-                <div class="teacher-img">
-                    <img src="../../../assets/teachingStaff/teacherimg.png" alt="">
-                </div>
-                <div class="teacher-info">
-                    <div class="teacher-name">潘定</div>
-                    <div class="teacher-position">教授</div>
-                    <div class="teacher-project">暨南大学新加坡MBA项目</div>
-                    <div class="teacher-line"></div>
-                    <div class="teacher-class">创业融资</div>
-                    <div class="teacher-class">中国的法律与制度环境</div>
-                </div>
-            </div>
-            <div class="teacher-item">
-                <div class="teacher-img">
-                    <img src="../../../assets/teachingStaff/teacherimg.png" alt="">
-                </div>
-                <div class="teacher-info">
-                    <div class="teacher-name">潘定</div>
-                    <div class="teacher-position">教授</div>
-                    <div class="teacher-project">暨南大学新加坡MBA项目</div>
-                    <div class="teacher-line"></div>
-                    <div class="teacher-class">创业融资</div>
-                    <div class="teacher-class">中国的法律与制度环境</div>
+        <div v-if="isNomral" v-for="(item, index) in list">
+            <div class="firstName">{{ item.first }}</div>
+            <div class="teacher-list">
+                <div class="teacher-item" v-for="(teacher, teacherIndex) in item.teachers">
+                    <div class="teacher-img-area">
+                        <t-image class="teacher-img" :src="teacher.teacherImg" fit="cover" position="center"
+                            :lazy="true" />
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-name">{{ teacher.name }}</div>
+                        <div class="teacher-position">{{ teacher.professional }}</div>
+                        <div class="teacher-project">{{ teacher.project }}</div>
+                        <div class="teacher-line"></div>
+                        <div class="teacher-class">{{ teacher.major }}</div>
+                        <div class="teacher-class">{{ teacher.speciality }}</div>
+                    </div>
                 </div>
             </div>
-            <div class="teacher-item">
-                <div class="teacher-img">
-                    <img src="../../../assets/teachingStaff/teacherimg.png" alt="">
+        </div>
+        <div class="teacher-list" v-if="!isNomral">
+            <div class="teacher-item" v-for="(item, index) in list">
+                <div class="teacher-img-area">
+                    <t-image class="teacher-img" :src="item.teacherImg" fit="cover" position="center" :lazy="true" />
                 </div>
                 <div class="teacher-info">
-                    <div class="teacher-name">潘定</div>
-                    <div class="teacher-position">教授</div>
-                    <div class="teacher-project">暨南大学新加坡MBA项目</div>
+                    <div class="teacher-name">{{ item.name }}</div>
+                    <div class="teacher-position">{{ item.professional }}</div>
+                    <div class="teacher-project">{{ item.project }}</div>
                     <div class="teacher-line"></div>
-                    <div class="teacher-class">创业融资</div>
-                    <div class="teacher-class">中国的法律与制度环境</div>
+                    <div class="teacher-class">{{ item.major }}</div>
+                    <div class="teacher-class">{{ item.speciality }}</div>
                 </div>
             </div>
         </div>
@@ -56,10 +48,10 @@ export default {
     data() {
         //这里存放数据
         return {
-
         };
     },
     props: {
+        list: { type: Array, default: () => [] },
         isNomral: { type: Boolean, default: false }
     },
     //监听属性 类似于data概念
@@ -102,22 +94,28 @@ export default {
     .firstName {
         font-weight: bold;
         font-size: 28px;
-        margin-bottom: 30px;
+        margin: 60px 0 30px 0;
     }
 
     .teacher-item {
         width: 560px;
+        height: 360px;
         display: flex;
-        margin-bottom: 40px;
+        margin-bottom: 52px;
 
-        .teacher-img img {
+        .teacher-img-area .teacher-img {
             width: 260px;
-            height: 360px;
+            height: 100%;
+            border-radius: 20px;
         }
 
         .teacher-info {
-            padding: 45px 0 0 20px;
+            padding: 0 0 0 25px;
             font-size: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            /* height: 100%; */
 
             .teacher-name {
                 font-weight: bold;
@@ -131,7 +129,13 @@ export default {
             }
 
             div {
-                margin-bottom: 30px;
+                margin-top: 23px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                overflow: hidden;
+                /* 设置文本超出部分省略 */
+                text-overflow: ellipsis;
             }
         }
     }
