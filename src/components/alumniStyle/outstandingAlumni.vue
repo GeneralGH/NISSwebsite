@@ -85,6 +85,7 @@ export default {
                 position: absolute;
                 width: 354px;
                 height: 472px;
+                border-radius: 20px;
             }
 
             .alumni-title {

@@ -9,22 +9,37 @@
 
                 <div class="party-content">
                     <div class="content-title">暨南大学校友网络</div>
-                    <p>
-                        作为杰出企业家 、商界精英、以及新生代经济颠覆力量的共同选择 ，暨南大学校友遍布世界各地、各行各业。目前，在五大洲共有132个校友组织 ，其中海外校友组织59个。
-                    </p>
-                    <p>
-                        暨南校友网络恪守 “忠信笃敬” 的校训，互助共进，持续为学员、校友的事业长远发展和人生价值实现提供着强有力的支持与动力。
-                    </p>
-                    <p>
-                        前中国国务院副总理吴学谦、李岚清，著名侨领、新加坡大学首任校长李光前，前泰国议会主席、副总理许敦茂，中国两院院士谭其骧、邓锡铭、侯芙生、曾毅，烈士江上青、陈镇和（华侨）、符保卢、符克（华侨），以及近年来内地和港澳台地区许多政府、工商及文教界知名人士均是暨南大学不同时期的杰出校友。
-                    </p>
-                    <p>
-                        《福布斯》（Forbes）杂志曾于2006年评选管理学院为“校友满意度最高的中国商学院”。
-                    </p>
+                    <div class="content-area">
+                        <div><t-image class="content-image" src="../../assets/alumniStyle/JNUniversityNetwork.png" fit="cover" position="center" :lazy="true" /></div>
+                        <div class="content-p">
+                            <p>
+                                作为杰出企业家 、商界精英、以及新生代经济颠覆力量的共同选择 ，暨南大学校友遍布世界各地、各行各业。目前，在五大洲共有132个校友组织 ，其中海外校友组织59个。
+                            </p>
+                            <p>
+                                暨南校友网络恪守 “忠信笃敬” 的校训，互助共进，持续为学员、校友的事业长远发展和人生价值实现提供着强有力的支持与动力。
+                            </p>
+                            <p>
+                                前中国国务院副总理吴学谦、李岚清，著名侨领、新加坡大学首任校长李光前，前泰国议会主席、副总理许敦茂，中国两院院士谭其骧、邓锡铭、侯芙生、曾毅，烈士江上青、陈镇和（华侨）、符保卢、符克（华侨），以及近年来内地和港澳台地区许多政府、工商及文教界知名人士均是暨南大学不同时期的杰出校友。
+                            </p>
+                            <div class="party-line content-line"></div>
+                            <p>
+                                《福布斯》（Forbes）杂志曾于2006年评选管理学院为“校友满意度最高的中国商学院”。
+                            </p>
+                            <div class="party-line content-line"></div>
+                        </div>
+                    </div>
                     <div class="content-title">新加坡校友会</div>
-                    <p>
-                        新加坡暨南校友会早在 1941年4月已注册成立，是暨南大学成立较早、持续活动时间最长的校友会，也是新加坡最早成立的中国高校校友会。李光前、刘抗、庄右铭、陈共存等诸多新马地区有名的政商学界名人均有在暨南大学求学的经历。
-                    </p>
+                    <div class="content-area">
+                        <div><t-image class="content-image" src="../../assets/alumniStyle/SingapoUniversityNetwork.png" fit="cover" position="center" :lazy="true" /></div>
+                        <div class="content-p">
+                            <p>
+                                新加坡暨南校友会早在 1941年4月已注册成立，是暨南大学成立较早、持续活动时间最长的校友会，也是新加坡最早成立的中国高校校友会。
+                            </p>
+                            <p>
+                                李光前、刘抗、庄右铭、陈共存等诸多新马地区有名的政商学界名人均有在暨南大学求学的经历。
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -79,14 +94,16 @@ export default {
     methods: {
         initList() {
             this.$request.post(news.getNewsListPageUrl, this.listQuery)
-            .then(res => {
-                res.data.data.list = res.data.data.list.map((item) => { return {
-                    ...item,
-                    url: JSON.parse(item.annex).url
-                } })
-                this.list = this.list.length ? this.list.concat(res.data.data.list) : res.data.data.list
-                // console.log(this.list)
-            })
+                .then(res => {
+                    res.data.data.list = res.data.data.list.map((item) => {
+                        return {
+                            ...item,
+                            url: JSON.parse(item.annex).url
+                        }
+                    })
+                    this.list = this.list.length ? this.list.concat(res.data.data.list) : res.data.data.list
+                    // console.log(this.list)
+                })
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
@@ -108,6 +125,21 @@ export default {
 </script>
 
 <style scoped lang="less">
+.content-area {
+    display: flex;
+    justify-content: space-between;
+
+    .content-image {
+        width: 444px;
+        height: 254px;
+        display: block;
+        border-radius: 23px;
+    }
+
+    .content-p {
+        width: 642px;
+    }
+}
 /deep/.page-area {
     width: 1200px;
     margin: 0 auto;
@@ -131,6 +163,10 @@ export default {
             margin-bottom: 60px;
         }
 
+        .content-line {
+            margin: 30px 0 !important;
+        }
+
         .party-content {
             box-sizing: border-box;
             padding: 0 40px;
@@ -142,6 +178,7 @@ export default {
                 font-weight: 500;
                 font-size: 24px;
                 line-height: 43px;
+                margin-top: 0;
             }
 
             .content-title {
@@ -149,6 +186,7 @@ export default {
                 font-size: 28px;
                 line-height: 34px;
                 margin-top: 50px;
+                margin-bottom: 30px;
             }
         }
     }

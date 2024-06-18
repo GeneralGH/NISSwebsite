@@ -1,7 +1,7 @@
 <!--  -->
 <template>
     <div :class="['item-area', { 'gradient-border': hasFocus || value !== '' }]">
-        <input type="text" :placeholder="placeholder" :value="value" @input="$emit('input', $event.target.value)" @focus="hasFocus = true" @blur="value ? hasFocus = true : hasFocus = false">
+        <input :type="isPhone ? 'number' : 'text'" :placeholder="placeholder" :value="value" @input="$emit('input', $event.target.value)" @focus="hasFocus = true" @blur="value ? hasFocus = true : hasFocus = false">
     </div>
 </template>
 <script>
@@ -20,7 +20,8 @@ export default {
     props: {
         placeholder: { type: String, default: '' },
         value: { type: String, default: '' },
-        isAreaCode: { type: Boolean, default: false }
+        isAreaCode: { type: Boolean, default: false },
+        isPhone: { type: Boolean, default: false }
     },
     //监听属性 类似于data概念
     computed: {},
@@ -50,6 +51,13 @@ export default {
 
 <style scoped lang="less">
 @import url('./index.less');
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
 .item-area {
     display: flex;
     align-items: center;

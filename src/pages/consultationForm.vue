@@ -14,166 +14,193 @@
                 </div>
             </div>
 
-            <!-- 表单 -->
-            <div class="form-area">
-                <div class="form-row">
-                    <div class="form-item normal-item">
-                        <div class="form-item-label">姓名<span>*</span></div>
-                        <div>
-                            <sInput v-model="formData.name" :placeholder="'请填写您的姓名'" />
-                        </div>
-                    </div>
-                    <div class="form-item normal-item">
-                        <div class="form-item-label">国籍<span>*</span></div>
-                        <div style="position: relative;">
-                            <sSelect @optionChange="(item) => { formData.nationality = item.label }"
-                                style="position: absolute;" :options="nationalityOptions" :placeholder="'请填写您的国籍'" />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-item normal-item">
-                        <div class="form-item-label">所持新加坡居留身份<span>*</span></div>
-                        <div style="position: relative;">
-                            <sSelect @optionChange="(item) => { formData.residence = item.label }"
-                                style="position: absolute;" :options="residenceStatusOptions"
-                                :placeholder="'请选择您的新加坡居留身份'" />
-                        </div>
-                    </div>
-                    <div class="form-item normal-item">
-                        <div class="form-item-label">最高学历<span>*</span></div>
-                        <div style="position: relative;">
-                            <sSelect @optionChange="(item) => { formData.qualification = item.label }"
-                                style="position: absolute;" :options="highestEducationalOptions"
-                                :placeholder="'请选择您的最高学历'" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-item full-item">
-                        <div class="form-item-label">已在中国境外居住时间<span
-                                style="font-weight: 500; color: #172C47;">（不包括留学及公派出国的时间）</span><span>*</span></div>
-                        <div style="position: relative;">
-                            <sSelect @optionChange="(item) => { formData.residenceTime = item.label }"
-                                style="position: absolute;" :options="outsideTimeOptions"
-                                :placeholder="'请选择已在中国境外居住时间'" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-item full-item">
-                        <div class="form-item-label">公司<span>*</span></div>
-                        <div>
-                            <sInput v-model="formData.company" :placeholder="'请填写您的公司'" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-item full-item">
-                        <div class="form-item-label">职位<span>*</span></div>
-                        <div>
-                            <sInput v-model="formData.post" :placeholder="'请填写您的职位'" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-item areaCode-item">
-                        <div class="form-item-label">区号</div>
-                        <div>
-                            <sInput v-model="formData.areaCode" :isAreaCode="true" :placeholder="'+ 区号'" />
-                        </div>
-                    </div>
-                    <div class="form-item phone-item">
-                        <div class="form-item-label">手机号码<span>*</span></div>
-                        <div>
-                            <sInput v-model="formData.phone" :placeholder="'请填写您的手机号码'" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-item full-item">
-                        <div class="form-item-label">邮箱地址<span>*</span></div>
-                        <div>
-                            <sInput v-model="formData.email" :placeholder="'请填写您的E-mail邮箱地址'" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-item full-item">
-                        <div class="form-item-label">您希望以何种方式进行咨询<span>*</span></div>
-                        <div style="position: relative;">
-                            <sSelect @optionChange="(item) => { formData.consultationMethods = item.label }"
-                                style="position: absolute;" :options="consultingServiceOptions"
-                                :placeholder="'请选择你倾向的咨询沟通方式'" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-item full-item">
-                        <div class="form-item-label">如何得知暨南大学新加坡MBA硕士学位项目<span>*</span></div>
-                        <div style="position: relative;">
-                            <sSelect @optionChange="(item) => { formData.obtainingChannels = item.label }"
-                                style="position: absolute;" :options="knowingChannelOptions"
-                                :placeholder="'请选择您得知的渠道'" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-item normal-item">
-                        <div class="form-item-label">预约咨询日期<span>*</span></div>
-                        <div style="position: relative;">
-                            <sDatePicker @optionChange="(item) => { formData.consultationDateDay = item }"
-                                ref="sDatePicker" :placeholder="'请选择日期'" />
-                        </div>
-                    </div>
-                    <div class="form-item normal-item">
-                        <div class="form-item-label">预约咨询日期<span>*</span></div>
-                        <div style="position: relative;">
-                            <sSelect :isTime="true"
-                                @optionChange="(item) => { formData.consultationDateTime = item.label }"
-                                style="position: absolute;" :placeholder="'请选择日期'" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row" style="height: auto;">
-                    <div class="form-item full-item">
-                        <div class="form-item-label">隐私政策<span>*</span></div>
-                        <div style="display: flex;">
-                            <!-- <t-radio v-model="ok" @click="ok = !ok"></t-radio> -->
-                            <div class="form-ok-area" :class="{ formUnOk: !ok }" @click="ok = !ok">
-                                <img src="../../assets/form/formOk.png" alt="" v-show="ok">
+            <t-form :data="formData" :rules="rules" @submit="onSubmit">
+                <!-- 表单 -->
+                <div class="form-area">
+                    <div class="form-row">
+                        <div class="form-item normal-item">
+                            <div class="form-item-label">姓名<span>*</span></div>
+                            <div>
+                                <t-form-item name="name">
+                                    <sInput v-model="formData.name" :placeholder="'请填写您的姓名'" />
+                                </t-form-item>
                             </div>
-                            <div class="tips">
-                                <div class="tips-title">By filling in and submitting the form, you agree to our Privacy
-                                    Policy below. </div>
-                                <div class="tips-content">I hereby authorise, agree and consent to allow Nanyang
-                                    Institute of Social Sciences (NISS) to collect, use, disclose and/or process my
-                                    personal data for the purpose of facilitating, processing, dealing with,
-                                    administering, managing and/or maintaining my relationship with NISS, including but
-                                    not limited to informing me of NISS's latest courses, services, marketing events,
-                                    etc.</div>
+                        </div>
+                        <div class="form-item normal-item">
+                            <div class="form-item-label">国籍<span>*</span></div>
+                            <div style="position: relative;">
+                                <t-form-item name="nationality">
+                                    <sSelect @optionChange="(item) => { formData.nationality = item.label }"
+                                        :options="nationalityOptions" :placeholder="'请填写您的国籍'" />
+                                </t-form-item>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-row">
-                    <div class="form-item full-item"
-                        style="display: flex; align-items: center; justify-content: center;">
-                        <div class="submit-btn"><t-button size="large" class="btn" @click="submit">确定，提交表格</t-button>
+                    <div class="form-row">
+                        <div class="form-item normal-item">
+                            <div class="form-item-label">所持新加坡居留身份<span>*</span></div>
+                            <div style="position: relative;">
+                                <t-form-item name="residence">
+                                    <sSelect @optionChange="(item) => { formData.residence = item.label }"
+                                        :options="residenceStatusOptions" :placeholder="'请选择您的新加坡居留身份'" />
+                                </t-form-item>
+                            </div>
+                        </div>
+                        <div class="form-item normal-item">
+                            <div class="form-item-label">最高学历<span>*</span></div>
+                            <div style="position: relative;">
+                                <t-form-item name="qualification">
+                                    <sSelect @optionChange="(item) => { formData.qualification = item.label }"
+                                        :options="highestEducationalOptions" :placeholder="'请选择您的最高学历'" />
+                                </t-form-item>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item full-item">
+                            <div class="form-item-label">已在中国境外居住时间<span
+                                    style="font-weight: 500; color: #172C47;">（不包括留学及公派出国的时间）</span><span>*</span></div>
+                            <div style="position: relative;">
+                                <t-form-item name="residenceTime">
+                                    <sSelect @optionChange="(item) => { formData.residenceTime = item.label }"
+                                        :options="outsideTimeOptions" :placeholder="'请选择已在中国境外居住时间'" />
+                                </t-form-item>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item full-item">
+                            <div class="form-item-label">公司<span>*</span></div>
+                            <div>
+                                <t-form-item name="company">
+                                    <sInput v-model="formData.company" :placeholder="'请填写您的公司'" />
+                                </t-form-item>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item full-item">
+                            <div class="form-item-label">职位<span>*</span></div>
+                            <div>
+                                <t-form-item name="post">
+                                    <sInput v-model="formData.post" :placeholder="'请填写您的职位'" />
+                                </t-form-item>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item areaCode-item">
+                            <div class="form-item-label">区号</div>
+                            <div>
+                                <sInput v-model="formData.areaCode" :isAreaCode="true" :placeholder="'+ 区号'" />
+                            </div>
+                        </div>
+                        <div class="form-item phone-item">
+                            <div class="form-item-label">手机号码<span>*</span></div>
+                            <div>
+                                <t-form-item name="phone">
+                                    <sInput :isPhone="true" v-model="formData.phone" :placeholder="'请填写您的手机号码'" />
+                                </t-form-item>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item full-item">
+                            <div class="form-item-label">邮箱地址<span>*</span></div>
+                            <div>
+                                <t-form-item name="email">
+                                    <sInput v-model="formData.email" :placeholder="'请填写您的E-mail邮箱地址'" />
+                                </t-form-item>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item full-item">
+                            <div class="form-item-label">您希望以何种方式进行咨询<span>*</span></div>
+                            <div style="position: relative;">
+                                <t-form-item name="consultationMethods">
+                                    <sSelect @optionChange="(item) => { formData.consultationMethods = item.label }"
+                                        :options="consultingServiceOptions" :placeholder="'请选择你倾向的咨询沟通方式'" />
+                                </t-form-item>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item full-item">
+                            <div class="form-item-label">如何得知暨南大学新加坡MBA硕士学位项目<span>*</span></div>
+                            <div style="position: relative;">
+                                <t-form-item name="obtainingChannels">
+                                    <sSelect @optionChange="(item) => { formData.obtainingChannels = item.label }"
+                                        :options="knowingChannelOptions" :placeholder="'请选择您得知的渠道'" />
+                                </t-form-item>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item normal-item">
+                            <div class="form-item-label">预约咨询日期<span>*</span></div>
+                            <div style="position: relative;">
+                                <t-form-item name="consultationDateDay">
+                                    <sDatePicker @optionChange="(item) => { formData.consultationDateDay = item }"
+                                        ref="sDatePicker" :placeholder="'请选择预约咨询日期'" />
+                                </t-form-item>
+                            </div>
+                        </div>
+                        <div class="form-item normal-item">
+                            <div class="form-item-label">预约咨询时间<span>*</span></div>
+                            <div style="position: relative;">
+                                <t-form-item name="consultationDateTime">
+                                    <sSelect :isTime="true"
+                                        @optionChange="(item) => { formData.consultationDateTime = item.label }"
+                                        :placeholder="'请选择预约咨询时间'" />
+                                </t-form-item>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="height: auto;">
+                        <div class="form-item full-item">
+                            <div class="form-item-label">隐私政策<span>*</span></div>
+                            <div style="display: flex;">
+                                <!-- <t-radio v-model="ok" @click="ok = !ok"></t-radio> -->
+                                <div class="form-ok-area" :class="{ formUnOk: !ok }" @click="ok = !ok">
+                                    <img src="../../assets/form/formOk.png" alt="" v-show="ok">
+                                </div>
+                                <div class="tips">
+                                    <div class="tips-title">By filling in and submitting the form, you agree to our
+                                        Privacy
+                                        Policy below. </div>
+                                    <div class="tips-content">I hereby authorise, agree and consent to allow Nanyang
+                                        Institute of Social Sciences (NISS) to collect, use, disclose and/or process my
+                                        personal data for the purpose of facilitating, processing, dealing with,
+                                        administering, managing and/or maintaining my relationship with NISS, including
+                                        but
+                                        not limited to informing me of NISS's latest courses, services, marketing
+                                        events,
+                                        etc.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-item full-item"
+                            style="display: flex; align-items: center; justify-content: center;">
+                            <div class="submit-btn"><t-button size="large" class="btn" type="submit">确定，提交表格</t-button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </t-form>
         </div>
         <PageFooter />
     </div>
@@ -255,7 +282,22 @@ export default {
                 consultationDateDay: '',
                 consultationDateTime: ''
             },
-            btnDisabled: false
+            btnDisabled: false,
+            rules: {
+                name: [{ required: true, message: '姓名必填', type: 'error', trigger: 'change' }],
+                nationality: [{ required: true, message: '国籍必填', type: 'error', trigger: 'change' }],
+                residence: [{ required: true, message: '所持新加坡居留身份必填', type: 'error', trigger: 'change' }],
+                qualification: [{ required: true, message: '最高学历必填', type: 'error', trigger: 'change' }],
+                residenceTime: [{ required: true, message: '已在中国境外居住时间必填', type: 'error', trigger: 'change' }],
+                company: [{ required: true, message: '公司必填', type: 'error', trigger: 'change' }],
+                post: [{ required: true, message: '职位必填', type: 'error', trigger: 'change' }],
+                phone: [{ required: true, message: '手机号码必填', type: 'error', trigger: 'change' }],
+                email: [{ required: true, message: '邮箱地址必填', type: 'error', trigger: 'change' }, { email: { ignore_max_length: true }, message: '请输入正确的邮箱地址' }],
+                consultationMethods: [{ required: true, message: '以何种方式进行咨询必填', type: 'error', trigger: 'change' }],
+                obtainingChannels: [{ required: true, message: '得知渠道必填', type: 'error', trigger: 'change' }],
+                consultationDateDay: [{ required: true, message: '预约咨询日期必填', type: 'error', trigger: 'change' }],
+                consultationDateTime: [{ required: true, message: '预约咨询时间必填', type: 'error', trigger: 'change' }]
+            }
         };
     },
     //监听属性 类似于data概念
@@ -265,30 +307,38 @@ export default {
     },
     //方法集合
     methods: {
+        onSubmit({ validateResult, firstError }) {
+            if (validateResult === true) {
+                if (this.btnDisabled) {
+                    return
+                }
+                if (!this.ok) {
+                    this.$message.error('请勾选隐私政策')
+                    return
+                }
+                this.$request.post(formApi.addCustomerUrl, this.formData)
+                    .then(res => {
+                        if (res.data.code != 200) {
+                            this.$message.error(res.data.msg)
+                            return
+                        }
+                        this.btnDisabled = true
+                        this.$message.success('提交成功，即将返回首页')
+                        setTimeout(() => {
+                            this.$router.push({ name: 'home' })
+                            window.scrollTo({
+                                top: 0,
+                                behavior: 'smooth' // 可选，使用平滑滚动效果
+                            });
+                        }, 3000);
+                    })
+
+            } else {
+                this.$message.warning(firstError);
+            }
+        },
         submit() {
-            if (this.btnDisabled) {
-                return
-            }
-            if (!this.ok) {
-                this.$message.error('请勾选隐私政策')
-                return
-            }
-            this.$request.post(formApi.addCustomerUrl, this.formData)
-                .then(res => {
-                    if (res.data.code != 200) {
-                        this.$message.error(res.data.msg)
-                        return
-                    }
-                    this.btnDisabled = true
-                    this.$message.success('提交成功，即将返回首页')
-                    setTimeout(() => {
-                        this.$router.push({ name: 'home' })
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth' // 可选，使用平滑滚动效果
-                        });
-                    }, 3000);
-                })
+
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
@@ -310,6 +360,12 @@ export default {
 </script>
 
 <style scoped lang="less">
+/deep/.t-is-error .t-input__extra {
+    font-size: 20px;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
 .form-ok-area {
     width: 26px;
     height: 26px;
@@ -406,7 +462,7 @@ export default {
         display: flex;
         justify-content: space-between;
         margin-bottom: 30px;
-        height: 180px;
+        height: 200px;
     }
 
     .form-item {}
@@ -432,7 +488,7 @@ export default {
         font-size: 28px;
         color: #172C47;
         line-height: 34px;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
 
         span {
             color: #E98225;
