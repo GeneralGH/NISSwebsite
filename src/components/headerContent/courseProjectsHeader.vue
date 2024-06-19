@@ -1,22 +1,7 @@
 <!--  -->
 <template>
     <div class="content-area">
-        <div class="title">
-            暨南大学新加坡<br>中文MBA项目
-        </div>
-        <div class="sub-title">
-            2024年秋季申请开放中
-        </div>
-        <div style="display: flex; align-items: center;">
-            <div class="btn">
-                <div>申请加入</div>
-                <img class="rightArrow" src="../../../assets/header/rightArrow.png" alt="">
-            </div>
-            <div class="btn" style="background: #024A9C; margin-left: 30px;">
-                <div>联系我们</div>
-                <img class="rightArrow" src="../../../assets/header/rightArrow.png" alt="">
-            </div>
-        </div>
+        <t-image class="content-img" :src="imgUrl" fit="cover" position="center" :lazy="true" />
     </div>
 </template>
 
@@ -32,6 +17,9 @@ export default {
         return {
 
         };
+    },
+    props: {
+        imgUrl: { type: String, default: '' }
     },
     //监听属性 类似于data概念
     computed: {},
@@ -61,41 +49,12 @@ export default {
 
 <style scoped>
 .content-area {
-    margin-left: 360px;
-    margin-top: 60px;
+    height: 620px;
+    margin: 0 auto;
 }
 
-.title {
-    font-size: 78px;
-    font-weight: bold;
-    color: white;
-}
-
-.sub-title {
-    font-size: 29px;
-    color: #FF9C00;
-    margin-top: 30px;
-}
-
-.btn {
-    margin-top: 100px;
-    width: 174px;
-    height: 52px;
-    background: #FF9C00;
-    border-radius: 26px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    font-size: 20px;
-    color: #FFFFFF;
-    padding-left: 40px;
-    box-sizing: border-box;
-}
-
-.rightArrow {
-    width: 21px;
-    height: 21px;
-    display: block;
+.content-img {
+    width: 100%;
+    height: 100%;
 }
 </style>

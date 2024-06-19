@@ -1,7 +1,7 @@
 <!--  -->
 <template>
     <div class="content-area">
-        打造最具价值的终身学习平台
+        <t-image class="content-img" :src="imgUrl" fit="cover" position="center" :lazy="true" />
     </div>
 </template>
 
@@ -17,6 +17,9 @@ export default {
         return {
 
         };
+    },
+    props: {
+        imgUrl: { type: String, default: '' }
     },
     //监听属性 类似于data概念
     computed: {},
@@ -46,10 +49,12 @@ export default {
 
 <style scoped>
 .content-area {
-    font-size: 78px;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    padding-top: 180px;
+    height: 620px;
+    margin: 0 auto;
+}
+
+.content-img {
+    width: 100%;
+    height: 100%;
 }
 </style>

@@ -1,16 +1,6 @@
 <!--  -->
 <template>
     <div id="container" :style="bgHeigth" class="header-area">
-        <!-- <img v-if="currentPath == '/'" id="image" ref="headerBg" src="../../assets/header/homeHeaderBg.png"
-            class="header-bg"> -->
-        <img v-if="currentPath == '/courseProjects'" id="image" ref="headerBg"
-            src="../../assets/header/courseProjectsHeaderBg.png" class="header-bg">
-        <img v-if="currentPath == '/teachingStaff'" id="image" ref="headerBg"
-            src="../../assets/header/teachingHeaderBg.png" class="header-bg">
-        <img v-if="currentPath == '/aboutUs'" id="image" ref="headerBg" src="../../assets/header/aboutUsHeaderBg.png"
-            class="header-bg">
-        <img v-if="currentPath == '/alumniStyle'" id="image" ref="headerBg"
-            src="../../assets/header/aboutUsHeaderBg.png" class="header-bg">
         <img v-if="currentPath == '/consultationForm'" id="image" ref="headerBg"
             src="../../assets/header/aboutUsHeaderBg.png" class="header-bg">
         <div class="header-nav-area">
@@ -36,19 +26,19 @@
                 </div>
             </div>
 
-            <!-- 各个页面不同展示 -->
-            <CourseProjects v-if="currentPath == '/courseProjects'" />
-            <TeachingStaffHeader v-if="currentPath == '/teachingStaff'" />
-            <AboutUsHeader v-if="currentPath == '/aboutUs'" />
-            <AlumniStyleHeader v-if="currentPath == '/alumniStyle'" />
-            <ConsultationFormHeader  v-if="currentPath == '/consultationForm'" />
+            <ConsultationFormHeader v-if="currentPath == '/consultationForm'" />
         </div>
+        <!-- 各个页面不同展示 -->
         <div class="articleHeader" v-if="currentPath == '/article'"></div>
         <HomeHeader v-if="currentPath == '/'" />
+        <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/courseProjects'" />
+        <TeachingStaffHeader :imgUrl="imgUrl" v-if="currentPath == '/teachingStaff'" />
+        <AboutUsHeader :imgUrl="imgUrl" v-if="currentPath == '/aboutUs'" />
+        <AlumniStyleHeader :imgUrl="imgUrl" v-if="currentPath == '/alumniStyle'" />
 
         <div class="sidebar">
-            <div class="sidebar-item" v-for="(item, index) in sidebarList" @click="toPage({path: item.path})"  @mouseover="isHovered = index"
-            @mouseleave="isHovered = -1">
+            <div class="sidebar-item" v-for="(item, index) in sidebarList" @click="toPage({ path: item.path })"
+                @mouseover="isHovered = index" @mouseleave="isHovered = -1">
                 <img :src="isHovered == index ? item.imgPath : item.unImgPath" alt="">
                 <div>{{ item.name }}</div>
             </div>
@@ -95,7 +85,8 @@ export default {
                 { name: '项目导览', path: '', imgPath: ProjectImg, unImgPath: unProjectImg },
                 { name: '1对1咨询', path: '/consultationForm', imgPath: ChatImg, unImgPath: unChatImg }
             ],
-            isHovered: -1
+            isHovered: -1,
+            imgUrl: ''
         };
     },
     //监听属性 类似于data概念
@@ -109,18 +100,37 @@ export default {
                 return
             }
             this.$router.push(item.path)
+        },
+
+        async getPageHedaerImg() {
+            let id = null
+            switch (this.currentPath) {
+                case '/courseProjects':
+                    id = 3
+                    break
+                case '/teachingStaff':
+                    id = 15
+                    break
+                case '/aboutUs':
+                    id = 1
+                    break
+                case '/alumniStyle':
+                    id = 2
+                    break
+            }
+            this.imgUrl = await this.$getPageContent(id)
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
 
-
-
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
-    mounted() {
+    async mounted() {
         this.currentPath = this.$route.path
-
+        if (this.currentPath !== '/') {
+            this.getPageHedaerImg()
+        }
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前
@@ -246,7 +256,7 @@ export default {
     align-items: center;
     justify-content: space-around;
     z-index: 110;
-    box-shadow:  0 4px 16px  rgba(17,17,26,0.1), -20px 0 22px 5px rgba(135, 135, 135, 0.25);
+    box-shadow: 0 4px 16px rgba(17, 17, 26, 0.1), -20px 0 22px 5px rgba(135, 135, 135, 0.25);
 
     .sidebar-item {
         width: 100%;

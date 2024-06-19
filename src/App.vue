@@ -10,6 +10,8 @@ import autofit from 'autofit.js'
 
 export default Vue.extend({
   mounted() {
+    console.log('访问页面')
+    this.$request.post('/api/view/addPageView')
   },
 });
 </script>

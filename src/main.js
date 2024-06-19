@@ -22,6 +22,24 @@ Vue.use(VueRouter)
 
 Vue.prototype.$request = axiosInstance;
 
+Vue.prototype.$getPageContent = function(id) {
+  return new Promise((resolve, reject) => {
+    this.$request.get('/api/pageConfig/getPageConfigById/' + id)
+      .then(res => {
+        if (res.data.type == 2) {
+          let url = JSON.parse(res.data.url).url
+          resolve(url)
+        } else {
+          reject(new Error("Invalid page type"))
+        }
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+};
+
+
 new Vue({
   router,
   render: (h) => h(App)
