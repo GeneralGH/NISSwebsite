@@ -18,12 +18,12 @@
 
         <div class="party-info">
             <div style="flex: 1;">
-                · 专职教师140位<br><br>
-                · 92%拥有博士学位
+                · 专职教师{{ ourTeachersInfo[0].value }}{{ ourTeachersInfo[0].unit }}<br><br>
+                · {{ ourTeachersInfo[1].value }}{{ ourTeachersInfo[1].unit }}拥有博士学位
             </div>
             <div style="flex: 1;">
-                · 教授、副教授114位<br><br>
-                · 博士生导师51位
+                · 教授、副教授{{ ourTeachersInfo[2].value }}{{ ourTeachersInfo[2].unit }}<br><br>
+                · 博士生导师{{ ourTeachersInfo[3].value }}{{ ourTeachersInfo[3].unit }}
             </div>
         </div>
 
@@ -46,10 +46,10 @@ export default {
         //这里存放数据
         return {
             ourTeachersInfo: [
-                { name: '专职教师', value: '140', unit: '位' },
-                { name: '博士学位教师', value: '92', unit: '%' },
-                { name: '教授、副教授', value: '114', unit: '位' },
-                { name: '博士生导师', value: '51', unit: '位' }
+                { name: '专职教师', value: '140', unit: '位', id: 10 },
+                { name: '博士学位教师', value: '92', unit: '%', id: 11 },
+                { name: '教授、副教授', value: '114', unit: '位', id: 12 },
+                { name: '博士生导师', value: '51', unit: '位', id: 13 }
             ]
         };
     },
@@ -59,7 +59,17 @@ export default {
     watch: {},
     //方法集合
     methods: {
-
+        async initData() {
+            this.ourTeachersInfo.forEach((item) => {
+                this.$getPageContent(item.id)
+                .then(res => {
+                    console.log(res)
+                    item.value = res.content
+                    item.unit = res.unit
+                })
+            })
+            /* this.imgUrl = await this.$getPageContent(id) */
+        }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
@@ -67,7 +77,7 @@ export default {
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-
+        this.initData()
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前

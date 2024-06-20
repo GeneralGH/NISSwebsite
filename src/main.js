@@ -29,6 +29,8 @@ Vue.prototype.$getPageContent = function(id) {
         if (res.data.type == 2) {
           let url = JSON.parse(res.data.url).url
           resolve(url)
+        } else if(res.data.type == 1) {
+          resolve(res.data)
         } else {
           reject(new Error("Invalid page type"))
         }
