@@ -10,7 +10,7 @@
                 <div class="party-content">
                     <div class="content-title">暨南大学校友网络</div>
                     <div class="content-area">
-                        <div><t-image class="content-image" src="../../assets/alumniStyle/JNUniversityNetwork.png" fit="cover" position="center" :lazy="true" /></div>
+                        <div><t-image class="content-image" :src="JNUniversityNetwork" fit="cover" position="center" :lazy="true" /></div>
                         <div class="content-p">
                             <p>
                                 作为杰出企业家 、商界精英、以及新生代经济颠覆力量的共同选择 ，暨南大学校友遍布世界各地、各行各业。目前，在五大洲共有132个校友组织 ，其中海外校友组织59个。
@@ -30,7 +30,7 @@
                     </div>
                     <div class="content-title">新加坡校友会</div>
                     <div class="content-area">
-                        <div><t-image class="content-image" src="../../assets/alumniStyle/SingapoUniversityNetwork.png" fit="cover" position="center" :lazy="true" /></div>
+                        <div><t-image class="content-image" :src="SingapoUniversityNetwork" fit="cover" position="center" :lazy="true" /></div>
                         <div class="content-p">
                             <p>
                                 新加坡暨南校友会早在 1941年4月已注册成立，是暨南大学成立较早、持续活动时间最长的校友会，也是新加坡最早成立的中国高校校友会。
@@ -71,6 +71,8 @@
 import News from '../components/common/news.vue'
 import OutstandingAlumni from '../components/alumniStyle/outstandingAlumni.vue'
 import news from '../api/news';
+import JNUniversityNetwork from '../../assets/alumniStyle/JNUniversityNetwork.png'
+import SingapoUniversityNetwork from '../../assets/alumniStyle/SingapoUniversityNetwork.png'
 
 export default {
     //import引入的组件需要注入到对象中才能使用
@@ -83,7 +85,9 @@ export default {
                 size: 10,
                 type: 2
             },
-            list: []
+            list: [],
+            JNUniversityNetwork,
+            SingapoUniversityNetwork
         };
     },
     //监听属性 类似于data概念

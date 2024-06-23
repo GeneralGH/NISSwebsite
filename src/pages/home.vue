@@ -34,21 +34,23 @@
     </div>
 
     <div class="content-two" ref="contentTwo">
-      <div class="content-info">
+      <div class="content-info" id="content-info">
+        <!-- <t-affix> -->
         <div class="info-left">
           <div class="title">成为最具价值的终身学习平台</div>
           <div class="subTitle">To be an invaluable lifelong learning platform</div>
           <img src="../../assets/home/contentTwo.png" alt="">
         </div>
+        <!-- </t-affix> -->
         <div class="info-right" id="contentTwoRight" ref="contentTwoRight">
-
-          <div class="info-item"
+          <!-- <div class="info-item"
             :style="'transition: opacity 1s ease-in-out;' + (item.isOpacity ? 'opacity: 0.1; ' : 'opacity: 1; ')"
-            v-for="(item, index) in infoTwoList" :key="index">
+            v-for="(item, index) in infoTwoList" :key="index"> -->
+          <div class="info-item" v-for="(item, index) in infoTwoList" :key="index">
             <div class="title">{{ item.title }}</div>
             <div class="subTitle">{{ item.subTitle }}</div>
           </div>
-          <div class="fillDiv"></div>
+          <!-- <div class="fillDiv"></div> -->
         </div>
       </div>
     </div>
@@ -224,6 +226,7 @@ export default {
         this.contentTwoScrollTop = false;
       }
     },
+
     jump(path) {
       if (!path) {
         return
@@ -241,6 +244,10 @@ export default {
           this.alumniList = res.data.data.list.map((item) => { return { ...item, imgPath: JSON.parse(item.image).url } })
         })
     },
+
+    getContainer() {
+      return this.$refs.contentTwo;
+    },
   }
   ,
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -250,7 +257,13 @@ export default {
   ,
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    /* window.addEventListener('mousewheel', this.handleWheel, { passive: false }); */
+    const windowHeight = window.innerHeight;
+    const contentTwoElement = document.querySelector('.content-two');
+    const infoRight = document.getElementById('content-info');
+    // contentTwoElement.style.height = `${windowHeight}px`;
+    // infoRight.style.height = `${windowHeight}px`;
+
+    // window.addEventListener('mousewheel', this.handleWheel, { passive: false });
 
     const inner = document.getElementById('contentTwoRight');
     this.numberScorll = inner.clientHeight / 3;
@@ -409,17 +422,21 @@ body {
 }
 
 .content-two {
-  height: 950px;
+  /* height: 950px; */
   background: linear-gradient(180deg, #121212 0%, #1A3461 100%);
   padding-top: 130px;
 
   .content-info {
     display: flex;
     justify-content: center;
+    height: 1740px;
 
     .info-left {
       color: white;
-      height: 330px;
+      height: 630px;
+      position: sticky;
+      top: 100px;
+      bottom: 100px;
 
       .title {
         font-size: 40px;
@@ -442,7 +459,7 @@ body {
     .info-right {
       margin-left: 150px;
       margin-top: -30px;
-      height: 45rem;
+      // height: 45rem;
       // overflow-y: scroll;
       overflow-y: hidden;
 
