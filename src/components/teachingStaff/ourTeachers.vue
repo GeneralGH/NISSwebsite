@@ -63,8 +63,7 @@ export default {
             this.ourTeachersInfo.forEach((item) => {
                 this.$getPageContent(item.id)
                 .then(res => {
-                    console.log(res)
-                    item.value = res.content
+                    item.value = res.title
                     item.unit = res.unit
                 })
             })
