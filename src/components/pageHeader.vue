@@ -15,10 +15,10 @@
                     </div>
                 </div>
                 <div class="header-tools">
-                    <div class="header-search">
+                    <!-- <div class="header-search">
                         <div></div>
                         <img class="search-img" src="../../assets/header/search.png" alt="">
-                    </div>
+                    </div> -->
                     <div class="header-language">
                         <div>中文</div>
                         <img src="../../assets/header/downArrow.png" alt="">
@@ -26,14 +26,15 @@
                 </div>
             </div>
 
-            <ConsultationFormHeader v-if="currentPath == '/consultationForm'" />
+
         </div>
         <!-- 各个页面不同展示 -->
-        <div class="articleHeader" v-if="currentPath == '/article'"></div>
+        <!-- <div class="articleHeader" v-if="currentPath == '/article'"></div> -->
         <HomeHeader v-if="currentPath == '/'" />
         <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/courseProjects'" />
         <TeachingStaffHeader :imgUrl="imgUrl" v-if="currentPath == '/teachingStaff'" />
         <AboutUsHeader :imgUrl="imgUrl" v-if="currentPath == '/aboutUs'" />
+        <ConsultationFormHeader v-if="currentPath == '/consultationForm'" />
         <AlumniStyleHeader :imgUrl="imgUrl" v-if="currentPath == '/alumniStyle'" />
 
         <div class="sidebar">
@@ -100,6 +101,10 @@ export default {
                 return
             }
             this.$router.push(item.path)
+            window.scrollTo({
+                top: 0,
+                behavior: 'instant' // 可选，使用平滑滚动效果
+            });
         },
 
         async getPageHedaerImg() {
@@ -131,6 +136,15 @@ export default {
         if (this.currentPath !== '/') {
             this.getPageHedaerImg()
         }
+        const headerNavArea = document.querySelector('.header-nav-area');
+        const containerHeight = document.getElementById('container').offsetHeight;
+
+        window.addEventListener('scroll', () => {
+            const scrollHeight = window.scrollY;
+            const opacity = scrollHeight / containerHeight;
+
+            headerNavArea.style.backgroundColor = `rgba(11, 20, 32, ${opacity})`;
+        });
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前
@@ -143,14 +157,18 @@ export default {
 </script>
 
 <style scoped lang="less">
-.articleHeader {
+/* .articleHeader {
     width: 100%;
     height: 100px;
     background-color: #0B1420;
+} */
+
+.solid-bg {
+    background-color: rgba(11, 20, 32, 1);
 }
 
 .header-nav-area {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     height: 100px;

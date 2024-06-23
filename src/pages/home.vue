@@ -435,8 +435,7 @@ body {
       color: white;
       height: 630px;
       position: sticky;
-      top: 100px;
-      bottom: 100px;
+      top: 200px;
 
       .title {
         font-size: 40px;
