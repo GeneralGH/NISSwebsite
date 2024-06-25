@@ -76,7 +76,11 @@
               </div>
               <div class="alumni-class">{{ item.grade }}</div>
             </div>
-            <t-image class="alumni-img" :src="item.imgPath" fit="cover" position="center" />
+            <t-image class="alumni-img" :src="item.imgPath" fit="cover" position="center">
+              <template #loading>
+                {{ '' }}
+              </template>
+            </t-image>
             <!-- <img class="alumni-img" :src="item.imgPath" alt=""> -->
             <div v-show="index % 2 === 0">
               <div class="alumni-info">
@@ -329,6 +333,18 @@ export default {
 </script>
 
 <style scoped lang="less">
+/deep/img {
+
+  -webkit-user-drag: none;
+
+  -moz-user-drag: none;
+
+  -ms-user-drag: none;
+
+  user-drag: none;
+
+}
+
 body {
   overflow-y: scroll;
 }

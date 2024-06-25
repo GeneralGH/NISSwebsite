@@ -5,8 +5,8 @@
 
         <div class="pageBody">
             <div class="content-body">
-                <div style="width: 25%; position: relative;">
-                    <div class="leftList" :class="{ sticky: isSticky, absot: isAbsot }">
+                <div class="leftSticky">
+                    <div class="leftList">
                         <div class="title"> 暨南大学<br>新加坡MBA项目 </div>
                         <div class="optionsList">
                             <div class="list-line-area">
@@ -124,10 +124,11 @@ export default {
         scrollToAnchor(anchor) {
             const element = document.getElementById(anchor);
             if (element) {
+                element.style.scrollMarginTop = "100px"; // 添加 scroll-margin-top 属性
                 element.scrollIntoView({ behavior: 'smooth' });
                 setTimeout(() => {
-                    this.currentTemplate = anchor
-                }, 1000);
+                    this.currentTemplate = anchor;
+                }, 800);
             }
         },
 
@@ -192,10 +193,15 @@ export default {
         window.addEventListener('scroll', this.handleScroll);
         if (this.$route.params.anchor) {
             let str = 'options' + this.$route.params.anchor
-            this.scrollToAnchor(str)
+            const element = document.getElementById(str);
+            element.style.scrollMarginTop = "350px"; // 添加 scroll-margin-top 属性
+            element.scrollIntoView({ behavior: 'smooth' });
+            this.currentTemplate = str;
+        } else {
+            this.fllowUpdate()
         }
+        
 
-        this.fllowUpdate()
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前
@@ -210,6 +216,13 @@ export default {
 <style scoped lang="less">
 .leftList {
     /* width: 25%; */
+}
+
+.leftSticky {
+    width: 25%;
+    position: sticky;
+    top: 150px;
+    height: 1080px;
 }
 
 .sticky {

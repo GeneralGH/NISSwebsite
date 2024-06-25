@@ -56,10 +56,10 @@ export default {
         },
 
         toDetail(item) {
-            this.$router.push({ name: 'article', params: { id: item.id } })
+            this.$router.push({ path: `/article?id=${item.id}` })
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // 可选，使用平滑滚动效果
+                behavior: 'instant' // 可选，使用平滑滚动效果
             });
         }
     },

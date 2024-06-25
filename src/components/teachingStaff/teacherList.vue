@@ -35,6 +35,8 @@
                 </div>
             </div>
         </div>
+
+        <div class="noListTips" v-show="!list.length">暂无搜索结果</div>
     </div>
 </template>
 
@@ -81,6 +83,11 @@ export default {
 </script>
 
 <style scoped lang="less">
+.noListTips {
+    text-align: center;
+    color: #999;
+    font-size: 32px;
+}
 .teacher-list-area {
 
     .teacher-list {

@@ -1,7 +1,7 @@
 <!--  -->
 <template>
     <div class="content-area">
-        暨南大学新加坡中文MBA项目
+        <!-- 暨南大学新加坡中文MBA项目 -->
     </div>
 </template>
 
@@ -46,10 +46,5 @@ export default {
 
 <style scoped>
 .content-area {
-    font-size: 78px;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    padding-top: 180px;
 }
 </style>

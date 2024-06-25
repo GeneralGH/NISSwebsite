@@ -29,7 +29,7 @@
 
         </div>
         <!-- 各个页面不同展示 -->
-        <!-- <div class="articleHeader" v-if="currentPath == '/article'"></div> -->
+        <div class="articleHeader" v-if="currentPath == '/article'"></div>
         <HomeHeader v-if="currentPath == '/'" />
         <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/courseProjects'" />
         <TeachingStaffHeader :imgUrl="imgUrl" v-if="currentPath == '/teachingStaff'" />
@@ -139,12 +139,16 @@ export default {
         const headerNavArea = document.querySelector('.header-nav-area');
         const containerHeight = document.getElementById('container').offsetHeight;
 
-        window.addEventListener('scroll', () => {
-            const scrollHeight = window.scrollY;
-            const opacity = scrollHeight / containerHeight;
+        if (this.currentPath !== '/article') {
+            window.addEventListener('scroll', () => {
+                const scrollHeight = window.scrollY;
+                const opacity = scrollHeight / containerHeight;
 
-            headerNavArea.style.backgroundColor = `rgba(11, 20, 32, ${opacity})`;
-        });
+                headerNavArea.style.backgroundColor = `rgba(11, 20, 32, ${opacity})`;
+            });
+        } else {
+            headerNavArea.style.backgroundColor = `rgba(11, 20, 32, 1)`;
+        }
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前
@@ -157,11 +161,10 @@ export default {
 </script>
 
 <style scoped lang="less">
-/* .articleHeader {
+.articleHeader {
     width: 100%;
     height: 100px;
-    background-color: #0B1420;
-} */
+}
 
 .solid-bg {
     background-color: rgba(11, 20, 32, 1);
@@ -173,6 +176,8 @@ export default {
     width: 100%;
     height: 100px;
     z-index: 100;
+    /* left: 50%;
+    transform: translateX(-50%); */
 }
 
 .header-area {
@@ -185,8 +190,10 @@ export default {
     }
 
     .header-content {
+        width: 1920px;
+        margin: 0 auto;
         z-index: 10;
-        padding: 0 87px 0 120px;
+        /* padding: 0 87px 0 120px; */
         height: 100%;
         display: flex;
         align-items: center;
@@ -203,9 +210,9 @@ export default {
         align-items: center;
         justify-content: space-between;
         color: white;
-        margin: 0 150px;
+        /* margin: 0 150px; */
         font-size: 20px;
-        width: 920px;
+        width: 1060px;
 
         .nav-item {
             cursor: pointer;

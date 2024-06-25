@@ -13,7 +13,8 @@
                     {{ data.title }}
                 </div>
                 <div class="article-author">
-                    作者：{{ data.author }}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{{ dateChange(data.createTime) }}
+                    作者：{{ data.author }}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{{ dateChange(data.createTime)
+                    }}
                 </div>
             </div>
 
@@ -67,7 +68,7 @@ export default {
     //监控data中的数据变化
     watch: {},
     filter: {
-        
+
     },
     //方法集合
     methods: {
@@ -95,7 +96,7 @@ export default {
             console.log(item)
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth' // 可选，使用平滑滚动效果
+                behavior: 'instant' // 可选，使用平滑滚动效果
             });
             this.echoData(item.id)
         },
@@ -116,11 +117,14 @@ export default {
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-        if (!this.$route.params.id) {
-            this.$router.push({ name: 'home' })
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        if (!id) {
+            this.$router.push({ name: 'home' });
         } else {
-            this.echoData(this.$route.params.id)
-            this.initList()
+            this.echoData(id);
+            this.initList();
         }
 
     },

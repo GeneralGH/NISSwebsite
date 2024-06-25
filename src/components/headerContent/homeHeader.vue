@@ -25,7 +25,7 @@ export default {
             list: [],
             listQuery: {
                 current: 1,
-                size: 10,
+                size: 50,
                 isShow: 1
             }
         };
@@ -53,8 +53,11 @@ export default {
                 this.$router.push({ name: 'courseProjects', params: { anchor: targetUrl.value } })
             }
             if (targetUrl.type == 3) {
-                this.$router.push({ name: 'article', params: { id: targetUrl.value } })
+                this.$router.push({ path: `/article?id=${targetUrl.value}` });
+
+                /* this.$router.push({ name: 'article', params: { id: targetUrl.value } }) */
             }
+            
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
