@@ -1,8 +1,8 @@
 <!--  -->
 <template>
     <div id="container" :style="bgHeigth" class="header-area">
-        <img v-if="currentPath == '/consultationForm'" id="image" ref="headerBg"
-            src="../../assets/header/aboutUsHeaderBg.png" class="header-bg">
+        <!-- <img v-if="currentPath == '/consultationForm'" id="image" ref="headerBg"
+            src="../../assets/header/aboutUsHeaderBg.png" class="header-bg"> -->
         <div class="header-nav-area">
             <div class="header-content">
                 <div class="logo">
@@ -34,7 +34,7 @@
         <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/courseProjects'" />
         <TeachingStaffHeader :imgUrl="imgUrl" v-if="currentPath == '/teachingStaff'" />
         <AboutUsHeader :imgUrl="imgUrl" v-if="currentPath == '/aboutUs'" />
-        <ConsultationFormHeader v-if="currentPath == '/consultationForm'" />
+        <ConsultationFormHeader :imgUrl="imgUrl" v-if="currentPath == '/consultationForm'" />
         <AlumniStyleHeader :imgUrl="imgUrl" v-if="currentPath == '/alumniStyle'" />
 
         <div class="sidebar">
@@ -121,6 +121,9 @@ export default {
                     break
                 case '/alumniStyle':
                     id = 2
+                    break
+                case '/consultationForm':
+                    id = 19
                     break
             }
             this.imgUrl = await this.$getPageContent(id)

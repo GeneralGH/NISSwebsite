@@ -17,6 +17,10 @@
         </div>
 
         <div class="party-info">
+            <div v-html="htmlContent.content"></div>
+        </div>
+
+        <!-- <div class="party-info">
             <div style="flex: 1;">
                 · 专职教师{{ ourTeachersInfo[0].value }}{{ ourTeachersInfo[0].unit }}<br><br>
                 · {{ ourTeachersInfo[1].value }}{{ ourTeachersInfo[1].unit }}拥有博士学位
@@ -25,7 +29,7 @@
                 · 教授、副教授{{ ourTeachersInfo[2].value }}{{ ourTeachersInfo[2].unit }}<br><br>
                 · 博士生导师{{ ourTeachersInfo[3].value }}{{ ourTeachersInfo[3].unit }}
             </div>
-        </div>
+        </div> -->
 
         <div class="party-slogan">
             <div class="party-slogan-line"></div>
@@ -50,7 +54,11 @@ export default {
                 { name: '博士学位教师', value: '92', unit: '%', id: 11 },
                 { name: '教授、副教授', value: '114', unit: '位', id: 12 },
                 { name: '博士生导师', value: '51', unit: '位', id: 13 }
-            ]
+            ],
+            htmlContent: {
+                content: '',
+                contentEn: ''
+            }
         };
     },
     //监听属性 类似于data概念
@@ -63,11 +71,12 @@ export default {
             this.ourTeachersInfo.forEach((item) => {
                 this.$getPageContent(item.id)
                 .then(res => {
-                    item.value = res.title
+                    item.name = res.title
+                    item.value = res.content
                     item.unit = res.unit
                 })
             })
-            /* this.imgUrl = await this.$getPageContent(id) */
+            this.htmlContent = await this.$getPageContent(14)
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）

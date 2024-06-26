@@ -21,17 +21,17 @@
         <div class="content-item" id="options1-2">
             <div class="title">项目介绍</div>
             <div class="line"></div>
-            <div class="info-content" style="margin-bottom: 40px;">
+            <div class="info-content p-space">
                 暨南大学新加坡MBA硕士学位项目（简称“暨南大学新加坡MBA项目”）
                 是暨南大学在新加坡的中文工商管理硕士（MBA）教学项目，由暨南大学管理学院与南洋社会科学学院合作举办。项目面向华侨、港澳台地区人士和非中国籍人士招生。
             </div>
-            <div class="info-content" style="margin-bottom: 40px; font-size: 32px; text-align: center;">
+            <div class="info-content bigTitle p-space">
                 “始有暨南，便有商科”
             </div>
-            <div class="info-content" style="margin-bottom: 40px;">
+            <div class="info-content p-space">
                 早在1918年，暨南大学就开始设立商科，是中国最早开展商科教育的国立高等学府。1993年，暨南大学成为华南地区最早开办MBA教育的院校。
             </div>
-            <div class="info-content" style="margin-bottom: 40px;">
+            <div class="info-content p-space">
                 暨南素以弘扬中华文化，培养华侨华人子女为己任。学校坚持贯彻“面向海外，面向港澳台”的办学方针，以博大之胸怀接纳了来自五湖之学子，多元文化亦在此荟萃。暨南大学新加坡MBA硕士学位项目（简称“暨南大学新加坡MBA项目”）
                 是暨南大学在新加坡的中文工商管理硕士（MBA）教学项目，由暨南大学管理学院与南洋社会科学学院合作举办。项目面向华侨、港澳台地区人士和非中国籍人士招生。
             </div>
@@ -62,7 +62,7 @@
                 · 大专文凭可报考<br>
                 · 收获1+1+N+2全面赋能职业发展
             </div>
-            <div style="margin-top: 60px;">
+            <div class="four-area">
                 <img class="fourImg" src="../../../assets/courseProjects/four.png" alt="">
             </div>
         </div>
@@ -110,6 +110,18 @@ export default {
 
 <style scoped lang="less">
 @import url('./index.css');
+
+.bigTitle {
+    font-size: 32px; text-align: center;
+}
+
+.p-space {
+    margin-bottom: 40px;
+}
+
+.four-area {
+    margin-bottom: 60px;
+}
 
 .one-imgs {
     display: flex;

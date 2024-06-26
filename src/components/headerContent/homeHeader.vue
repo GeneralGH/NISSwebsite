@@ -54,10 +54,7 @@ export default {
             }
             if (targetUrl.type == 3) {
                 this.$router.push({ path: `/article?id=${targetUrl.value}` });
-
-                /* this.$router.push({ name: 'article', params: { id: targetUrl.value } }) */
             }
-            
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）

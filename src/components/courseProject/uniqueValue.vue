@@ -29,7 +29,7 @@
         <div class="content-item" id="options4-2">
             <div class="title">人脉优势</div>
             <div class="line"></div>
-            <div class="info-content" style="margin-bottom: 40px;">
+            <div class="info-content space-one">
                 <div class="info">
                     <div class="networkingList">
                         <div class="networkItem" v-for="item in networkingList">
@@ -39,10 +39,11 @@
                     </div>
                 </div>
                 <div class="info">
-                    · 31岁-40岁是主力年龄<br>
+                    <div v-html="htmlContent.content"></div>
+                    <!-- · 31岁-40岁是主力年龄<br>
                     · 58%的学生位于企业中高级管理岗 31%的学生是企业主<br>
                     · 平均工作年限15.6年<br>
-                    · 来自30余个细分行业
+                    · 来自30余个细分行业 -->
                 </div>
             </div>
         </div>
@@ -79,12 +80,16 @@ export default {
                 { img: Chile, name: '智利', list: ['智利大学 University of Chile'] },
             ],
             networkingList: [
-                { name: '主力年龄', value: '31-40' },
-                { name: '学生是高级管理岗', value: '58%' },
-                { name: '学生是企业主', value: '31%' },
-                { name: '平均工作年限', value: '15.6' },
-                { name: '细分行业', value: '30+' }
-            ]
+                { id: 4, name: '主力年龄', value: '31-40' },
+                { id: 5, name: '学生是高级管理岗', value: '58%' },
+                { id: 6, name: '学生是企业主', value: '31%' },
+                { id: 7, name: '平均工作年限', value: '15.6' },
+                { id: 8, name: '细分行业', value: '30+' }
+            ],
+            htmlContent: {
+                content: '',
+                contentEn: ''
+            }
         };
     },
     //监听属性 类似于data概念
@@ -93,14 +98,21 @@ export default {
     watch: {},
     //方法集合
     methods: {
-
+        async initData() {
+            for (let network of this.networkingList) {
+                let obj = await this.$getPageContent(network.id)
+                network.name = obj.title
+                network.value = obj.content
+            }
+            this.htmlContent = await this.$getPageContent(9)
+        }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-
+        this.initData()
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前
@@ -114,6 +126,10 @@ export default {
 
 <style scoped lang="less">
 @import url('./index.css');
+
+.space-one {
+    margin-bottom: 40px;
+}
 
 .schoolItem {
     display: flex;

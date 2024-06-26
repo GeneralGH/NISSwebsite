@@ -1,7 +1,7 @@
 <!--  -->
 <template>
     <div class="content-area">
-        <t-image class="content-img" :src="imgUrl" fit="cover" position="center" :lazy="true" />
+        <t-image class="content-img" :src="imgUrl.url" fit="cover" position="center" :lazy="true" @click="jump" />
     </div>
 </template>
 
@@ -19,15 +19,31 @@ export default {
         };
     },
     props: {
-        imgUrl: { type: String, default: '' }
+        imgUrl: { type: Object, default: ()=> {} }
     },
     //监听属性 类似于data概念
     computed: {},
     //监控data中的数据变化
-    watch: {},
+    watch: {
+        'imgUrl' (val) {
+            val.url = JSON.parse(val.url).url
+            val.targetUrl = JSON.parse(val.targetUrl)
+        }
+    },
     //方法集合
     methods: {
-
+        jump() {
+            let targetUrl = this.imgUrl.targetUrl
+            if (targetUrl.type == 1) {
+                this.$router.push(targetUrl.value)
+            }
+            if (targetUrl.type == 2) {
+                this.$router.push({ name: 'courseProjects', params: { anchor: targetUrl.value } })
+            }
+            if (targetUrl.type == 3) {
+                this.$router.push({ path: `/article?id=${targetUrl.value}` });
+            }
+        }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
@@ -56,5 +72,6 @@ export default {
 .content-img {
     width: 100%;
     height: 100%;
+    cursor: pointer;
 }
 </style>

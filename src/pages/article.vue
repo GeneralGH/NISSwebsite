@@ -93,7 +93,6 @@ export default {
         },
 
         toDetail(item) {
-            console.log(item)
             window.scrollTo({
                 top: 0,
                 behavior: 'instant' // 可选，使用平滑滚动效果

@@ -26,6 +26,9 @@ Vue.prototype.$getPageContent = function(id) {
   return new Promise((resolve, reject) => {
     this.$request.get('/api/pageConfig/getPageConfigById/' + id)
       .then(res => {
+        if (id == 3) {
+          resolve(res.data)
+        }
         if (res.data.type == 2) {
           let url = JSON.parse(res.data.url).url
           resolve(url)

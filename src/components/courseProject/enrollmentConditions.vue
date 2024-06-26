@@ -4,7 +4,7 @@
         <div class="content-item" id="options3-1">
             <div class="title">招生条件</div>
             <div class="line"></div>
-            <div class="info-content" style="margin-bottom: 40px;">
+            <div class="info-content space-one">
                 <div class="info-title">学历与工作年限要求</div>
                 <div class="info">
                     · 研究生毕业后，具有至少两年工作经验；<br>
@@ -13,7 +13,7 @@
                 </div>
                 <div class="ps">* 工作年限指从毕业获得证书(一般指每年的7月份)到被录取入学的时间</div>
             </div>
-            <div class="info-content" style="margin-bottom: 40px;">
+            <div class="info-content space-one">
                 <div class="info-title">申请人身份要求</div>
                 <div class="info">
                     <div class="des-title">· 华侨申请人</div>
@@ -48,23 +48,23 @@
         <div class="content-item" id="options3-2">
             <div class="title">申请流程</div>
             <div class="line"></div>
-            <div style="margin-top: 60px;">
-                <img style="width: 100%;" src="../../../assets/courseProjects/applys.png" alt="">
+            <div class="space-two">
+                <t-image style="width: 100%; background-color: transparent;" :src="applyImg" fit="cover" position="center" :lazy="true" />
             </div>
         </div>
 
         <div class="content-item" id="options3-3">
             <div class="title">招生批次</div>
             <div class="line"></div>
-            <div style="margin-top: 60px;">
-                <img style="width: 100%;" src="../../../assets/courseProjects/enrollmentBatch.png" alt="">
+            <div class="space-two">
+                <t-image style="width: 100%; background-color: transparent;" :src="enrollmentBatchImg" fit="cover" position="center" :lazy="true" />
             </div>
         </div>
 
         <div class="content-item" id="options3-4">
             <div class="title">入学与毕业时间</div>
             <div class="line"></div>
-            <div style="margin-top: 60px;">
+            <div class="space-two">
                 <img style="width: 100%;" src="../../../assets/courseProjects/schoolDate.png" alt="">
             </div>
             <div class="des">
@@ -92,6 +92,8 @@ export default {
     data() {
         //这里存放数据
         return {
+            applyImg: '',
+            enrollmentBatchImg: ''
         };
     },
     //监听属性 类似于data概念
@@ -100,7 +102,11 @@ export default {
     watch: {},
     //方法集合
     methods: {
-
+        async initData() {
+            this.applyImg = await this.$getPageContent(16)
+            this.enrollmentBatchImg = await this.$getPageContent(17)
+            console.log(this.applyImg, this.enrollmentBatchImg)
+        }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
@@ -108,7 +114,7 @@ export default {
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-
+        this.initData()
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前
@@ -122,6 +128,14 @@ export default {
 
 <style scoped lang="less">
 @import url('./index.css');
+
+.space-one {
+    margin-bottom: 40px;
+}
+
+.space-two {
+    margin-bottom: 40px;
+}
 
 .ps {
     font-size: 16px;
