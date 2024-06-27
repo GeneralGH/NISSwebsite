@@ -11,22 +11,29 @@
                 <div class="header-nav">
                     <div v-for="(item, index) in navList" class="nav-item" @click="toPage(item)"
                         :style="currentPath == item.path ? `color: #FF9C00;` : ''">
-                        {{ item.name }}
+                        {{ userLanguage == '1' ? item.name : item.nameEn }}
                     </div>
                 </div>
                 <div class="header-tools">
-                    <!-- <div class="header-search">
-                        <div></div>
-                        <img class="search-img" src="../../assets/header/search.png" alt="">
-                    </div> -->
                     <div class="header-language">
-                        <div>中文</div>
-                        <img src="../../assets/header/downArrow.png" alt="">
+                        <div class="flex" @click="turnArrow">
+                            <div class="langeContent">{{ userLanguage == '1' ? '中文' : 'English' }}</div>
+                            <img :class="{ rotated: isRotated }" src="../../assets/header/downArrow.png" alt="">
+                        </div>
+                        <div class="lagTypes" v-show="isRotated">
+                            <div class="line"></div>
+                            <div :class="userLanguage == item.value ? 'currentLangeItem' : 'langeItem'" v-for="item in lanageList" :key="item.value"
+                                @click="languageChange(item)">
+                                {{ item.label }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-
+            <!-- <div style="color: white;">
+                {{ userLanguage }}
+            </div> -->
         </div>
         <!-- 各个页面不同展示 -->
         <div class="articleHeader" v-if="currentPath == '/article'"></div>
@@ -41,7 +48,7 @@
             <div class="sidebar-item" v-for="(item, index) in sidebarList" @click="toPage({ path: item.path })"
                 @mouseover="isHovered = index" @mouseleave="isHovered = -1">
                 <img :src="isHovered == index ? item.imgPath : item.unImgPath" alt="">
-                <div>{{ item.name }}</div>
+                <div>{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
             </div>
         </div>
     </div>
@@ -73,27 +80,37 @@ export default {
         return {
             imageUrl: '',
             navList: [
-                { name: '首页', path: '/' },
-                { name: '关于我们', path: '/aboutUs' },
-                { name: '课程项目', path: '/courseProjects' },
-                { name: '师资力量', path: '/teachingStaff' },
-                { name: '校友风采', path: '/alumniStyle' }
+                { name: '首页', nameEn: 'Home', path: '/' },
+                { name: '关于我们', nameEn: 'About Us', path: '/aboutUs' },
+                { name: '课程项目', nameEn: 'Programmes', path: '/courseProjects' },
+                { name: '师资力量', nameEn: 'Faculty', path: '/teachingStaff' },
+                { name: '校友风采', nameEn: 'Alumni', path: '/alumniStyle' }
             ],
             currentPath: '/',
             bgHeigth: '',
             sidebarList: [
-                { name: '立即申请', path: '', imgPath: ApplyImg, unImgPath: unApplyImg },
-                { name: '项目导览', path: '', imgPath: ProjectImg, unImgPath: unProjectImg },
-                { name: '1对1咨询', path: '/consultationForm', imgPath: ChatImg, unImgPath: unChatImg }
+                { name: '立即申请', nameEn: 'Apply Now', path: '', imgPath: ApplyImg, unImgPath: unApplyImg },
+                { name: '项目导览', nameEn: 'Program Overview', path: '', imgPath: ProjectImg, unImgPath: unProjectImg },
+                { name: '1对1咨询', nameEn: 'One-on-One Consultation', path: '/consultationForm', imgPath: ChatImg, unImgPath: unChatImg }
             ],
             isHovered: -1,
-            imgUrl: ''
+            imgUrl: '',
+            isRotated: false,
+            lanageList: [
+                { label: '中文', value: '1' },
+                { label: 'English', value: '2' }
+            ]
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
         toPage(item) {
@@ -127,6 +144,16 @@ export default {
                     break
             }
             this.imgUrl = await this.$getPageContent(id)
+        },
+
+        turnArrow() {
+            this.isRotated = !this.isRotated
+        },
+
+        languageChange(item) {
+            localStorage.setItem('userLanguage', item.value);
+            this.$store.dispatch('setUserLanguage', item.value);
+            this.isRotated = !this.isRotated
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
@@ -169,6 +196,10 @@ export default {
     height: 100px;
 }
 
+.rotated {
+    transform: rotate(180deg);
+}
+
 .solid-bg {
     background-color: rgba(11, 20, 32, 1);
 }
@@ -178,7 +209,7 @@ export default {
     top: 0;
     width: 100%;
     height: 100px;
-    z-index: 100;
+    z-index: 110;
     /* left: 50%;
     transform: translateX(-50%); */
 }
@@ -224,6 +255,9 @@ export default {
 
     .header-tools {
         display: flex;
+        width: 108px;
+        height: 40px;
+        position: relative;
 
         .header-search {
             width: 172px;
@@ -243,19 +277,26 @@ export default {
         }
 
         .header-language {
-            width: 108px;
-            height: 40px;
+            position: absolute;
+            cursor: pointer;
+            background-color: rgba(11, 20, 32, 1);
+            width: 138px;
+            min-height: 40px;
             border-radius: 20px;
             border: 3px solid #FFFFFF;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
+            font-weight: 500;
+            font-size: 20px;
+            color: #FFFFFF;
 
-            div {
-                font-weight: 500;
-                font-size: 20px;
-                color: #FFFFFF;
-                line-height: 30px;
+
+            .flex {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+
+            .langeContent {
+                line-height: 40px;
                 margin-left: 15px;
             }
 
@@ -263,6 +304,48 @@ export default {
                 width: 31px;
                 height: 31px;
                 display: block;
+                transition: transform 0.3s ease;
+            }
+
+            .line {
+                background-color: white;
+                width: 88px;
+                height: 1px;
+                margin: 0 auto;
+                margin-bottom: 12px;
+            }
+
+            .langeItem {
+                width: 90px;
+                height: 40px;
+                font-weight: 500;
+                font-size: 18px;
+                color: #FFFFFF;
+                line-height: 27px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto;
+            }
+
+            .currentLangeItem {
+                width: 90px;
+                height: 40px;
+                font-weight: 500;
+                font-size: 18px;
+                color: #FF9C00;
+                line-height: 27px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto;
+                background: #172C47;
+                border-radius: 20px;
+            }
+
+            .lagTypes {
+                width: 100%;
+                height: 105px;
             }
         }
     }

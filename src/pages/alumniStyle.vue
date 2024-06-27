@@ -57,7 +57,7 @@
                 <div class="party-line"></div>
 
                 <div class="party-content">
-                    <News :list="list" />
+                    <News :list="list" @getMore="getMore" :isEnd="listQuery.current == totalPage" />
                 </div>
             </div>
         </div>
@@ -87,7 +87,8 @@ export default {
             },
             list: [],
             JNUniversityNetwork,
-            SingapoUniversityNetwork
+            SingapoUniversityNetwork,
+            totalPage: 1
         };
     },
     //监听属性 类似于data概念
@@ -106,8 +107,13 @@ export default {
                         }
                     })
                     this.list = this.list.length ? this.list.concat(res.data.data.list) : res.data.data.list
-                    // console.log(this.list)
+                    this.totalPage = res.data.data.totalPage
                 })
+        },
+
+        getMore() {
+            this.listQuery.current += 1
+            this.initList()
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）

@@ -12,6 +12,17 @@ export default Vue.extend({
   mounted() {
     console.log('访问页面')
     this.$request.post('/api/view/addPageView')
+
+    // 从localStorage中获取userLanguage缓存
+    const userLanguage = localStorage.getItem('userLanguage');
+    // 如果缓存不存在，则创建它并设置默认值为1
+    if (!userLanguage) {
+      localStorage.setItem('userLanguage', '1');
+      this.$store.dispatch('setUserLanguage', '1');
+    } else {
+      this.$store.dispatch('setUserLanguage', userLanguage);
+    }
+    console.log(this.$store.state.userLanguage)
   },
 });
 </script>

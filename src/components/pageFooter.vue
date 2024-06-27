@@ -4,9 +4,9 @@
         <div class="footer-div">
             <div class="toplist-area">
                 <div class="list-item" v-for="(item, index) in topList">
-                    <div class="item-name">{{ item.name }}</div>
+                    <div class="item-name">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
                     <div class="item-child">
-                        <div v-for="(i) in item.list" @click="jump(i.path)">{{ i.name }}</div>
+                        <div v-for="(i) in item.list" @click="jump(i.path)">{{ userLanguage == '1' ? i.name : i.nameEn }}</div>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
 
             <div class="back-top-area">
                 <div class="order-message-area" @click="jump('/consultationForm')">
-                    <div>预约一对一咨询</div>
+                    <div>{{ userLanguage == '1' ? '预约一对一咨询' : 'Schedule an Info Session' }}</div>
                     <img src="../../assets/footer/Side.png" alt="">
                 </div>
                 <div class="back-top">
@@ -56,34 +56,42 @@ export default {
             topList: [
                 {
                     name: '项目导航',
+                    nameEn: 'Program Navigation',
                     list: [
-                        { name: 'MBA', path: '/courseProjects' },
-                        { name: 'DBA', path: '' },
-                        { name: '高管教育', path: '' }
+                        { name: 'MBA', nameEn: 'MBA', path: '/courseProjects' },
+                        { name: 'DBA', nameEn: 'DBA', path: '' },
+                        { name: '高等教育', nameEn: 'Executive Education', path: '' }
                     ]
                 },
                 {
                     name: '相关链接',
+                    nameEn: 'Related Links',
                     list: [
-                        { name: '联系我们', path: '/aboutUs' },
-                        { name: '相关政策', path: '' }
+                        { name: '联系我们', nameEn: 'Contact Us', path: '/aboutUs' },
+                        { name: '相关政策', nameEn: 'Privacy Policy', path: '' }
                     ]
                 },
                 {
                     name: '联系我们',
+                    nameEn: 'Contact Us',
                     list: [
-                        { name: `地址：30 Orange Grove Road, #07-77 RELC Building，Singapore 258352` },
-                        { name: '邮箱：Enquiry@niss.edu.sg' },
-                        { name: '电话：+65 6592 0000' }
+                        { name: `地址：30 Orange Grove Road, #07-77 RELC Building，Singapore 258352`, nameEn: 'Address: 30 Orange Grove Road, #07-77 RELC Building, Singapore 258352' },
+                        { name: '邮箱：Enquiry@niss.edu.sg', nameEn: 'Email: enquiry@niss.edu.sg' },
+                        { name: '电话：+65 6592 0000', nameEn: 'Telephone: +65 6592 0000' }
                     ]
                 }
             ]
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
         jump(path) {

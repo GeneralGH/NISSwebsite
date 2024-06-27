@@ -21,6 +21,10 @@
             </div>
             <div class="party-line"></div>
         </div>
+        <div class="getMore">
+            <t-button variant="text" theme="primary" size="large" @click="getMore">{{ isEnd ? '没有更多了' : '加载更多'}}</t-button>
+        </div>
+        
     </div>
 </template>
 
@@ -38,7 +42,8 @@ export default {
         };
     },
     props: {
-        list: { type: Array, default: () => [] }
+        list: { type: Array, default: () => [] },
+        isEnd: { type: Boolean, default: false }
     },
     filter: {
 
@@ -61,6 +66,13 @@ export default {
                 top: 0,
                 behavior: 'instant' // 可选，使用平滑滚动效果
             });
+        },
+
+        getMore() {
+            if (this.isEnd) {
+                return
+            }
+            this.$emit('getMore')
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
@@ -82,6 +94,11 @@ export default {
 </script>
 
 <style scoped lang="less">
+.getMore {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
 .party-line {
     margin: 80px 0;
 }

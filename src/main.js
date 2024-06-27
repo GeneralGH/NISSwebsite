@@ -7,6 +7,8 @@ import PageHeader from './components/pageHeader.vue';
 import PageFooter from './components/pageFooter.vue';
 import axiosInstance from './util/request';
 import scroll from 'vue-seamless-scroll'
+import store from './store/index.js';
+
 Vue.use(scroll)
 Vue.use(scroll,{componentName: 'scroll-seamless'})
 // import './util/flexible.js'
@@ -21,6 +23,7 @@ Vue.use(TDesign);
 Vue.use(VueRouter)
 
 Vue.prototype.$request = axiosInstance;
+Vue.prototype.$store = store;
 
 Vue.prototype.$getPageContent = function(id) {
   return new Promise((resolve, reject) => {
@@ -46,6 +49,7 @@ Vue.prototype.$getPageContent = function(id) {
 
 
 new Vue({
+  store,
   router,
   render: (h) => h(App)
 }).$mount('#app');

@@ -4,7 +4,7 @@
         <t-swiper :duration="300" :interval="2000" :navigation="{ size: 'large' }">
             <t-swiper-item v-for="item in list" :key="item.id">
                 <div class="swiper-item" @click="jump(item)">
-                    <t-image class="swiper-img" :src="item.previewImgUrl" fit="cover" position="center" :lazy="true" />
+                    <t-image class="swiper-img" :src="userLanguage == '1' ? item.previewImgUrl : item.previewImgUrlEn" fit="cover" position="center" :lazy="true" />
                 </div>
             </t-swiper-item>
         </t-swiper>
@@ -30,16 +30,27 @@ export default {
             }
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
         initList() {
             this.$request.post(banner.getBannerListPageUrl, this.listQuery)
                 .then(res => {
-                    this.list = res.data.data.list.map((item) => { return { ...item, delShow: false, imgViewShow: false, previewImgUrl: JSON.parse(item.imageUrl).url } })
+                    this.list = res.data.data.list.map((item) => { return {
+                        ...item,
+                        delShow: false,
+                        imgViewShow: false,
+                        previewImgUrl: JSON.parse(item.imageUrl).url,
+                        previewImgUrlEn: JSON.parse(item.imageUrlEn).url
+                    } })
                     // console.log(this.list)
                 })
         },

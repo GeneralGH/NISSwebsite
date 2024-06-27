@@ -5,10 +5,23 @@
 
     <div class="content-one">
       <div class="subtitle">
-        To cultivate high-level talents integrating <br>
-        Chinese and Western and connecting theory with practice
+        <div v-show="userLanguage == '1'">
+          To cultivate high-level talents integrating <br>
+          Chinese and Western and connecting theory with practice
+        </div>
+        <div v-show="userLanguage == '2'">
+          培养融贯中西、知行合一的<br>高层次人才
+        </div>
       </div>
-      <div class="title">培养融贯中西、知行合一的<br>高层次人才</div>
+      <div class="title">
+        <div v-show="userLanguage == '2'">
+          To cultivate high-level talents integrating <br>
+          Chinese and Western and connecting theory with practice
+        </div>
+        <div v-show="userLanguage == '1'">
+          培养融贯中西、知行合一的<br>高层次人才
+        </div>
+      </div>
       <div class="content-info">
         <div class="info-left">
           <img src="../../assets/home/contentOne.png" alt="">
@@ -18,12 +31,12 @@
             @mouseleave="isHovered = -1" @click="jump(item.path)">
             <div>
               <div class="info-title">
-                <div>{{ item.title }}</div>
+                <div>{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
                 <div class="info-line">
                   <div v-show="isHovered == index"></div>
                 </div>
               </div>
-              <div class="info-subTitle">{{ item.subTitle }}</div>
+              <div class="info-subTitle">{{ userLanguage == '1' ? item.subTitle : item.subTitleEn }}</div>
             </div>
             <div>
               <img v-show="isHovered == index" class="homeRightArrow" src="../../assets/home/homeRightArrow.png" alt="">
@@ -37,8 +50,10 @@
       <div class="content-info" id="content-info">
         <!-- <t-affix> -->
         <div class="info-left">
-          <div class="title">成为最具价值的终身学习平台</div>
-          <div class="subTitle">To be an invaluable lifelong learning platform</div>
+          <div class="title">{{ userLanguage == '1' ? '成为最具价值的终身学习平台' : 'To be an invaluable lifelong learning platform'
+            }}</div>
+          <div class="subTitle">{{ userLanguage == '2' ? '成为最具价值的终身学习平台' : 'To be an invaluable lifelong learning
+            platform' }}</div>
           <img src="../../assets/home/contentTwo.png" alt="">
         </div>
         <!-- </t-affix> -->
@@ -47,8 +62,8 @@
             :style="'transition: opacity 1s ease-in-out;' + (item.isOpacity ? 'opacity: 0.1; ' : 'opacity: 1; ')"
             v-for="(item, index) in infoTwoList" :key="index"> -->
           <div class="info-item" v-for="(item, index) in infoTwoList" :key="index">
-            <div class="title">{{ item.title }}</div>
-            <div class="subTitle">{{ item.subTitle }}</div>
+            <div class="title">{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
+            <div class="subTitle">{{ userLanguage == '1' ? item.subTitle : item.subTitleEn }}</div>
           </div>
           <!-- <div class="fillDiv"></div> -->
         </div>
@@ -56,7 +71,7 @@
     </div>
 
     <div class="content-three">
-      <div class="title">校友寄语</div>
+      <div class="title">{{ userLanguage == '1' ? '校友寄语' : 'Alumni Testimonials' }}</div>
       <div class="subTitle">Their Stories</div>
 
       <div class="alumni-scroll">
@@ -66,15 +81,15 @@
             <div v-show="index % 2 === 0" style="position: relative;">
               <img class="dialog-bg" src="../../assets/home/topDialog.png" alt="">
               <div class="dialog-content dialog-content-top">
-                <div>{{ item.wrote }}</div>
+                <div>{{ userLanguage == '1' ? item.wrote : item.wroteEn }}</div>
               </div>
             </div>
             <div v-show="index % 2 !== 0">
               <div class="alumni-info">
-                {{ item.company }}<br>
-                {{ item.workPost }}
+                {{ userLanguage == '1' ? item.company : item.companyEn }}<br>
+                {{ userLanguage == '1' ? item.workPost : item.workPostEn }}
               </div>
-              <div class="alumni-class">{{ item.grade }}</div>
+              <div class="alumni-class">{{ userLanguage == '1' ? item.grade : item.gradeEn }}</div>
             </div>
             <t-image class="alumni-img" :src="item.imgPath" fit="cover" position="center">
               <template #loading>
@@ -84,15 +99,15 @@
             <!-- <img class="alumni-img" :src="item.imgPath" alt=""> -->
             <div v-show="index % 2 === 0">
               <div class="alumni-info">
-                {{ item.company }}<br>
-                {{ item.workPost }}
+                {{ userLanguage == '1' ? item.company : item.companyEn }}<br>
+                {{ userLanguage == '1' ? item.workPost : item.workPostEn }}
               </div>
-              <div class="alumni-class">{{ item.grade }}</div>
+              <div class="alumni-class">{{ userLanguage == '1' ? item.grade : item.gradeEn }}</div>
             </div>
             <div v-show="index % 2 !== 0" style="position: relative;">
               <img class="dialog-bg" src="../../assets/home/buttonDialog.png" alt="">
               <div class="dialog-content dialog-content-bottom">
-                <div>{{ item.wrote }}</div>
+                <div>{{ userLanguage == '1' ? item.wrote : item.wroteEn }}</div>
               </div>
             </div>
           </div>
@@ -115,17 +130,17 @@ export default {
     //这里存放数据
     return {
       infoList: [
-        { title: 'MBA', subTitle: '暨南大学新加坡中文MBA项目', path: '/courseProjects' },
-        { title: 'DBA', subTitle: '法国南特商学院新加坡DBA项目' },
-        { title: '高等教育管理', subTitle: '企业定制化课程' }
+        { title: 'MBA', titleEn: 'MBA', subTitle: '暨南大学新加坡中文MBA项目', subTitleEn: 'JNU MBA Program (Mandarin)', path: '/courseProjects' },
+        { title: 'DBA', titleEn: 'DBA', subTitle: '法国南特商学院新加坡DBA项目', subTitleEn: 'Audencia DBA Program' },
+        { title: '高等教育管理', titleEn: 'Executive Education', subTitle: '企业定制化课程', subTitleEn: 'Customized Corporate Courses' }
       ],
       infoTwoList: [
-        { title: '1个平台', subTitle: '终身学习平台', "isOpacity": false, },
-        { title: '2证文凭', subTitle: '“211工程”大学 “双一流”建设高校', "isOpacity": false, },
-        { title: '3冠认证', subTitle: 'AACSB认证 & AMBA认证 & B', "isOpacity": false, },
-        { title: '9大体系', subTitle: '融合中国商业文化与现代管理智慧', "isOpacity": false, },
-        { title: '百年名校', subTitle: '中国百年名校 华侨最高学府', "isOpacity": false, },
-        { title: '1+1+N+2', subTitle: '全面赋能职业发展', "isOpacity": false, }
+        { title: '1个平台', titleEn: 'A Platform', subTitle: '终身学习平台', subTitleEn: 'Lifelong Learning Platform' },
+        { title: '2证文凭', titleEn: 'Dual Diplomas', subTitle: '“211工程”大学 “双一流”建设高校', subTitleEn: '“211 Project” University “Double First-Class” Construction University' },
+        { title: '3冠认证', titleEn: 'Triple Crown Accreditation', subTitle: 'AACSB认证 & AMBA认证 & B', subTitleEn: 'AACSB Accredited & AMBA Accredited & BGA' },
+        { title: '9大体系', titleEn: 'Nine Systems', subTitle: '融合中国商业文化与现代管理智慧', subTitleEn: 'Integrating Chinese Business Culture with Modern Management Wisdom' },
+        { title: '百年名校', titleEn: 'Century-old Prestigious School', subTitle: '中国百年名校 华侨最高学府', subTitleEn: 'The Highest Institution for Overseas Chinese' },
+        { title: '1+1+N+2', titleEn: '1+1+N+2', subTitle: '全面赋能职业发展', subTitleEn: 'Comprehensive Empowerment for Career Development' }
       ],
       alumniList: [],
       isHovered: -1,
@@ -154,10 +169,15 @@ export default {
       }
     };
   },
-  //监听属性 类似于data概念
-  computed: {},
-  //监控data中的数据变化
-  watch: {},
+  computed: {
+    userLanguage() {
+      return this.$store.state.userLanguage;
+    }
+  },
+  watch: {
+    userLanguage(newVal) {
+    }
+  },
   //方法集合
   methods: {
     handleWheel(event) {

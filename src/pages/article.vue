@@ -3,9 +3,9 @@
     <div>
         <pageHeader />
         <div class="page-area">
-            <div class="path-list">
-                <span class="upPath">校友风采 / </span>
-                <span>校友动态</span>
+            <div class="path-list" @click="backPage">
+                <span class="upPath">{{ data.type == 1 ? '关于我们' : '校友风采' }} / </span>
+                <span>{{ data.type == 1 ? '学院新闻' : '校友动态' }}</span>
             </div>
 
             <div class="article-info">
@@ -76,6 +76,7 @@ export default {
             this.$request.get(news.getNewsByIdUrl + id)
                 .then(res => {
                     this.data = res.data.data
+                    console.log(this.data)
                 })
         },
 
@@ -108,6 +109,15 @@ export default {
             const day = String(date.getDate()).padStart(2, "0");
 
             return `${year}年${month}月${day}日`
+        },
+
+        backPage() {
+            let path = this.data.type == 1 ? '/aboutUs' : '/alumniStyle'
+            this.$router.replace({ path: path })
+            window.scrollTo({
+                top: 0,
+                behavior: 'instant' // 可选，使用平滑滚动效果
+            });
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
@@ -145,6 +155,7 @@ export default {
 }
 
 .path-list {
+    cursor: pointer;
     font-size: 20px;
     color: #172C47;
     height: 43px;
