@@ -10,12 +10,12 @@
                             :lazy="true" />
                     </div>
                     <div class="teacher-info">
-                        <div class="teacher-name">{{ teacher.name }}</div>
-                        <div class="teacher-position">{{ teacher.professional }}</div>
-                        <div class="teacher-project">{{ teacher.project }}</div>
+                        <div class="teacher-name">{{ userLanguage == '1' ? teacher.name : teacher.nameEn }}</div>
+                        <div class="teacher-position">{{ userLanguage == '1' ? teacher.professional : teacher.professionalEn }}</div>
+                        <div class="teacher-project">{{ userLanguage == '1' ? teacher.project : teacher.projectEn }}</div>
                         <div class="teacher-line"></div>
-                        <div class="teacher-class">{{ teacher.major }}</div>
-                        <div class="teacher-class">{{ teacher.speciality }}</div>
+                        <div class="teacher-class">{{ userLanguage == '1' ? teacher.major : teacher.majorEn }}</div>
+                        <div class="teacher-class">{{ userLanguage == '1' ? teacher.speciality : teacher.specialityEn }}</div>
                     </div>
                 </div>
             </div>
@@ -26,17 +26,17 @@
                     <t-image class="teacher-img" :src="item.teacherImg" fit="cover" position="center" :lazy="true" />
                 </div>
                 <div class="teacher-info">
-                    <div class="teacher-name">{{ item.name }}</div>
-                    <div class="teacher-position">{{ item.professional }}</div>
-                    <div class="teacher-project">{{ item.project }}</div>
+                    <div class="teacher-name">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
+                    <div class="teacher-position">{{ userLanguage == '1' ? item.professional : item.professionalEn }}</div>
+                    <div class="teacher-project">{{ userLanguage == '1' ? item.project : item.projectEn }}</div>
                     <div class="teacher-line"></div>
-                    <div class="teacher-class">{{ item.major }}</div>
-                    <div class="teacher-class">{{ item.speciality }}</div>
+                    <div class="teacher-class">{{ userLanguage == '1' ? item.major : item.majorEn }}</div>
+                    <div class="teacher-class">{{ userLanguage == '1' ? item.speciality : item.specialityEn }}</div>
                 </div>
             </div>
         </div>
 
-        <div class="noListTips" v-show="!list.length">暂无搜索结果</div>
+        <div class="noListTips" v-show="!list.length">{{ userLanguage == '1' ? '暂无搜索结果' : 'There are currently no search results available' }}</div>
     </div>
 </template>
 
@@ -56,10 +56,15 @@ export default {
         list: { type: Array, default: () => [] },
         isNomral: { type: Boolean, default: false }
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
 

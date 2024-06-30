@@ -1,11 +1,11 @@
 <!--  -->
 <template>
     <div class="party">
-        <div class="party-title">更多师资力量</div>
+        <div class="party-title">{{ userLanguage == '1' ? '更多师资力量' : 'Explore more faculty resources' }}</div>
         <div class="party-line"></div>
 
         <div class="search-area">
-            <div class="search-title">姓名搜索</div>
+            <div class="search-title">{{ userLanguage == '1' ? '姓名搜索' : 'Search by name' }}</div>
             <div class="search-bg"
                 :style="{ backgroundImage: `url(${require('../../../assets/teachingStaff/searchBg.png')})` }">
                 <input type="text" class="input" v-model="listQuery.name">
@@ -49,12 +49,18 @@ export default {
             loading: false
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
     //监控data中的数据变化
     watch: {
         'listQuery.first'(val) {
             this.initList()
+        },
+
+        userLanguage(newVal) {
         }
     },
     //方法集合

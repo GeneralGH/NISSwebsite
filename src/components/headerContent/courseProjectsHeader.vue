@@ -26,14 +26,15 @@ export default {
     //监控data中的数据变化
     watch: {
         'imgUrl' (val) {
-            val.url = JSON.parse(val.url).url
-            val.targetUrl = JSON.parse(val.targetUrl)
+            /* val.url = JSON.parse(val.url).url
+            val.targetUrl = JSON.parse(val.targetUrl) */
+            console.log(val, 'val')
         }
     },
     //方法集合
     methods: {
         jump() {
-            let targetUrl = this.imgUrl.targetUrl
+            let targetUrl = JSON.parse(this.imgUrl.targetUrl)
             if (targetUrl.type == 1) {
                 this.$router.push(targetUrl.value)
             }

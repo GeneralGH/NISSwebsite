@@ -2,24 +2,24 @@
 <template>
     <div>
         <div class="content-item" id="options4-1">
-            <div class="title">独特价值</div>
+            <div class="title">{{ userLanguage == '1' ? '独特价值' : 'Unique Value' }}</div>
             <div class="line"></div>
             <div class="info-content" style="margin-bottom: 40px;">
                 <div class="info">
-                    · 融合中华商业文化和现代管理智慧<br>
-                    · 构建职业发展和互动交流平台<br>
-                    · 完善专业的培养体系<br>
-                    · 培养开阔的国际视野<br>
-                    · 全球视野 交流学习
+                    · {{ userLanguage == '1' ? '融合中华商业文化和现代管理智慧' : '暂无英文' }}<br>
+                    · {{ userLanguage == '1' ? '构建职业发展和互动交流平台' : '暂无英文' }}<br>
+                    · {{ userLanguage == '1' ? '完善专业的培养体系' : '暂无英文' }}<br>
+                    · {{ userLanguage == '1' ? '培养开阔的国际视野' : '暂无英文' }}<br>
+                    · {{ userLanguage == '1' ? '全球视野 交流学习' : '暂无英文' }}
                 </div>
                 <div class="info">
                     <div class="schoolItem" v-for="item in schoolList">
                         <div class="schoolItem-img">
                             <img :src="item.img" alt="">
-                            <div>{{ item.name }}</div>
+                            <div>{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
                         </div>
                         <div class="schools">
-                            <div v-for="child in item.list">{{ child }}</div>
+                            <div v-for="child in item.list">{{ userLanguage == '1' ? child.name + ' ' + child.nameEn : child.nameEn + ' ' + child.name }}</div>
                         </div>
                     </div>
                 </div>
@@ -27,23 +27,19 @@
         </div>
 
         <div class="content-item" id="options4-2">
-            <div class="title">人脉优势</div>
+            <div class="title">{{ userLanguage == '1' ? '人脉优势' : 'Network Resources' }}</div>
             <div class="line"></div>
             <div class="info-content space-one">
                 <div class="info">
                     <div class="networkingList">
                         <div class="networkItem" v-for="item in networkingList">
-                            <div class="netwoek-value">{{ item.value }}</div>
-                            <div class="netwoek-title">{{ item.name }}</div>
+                            <div class="netwoek-value">{{ userLanguage == '1' ? item.value : item.valueEn }}</div>
+                            <div class="netwoek-title">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="info">
-                    <div v-html="htmlContent.content"></div>
-                    <!-- · 31岁-40岁是主力年龄<br>
-                    · 58%的学生位于企业中高级管理岗 31%的学生是企业主<br>
-                    · 平均工作年限15.6年<br>
-                    · 来自30余个细分行业 -->
+                    <div v-html="userLanguage == '1' ? htmlContent.content : htmlContent.contentEn"></div>
                 </div>
             </div>
         </div>
@@ -70,14 +66,32 @@ export default {
         //这里存放数据
         return {
             schoolList: [
-                { img: France, name: '法国', list: ['北方高等商学院 EDHEC Business school', '里昂商学院 EM Lyon Business School', '蒙彼利埃商学院 Montpellier Business School'] },
-                { img: Finland, name: '芬兰', list: ['瓦萨大学 University of Vaasa'] },
-                { img: Italy, name: '意大利', list: ['萨兰托大学 University del Salento'] },
-                { img: Japan, name: '日本', list: ['名古屋商学院 Nagoya University of Commerce and Business'] },
-                { img: Korea, name: '韩国', list: ['仁荷大学 Inha University'] },
-                { img: Thailand, name: '泰国', list: ['国立法证大学 Thammasat University Business School'] },
-                { img: Greece, name: '希腊', list: ['阿尔巴商学院 Alba Graduate Business School'] },
-                { img: Chile, name: '智利', list: ['智利大学 University of Chile'] },
+                { img: France, name: '法国', nameEn: 'France', list: [
+                    { name: '北方高等商学院', nameEn: 'EDHEC Business school' },
+                    { name: '里昂商学院', nameEn: 'EM Lyon Business School' },
+                    { name: '蒙彼利埃商学院', nameEn: 'Montpellier Business School' }
+                ] },
+                { img: Finland, name: '芬兰', nameEn: 'Finland', list: [
+                    { name: '瓦萨大学', nameEn: 'University of Vaasa' }
+                ] },
+                { img: Italy, name: '意大利', nameEn: 'Italy', list: [
+                    { name: '萨兰托大学', nameEn: 'University del Salento' }
+                ] },
+                { img: Japan, name: '日本', nameEn: 'Japan', list: [
+                    { name: '名古屋商学院', nameEn: 'Nagoya University of Commerce and Business' }
+                ] },
+                { img: Korea, name: '韩国', nameEn: 'Korea', list: [
+                    { name: '仁荷大学', nameEn: 'Inha University' }
+                ] },
+                { img: Thailand, name: '泰国', nameEn: 'Thailand', list: [
+                    { name: '国立法证大学', nameEn: 'Thammasat University Business School' }
+                ] },
+                { img: Greece, name: '希腊', nameEn: 'Greece', list: [
+                    { name: '阿尔巴商学院', nameEn: 'Alba Graduate Business School' }
+                ] },
+                { img: Chile, name: '智利', nameEn: 'Chile', list: [
+                    { name: '智利大学', nameEn: 'University of Chile' }
+                ] },
             ],
             networkingList: [
                 { id: 4, name: '主力年龄', value: '31-40' },
@@ -92,10 +106,15 @@ export default {
             }
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
         async initData() {
@@ -103,6 +122,8 @@ export default {
                 let obj = await this.$getPageContent(network.id)
                 network.name = obj.title
                 network.value = obj.content
+                network.nameEn = obj.titleEn
+                network.valueEn = obj.contentEn
             }
             this.htmlContent = await this.$getPageContent(9)
         }

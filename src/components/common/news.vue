@@ -4,25 +4,25 @@
         <div v-for="(item, index) in list" :key="item.id">
             <div class="news-item" :style="index % 2 !== 0 ? 'flex-direction: row-reverse;' : ''" @click="toDetail(item)">
                 <div class="news-info">
-                    <div class="news-title">{{ item.title }}</div>
+                    <div class="news-title">{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
                     <div class="news-content">
                         <div>
-                            {{ contentToStr(item.content) }}
+                            {{ contentToStr(userLanguage == '1' ? item.content : item.contentEn)}}
                         </div>
                     </div>
                     <div class="btn">
-                        <div>了解更多</div>
+                        <div>{{ userLanguage == '1' ? '了解更多' : 'Learn More' }}</div>
                         <img class="rightArrow" src="../../../assets/header/rightArrow.png" alt="">
                     </div>
                 </div>
                 <div>
-                    <img class="new-cover" :src="item.url" alt="">
+                    <img class="new-cover" :src="userLanguage == '1' ? item.url : item.urlEn" alt="">
                 </div>
             </div>
             <div class="party-line"></div>
         </div>
         <div class="getMore">
-            <t-button variant="text" theme="primary" size="large" @click="getMore">{{ isEnd ? '没有更多了' : '加载更多'}}</t-button>
+            <t-button variant="text" theme="primary" size="large" @click="getMore">{{ isEnd ? userLanguage == '1' ? '没有更多了' : 'noMore' : userLanguage == '1' ? '加载更多' : 'getMore'}}</t-button>
         </div>
         
     </div>
@@ -48,10 +48,15 @@ export default {
     filter: {
 
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
         contentToStr(html) {

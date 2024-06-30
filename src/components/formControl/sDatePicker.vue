@@ -90,10 +90,15 @@ export default {
     props: {
         placeholder: { type: String, default: '' }
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
     watch: {
+        userLanguage(newVal) {
+        },
+
         'firstDay'(val) {
             this.preDayd = val - 1
         }

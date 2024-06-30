@@ -1,7 +1,7 @@
 <!--  -->
 <template>
     <div class="party">
-        <div class="party-title">精英团队</div>
+        <div class="party-title">{{ userLanguage == '1' ? '精英团队' : 'Elite team' }}</div>
         <div class="party-line"></div>
         
         <TeacherList :list="list" />
@@ -28,10 +28,15 @@ export default {
             }
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
         initList() {

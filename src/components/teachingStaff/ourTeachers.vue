@@ -1,23 +1,23 @@
 <!--  -->
 <template>
     <div class="party">
-        <div class="party-title">我们的教师群体</div>
+        <div class="party-title">{{ userLanguage == '1' ? '我们的教师群体' : 'Faculty' }}</div>
         <div class="party-line"></div>
 
         <div>
             <div class="module-card-list">
                 <div class="module-card" v-for="item in ourTeachersInfo">
                     <div>
-                        <span class="item-value">{{ item.value }}</span>
-                        <span class="item-unit">{{ item.unit }}</span>
+                        <span class="item-value">{{ userLanguage == '1' ? item.value : item.valueEn }}</span>
+                        <span class="item-unit">{{ userLanguage == '1' ? item.unit : item.unitEn }}</span>
                     </div>
-                    <div class="item-name">{{ item.name }}</div>
+                    <div class="item-name">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
                 </div>
             </div>
         </div>
 
         <div class="party-info">
-            <div v-html="htmlContent.content"></div>
+            <div v-html="userLanguage == '1' ? htmlContent.content : htmlContent.contentEn"></div>
         </div>
 
         <!-- <div class="party-info">
@@ -33,7 +33,7 @@
 
         <div class="party-slogan">
             <div class="party-slogan-line"></div>
-            <div>高理论 ｜ 强实践 ｜ 精华商 ｜ 通国际</div>
+            <div>{{ userLanguage == '1' ? '高理论 ｜ 强实践 ｜ 精华商 ｜ 通国际' : 'Highly theoretical | Strong practical | Expert in business essentials | Globally connected' }}</div>
             <div class="party-slogan-line"></div>
         </div>
     </div>
@@ -61,10 +61,15 @@ export default {
             }
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
         async initData() {
@@ -74,6 +79,9 @@ export default {
                     item.name = res.title
                     item.value = res.content
                     item.unit = res.unit
+                    item.nameEn = res.titleEn
+                    item.valueEn = res.contentEn
+                    item.unitEn = res.unitEn
                 })
             })
             this.htmlContent = await this.$getPageContent(14)
@@ -143,6 +151,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     margin-top: 100px;
+    text-align: center;
 }
 
 .party-slogan-line {

@@ -4,10 +4,10 @@
         <div class="alumni-item" v-for="item in list" :key="item.id">
             <div class="alumni-img">
                 <t-image class="alumni-cover" :src="item.url" fit="cover" position="center" :lazy="true" />
-                <div class="alumni-title">{{ item.grade }}</div>
+                <div class="alumni-title">{{ userLanguage == '1' ? item.grade : item.gradeEn }}</div>
             </div>
-            <div class="alumni-name">{{ item.name }}</div>
-            <div class="alumni-position">{{ item.workPost }}</div>
+            <div class="alumni-name">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
+            <div class="alumni-position">{{ userLanguage == '1' ? item.workPost : item.workPostEn }}</div>
         </div>
     </div>
 </template>
@@ -31,10 +31,15 @@ export default {
             list: []
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
         initList() {

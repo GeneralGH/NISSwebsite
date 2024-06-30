@@ -7,7 +7,7 @@
             <div class="content-body">
                 <div class="leftSticky">
                     <div class="leftList">
-                        <div class="title"> 暨南大学<br>新加坡MBA项目 </div>
+                        <div class="title"> {{ userLanguage == '1' ? '暨南大学' : 'JNU' }}<br>{{ userLanguage == '1' ? '新加坡MBA项目' : 'MBA Program (Mandarin)' }} </div>
                         <div class="optionsList">
                             <div class="list-line-area">
                                 <!-- <div class="list-line-header"></div> -->
@@ -19,25 +19,25 @@
                                         :style="{ color: currentTemplate == item.id ? '#FF9C00' : '#172C47' }"
                                         @click="scrollToAnchor(item.id)">
                                         <div class="list-line-header" v-show="currentTemplate == item.id"></div>
-                                        {{ item.name }}
+                                        {{ userLanguage == '1' ? item.name : item.nameEn }}
                                     </div>
                                     <div class="item-subTitle"
                                         :style="{ color: currentTemplate == child.id ? '#FF9C00' : '#172C47' }"
                                         v-for="(child, index) in item.list" @click="scrollToAnchor(child.id)">
                                         <div class="list-line-header" v-show="currentTemplate == child.id"></div>
                                         <div class="item-subTitle-name">
-                                            {{ child.name }}
+                                            {{ userLanguage == '1' ? child.name : child.nameEn }}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="btn">
-                            <div>申请加入</div>
+                            <div>{{ userLanguage == '1' ? '申请加入' : 'Apply Now' }}</div>
                             <img class="rightArrow" src="../../assets/header/rightArrow.png" alt="">
                         </div>
                         <div class="btn" style="background: #024A9C;">
-                            <div>联系我们</div>
+                            <div>{{ userLanguage == '1' ? '联系我们' : 'Connect Us' }}</div>
                             <img class="rightArrow" src="../../assets/header/rightArrow.png" alt="">
                         </div>
                     </div>
@@ -77,37 +77,41 @@ export default {
             optionsList: [
                 {
                     name: '项目概述',
+                    nameEn: 'Program Overview',
                     id: 'options1',
                     list: [
-                        { name: '关于暨南大学', id: 'options1-1' },
-                        { name: '项目介绍', id: 'options1-2' },
-                        { name: '项目优势', id: 'options1-3' }
+                        { name: '关于暨南大学', nameEn: 'About Jinan University', id: 'options1-1' },
+                        { name: '项目介绍', nameEn: 'Program Introduction', id: 'options1-2' },
+                        { name: '项目优势', nameEn: 'Program Advantages', id: 'options1-3' }
                     ]
                 },
                 {
                     name: '课程体系',
+                    nameEn: 'Curriculum System',
                     id: 'options2',
                     list: [
-                        { name: '必修模块', id: 'options2-1', },
-                        { name: '选修模块', id: 'options2-2', }
+                        { name: '必修模块', nameEn: 'Core Modules', id: 'options2-1', },
+                        { name: '选修模块', nameEn: 'Elective Modules', id: 'options2-2', }
                     ]
                 },
                 {
                     name: '招生信息',
+                    nameEn: 'Admissions Information',
                     id: 'options3',
                     list: [
-                        { name: '招生条件', id: 'options3-1' },
-                        { name: '申请流程', id: 'options3-2' },
-                        { name: '招生批次', id: 'options3-3' },
-                        { name: '入学与毕业时间', id: 'options3-4' }
+                        { name: '招生条件', nameEn: 'Admission Requirements', id: 'options3-1' },
+                        { name: '申请流程', nameEn: 'Application Process', id: 'options3-2' },
+                        { name: '招生批次', nameEn: 'Admission Rounds', id: 'options3-3' },
+                        { name: '入学与毕业时间', nameEn: 'Enrollment and Graduation Dates', id: 'options3-4' }
                     ]
                 },
                 {
                     name: '独特价值',
                     id: 'options4',
+                    nameEn: 'Unique Value',
                     list: [
-                        { name: '独特价值', id: 'options4-1' },
-                        { name: '人脉资源', id: 'options4-2' }
+                        { name: '独特价值', nameEn: 'Unique Value', id: 'options4-1' },
+                        { name: '人脉资源', nameEn: 'Network Resources', id: 'options4-2' }
                     ]
                 }
             ],
@@ -115,10 +119,15 @@ export default {
             isAbsot: false
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
         scrollToAnchor(anchor) {
@@ -181,8 +190,6 @@ export default {
                 });
             });
         }
-
-
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {

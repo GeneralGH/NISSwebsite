@@ -6,10 +6,10 @@
             <div class="party">
                 <div class="party-content">
                     <p>
-                        感谢您对暨南大学新加坡MBA项目的关注，如果您希望进一步了解项目，请准确填写下列信息，我们的项目负责老师会尽快与您联系。
+                        {{ userLanguage == '1' ? '感谢您对暨南大学新加坡MBA项目的关注，如果您希望进一步了解项目，请准确填写下列信息，我们的项目负责老师会尽快与您联系。' : 'Thank you for your interest in the Jinan University Singapore MBA program. For further information, please fill out the following details accurately. Our project manager will contact you promptly.' }}  
                     </p>
                     <p>
-                        您可以拨打+65 6530 3520，直接联络我们，资深老师帮你深入了解暨南大学新加坡MBA项目及申请流程。
+                        {{ userLanguage == '1' ? '您可以拨打+65 6530 3520，直接联络我们，资深老师帮你深入了解暨南大学新加坡MBA项目及申请流程。' : 'You can also reach us directly at +65 6530 3520, where our experienced staff will assist you in understanding the Jinan University Singapore MBA program and its application process in depth.' }}
                     </p>
                 </div>
             </div>
@@ -19,19 +19,19 @@
                 <div class="form-area">
                     <div class="form-row">
                         <div class="form-item normal-item">
-                            <div class="form-item-label">姓名<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '姓名' : 'Name' }}<span>*</span></div>
                             <div>
                                 <t-form-item name="name">
-                                    <sInput v-model="formData.name" :placeholder="'请填写您的姓名'" />
+                                    <sInput v-model="formData.name" :placeholder="userLanguage == '1' ? '请填写您的姓名' : 'Please enter your name'" />
                                 </t-form-item>
                             </div>
                         </div>
                         <div class="form-item normal-item">
-                            <div class="form-item-label">国籍<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '国籍' : 'Nationality' }}<span>*</span></div>
                             <div style="position: relative;">
                                 <t-form-item name="nationality">
                                     <sSelect @optionChange="(item) => { formData.nationality = item.label }"
-                                        :options="nationalityOptions" :placeholder="'请填写您的国籍'" />
+                                        :options="nationalityOptions" :placeholder="userLanguage == '1' ? '请填写您的国籍' : 'Please enter your nationality'" />
                                 </t-form-item>
                             </div>
                         </div>
@@ -39,20 +39,20 @@
 
                     <div class="form-row">
                         <div class="form-item normal-item">
-                            <div class="form-item-label">所持新加坡居留身份<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '所持新加坡居留身份' : 'Residency Status in Singapore' }}<span>*</span></div>
                             <div style="position: relative;">
                                 <t-form-item name="residence">
                                     <sSelect @optionChange="(item) => { formData.residence = item.label }"
-                                        :options="residenceStatusOptions" :placeholder="'请选择您的新加坡居留身份'" />
+                                        :options="residenceStatusOptions" :placeholder="userLanguage == '1' ? '请选择您的新加坡居留身份' : 'Please select your residency status in Singapore'" />
                                 </t-form-item>
                             </div>
                         </div>
                         <div class="form-item normal-item">
-                            <div class="form-item-label">最高学历<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '最高学历' : 'Highest Education Level' }}<span>*</span></div>
                             <div style="position: relative;">
                                 <t-form-item name="qualification">
                                     <sSelect @optionChange="(item) => { formData.qualification = item.label }"
-                                        :options="highestEducationalOptions" :placeholder="'请选择您的最高学历'" />
+                                        :options="highestEducationalOptions" :placeholder="userLanguage == '1' ? '请选择您的最高学历' : 'Please select your highest education level'" />
                                 </t-form-item>
                             </div>
                         </div>
@@ -60,12 +60,12 @@
 
                     <div class="form-row">
                         <div class="form-item full-item">
-                            <div class="form-item-label">已在中国境外居住时间<span
-                                    style="font-weight: 500; color: #172C47;">（不包括留学及公派出国的时间）</span><span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '已在中国境外居住时间' : 'Time Resided Outside of China' }}<span
+                                    style="font-weight: 500; color: #172C47;">{{ userLanguage == '1' ? '（不包括留学及公派出国的时间）' : '（excluding study and official assignments abroad）' }}</span><span>*</span></div>
                             <div style="position: relative;">
                                 <t-form-item name="residenceTime">
                                     <sSelect @optionChange="(item) => { formData.residenceTime = item.label }"
-                                        :options="outsideTimeOptions" :placeholder="'请选择已在中国境外居住时间'" />
+                                        :options="outsideTimeOptions" :placeholder="userLanguage == '1' ? '请选择已在中国境外居住时间' : 'Please select the time you have resided outside of China'" />
                                 </t-form-item>
                             </div>
                         </div>
@@ -73,10 +73,10 @@
 
                     <div class="form-row">
                         <div class="form-item full-item">
-                            <div class="form-item-label">公司<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '公司' : 'Company' }}<span>*</span></div>
                             <div>
                                 <t-form-item name="company">
-                                    <sInput v-model="formData.company" :placeholder="'请填写您的公司'" />
+                                    <sInput v-model="formData.company" :placeholder="userLanguage == '1' ? '请填写您的公司' : 'Please enter your company'" />
                                 </t-form-item>
                             </div>
                         </div>
@@ -84,10 +84,10 @@
 
                     <div class="form-row">
                         <div class="form-item full-item">
-                            <div class="form-item-label">职位<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '职位' : 'Position' }}<span>*</span></div>
                             <div>
                                 <t-form-item name="post">
-                                    <sInput v-model="formData.post" :placeholder="'请填写您的职位'" />
+                                    <sInput v-model="formData.post" :placeholder="userLanguage == '1' ? '请填写您的职位' : 'Please enter your position'" />
                                 </t-form-item>
                             </div>
                         </div>
@@ -95,16 +95,16 @@
 
                     <div class="form-row">
                         <div class="form-item areaCode-item">
-                            <div class="form-item-label">区号</div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '区号' : 'Area Code' }}</div>
                             <div>
-                                <sInput v-model="formData.areaCode" :isAreaCode="true" :placeholder="'+ 区号'" />
+                                <sInput v-model="formData.areaCode" :isAreaCode="true" :placeholder="userLanguage == '1' ? '+ 区号' : '+ Area Code'" />
                             </div>
                         </div>
                         <div class="form-item phone-item">
-                            <div class="form-item-label">手机号码<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '手机号码' : 'Mobile Number' }}<span>*</span></div>
                             <div>
                                 <t-form-item name="phone">
-                                    <sInput :isPhone="true" v-model="formData.phone" :placeholder="'请填写您的手机号码'" />
+                                    <sInput :isPhone="true" v-model="formData.phone" :placeholder="userLanguage == '1' ? '请填写您的手机号码' : 'Please enter your mobile number'" />
                                 </t-form-item>
                             </div>
                         </div>
@@ -112,10 +112,10 @@
 
                     <div class="form-row">
                         <div class="form-item full-item">
-                            <div class="form-item-label">邮箱地址<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '邮箱地址' : 'Email Address' }}<span>*</span></div>
                             <div>
                                 <t-form-item name="email">
-                                    <sInput v-model="formData.email" :placeholder="'请填写您的E-mail邮箱地址'" />
+                                    <sInput v-model="formData.email" :placeholder="userLanguage == '1' ? '请填写您的E-mail邮箱地址' : 'Please enter your email address'" />
                                 </t-form-item>
                             </div>
                         </div>
@@ -123,11 +123,11 @@
 
                     <div class="form-row">
                         <div class="form-item full-item">
-                            <div class="form-item-label">您希望以何种方式进行咨询<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '您希望以何种方式进行咨询' : 'Preferred Consultation Method' }}<span>*</span></div>
                             <div style="position: relative;">
                                 <t-form-item name="consultationMethods">
                                     <sSelect @optionChange="(item) => { formData.consultationMethods = item.label }"
-                                        :options="consultingServiceOptions" :placeholder="'请选择你倾向的咨询沟通方式'" />
+                                        :options="consultingServiceOptions" :placeholder="userLanguage == '1' ? '请选择你倾向的咨询沟通方式' : 'Please select your preferred consultation method'" />
                                 </t-form-item>
                             </div>
                         </div>
@@ -135,11 +135,11 @@
 
                     <div class="form-row">
                         <div class="form-item full-item">
-                            <div class="form-item-label">如何得知暨南大学新加坡MBA硕士学位项目<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '如何得知暨南大学新加坡MBA硕士学位项目' : '暂无英文' }}<span>*</span></div>
                             <div style="position: relative;">
                                 <t-form-item name="obtainingChannels">
                                     <sSelect @optionChange="(item) => { formData.obtainingChannels = item.label }"
-                                        :options="knowingChannelOptions" :placeholder="'请选择您得知的渠道'" />
+                                        :options="knowingChannelOptions" :placeholder="userLanguage == '1' ? '请选择您得知的渠道' : '暂无英文'" />
                                 </t-form-item>
                             </div>
                         </div>
@@ -147,21 +147,21 @@
 
                     <div class="form-row">
                         <div class="form-item normal-item">
-                            <div class="form-item-label">预约咨询日期<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '预约咨询日期' : 'Preferred Consultation Date' }}<span>*</span></div>
                             <div style="position: relative;">
                                 <t-form-item name="consultationDateDay">
                                     <sDatePicker @optionChange="(item) => { formData.consultationDateDay = item }"
-                                        ref="sDatePicker" :placeholder="'请选择预约咨询日期'" />
+                                        ref="sDatePicker" :placeholder="userLanguage == '1' ? '请选择预约咨询日期' : 'Please select a preferred consultation date'" />
                                 </t-form-item>
                             </div>
                         </div>
                         <div class="form-item normal-item">
-                            <div class="form-item-label">预约咨询时间<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '预约咨询时间' : 'Preferred Consultation Time' }}<span>*</span></div>
                             <div style="position: relative;">
                                 <t-form-item name="consultationDateTime">
                                     <sSelect :isTime="true"
                                         @optionChange="(item) => { formData.consultationDateTime = item.label }"
-                                        :placeholder="'请选择预约咨询时间'" />
+                                        :placeholder="userLanguage == '1' ? '请选择预约咨询时间' : 'Please select a preferred consultation time'" />
                                 </t-form-item>
                             </div>
                         </div>
@@ -169,7 +169,7 @@
 
                     <div class="form-row" style="height: auto;">
                         <div class="form-item full-item">
-                            <div class="form-item-label">隐私政策<span>*</span></div>
+                            <div class="form-item-label">{{ userLanguage == '1' ? '隐私政策' : 'Privacy Policy' }}<span>*</span></div>
                             <div style="display: flex;">
                                 <!-- <t-radio v-model="ok" @click="ok = !ok"></t-radio> -->
                                 <div class="form-ok-area" :class="{ formUnOk: !ok }" @click="ok = !ok">
@@ -195,7 +195,7 @@
                     <div class="form-row">
                         <div class="form-item full-item"
                             style="display: flex; align-items: center; justify-content: center;">
-                            <div class="submit-btn"><t-button size="large" class="btn" type="submit">确定，提交表格</t-button>
+                            <div class="submit-btn"><t-button size="large" class="btn" type="submit">{{ userLanguage == '1' ? '确定，提交表格' : 'Submit' }}</t-button>
                             </div>
                         </div>
                     </div>
@@ -223,35 +223,35 @@ export default {
             nationalityOptions: [
                 { label: '新加坡 ｜ Singapo', value: 1 },
                 { label: '中国 ｜ China', value: 2 },
-                { label: '其他', value: 3 }
+                { label: '其他 ｜ Other', value: 3 }
             ],
             residenceStatusOptions: [
-                { label: '新加坡公民', value: 1 },
+                { label: '新加坡公民 | Singapore Citizen', value: 1 },
                 { label: 'PR', value: 2 },
                 { label: 'EP', value: 3 },
                 { label: 'SP', value: 4 },
                 { label: 'WP', value: 5 },
-                { label: '其他', value: 6 }
+                { label: '其他 | Other', value: 6 }
             ],
             highestEducationalOptions: [
-                { label: '博士', value: 1 },
-                { label: '硕士', value: 2 },
-                { label: '本科', value: 3 },
-                { label: '大专', value: 4 },
-                { label: '其他', value: 5 }
+                { label: '博士 | PhD', value: 1 },
+                { label: "硕士 | Master's", value: 2 },
+                { label: "本科 | Bachelor's", value: 3 },
+                { label: "大专 | Degree's", value: 4 },
+                { label: "其他 | Other", value: 5 }
             ],
             outsideTimeOptions: [
-                { label: '5年及以上', value: 1 },
-                { label: '4-5年', value: 2 },
-                { label: '3-4年', value: 3 },
-                { label: '2-3年', value: 4 },
-                { label: '1-2年', value: 5 },
-                { label: '1年及以下', value: 6 }
+                { label: '5年及以上 | 5 years and above', value: 1 },
+                { label: '4-5年 | 4-5 years', value: 2 },
+                { label: '3-4年 | 3-4 years', value: 3 },
+                { label: '2-3年 | 2-3 years', value: 4 },
+                { label: '1-2年 | 1-2 years', value: 5 },
+                { label: '1年及以下 | Less than 1 year', value: 6 }
             ],
             consultingServiceOptions: [
-                { label: '面谈（强烈推荐）', value: 1 },
-                { label: '视频', value: 2 },
-                { label: '电话', value: 3 }
+                { label: '面谈（强烈推荐）| In-person (strongly recommended)', value: 1 },
+                { label: '视频 | Video', value: 2 },
+                { label: '电话 | Phone', value: 3 }
             ],
             knowingChannelOptions: [
                 { label: '微信公众号', value: 1 },
@@ -300,10 +300,14 @@ export default {
             }
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
     watch: {
+        userLanguage(newVal) {
+        }
     },
     //方法集合
     methods: {

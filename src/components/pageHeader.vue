@@ -39,10 +39,10 @@
         <div class="articleHeader" v-if="currentPath == '/article'"></div>
         <HomeHeader v-if="currentPath == '/'" />
         <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/courseProjects'" />
-        <TeachingStaffHeader :imgUrl="imgUrl" v-if="currentPath == '/teachingStaff'" />
-        <AboutUsHeader :imgUrl="imgUrl" v-if="currentPath == '/aboutUs'" />
-        <ConsultationFormHeader :imgUrl="imgUrl" v-if="currentPath == '/consultationForm'" />
-        <AlumniStyleHeader :imgUrl="imgUrl" v-if="currentPath == '/alumniStyle'" />
+        <TeachingStaffHeader :imgUrl="userLanguage == '1' ?  imgUrl.url : imgUrl.urlEn" v-if="currentPath == '/teachingStaff'" />
+        <AboutUsHeader :imgUrl="userLanguage == '1' ?  imgUrl.url : imgUrl.urlEn" v-if="currentPath == '/aboutUs'" />
+        <ConsultationFormHeader :imgUrl="userLanguage == '1' ?  imgUrl.url : imgUrl.urlEn" v-if="currentPath == '/consultationForm'" />
+        <AlumniStyleHeader :imgUrl="userLanguage == '1' ?  imgUrl.url : imgUrl.urlEn" v-if="currentPath == '/alumniStyle'" />
 
         <div class="sidebar">
             <div class="sidebar-item" v-for="(item, index) in sidebarList" @click="toPage({ path: item.path })"

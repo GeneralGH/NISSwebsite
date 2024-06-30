@@ -30,11 +30,20 @@ Vue.prototype.$getPageContent = function(id) {
     this.$request.get('/api/pageConfig/getPageConfigById/' + id)
       .then(res => {
         if (id == 3) {
-          resolve(res.data)
+          let data = {
+            ...res.data,
+            url: JSON.parse(res.data.url).url,
+            urlEn: JSON.parse(res.data.urlEn).url
+          }
+          resolve(data)
         }
         if (res.data.type == 2) {
-          let url = JSON.parse(res.data.url).url
-          resolve(url)
+          let url = ''
+          let data = {
+            url: JSON.parse(res.data.url).url,
+            urlEn: JSON.parse(res.data.urlEn).url
+          }
+          resolve(data)
         } else if(res.data.type == 1) {
           resolve(res.data)
         } else {

@@ -4,30 +4,50 @@
         <pageHeader />
         <div class="page-area">
             <div class="party">
-                <div class="party-title">学院介绍</div>
+                <div class="party-title">{{ userLanguage == '1' ? '学院介绍' : 'Who We Are' }}</div>
                 <div class="party-line"></div>
 
                 <div class="party-content">
                     <div>
-                        南洋社会科学学院是新加坡教育部精深局批准注册的高等教育机构，致力于构筑融汇东西方优质高等教育资源的终身学习平台。学院与顶尖高校、杰出高等教育机构合作，解析和传播支撑中国成功高速发展的理论与经验，研究和传授西方社科领域教研的最新发展方向与成果，培养兼具东方智慧与全球视野的复合型人才。
+                        {{ userLanguage == '1' ?
+                        '南洋社会科学学院是新加坡教育部精深局批准注册的高等教育机构，致力于构筑融汇东西方优质高等教育资源的终身学习平台。学院与顶尖高校、杰出高等教育机构合作，解析和传播支撑中国成功高速发展的理论与经验，研究和传授西方社科领域教研的最新发展方向与成果，培养兼具东方智慧与全球视野的复合型人才。'
+                        :
+                        'Nanyang Institute of Social Sciences (NISS) is an institute of higher education registered with SkillsFuture Singapore (SSG) under the Ministry of Education of Singapore, aiming to create a lifelong learning platform that incorporates quality higher education resources from the East and the West.NISS cooperates with top universities and outstanding higher education institutions. It seeks to deconstruct and disseminate the theories and experiences that support China’s rapid economic development, share the cutting-edge research of western social sciences, and cultivate interdisciplinary talents with eastern wisdom and global vision.'
+                        }}
                     </div>
                     <div style="display: flex; align-items: center; justify-content: space-between;">
                         <div class="module-card">
-                            <div class="title">学院的愿景</div>
+                            <div class="title">{{ userLanguage == '1' ? '学院的愿景' : 'Our Vision' }}</div>
                             <div class="line"></div>
-                            <div class="content">打造<br>最具价值的<br>终身<br>学习平台</div>
+                            <div class="content">
+                                {{ userLanguage == '1' ? '打造' : 'To be' }}
+                                <br>
+                                {{ userLanguage == '1' ? '最具价值的' : 'an invaluable' }}
+                                <br>
+                                {{ userLanguage == '1' ? '终身' : 'lifelong' }}
+                                <br>
+                                {{ userLanguage == '1' ? '学习平台' : 'learning platform' }}
+                            </div>
                         </div>
                         <div class="module-card">
-                            <div class="title">学院的使命</div>
+                            <div class="title">{{ userLanguage == '1' ? '学院的使命' : 'Our Mission' }}</div>
                             <div class="line"></div>
-                            <div class="content">培养<br>融贯中西<br>知行合一<br>的高层次人才</div>
+                            <div class="content">
+                                {{ userLanguage == '1' ? '培养' : 'To cultivate' }}
+                                <br>
+                                {{ userLanguage == '1' ? '融贯中西' : 'high-level talents integrating' }}
+                                <br>
+                                {{ userLanguage == '1' ? '知行合一' : 'Chinese and Western and connecting' }}
+                                <br>
+                                {{ userLanguage == '1' ? '的高层次人才' : 'theory with practice' }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="party">
-                <div class="party-title">学院新闻</div>
+                <div class="party-title">{{ userLanguage == '1' ? '学院新闻' : 'College News' }}</div>
                 <div class="party-line"></div>
 
                 <div class="party-content">
@@ -60,22 +80,30 @@ export default {
             totalPage: 1
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
         initList() {
             this.$request.post(news.getNewsListPageUrl, this.listQuery)
-            .then(res => {
-                res.data.data.list = res.data.data.list.map((item) => { return {
-                    ...item,
-                    url: JSON.parse(item.annex).url
-                } })
-                this.list = this.list.length ? this.list.concat(res.data.data.list) : res.data.data.list
-                this.totalPage = res.data.data.totalPage
-            })
+                .then(res => {
+                    res.data.data.list = res.data.data.list.map((item) => {
+                        return {
+                            ...item,
+                            url: JSON.parse(item.annex).url,
+                            urlEn: JSON.parse(item.annexEn).url
+                        }
+                    })
+                    this.list = this.list.length ? this.list.concat(res.data.data.list) : res.data.data.list
+                    this.totalPage = res.data.data.totalPage
+                })
         },
 
         getMore() {

@@ -4,39 +4,44 @@
         <pageHeader />
         <div class="page-area">
             <div class="party">
-                <div class="party-title">校友网络</div>
+                <div class="party-title">{{ userLanguage == '1' ? '校友网络' : 'Alumni Network' }}</div>
                 <div class="party-line"></div>
 
                 <div class="party-content">
-                    <div class="content-title">暨南大学校友网络</div>
+                    <div class="content-title">{{ userLanguage == '1' ? '暨南大学校友网络' : 'Jinan University Alumni Network' }}</div>
                     <div class="content-area">
                         <div><t-image class="content-image" :src="JNUniversityNetwork" fit="cover" position="center" :lazy="true" /></div>
                         <div class="content-p">
                             <p>
-                                作为杰出企业家 、商界精英、以及新生代经济颠覆力量的共同选择 ，暨南大学校友遍布世界各地、各行各业。目前，在五大洲共有132个校友组织 ，其中海外校友组织59个。
+                                {{ userLanguage == '1' ? textOne.text : textOne.textEn }}
                             </p>
                             <p>
-                                暨南校友网络恪守 “忠信笃敬” 的校训，互助共进，持续为学员、校友的事业长远发展和人生价值实现提供着强有力的支持与动力。
+                                {{ userLanguage == '1' ? textTwo.text : textTwo.textEn }}
                             </p>
-                            <p>
+                            <p v-show="userLanguage == '1'">
                                 前中国国务院副总理吴学谦、李岚清，著名侨领、新加坡大学首任校长李光前，前泰国议会主席、副总理许敦茂，中国两院院士谭其骧、邓锡铭、侯芙生、曾毅，烈士江上青、陈镇和（华侨）、符保卢、符克（华侨），以及近年来内地和港澳台地区许多政府、工商及文教界知名人士均是暨南大学不同时期的杰出校友。
                             </p>
                             <div class="party-line content-line"></div>
                             <p>
-                                《福布斯》（Forbes）杂志曾于2006年评选管理学院为“校友满意度最高的中国商学院”。
+                                {{ userLanguage == '1' ? '《福布斯》（Forbes）杂志曾于2006年评选管理学院为“校友满意度最高的中国商学院”。' : 'In 2006, Forbes magazine rated the management school as "the Chinese business school with the highest alumni satisfaction."' }}
                             </p>
                             <div class="party-line content-line"></div>
                         </div>
                     </div>
-                    <div class="content-title">新加坡校友会</div>
+                    <div class="content-title">{{ userLanguage == '1' ? '新加坡校友会' : 'Singapore Alumni Association' }}</div>
                     <div class="content-area">
                         <div><t-image class="content-image" :src="SingapoUniversityNetwork" fit="cover" position="center" :lazy="true" /></div>
                         <div class="content-p">
                             <p>
-                                新加坡暨南校友会早在 1941年4月已注册成立，是暨南大学成立较早、持续活动时间最长的校友会，也是新加坡最早成立的中国高校校友会。
+                                {{ userLanguage == '1' ? 
+                                '新加坡暨南校友会早在 1941年4月已注册成立，是暨南大学成立较早、持续活动时间最长的校友会，也是新加坡最早成立的中国高校校友会。' :
+                                'The Jinan University Alumni Association in Singapore was registered as early as April 1941, making it one of the earliest established and longest-running alumni associations of Jinan University and the first Chinese university alumni association in Singapore.' }}
                             </p>
                             <p>
-                                李光前、刘抗、庄右铭、陈共存等诸多新马地区有名的政商学界名人均有在暨南大学求学的经历。
+                                {{ userLanguage == '1' ? 
+                                 '李光前、刘抗、庄右铭、陈共存等诸多新马地区有名的政商学界名人均有在暨南大学求学的经历。' :
+                                 'Many well-known figures in the political, business, and academic sectors of Singapore and Malaysia, such as Li Guangqian, Liu Kang, Zhuang Youming, and Chen Gongcun, have studied at Jinan University.'
+                                }}
                             </p>
                         </div>
                     </div>
@@ -44,7 +49,7 @@
             </div>
 
             <div class="party">
-                <div class="party-title">杰出校友</div>
+                <div class="party-title">{{ userLanguage == '1' ? '杰出校友' : 'Distinguished Alumni' }}</div>
                 <div class="party-line"></div>
 
                 <div class="party-content">
@@ -53,7 +58,7 @@
             </div>
 
             <div class="party">
-                <div class="party-title">校友动态</div>
+                <div class="party-title">{{ userLanguage == '1' ? '校友动态' : 'Alumni Updates' }}</div>
                 <div class="party-line"></div>
 
                 <div class="party-content">
@@ -88,13 +93,26 @@ export default {
             list: [],
             JNUniversityNetwork,
             SingapoUniversityNetwork,
-            totalPage: 1
+            totalPage: 1,
+            textOne: {
+                text: '作为杰出企业家 、商界精英、以及新生代经济颠覆力量的共同选择 ，暨南大学校友遍布世界各地、各行各业。目前，在五大洲共有132个校友组织 ，其中海外校友组织59个。',
+                textEn: 'As a common choice for outstanding entrepreneurs, business elites, and the emerging forces of economic disruption, Jinan University alumni are spread across the globe and across various industries. Currently, there are 132 alumni organizations on five continents, including 59 overseas alumni organizations.'
+            },
+            textTwo: {
+                text: '暨南校友网络恪守 “忠信笃敬” 的校训，互助共进，持续为学员、校友的事业长远发展和人生价值实现提供着强有力的支持与动力。',
+                textEn: 'Adhering to the motto of "Loyalty, Integrity, Courtesy," Jinan University alumni network supports and empowers each other, continuously contributing strong support and motivation for the long-term career development and life values realization of students and alumni.'
+            }
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
         initList() {

@@ -2,16 +2,16 @@
 <template>
     <div>
         <div class="content-item" id="options2-1">
-            <div class="title">必修模块</div>
+            <div class="title">{{ userLanguage == '1' ? '必修模块' : 'sCore Modules' }}</div>
             <div class="line"></div>
             <div class="info-content">
-                <div>必修模块的课程在第一学年完成，包括方法论基础、管理核心课程和中国国情课程等。</div>
+                <div>{{ userLanguage == '1' ? '必修模块的课程在第一学年完成，包括方法论基础、管理核心课程和中国国情课程等。' : "The core courses of Jinan University's Singapore MBA program are divided into six modules: Functional, Analytical, Leadership, Integrated, China, and Thesis modules.These modules help students establish a solid foundation inbusiness administration knowledge, theory, and skills across six major dimensions.Students are required to complete 30 core course credits." }}</div>
                 <div class="module-card-list">
                     <div class="module-card" v-for="item in oneCardList">
-                        <div class="card-name">{{ item.name }}</div>
+                        <div class="card-name">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
                         <div v-for="child in item.list" class="card-info-list">
                             <img src="../../../assets/courseProjects/right.png" alt="">
-                            <div>{{ child }}</div>
+                            <div>{{ userLanguage == '1' ? child.name : child.nameEn }}</div>
                         </div>
                     </div>
                 </div>
@@ -19,20 +19,20 @@
         </div>
 
         <div class="content-item" id="options2-2">
-            <div class="title">选修模块</div>
+            <div class="title">{{ userLanguage == '1' ? '选修模块' : 'Elective Modules' }}</div>
             <div class="line"></div>
             <div class="info-content">
-                <div>6大模块，28门选修课，学生可以根据自己的兴趣进行深入研究，探索更多领域的知识。</div>
+                <div>{{ userLanguage == '1' ? '6大模块，28门选修课，学生可以根据自己的兴趣进行深入研究，探索更多领域的知识。' : '' }}</div>
                 <div class="module-card-list">
                     <div class="module-card" v-for="item in twoCardList">
-                        <div class="card-name">{{ item.name }}</div>
+                        <div class="card-name">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
                         <div v-for="child in item.list" class="card-info-list">
                             <img src="../../../assets/courseProjects/right.png" alt="">
-                            <div>{{ child }}</div>
+                            <div>{{ userLanguage == '1' ? child.name : child.nameEn }}</div>
                         </div>
                     </div>
                 </div>
-                <div class="item-footer">* 课程可调整，以实际课程安排为准</div>
+                <div class="item-footer">{{ userLanguage == '1' ? '* 课程可调整，以实际课程安排为准' : '* Courses may be adjusted according to the actual course schedule.' }}</div>
             </div>
         </div>
     </div>
@@ -51,53 +51,122 @@ export default {
             oneCardList: [
                 {
                     name: '职能模块',
-                    list: ['营销管理', '人力资源管理与开发', '运营管理', '公司理财', '商务英语']
+                    nameEn: 'Management Fundamentals',
+                    list: [
+                        { name: '营销管理', nameEn: 'Marketing Management' },
+                        { name: '人力资源管理与开发', nameEn: 'Human Resource Management' },
+                        { name: '运营管理', nameEn: 'Operation Management' },
+                        { name: '公司理财', nameEn: 'Corporate Finance' },
+                        { name: '商务英语', nameEn: 'Business English' }
+                    ]
                 },
                 {
                     name: '分析模块',
-                    list: ['管理经济学', '会计学', '数据模型与决策', '论文写作与学术规范']
+                    nameEn: 'Analytical Fundamentals',
+                    list: [
+                        { name: '管理经济学', nameEn: 'Managerial Economics' },
+                        { name: '会计学', nameEn: 'Accounting' },
+                        { name: '数据模型与决策', nameEn: 'Data Modeling and Decision Making' },
+                        { name: '论文写作与学术规范', nameEn: 'Thesis Writing and Academic Standards' }
+                    ]
                 },
                 {
                     name: '领导力模块',
-                    list: ['企业伦理', '组织行为学', '战略管理', '公司治理', '四海讲堂']
+                    nameEn: 'Leadership Fundamentals',
+                    list: [
+                        { name: '企业伦理', nameEn: 'Business Ethics' },
+                        { name: '组织行为学', nameEn: 'Organizational Behavior' },
+                        { name: '战略管理', nameEn: 'Strategic Management' },
+                        { name: '公司治理', nameEn: 'Corporate Governance' },
+                        { name: '四海讲堂', nameEn: 'Global Lecture Series' }
+                    ]
                 },
                 {
                     name: '中国情景模块',
-                    list: ['中国概况', '中国的法律与制度环境']
+                    nameEn: 'Foundation of Chinese Business',
+                    list: [
+                        { name: '中国概况', nameEn: 'General Introduction to China' },
+                        { name: '中国的法律与制度环境', nameEn: 'China Business Environment' },
+                    ]
                 }
             ],
             twoCardList: [
                 {
                     name: '综合管理模块',
-                    list: ['领导力与组织行为', '管理咨询', '决策模拟', '商业谈判', '管理沟通']
+                    nameEn: 'Integrated Management Module',
+                    list: [
+                        { name: '领导力与组织行为', nameEn: 'Leadership and Organizational Behavior' },
+                        { name: '管理咨询', nameEn: 'Management Consulting' },
+                        { name: '决策模拟', nameEn: 'Decision Simulation' },
+                        { name: '商业谈判', nameEn: 'Business Negotiation' },
+                        { name: '管理沟通', nameEn: 'Management Communication' },
+                    ]
                 },
                 {
                     name: '创新创业模块',
-                    list: ['创业融资', '新创企业成长战略', '商业模式与企业设计', '商业诊断实践', '创业团队管理']
+                    nameEn: 'Innovation and Entrepreneurship Module',
+                    list: [
+                        { name: '创业融资', nameEn: 'Entrepreneurial Finance' },
+                        { name: '新创企业成长战略', nameEn: 'Growth Strategies for Startups' },
+                        { name: '商业模式与企业设计', nameEn: 'Business Models and Enterprise Design' },
+                        { name: '商业诊断实践', nameEn: 'Business Diagnosis Practice' },
+                        { name: '创业团队管理', nameEn: 'Entrepreneurship Team Management' },
+                    ]
                 },
                 {
                     name: '资本运营模块',
-                    list: ['股权激励与设计', '中国金融市场与投资策略', '风险投资管理', '公司兼并收购与重组']
+                    nameEn: 'Capital Operation Module',
+                    list: [
+                        { name: '股权激励与设计', nameEn: 'Equity Incentives and Design' },
+                        { name: '中国金融市场与投资策略', nameEn: 'Chinese Financial Markets and Investment Strategies' },
+                        { name: '风险投资管理', nameEn: 'Venture Capital Management' },
+                        { name: '公司兼并收购与重组', nameEn: 'Mergers, Acquisitions, and Restructuring' },
+                    ]
                 },
                 {
                     name: '营销管理模块',
-                    list: ['电子商务与零售策略', '战略品牌管理', '市场研究', '服务营销', '营销模拟与诊断']
+                    nameEn: 'Marketing Management Module',
+                    list: [
+                        { name: '电子商务与零售策略', nameEn: 'E-commerce and Retail Strategies' },
+                        { name: '战略品牌管理', nameEn: 'Strategic Brand Management' },
+                        { name: '市场研究', nameEn: 'Market Research' },
+                        { name: '服务营销', nameEn: 'Service Marketing' },
+                        { name: '营销模拟与诊断', nameEn: 'Marketing Simulation and Diagnosis' },
+                    ]
                 },
                 {
                     name: '运营管理模块',
-                    list: ['国际贸易与全球供应链管理', '项目管理', '质量管理', '采购管理', '收益管理']
+                    nameEn: 'Operations Management Module',
+                    list: [
+                        { name: '国际贸易与全球供应链管理', nameEn: 'International Trade and Global Supply Chain Management' },
+                        { name: '项目管理', nameEn: 'Project Management' },
+                        { name: '质量管理', nameEn: 'Quality Management' },
+                        { name: '采购管理', nameEn: 'Procurement Management' },
+                        { name: '收益管理', nameEn: 'Revenue Management' }
+                    ]
                 },
                 {
                     name: '整合实践模块',
-                    list: ['产业升级与创新', '人工智能商业应用', '科技金融', '大数据分析与预测决策']
+                    nameEn: 'Integrated Practice Module',
+                    list: [
+                        { name: '产业升级与创新', nameEn: 'Industrial Upgrading and Innovation' },
+                        { name: '人工智能商业应用', nameEn: 'Business Applications of Artificial Intelligence' },
+                        { name: '科技金融', nameEn: 'Fintech' },
+                        { name: '大数据分析与预测决策', nameEn: 'Big Data Analysis and Predictive Decision Making' }
+                    ]
                 }
             ]
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     //方法集合
     methods: {
 

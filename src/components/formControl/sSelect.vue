@@ -14,9 +14,9 @@
                 <div v-if="isTime">
                     <div style="width: 100%; display: flex; align-items: center; justify-content: space-around;">
                         <div :class="timeType == 1 ? 'time-interval-check' : 'time-interval'"
-                            @click.stop="timeType = 1">上午</div>
+                            @click.stop="timeType = 1">{{ userLanguage == '1' ? '上午' : 'Morning' }}</div>
                         <div :class="timeType == 2 ? 'time-interval-check' : 'time-interval'"
-                            @click.stop="timeType = 2">下午</div>
+                            @click.stop="timeType = 2">{{ userLanguage == '1' ? '下午' : 'Afternoon' }}</div>
                     </div>
                     <div class="select-line"></div>
                 </div>
@@ -55,7 +55,15 @@ export default {
     //监听属性 类似于data概念
     computed: {},
     //监控data中的数据变化
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
     watch: {
+        userLanguage(newVal) {
+        },
+
         'timeType'(val) {
             if (this.isTime) {
                 this.chooseLabel = ''
