@@ -4,34 +4,34 @@
         <pageHeader />
         <div class="page-area">
             <div class="path-list" @click="backPage">
-                <span class="upPath">{{ data.type == 1 ? '关于我们' : '校友风采' }} / </span>
-                <span>{{ data.type == 1 ? '学院新闻' : '校友动态' }}</span>
+                <span class="upPath">{{ data.type == 1 ? userLanguage == '1' ? '关于我们' : 'About Us' : userLanguage == '1' ? '校友风采' : 'Alumni' }} / </span>
+                <span>{{ data.type == 1 ? userLanguage == '1' ? '学院新闻' : 'College News' : userLanguage == '1' ? '校友动态' : 'Alumni Updates' }}</span>
             </div>
 
             <div class="article-info">
                 <div class="article-title">
-                    {{ data.title }}
+                    {{ userLanguage == '1' ? data.title : data.titleEn }}
                 </div>
                 <div class="article-author">
-                    作者：{{ data.author }}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{{ dateChange(data.createTime)
+                    作者：{{ userLanguage == '1' ? data.author : data.authorEn }}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{{ dateChange(data.createTime)
                     }}
                 </div>
             </div>
 
             <div class="article-area">
                 <div class="article-content">
-                    <div v-html="data.content"></div>
+                    <div v-html="userLanguage == '1' ? data.content : data.contentEn"></div>
                     <div class="more-article">
                         <div class="more-article-itme" v-for="item in list" :key="item.id" @click="toDetail(item)">
-                            <img class="more-article-itmeImg" :src="item.url" alt="">
-                            <div>{{ item.title }}</div>
+                            <img class="more-article-itmeImg" :src="userLanguage == '1' ? item.url : item.urlEn" alt="">
+                            <div>{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
                         </div>
                     </div>
                 </div>
                 <div class="other-article-list">
-                    <div class="other-article-list-title">其他新闻</div>
+                    <div class="other-article-list-title">{{ userLanguage == '1' ? '其他新闻' : 'Other News' }}</div>
                     <div class="other-article-item" v-for="item in list" :key="item.id" @click="toDetail(item)">
-                        <div class="other-article-item-content">{{ item.title }}</div>
+                        <div class="other-article-item-content">{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
                     </div>
                 </div>
             </div>
@@ -63,10 +63,15 @@ export default {
             list: []
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        }
+    },
+    watch: {
+        userLanguage(newVal) {
+        }
+    },
     filter: {
 
     },
@@ -86,7 +91,8 @@ export default {
                     res.data.data.list = res.data.data.list.map((item) => {
                         return {
                             ...item,
-                            url: JSON.parse(item.annex).url
+                            url: JSON.parse(item.annex).url,
+                            urlEn: JSON.parse(item.annexEn).url 
                         }
                     })
                     this.list = res.data.data.list
@@ -108,7 +114,7 @@ export default {
             const month = String(date.getMonth() + 1).padStart(2, "0");
             const day = String(date.getDate()).padStart(2, "0");
 
-            return `${year}年${month}月${day}日`
+            return `${year}/${month}/${day}`
         },
 
         backPage() {
