@@ -53,13 +53,13 @@
             </div>
         </div>
 
-        <div class="content-item" id="options3-3">
+        <!-- <div class="content-item" id="options3-3">
             <div class="title">{{ userLanguage == '1' ? '招生批次' : 'Admission Rounds' }}</div>
             <div class="line"></div>
             <div class="space-two">
                 <t-image style="width: 100%; background-color: transparent;" :src="userLanguage == '1' ? enrollmentBatchImg.url : enrollmentBatchImg.urlEn" fit="cover" position="center" :lazy="true" />
             </div>
-        </div>
+        </div> -->
 
         <div class="content-item" id="options3-4">
             <div class="title">{{ userLanguage == '1' ? '入学与毕业时间' : 'Enrollment and Graduation Dates' }}</div>

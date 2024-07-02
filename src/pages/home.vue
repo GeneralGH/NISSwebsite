@@ -176,6 +176,8 @@ export default {
   },
   watch: {
     userLanguage(newVal) {
+      this.alumniList = []
+      this.initList()
     }
   },
   //方法集合
