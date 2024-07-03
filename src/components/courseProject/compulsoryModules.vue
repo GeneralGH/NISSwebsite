@@ -5,7 +5,7 @@
             <div class="title">{{ userLanguage == '1' ? '必修模块' : 'sCore Modules' }}</div>
             <div class="line"></div>
             <div class="info-content">
-                <div>{{ userLanguage == '1' ? '必修模块的课程在第一学年完成，包括方法论基础、管理核心课程和中国国情课程等。' : "The core courses of Jinan University's Singapore MBA program are divided into six modules: Functional, Analytical, Leadership, Integrated, China, and Thesis modules.These modules help students establish a solid foundation inbusiness administration knowledge, theory, and skills across six major dimensions.Students are required to complete 30 core course credits." }}</div>
+                <div>{{ userLanguage == '1' ? '暨南大学新加坡MBA项目必修课分为职能模块、分析模块、领导力模块、综合模块、中国模块和学位论文六个模块，帮助学生从六大主要维度，奠定坚实的工商管理知识、理论与技能基础。学生须修满30个必修课学分。' : "The core courses of Jinan University's Singapore MBA program are divided into six modules: Functional, Analytical, Leadership, Integrated, China, and Thesis modules.These modules help students establish a solid foundation inbusiness administration knowledge, theory, and skills across six major dimensions.Students are required to complete 30 core course credits." }}</div>
                 <div class="module-card-list">
                     <div class="module-card" v-for="item in oneCardList">
                         <div class="card-name">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
@@ -22,7 +22,7 @@
             <div class="title">{{ userLanguage == '1' ? '选修模块' : 'Elective Modules' }}</div>
             <div class="line"></div>
             <div class="info-content">
-                <div>{{ userLanguage == '1' ? '6大模块，28门选修课，学生可以根据自己的兴趣进行深入研究，探索更多领域的知识。' : '' }}</div>
+                <div>{{ userLanguage == '1' ? '暨南大学新加坡MBA项目选修课分为综合管理模块、创新创业模块、资本运营模块、营销管理模块、运营管理模块、整合实践模块六个方向，助力拓宽和加深学生在特定领域的认知。学生须修满12个选修课学分。' : '' }}</div>
                 <div class="module-card-list">
                     <div class="module-card" v-for="item in twoCardList">
                         <div class="card-name">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
@@ -56,8 +56,7 @@ export default {
                         { name: '营销管理', nameEn: 'Marketing Management' },
                         { name: '人力资源管理与开发', nameEn: 'Human Resource Management' },
                         { name: '运营管理', nameEn: 'Operation Management' },
-                        { name: '公司理财', nameEn: 'Corporate Finance' },
-                        { name: '商务英语', nameEn: 'Business English' }
+                        { name: '公司理财', nameEn: 'Corporate Finance' }
                     ]
                 },
                 {
@@ -77,8 +76,7 @@ export default {
                         { name: '企业伦理', nameEn: 'Business Ethics' },
                         { name: '组织行为学', nameEn: 'Organizational Behavior' },
                         { name: '战略管理', nameEn: 'Strategic Management' },
-                        { name: '公司治理', nameEn: 'Corporate Governance' },
-                        { name: '四海讲堂', nameEn: 'Global Lecture Series' }
+                        { name: '公司治理', nameEn: 'Corporate Governance' }
                     ]
                 },
                 {
@@ -87,6 +85,22 @@ export default {
                     list: [
                         { name: '中国概况', nameEn: 'General Introduction to China' },
                         { name: '中国的法律与制度环境', nameEn: 'China Business Environment' },
+                    ]
+                },
+                {
+                    name: '综合模块',
+                    nameEn: 'Foundation of Chinese Business',
+                    list: [
+                        { name: '入学导向培训', nameEn: 'General Introduction to China' },
+                        { name: '四海讲堂', nameEn: 'China Business Environment' },
+                        { name: '商务英语', nameEn: 'China Business Environment' },
+                    ]
+                },
+                {
+                    name: '学位论文',
+                    nameEn: 'Foundation of Chinese Business',
+                    list: [
+                        { name: '学位论文', nameEn: 'General Introduction to China' }
                     ]
                 }
             ],
