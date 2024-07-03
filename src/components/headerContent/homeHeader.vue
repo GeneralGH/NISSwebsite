@@ -88,7 +88,10 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+/deep/.t-swiper__navigation {
+    display: none;
+}
 .content-area {
     height: 900px;
     margin: 0 auto;
