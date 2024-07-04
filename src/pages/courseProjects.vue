@@ -124,12 +124,12 @@ export default {
             },
             {
               name: "海外模块",
-              nameEn: "海外模块",
+              nameEn: "Overseas Module",
               id: "options1-4",
             },
             {
               name: "学生画像",
-              nameEn: "学生画像",
+              nameEn: "Student Profile",
               id: "options1-5",
             },
           ],
@@ -188,7 +188,9 @@ export default {
     },
   },
   watch: {
-    userLanguage(newVal) {},
+    userLanguage(newVal) {
+      document.title = newVal == "1" ? "课程项目" : "Programmes"
+    },
   },
   //方法集合
   methods: {
@@ -274,6 +276,7 @@ export default {
     } else {
       this.fllowUpdate();
     }
+    document.title = this.userLanguage == "1" ? "课程项目" : "Programmes"
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前

@@ -111,6 +111,7 @@ export default {
     },
     watch: {
         userLanguage(newVal) {
+            document.title = newVal == "1" ? "校友风采" : "Alumni";
         }
     },
     //方法集合
@@ -141,6 +142,7 @@ export default {
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
         this.initList()
+        document.title = this.userLanguage == "1" ? "校友风采" : "Alumni";
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前

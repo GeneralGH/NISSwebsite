@@ -4,7 +4,7 @@
     <pageHeader />
 
     <div class="content-one">
-      <div class="subtitle">
+      <!-- <div class="subtitle">
         <div v-show="userLanguage == '1'">
           To cultivate high-level talents integrating <br>
           Chinese and Western and connecting theory with practice
@@ -21,25 +21,44 @@
         <div v-show="userLanguage == '1'">
           培养融贯中西、知行合一的<br>高层次人才
         </div>
-      </div>
+      </div> -->
       <div class="content-info">
-        <div class="info-left">
+        <!-- <div class="info-left">
           <img src="../../assets/home/contentOne.png" alt="">
-        </div>
+        </div> -->
         <div class="info-right">
-          <div class="info-item" v-for="(item, index) in infoList" @mouseover="isHovered = index"
-            @mouseleave="isHovered = -1" @click="jump(item.path)">
-            <div>
+          <div
+            class="info-item module-card"
+            v-for="(item, index) in infoList"
+            @mouseover="isHovered = index"
+            @mouseleave="isHovered = -1"
+            @click="jump(item.path)"
+          >
+            <div style="width: 100%">
               <div class="info-title">
-                <div>{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
+                <div>{{ userLanguage == "1" ? item.title : item.titleEn }}</div>
                 <div class="info-line">
                   <div v-show="isHovered == index"></div>
                 </div>
               </div>
-              <div class="info-subTitle">{{ userLanguage == '1' ? item.subTitle : item.subTitleEn }}</div>
+              <div
+                class="info-subTitle"
+                v-html="
+                  userLanguage == '1'
+                    ? item.subTitle.replace('\n', '<br/>')
+                    : item.subTitleEn.replace('\n', '<br/>')
+                "
+              >
+                <!-- {{ userLanguage == '1' ? item.subTitle : item.subTitleEn }} -->
+              </div>
             </div>
-            <div>
-              <img v-show="isHovered == index" class="homeRightArrow" src="../../assets/home/homeRightArrow.png" alt="">
+            <div class="homeRightArrow-area">
+              <img
+                v-show="isHovered == index"
+                class="homeRightArrow"
+                src="../../assets/home/homeRightArrow.png"
+                alt=""
+              />
             </div>
           </div>
         </div>
@@ -50,20 +69,35 @@
       <div class="content-info" id="content-info">
         <!-- <t-affix> -->
         <div class="info-left">
-          <div class="title">{{ userLanguage == '1' ? '成为最具价值的终身学习平台' : 'To be an invaluable lifelong learning platform'
-            }}</div>
-          <div class="subTitle">{{ userLanguage == '2' ? '成为最具价值的终身学习平台' : 'To be an invaluable lifelong learning
-            platform' }}</div>
-          <img src="../../assets/home/contentTwo.png" alt="">
+          <div class="title">
+            {{
+              userLanguage == "1"
+                ? "成为最具价值的终身学习平台"
+                : "To be an invaluable lifelong learning platform"
+            }}
+          </div>
+          <div class="subTitle">
+            {{ userLanguage == '2' ? '成为最具价值的终身学习平台' : 'To be an invaluable lifelong learning
+            platform' }}
+          </div>
+          <img src="../../assets/home/contentTwo.png" alt="" />
         </div>
         <!-- </t-affix> -->
         <div class="info-right" id="contentTwoRight" ref="contentTwoRight">
           <!-- <div class="info-item"
             :style="'transition: opacity 1s ease-in-out;' + (item.isOpacity ? 'opacity: 0.1; ' : 'opacity: 1; ')"
             v-for="(item, index) in infoTwoList" :key="index"> -->
-          <div class="info-item" v-for="(item, index) in infoTwoList" :key="index">
-            <div class="title">{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
-            <div class="subTitle">{{ userLanguage == '1' ? item.subTitle : item.subTitleEn }}</div>
+          <div
+            class="info-item"
+            v-for="(item, index) in infoTwoList"
+            :key="index"
+          >
+            <div class="title">
+              {{ userLanguage == "1" ? item.title : item.titleEn }}
+            </div>
+            <div class="subTitle">
+              {{ userLanguage == "1" ? item.subTitle : item.subTitleEn }}
+            </div>
           </div>
           <!-- <div class="fillDiv"></div> -->
         </div>
@@ -71,43 +105,66 @@
     </div>
 
     <div class="content-three">
-      <div class="title">{{ userLanguage == '1' ? '校友寄语' : 'Alumni Testimonials' }}</div>
+      <div class="title">
+        {{ userLanguage == "1" ? "校友寄语" : "Alumni Testimonials" }}
+      </div>
       <div class="subTitle">Their Stories</div>
 
       <div class="alumni-scroll">
-        <vue-seamless-scroll :data="alumniList" :class-option="classOption" id="vueSeamlessScroll"
-          ref="vueSeamlessScroll">
+        <vue-seamless-scroll
+          :data="alumniList"
+          :class-option="classOption"
+          id="vueSeamlessScroll"
+          ref="vueSeamlessScroll"
+        >
           <div class="alumni-item" v-for="(item, index) in alumniList">
-            <div v-show="index % 2 === 0" style="position: relative;">
-              <img class="dialog-bg" src="../../assets/home/topDialog.png" alt="">
+            <div v-show="index % 2 === 0" style="position: relative">
+              <img
+                class="dialog-bg"
+                src="../../assets/home/topDialog.png"
+                alt=""
+              />
               <div class="dialog-content dialog-content-top">
-                <div>{{ userLanguage == '1' ? item.wrote : item.wroteEn }}</div>
+                <div>{{ userLanguage == "1" ? item.wrote : item.wroteEn }}</div>
               </div>
             </div>
             <div v-show="index % 2 !== 0">
               <div class="alumni-info">
-                {{ userLanguage == '1' ? item.company : item.companyEn }}<br>
-                {{ userLanguage == '1' ? item.workPost : item.workPostEn }}
+                {{ userLanguage == "1" ? item.company : item.companyEn }}<br />
+                {{ userLanguage == "1" ? item.workPost : item.workPostEn }}
               </div>
-              <div class="alumni-class">{{ userLanguage == '1' ? item.grade : item.gradeEn }}</div>
+              <div class="alumni-class">
+                {{ userLanguage == "1" ? item.grade : item.gradeEn }}
+              </div>
             </div>
-            <t-image class="alumni-img" :src="item.imgPath" fit="cover" position="center">
+            <t-image
+              class="alumni-img"
+              :src="item.imgPath"
+              fit="cover"
+              position="center"
+            >
               <template #loading>
-                {{ '' }}
+                {{ "" }}
               </template>
             </t-image>
             <!-- <img class="alumni-img" :src="item.imgPath" alt=""> -->
             <div v-show="index % 2 === 0">
               <div class="alumni-info">
-                {{ userLanguage == '1' ? item.company : item.companyEn }}<br>
-                {{ userLanguage == '1' ? item.workPost : item.workPostEn }}
+                {{ userLanguage == "1" ? item.company : item.companyEn }}<br />
+                {{ userLanguage == "1" ? item.workPost : item.workPostEn }}
               </div>
-              <div class="alumni-class">{{ userLanguage == '1' ? item.grade : item.gradeEn }}</div>
+              <div class="alumni-class">
+                {{ userLanguage == "1" ? item.grade : item.gradeEn }}
+              </div>
             </div>
-            <div v-show="index % 2 !== 0" style="position: relative;">
-              <img class="dialog-bg" src="../../assets/home/buttonDialog.png" alt="">
+            <div v-show="index % 2 !== 0" style="position: relative">
+              <img
+                class="dialog-bg"
+                src="../../assets/home/buttonDialog.png"
+                alt=""
+              />
               <div class="dialog-content dialog-content-bottom">
-                <div>{{ userLanguage == '1' ? item.wrote : item.wroteEn }}</div>
+                <div>{{ userLanguage == "1" ? item.wrote : item.wroteEn }}</div>
               </div>
             </div>
           </div>
@@ -122,7 +179,7 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import Alumni from '../api/Alumni'
+import Alumni from "../api/Alumni";
 
 export default {
   //import引入的组件需要注入到对象中才能使用
@@ -130,17 +187,65 @@ export default {
     //这里存放数据
     return {
       infoList: [
-        { title: 'MBA', titleEn: 'MBA', subTitle: '暨南大学新加坡中文MBA项目', subTitleEn: 'JNU MBA Program (Mandarin)', path: '/courseProjects' },
-        { title: 'DBA', titleEn: 'DBA', subTitle: '法国南特商学院新加坡DBA项目', subTitleEn: 'Audencia DBA Program' },
-        { title: '高等教育管理', titleEn: 'Executive Education', subTitle: '企业定制化课程', subTitleEn: 'Customized Corporate Courses' }
+        {
+          title: "MBA",
+          titleEn: "MBA",
+          subTitle: "暨南大学新加坡\n中文MBA项目",
+          subTitleEn: "JNU MBA Program (Mandarin)",
+          path: "/courseProjects",
+        },
+        {
+          title: "DBA",
+          titleEn: "DBA",
+          subTitle: "法国南特商学院新加\n坡DBA项目",
+          subTitleEn: "Audencia DBA Program",
+        },
+        {
+          title: "高等教育管理",
+          titleEn: "Executive Education",
+          subTitle: "企业定制化课程",
+          subTitleEn: "Customized Corporate Courses",
+        },
       ],
       infoTwoList: [
-        { title: '1个平台', titleEn: 'A Platform', subTitle: '终身学习平台', subTitleEn: 'Lifelong Learning Platform' },
-        { title: '2证文凭', titleEn: 'Dual Diplomas', subTitle: '“211工程”大学 “双一流”建设高校', subTitleEn: '“211 Project” University “Double First-Class” Construction University' },
-        { title: '3冠认证', titleEn: 'Triple Crown Accreditation', subTitle: 'AACSB认证 & AMBA认证 & B', subTitleEn: 'AACSB Accredited & AMBA Accredited & BGA' },
-        { title: '9大体系', titleEn: 'Nine Systems', subTitle: '融合中国商业文化与现代管理智慧', subTitleEn: 'Integrating Chinese Business Culture with Modern Management Wisdom' },
-        { title: '百年名校', titleEn: 'Century-old Prestigious School', subTitle: '中国百年名校 华侨最高学府', subTitleEn: 'The Highest Institution for Overseas Chinese' },
-        { title: '1+1+N+2', titleEn: '1+1+N+2', subTitle: '全面赋能职业发展', subTitleEn: 'Comprehensive Empowerment for Career Development' }
+        {
+          title: "1个平台",
+          titleEn: "A Platform",
+          subTitle: "终身学习平台",
+          subTitleEn: "Lifelong Learning Platform",
+        },
+        {
+          title: "2证文凭",
+          titleEn: "Dual Diplomas",
+          subTitle: "“211工程”大学 “双一流”建设高校",
+          subTitleEn:
+            "“211 Project” University “Double First-Class” Construction University",
+        },
+        {
+          title: "3冠认证",
+          titleEn: "Triple Crown Accreditation",
+          subTitle: "AACSB认证 & AMBA认证 & B",
+          subTitleEn: "AACSB Accredited & AMBA Accredited & BGA",
+        },
+        {
+          title: "9大体系",
+          titleEn: "Nine Systems",
+          subTitle: "融合中国商业文化与现代管理智慧",
+          subTitleEn:
+            "Integrating Chinese Business Culture with Modern Management Wisdom",
+        },
+        {
+          title: "百年名校",
+          titleEn: "Century-old Prestigious School",
+          subTitle: "中国百年名校 华侨最高学府",
+          subTitleEn: "The Highest Institution for Overseas Chinese",
+        },
+        {
+          title: "1+1+N+2",
+          titleEn: "1+1+N+2",
+          subTitle: "全面赋能职业发展",
+          subTitleEn: "Comprehensive Empowerment for Career Development",
+        },
       ],
       alumniList: [],
       isHovered: -1,
@@ -165,20 +270,21 @@ export default {
       listQuery: {
         current: 1,
         size: 20,
-        language: ''
-      }
+        language: "",
+      },
     };
   },
   computed: {
     userLanguage() {
       return this.$store.state.userLanguage;
-    }
+    },
   },
   watch: {
     userLanguage(newVal) {
-      this.alumniList = []
-      this.initList()
-    }
+      this.alumniList = [];
+      this.initList();
+      document.title = newVal == "1" ? "首页" : "Home";
+    },
   },
   //方法集合
   methods: {
@@ -186,8 +292,8 @@ export default {
       //滚动到顶部
       let topMix = this.$refs.contentTwo.getBoundingClientRect().top;
 
-      const inner = document.getElementById('contentTwoRight');
-      const outer = document.getElementById('appContainer');
+      const inner = document.getElementById("contentTwoRight");
+      const outer = document.getElementById("appContainer");
       let scrollHeight = inner.scrollHeight;
       let scrollTop = inner.scrollTop;
       let clientHeight = inner.clientHeight;
@@ -206,7 +312,7 @@ export default {
         outerScrollTop += outerInv;
         this.$nextTick(() => {
           document.documentElement.scrollTop = outerScrollTop;
-        })
+        });
       }
       if (this.contentTwoScrollTop) {
         //向下滚动
@@ -220,8 +326,7 @@ export default {
           }
           inner.scrollTop = scrollTop;
         } else if (inv <= 0 && scrollTop > 0) {
-
-          console.log("beforeScrollTop", scrollTop)
+          console.log("beforeScrollTop", scrollTop);
           //向上滚动
           event.preventDefault();
           if (scrollTop - inv <= 0) {
@@ -235,14 +340,20 @@ export default {
       let currentHeight = 0;
       for (let i = 0; i < this.infoTwoList.length; i++) {
         currentHeight += this.numberScorll;
-        if ((scrollTop + clientHeight) > (currentHeight - this.scollInv) && currentHeight > (scrollTop - this.scollInv)) {
+        if (
+          scrollTop + clientHeight > currentHeight - this.scollInv &&
+          currentHeight > scrollTop - this.scollInv
+        ) {
           this.infoTwoList[i].isOpacity = false;
         } else {
           this.infoTwoList[i].isOpacity = true;
         }
       }
 
-      if ((scrollHeight - (scrollTop + clientHeight)) / clientHeight <= 0.05 && inv > 0) {
+      if (
+        (scrollHeight - (scrollTop + clientHeight)) / clientHeight <= 0.05 &&
+        inv > 0
+      ) {
         this.contentTwoRightMax = true;
       } else {
         this.contentTwoRightMax = false;
@@ -254,46 +365,45 @@ export default {
     },
 
     jump(path) {
-      if (!path) {
-        return
+      /* if (!path) {
+        return;
       }
-      this.$router.push(path)
+      this.$router.push(path);
       window.scrollTo({
         top: 0,
-        behavior: 'smooth' // 可选，使用平滑滚动效果
-      });
+        behavior: "smooth", // 可选，使用平滑滚动效果
+      }); */
     },
 
     initList() {
-      this.$request.post(Alumni.getAlumniListPageUrl, this.listQuery)
-        .then(res => {
-          this.alumniList = res.data.data.list.map((item) => { return { ...item, imgPath: JSON.parse(item.image).url } })
-        })
+      this.$request
+        .post(Alumni.getAlumniListPageUrl, this.listQuery)
+        .then((res) => {
+          this.alumniList = res.data.data.list.map((item) => {
+            return { ...item, imgPath: JSON.parse(item.image).url };
+          });
+        });
     },
 
     getContainer() {
       return this.$refs.contentTwo;
     },
-  }
-  ,
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-
-  }
-  ,
+  created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     const windowHeight = window.innerHeight;
-    const contentTwoElement = document.querySelector('.content-two');
-    const infoRight = document.getElementById('content-info');
+    const contentTwoElement = document.querySelector(".content-two");
+    const infoRight = document.getElementById("content-info");
     // contentTwoElement.style.height = `${windowHeight}px`;
     // infoRight.style.height = `${windowHeight}px`;
 
     // window.addEventListener('mousewheel', this.handleWheel, { passive: false });
 
-    const inner = document.getElementById('contentTwoRight');
+    const inner = document.getElementById("contentTwoRight");
     this.numberScorll = inner.clientHeight / 3;
-    this.vueSeamlessScroll = document.getElementById('vueSeamlessScroll');
+    this.vueSeamlessScroll = document.getElementById("vueSeamlessScroll");
     let that = this;
     this.vueSeamlessScroll.addEventListener("mousedown", function (event) {
       that.moveFlag = true;
@@ -302,7 +412,8 @@ export default {
       that.vueSeamlessScrollXPos = that.$refs.vueSeamlessScroll.xPos;
     });
     this.vueSeamlessScroll.addEventListener("mousemove", function (event) {
-      if (that.moveFlag) { // 判断是否是鼠标按下滚动元素区域
+      if (that.moveFlag) {
+        // 判断是否是鼠标按下滚动元素区域
         let moveX = event.clientX; // 获取移动的x轴
         let scrollX = moveX - that.downX; // 当前移动的x轴下标减去刚点击下去的x轴下标得到鼠标滑动距离
         let xPos = that.vueSeamlessScrollXPos + scrollX;
@@ -326,37 +437,26 @@ export default {
       that.moveFlag = false;
     });
 
-    this.initList()
-  }
-  ,
-  beforeCreate() {
-  }
-  , //生命周期 - 创建之前
-  beforeMount() {
-  }
-  , //生命周期 - 挂载之前
-  beforeUpdate() {
-  }
-  , //生命周期 - 更新之前
-  updated() {
-  }
-  , //生命周期 - 更新之后
+    this.initList();
+
+    document.title = this.userLanguage == "1" ? "首页" : "Home";
+  },
+  beforeCreate() {}, //生命周期 - 创建之前
+  beforeMount() {}, //生命周期 - 挂载之前
+  beforeUpdate() {}, //生命周期 - 更新之前
+  updated() {}, //生命周期 - 更新之后
   beforeDestroy() {
-    window.removeEventListener('mousewheel', this.handleWheel, { passive: false })
-  }
-  , //生命周期 - 销毁之前
-  destroyed() {
-  }
-  , //生命周期 - 销毁完成
-  activated() {
-  }
-  , //如果页面有keep-alive缓存功能，这个函数会触发
-}
+    window.removeEventListener("mousewheel", this.handleWheel, {
+      passive: false,
+    });
+  }, //生命周期 - 销毁之前
+  destroyed() {}, //生命周期 - 销毁完成
+  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+};
 </script>
 
 <style scoped lang="less">
 /deep/img {
-
   -webkit-user-drag: none;
 
   -moz-user-drag: none;
@@ -364,7 +464,6 @@ export default {
   -ms-user-drag: none;
 
   user-drag: none;
-
 }
 
 body {
@@ -383,14 +482,14 @@ body {
   .subtitle {
     font-weight: 300;
     font-size: 24px;
-    color: #E98225;
+    color: #e98225;
     text-align: center;
   }
 
   .title {
     font-weight: bold;
     font-size: 52px;
-    color: #172C47;
+    color: #172c47;
     text-align: center;
     margin-top: 20px;
   }
@@ -409,51 +508,77 @@ body {
     }
 
     .info-right {
-      width: 523px;
+      /* width: 523px;
       margin-left: 40px;
-      border-top: 2px solid rgba(3, 73, 158, 0.11);
+      border-top: 2px solid rgba(3, 73, 158, 0.11); */
+      display: flex;
+      width: 1200px;
+      margin: 0 auto;
+      justify-content: space-between;
 
       .info-item {
-        height: 136px;
+        width: 385px !important;
+        height: 334px !important;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        border-bottom: 2px solid rgba(3, 73, 158, 0.11);
         cursor: pointer;
+        box-sizing: border-box;
+        padding: 40px 40px 0 40px;
+        position: relative;
+        transition: ease-in-out 0.5s;
 
         .info-title {
           font-weight: 600;
-          font-size: 32px;
-          color: #172C47;
+          font-size: 50px;
+          color: #172c47;
           margin-bottom: 10px;
           width: fit-content;
-          height: 44px;
         }
 
         .info-line {
           width: 100%;
           height: 6px;
+          position: relative;
         }
 
         .info-line div {
+          position: absolute;
+          left: 0;
+          top: 0;
           width: 100%;
           height: 3px;
-          background-color: #FF9C00;
+          background-color: #ff9c00;
           border-radius: 20px;
-          margin-top: 2px;
+          margin-top: 20px;
         }
 
         .info-subTitle {
-          font-weight: 300;
-          font-size: 20px;
-          color: #172C47;
-          opacity: 50%;
+          font-weight: 500;
+          font-size: 24px;
+          color: #172c47;
+          margin-top: 40px;
+        }
+
+        .homeRightArrow-area {
+          position: absolute;
+          bottom: 24px;
         }
 
         .homeRightArrow {
           width: 60px;
           height: 60px;
+          transform: rotate(90deg);
         }
+      }
+
+      .info-item:hover {
+        margin-top: -25px;
+      }
+
+      .info-item:not(:hover) {
+        transition: ease-in-out 0.5s;
+        margin-top: 0;
       }
     }
   }
@@ -461,10 +586,12 @@ body {
 
 .content-two {
   /* height: 950px; */
-  background: linear-gradient(180deg, #121212 0%, #1A3461 100%);
+  background: linear-gradient(180deg, #121212 0%, #1a3461 100%);
   padding-top: 130px;
 
   .content-info {
+    width: 1200px;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     height: 1740px;
@@ -504,7 +631,12 @@ body {
         .title {
           font-size: 110px;
           font-weight: bold;
-          background: linear-gradient(-90deg, #03499E 30%, #F9C99F 59%, #FF9C00 100%);
+          background: linear-gradient(
+            -90deg,
+            #03499e 30%,
+            #f9c99f 59%,
+            #ff9c00 100%
+          );
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
@@ -513,7 +645,7 @@ body {
         .subTitle {
           font-weight: 300;
           font-size: 20px;
-          color: #FFFFFF;
+          color: #ffffff;
           margin: 20px 0 100px 0;
         }
       }
@@ -527,14 +659,14 @@ body {
   .title {
     font-weight: bold;
     font-size: 56px;
-    color: #172C47;
+    color: #172c47;
     margin-bottom: 15px;
   }
 
   .subTitle {
     font-weight: 300;
     font-size: 22px;
-    color: #172C47;
+    color: #172c47;
   }
 
   .alumni-scroll {
@@ -567,7 +699,7 @@ body {
       .dialog-content {
         font-weight: 500;
         font-size: 24px;
-        color: #172C47;
+        color: #172c47;
         position: absolute;
         width: 570px;
         height: 224px;
@@ -613,7 +745,7 @@ body {
     .alumni-info {
       font-weight: 500;
       font-size: 32px;
-      color: #172C47;
+      color: #172c47;
       line-height: 42px;
     }
 
@@ -621,7 +753,7 @@ body {
       margin-top: 25px;
       font-weight: 300;
       font-size: 20px;
-      color: #172C47;
+      color: #172c47;
     }
   }
 }

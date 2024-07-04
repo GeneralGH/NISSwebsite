@@ -307,6 +307,7 @@ export default {
     },
     watch: {
         userLanguage(newVal) {
+            document.title = newVal == "1" ? "咨询表单" : "consultationForm"
         }
     },
     //方法集合
@@ -352,6 +353,7 @@ export default {
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
         this.$refs.sDatePicker.initDate()
+        document.title = this.userLanguage == "1" ? "咨询表单" : "consultationForm"
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前

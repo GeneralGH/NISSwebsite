@@ -22,16 +22,16 @@
             <div class="title">{{ userLanguage == '1' ? '项目介绍' : 'Program Introduction' }}</div>
             <div class="line"></div>
             <div class="info-content p-space">
-                {{ userLanguage == '1' ? '暨南大学新加坡MBA硕士学位项目（简称“暨南大学新加坡MBA项目”） 是暨南大学在新加坡的中文工商管理硕士（MBA）教学项目，由暨南大学管理学院与南洋社会科学学院合作举办。' : "Jinan University (JNU) is one of the first national institutions of higher education in China to develop business education" }}
+                {{ userLanguage == '1' ? '暨南大学新加坡MBA硕士学位项目（简称“暨南大学新加坡MBA项目”） 是暨南大学在新加坡的中文工商管理硕士（MBA）教学项目，由暨南大学管理学院与南洋社会科学学院合作举办。' : "Jinan University (JNU) is one of the first national institutions of higher education in China to develop business education. Business is also a strong discipline that JNU is proud of. In 1993, JNU became the first institution in South China to offer an MBA education." }}
             </div>
             <!-- <div class="info-content bigTitle p-space">
                 {{ userLanguage == '1' ? '“始有暨南，便有商科”' : 'Business is also a strong discipline that JNU is proud of' }}
             </div> -->
             <div class="info-content p-space">
-                {{ userLanguage == '1' ? '项目面向华侨、港澳台地区人士和外籍人士招生，采取“申请审核制”，即考生报名并提交学校规定的申请材料；材料审核合格者，无需参加笔试，可径直参加面试；学校择优录取。' : 'In 1993, JNU became the first institution in South China to offer an MBA education' }}
+                {{ userLanguage == '1' ? '项目面向华侨、港澳台地区人士和外籍人士招生，采取“申请审核制”，即考生报名并提交学校规定的申请材料；材料审核合格者，无需参加笔试，可径直参加面试；学校择优录取。' : 'JNU MBA Program aims to provide quality education on business management for young managers on the uptrend in their careers, and help them understand the culture of Chinese business, expand their developing space and improve their leadership and problem-solving capacity.' }}
             </div>
             <div class="info-content p-space">
-                {{ userLanguage == '1' ? '暨南大学新加坡中文MBA项目分春、秋两季招生，分别在每年3月、9月入学。项目在新加坡招生和授课，中文教学，2年学制，在职学习。毕业后授予暨南大学工商管理硕士学位证书和硕士研究生毕业证书，学历学位在中国及海外均被认可。' : 'JNU MBA Program aims to provide quality education on business management for young managers on the uptrend in their careers, and help them understand the culture of Chinese business, expand their developing space and improve their leadership and problem-solving capacity。JNU MBA Program was awarded “2014 China’s Most Valuable Part-time MBA Programme” by Forbes Chinese Edition。' }}
+                {{ userLanguage == '1' ? '暨南大学新加坡中文MBA项目分春、秋两季招生，分别在每年3月、9月入学。项目在新加坡招生和授课，中文教学，2年学制，在职学习。毕业后授予暨南大学工商管理硕士学位证书和硕士研究生毕业证书，学历学位在中国及海外均被认可。' : 'JNU MBA Program was awarded “2014 China’s Most Valuable Part-time MBA Programme” by Forbes Chinese Edition.' }}
             </div>
             <div class="two-imgs">
                 <div class="img-item">
@@ -53,12 +53,12 @@
             <div class="title">{{ userLanguage == '1' ? '项目优势' : 'Program Introduction' }}</div>
             <div class="line"></div>
             <div class="info">
-                · {{ userLanguage == '1' ? '中文教学' : 'Study in Singapore, Enjoy Special Application Policies for Hong Kong, Macau, Taiwan, and Overseas Chinese' }}<br>
+                · {{ userLanguage == '1' ? '中文教学' : 'Taught in Chinese' }}<br>
                 · {{ userLanguage == '1' ? '新加坡就读，享受港澳台华侨外特殊申请政策' : 'Study in Singapore, Enjoy Special Application Policies for Hong Kong, Macau, Taiwan, and Overseas Chinese' }}<br>
                 · {{ userLanguage == '1' ? '免中国MBA联考' : 'No Chinese MBA Entrance Exam Required' }}<br>
                 · {{ userLanguage == '1' ? '无英语入学要求' : 'No English Admission Requirements' }}<br>
                 · {{ userLanguage == '1' ? '大专文凭可报考' : 'Associate Degree Holders Eligible to Apply' }}<br>
-                · {{ userLanguage == '1' ? '时间灵活，集中授课' : 'Flexible and Intensive Course Schedule' }}<br>
+                · {{ userLanguage == '1' ? '时间灵活，集中授课' : 'Flexible Schedule, Intensive Classes' }}<br>
                 · {{ userLanguage == '1' ? '1+1+N+2全面赋能职业发展' : 'Gain Comprehensive Empowerment for Career Development with 1+1+N+2' }}
             </div>
             <div class="four-area">
@@ -67,24 +67,24 @@
         </div>
 
         <div class="content-item" id="options1-4">
-            <div class="title">{{ userLanguage == '1' ? '海外模块' : '海外模块' }}</div>
+            <div class="title">{{ userLanguage == '1' ? '海外模块' : 'Overseas Module' }}</div>
             <div class="line"></div>
             <div class="info">
-                国际深度交流学习项目。每年暨南大学MBA的学生们都有机会申请至海外合作高校开展3 – 6个月的学习交流，部分交流院校提供奖学金名额。
+                {{ userLanguage == '1' ? '国际深度交流学习项目。每年暨南大学MBA的学生们都有机会申请至海外合作高校开展3 – 6个月的学习交流，部分交流院校提供奖学金名额。' : 'International Immersion Programs. Every year, MBA students at Jinan University can apply for exchange programs at overseas partner universities, lasting 3-6 months. Some of these partner institutions offer scholarship opportunities.' }}
             </div>
         </div>
 
         <div class="content-item" id="options1-5">
-            <div class="title">{{ userLanguage == '1' ? '学生画像' : '学生画像' }}</div>
+            <div class="title">{{ userLanguage == '1' ? '学生画像' : 'Student Profile' }}</div>
             <div class="line"></div>
             <div class="info">
-                · {{ userLanguage == '1' ? '平均年龄38.7岁' : '' }}<br>
-                · {{ userLanguage == '1' ? '平均工作年限16.7年' : '' }}<br>
-                · {{ userLanguage == '1' ? '来自20个不同专业' : '' }}<br>
-                · {{ userLanguage == '1' ? '43%有跨多国工作经历' : '' }}<br>
-                · {{ userLanguage == '1' ? '38%有技术、工程背景' : '' }}<br>
-                · {{ userLanguage == '1' ? '80%任公司管理岗' : '' }}<br>
-                · {{ userLanguage == '1' ? '52%拥有自己的企业' : '' }}
+                · {{ userLanguage == '1' ? '平均年龄38.7岁' : 'Average Age: 38.7 years' }}<br>
+                · {{ userLanguage == '1' ? '平均工作年限16.7年' : 'Average Work Experience: 16.7 years' }}<br>
+                · {{ userLanguage == '1' ? '来自20个不同专业' : 'Diverse Backgrounds: From 20 different professional fields' }}<br>
+                · {{ userLanguage == '1' ? '43%有跨多国工作经历' : 'International Experience: 43% have worked in multiple countries' }}<br>
+                · {{ userLanguage == '1' ? '38%有技术、工程背景' : 'Technical Background: 38% come from technology or engineering sectors' }}<br>
+                · {{ userLanguage == '1' ? '80%任公司管理岗' : 'Management Roles: 80% hold managerial positions' }}<br>
+                · {{ userLanguage == '1' ? '52%拥有自己的企业' : 'Entrepreneurial Spirit: 52% own their own businesses' }}
             </div>
         </div>
     </div>
