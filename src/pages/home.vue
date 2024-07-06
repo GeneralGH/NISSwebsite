@@ -27,8 +27,13 @@
           <img src="../../assets/home/contentOne.png" alt="">
         </div> -->
         <div class="info-right">
-          <div class="info-item module-card" v-for="(item, index) in infoList" @mouseover="isHovered = index"
-            @mouseleave="isHovered = -1" @click="jump(item, index)">
+          <div
+            class="info-item module-card"
+            v-for="(item, index) in infoList"
+            @mouseover="isHovered = index"
+            @mouseleave="isHovered = -1"
+            @mouseenter="jump(item, index)"
+          >
             <div style="width: 100%">
               <div class="info-title">
                 <div>{{ userLanguage == "1" ? item.title : item.titleEn }}</div>
@@ -36,16 +41,24 @@
                   <div v-show="isHovered == index"></div>
                 </div>
               </div>
-              <div class="info-subTitle" v-html="userLanguage == '1'
-                  ? item.subTitle.replace('\n', '<br/>')
-                  : item.subTitleEn.replace('\n', '<br/>')
-                ">
+              <div
+                class="info-subTitle"
+                v-html="
+                  userLanguage == '1'
+                    ? item.subTitle.replace('\n', '<br/>')
+                    : item.subTitleEn.replace('\n', '<br/>')
+                "
+              >
                 <!-- {{ userLanguage == '1' ? item.subTitle : item.subTitleEn }} -->
               </div>
             </div>
             <div class="homeRightArrow-area">
-              <img v-show="isHovered == index" class="homeRightArrow" src="../../assets/home/homeRightArrow.png"
-                alt="" />
+              <img
+                v-show="isHovered == index"
+                class="homeRightArrow"
+                src="../../assets/home/homeRightArrow.png"
+                alt=""
+              />
             </div>
           </div>
         </div>
@@ -54,26 +67,44 @@
 
     <div class="content-two" ref="contentTwo">
       <div class="content-info" id="content-info">
-        <!-- <t-affix> -->
         <div class="info-left">
-          <div class="title">
+          <div class="title" v-show="currentScroll == 0">
             {{
               userLanguage == "1"
                 ? "成为最具价值的终身学习平台"
                 : "To be an invaluable lifelong learning platform"
             }}
           </div>
-          <div class="subTitle">
-            {{ userLanguage == '2' ? '成为最具价值的终身学习平台' : 'To be an invaluable lifelong learning platform' }}
+          <div class="subTitle" v-show="currentScroll == 0">
+            {{
+              userLanguage == "2"
+                ? "成为最具价值的终身学习平台"
+                : "To be an invaluable lifelong learning platform"
+            }}
           </div>
-          <img src="../../assets/home/contentTwo.png" alt="" />
+
+          <div class="title" v-show="currentScroll == 2">
+            {{ userLanguage == "1" ? "高级管理教育" : "Executive Education" }}
+          </div>
+          <div class="subTitle" v-show="currentScroll == 2">
+            {{ userLanguage == "2" ? "高级管理教育" : "Executive Education" }}
+          </div>
+
+          <img
+            :src="
+              currentScroll == 0
+                ? '../../assets/home/mba.png'
+                : '../../assets/home/highEdu.png'
+            "
+            alt=""
+          />
         </div>
-        <!-- </t-affix> -->
         <div class="info-right" id="contentTwoRight" ref="contentTwoRight">
-          <!-- <div class="info-item"
-            :style="'transition: opacity 1s ease-in-out;' + (item.isOpacity ? 'opacity: 0.1; ' : 'opacity: 1; ')"
-            v-for="(item, index) in infoTwoList" :key="index"> -->
-          <div class="info-item" v-for="(item, index) in infoTwoList" :key="index">
+          <div
+            class="info-item"
+            v-for="(item, index) in scrollList"
+            :key="index"
+          >
             <div class="title">
               {{ userLanguage == "1" ? item.title : item.titleEn }}
             </div>
@@ -81,7 +112,6 @@
               {{ userLanguage == "1" ? item.subTitle : item.subTitleEn }}
             </div>
           </div>
-          <!-- <div class="fillDiv"></div> -->
         </div>
       </div>
     </div>
@@ -93,11 +123,19 @@
       <div class="subTitle">Their Stories</div>
 
       <div class="alumni-scroll">
-        <vue-seamless-scroll :data="alumniList" :class-option="classOption" id="vueSeamlessScroll"
-          ref="vueSeamlessScroll">
+        <vue-seamless-scroll
+          :data="alumniList"
+          :class-option="classOption"
+          id="vueSeamlessScroll"
+          ref="vueSeamlessScroll"
+        >
           <div class="alumni-item" v-for="(item, index) in alumniList">
             <div v-show="index % 2 === 0" style="position: relative">
-              <img class="dialog-bg" src="../../assets/home/topDialog.png" alt="" />
+              <img
+                class="dialog-bg"
+                src="../../assets/home/topDialog.png"
+                alt=""
+              />
               <div class="dialog-content dialog-content-top">
                 <div>{{ userLanguage == "1" ? item.wrote : item.wroteEn }}</div>
               </div>
@@ -111,7 +149,12 @@
                 {{ userLanguage == "1" ? item.grade : item.gradeEn }}
               </div>
             </div>
-            <t-image class="alumni-img" :src="item.imgPath" fit="cover" position="center">
+            <t-image
+              class="alumni-img"
+              :src="item.imgPath"
+              fit="cover"
+              position="center"
+            >
               <template #loading>
                 {{ "" }}
               </template>
@@ -127,7 +170,11 @@
               </div>
             </div>
             <div v-show="index % 2 !== 0" style="position: relative">
-              <img class="dialog-bg" src="../../assets/home/buttonDialog.png" alt="" />
+              <img
+                class="dialog-bg"
+                src="../../assets/home/buttonDialog.png"
+                alt=""
+              />
               <div class="dialog-content dialog-content-bottom">
                 <div>{{ userLanguage == "1" ? item.wrote : item.wroteEn }}</div>
               </div>
@@ -151,6 +198,8 @@ export default {
   data() {
     //这里存放数据
     return {
+      scrollList: [],
+      currentScroll: 0,
       infoList: [
         {
           title: "MBA",
@@ -244,7 +293,7 @@ export default {
           titleEn: "Century-old Prestigious School",
           subTitle: "全方位参与",
           subTitleEn: "The Highest Institution for Overseas Chinese",
-        }
+        },
       ],
       alumniList: [],
       isHovered: -1,
@@ -364,18 +413,11 @@ export default {
     },
 
     jump(item, index) {
-      console.log(item)
-      if (index == 2) {
-        return
-      }
-      /* if (!path) {
+      if (index == 1) {
         return;
       }
-      this.$router.push(path);
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth", // 可选，使用平滑滚动效果
-      }); */
+      this.currentScroll = index;
+      this.scrollList = index ? this.highEduList : this.infoTwoList;
     },
 
     initList() {
@@ -393,7 +435,7 @@ export default {
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() { },
+  created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     const windowHeight = window.innerHeight;
@@ -443,18 +485,20 @@ export default {
     this.initList();
 
     document.title = this.userLanguage == "1" ? "首页" : "Home";
+
+    this.scrollList = this.infoTwoList;
   },
-  beforeCreate() { }, //生命周期 - 创建之前
-  beforeMount() { }, //生命周期 - 挂载之前
-  beforeUpdate() { }, //生命周期 - 更新之前
-  updated() { }, //生命周期 - 更新之后
+  beforeCreate() {}, //生命周期 - 创建之前
+  beforeMount() {}, //生命周期 - 挂载之前
+  beforeUpdate() {}, //生命周期 - 更新之前
+  updated() {}, //生命周期 - 更新之后
   beforeDestroy() {
     window.removeEventListener("mousewheel", this.handleWheel, {
       passive: false,
     });
   }, //生命周期 - 销毁之前
-  destroyed() { }, //生命周期 - 销毁完成
-  activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
+  destroyed() {}, //生命周期 - 销毁完成
+  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 
@@ -597,13 +641,14 @@ body {
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    height: 1740px;
+    /*height: 1740px;*/
 
     .info-left {
       color: white;
       height: 630px;
       position: sticky;
       top: 200px;
+      flex: 1;
 
       .title {
         font-size: 40px;
@@ -628,16 +673,21 @@ body {
       margin-top: -30px;
       // height: 45rem;
       // overflow-y: scroll;
-      overflow-y: hidden;
+      /* overflow-y: hidden; */
+      width: 50%;
+      word-wrap: normal;
+      word-break: break-all;
 
       .info-item {
         .title {
           font-size: 110px;
           font-weight: bold;
-          background: linear-gradient(-90deg,
-              #03499e 30%,
-              #f9c99f 59%,
-              #ff9c00 100%);
+          background: linear-gradient(
+            -90deg,
+            #03499e 30%,
+            #f9c99f 59%,
+            #ff9c00 100%
+          );
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;

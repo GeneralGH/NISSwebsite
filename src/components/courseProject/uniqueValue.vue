@@ -180,7 +180,7 @@ export default {
     .networkItem {
         width: 205px;
         text-align: center;
-        width: 33.33%;
+        /* width: 33.33%; */
         margin-bottom: 50px;
 
         .netwoek-value {

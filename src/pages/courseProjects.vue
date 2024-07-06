@@ -123,7 +123,7 @@ export default {
               id: "options1-3",
             },
             {
-              name: "海外模块",
+              name: "海外游学",
               nameEn: "Overseas Module",
               id: "options1-4",
             },
