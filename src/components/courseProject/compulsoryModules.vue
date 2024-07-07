@@ -225,27 +225,34 @@ export default {
 .module-card {
     margin-right: 20px;
     margin-bottom: 20px;
-    padding: 27px 0 20px 30px;
+    padding: 27px 0px 20px 0px;
 }
 
 .card-name {
     text-align: center;
     font-weight: bold;
-    font-size: 28px;
+    font-size: 26px;
     color: #172C47;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
+    line-height: 30px;
 }
 
 .card-info-list {
     display: flex;
-    align-items: center;
-    margin-bottom: 5px;
+    /* align-items: baseline; */
+    margin-bottom: 22px;
     font-size: 20px;
     color: #172C47;
+    position: relative;
+    padding-left: 56px;
+    line-height: 26px;
 
     img {
+        position: absolute;
         width: 36px;
         height: 36px;
+        left: 20px;
+        top: -5px;
     }
 }
 </style>

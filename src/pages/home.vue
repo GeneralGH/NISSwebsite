@@ -51,6 +51,7 @@
               >
                 <!-- {{ userLanguage == '1' ? item.subTitle : item.subTitleEn }} -->
               </div>
+              <div class="line" v-show="isHovered == index"></div>
             </div>
             <div class="homeRightArrow-area">
               <img
@@ -574,6 +575,16 @@ body {
         padding: 40px 40px 0 40px;
         position: relative;
         transition: ease-in-out 0.5s;
+
+        .line {
+          position: absolute;
+          width: 2px;
+          height: 144px;
+          background: #171717;
+          bottom: -160px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
 
         .info-title {
           font-weight: 600;

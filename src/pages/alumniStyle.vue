@@ -1,13 +1,24 @@
 <!--  -->
 <template>
-    <div>
-        <pageHeader />
-        <div class="page-area">
-            <div class="party">
-                <div class="party-title">{{ userLanguage == '1' ? '校友网络' : 'Alumni Network' }}</div>
-                <div class="party-line"></div>
+  <div>
+    <pageHeader />
+    <div class="page-area">
+      <div class="party">
+        <div class="party-title">
+          {{ userLanguage == "1" ? "校友网络" : "Alumni Network" }}
+        </div>
+        <div class="party-line"></div>
 
-                <div class="party-content">
+        <div class="party-content">
+          <div>
+            <img class="content-image" :src="JNUniversityNetwork" alt="" />
+            <div class="content-p">
+              {{ userLanguage == '1' ? '自南洋社会科学学院成立以来，每年有来自超过20多个行业的学生选择加入我们。我们的校友网络遍布世界各地，超过大半的校友在大型跨国公司任职，超过20%的校友创立了自己的企业。他们秉承着学院的价值观念，不断追求卓越，在各个经济领域展现出卓越才能，创造价值并服务社会。' : '暂无英文' }}
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="party-content">
                     <div class="content-title">{{ userLanguage == '1' ? '暨南大学校友网络' : 'Jinan University Alumni Network' }}</div>
                     <div class="content-area">
                         <div><t-image class="content-image" :src="JNUniversityNetwork" fit="cover" position="center" :lazy="true" /></div>
@@ -45,180 +56,190 @@
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> -->
+      </div>
 
-            <div class="party">
-                <div class="party-title">{{ userLanguage == '1' ? '杰出校友' : 'Distinguished Alumni' }}</div>
-                <div class="party-line"></div>
-
-                <div class="party-content">
-                    <OutstandingAlumni />
-                </div>
-            </div>
-
-            <div class="party">
-                <div class="party-title">{{ userLanguage == '1' ? '校友动态' : 'Alumni Updates' }}</div>
-                <div class="party-line"></div>
-
-                <div class="party-content">
-                    <News :list="list" @getMore="getMore" :isEnd="listQuery.current == totalPage" />
-                </div>
-            </div>
+      <div class="party">
+        <div class="party-title">
+          {{ userLanguage == "1" ? "杰出校友" : "Distinguished Alumni" }}
         </div>
-        <PageFooter />
+        <div class="party-line"></div>
+
+        <div class="party-content">
+          <OutstandingAlumni />
+        </div>
+      </div>
+
+      <div class="party">
+        <div class="party-title">
+          {{ userLanguage == "1" ? "校友动态" : "Alumni Updates" }}
+        </div>
+        <div class="party-line"></div>
+
+        <div class="party-content">
+          <News
+            :list="list"
+            @getMore="getMore"
+            :isEnd="listQuery.current == totalPage"
+          />
+        </div>
+      </div>
     </div>
+    <PageFooter />
+  </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import News from '../components/common/news.vue'
-import OutstandingAlumni from '../components/alumniStyle/outstandingAlumni.vue'
-import news from '../api/news';
-import JNUniversityNetwork from '../../assets/alumniStyle/JNUniversityNetwork.png'
-import SingapoUniversityNetwork from '../../assets/alumniStyle/SingapoUniversityNetwork.png'
+import News from "../components/common/news.vue";
+import OutstandingAlumni from "../components/alumniStyle/outstandingAlumni.vue";
+import news from "../api/news";
+import JNUniversityNetwork from "../../assets/alumniStyle/JNUniversityNetwork.png";
+import SingapoUniversityNetwork from "../../assets/alumniStyle/SingapoUniversityNetwork.png";
 
 export default {
-    //import引入的组件需要注入到对象中才能使用
-    components: { News, OutstandingAlumni },
-    data() {
-        //这里存放数据
-        return {
-            listQuery: {
-                current: 1,
-                size: 10,
-                type: 2
-            },
-            list: [],
-            JNUniversityNetwork,
-            SingapoUniversityNetwork,
-            totalPage: 1,
-            textOne: {
-                text: '作为杰出企业家 、商界精英、以及新生代经济颠覆力量的共同选择 ，暨南大学校友遍布世界各地、各行各业。目前，在五大洲共有132个校友组织 ，其中海外校友组织59个。',
-                textEn: 'As a common choice for outstanding entrepreneurs, business elites, and the emerging forces of economic disruption, Jinan University alumni are spread across the globe and across various industries. Currently, there are 132 alumni organizations on five continents, including 59 overseas alumni organizations.'
-            },
-            textTwo: {
-                text: '暨南校友网络恪守 “忠信笃敬” 的校训，互助共进，持续为学员、校友的事业长远发展和人生价值实现提供着强有力的支持与动力。',
-                textEn: 'Adhering to the motto of "Loyalty, Integrity, Courtesy," Jinan University alumni network supports and empowers each other, continuously contributing strong support and motivation for the long-term career development and life values realization of students and alumni.'
-            }
-        };
+  //import引入的组件需要注入到对象中才能使用
+  components: { News, OutstandingAlumni },
+  data() {
+    //这里存放数据
+    return {
+      listQuery: {
+        current: 1,
+        size: 10,
+        type: 2,
+      },
+      list: [],
+      JNUniversityNetwork,
+      SingapoUniversityNetwork,
+      totalPage: 1,
+      textOne: {
+        text: "作为杰出企业家 、商界精英、以及新生代经济颠覆力量的共同选择 ，暨南大学校友遍布世界各地、各行各业。目前，在五大洲共有132个校友组织 ，其中海外校友组织59个。",
+        textEn:
+          "As a common choice for outstanding entrepreneurs, business elites, and the emerging forces of economic disruption, Jinan University alumni are spread across the globe and across various industries. Currently, there are 132 alumni organizations on five continents, including 59 overseas alumni organizations.",
+      },
+      textTwo: {
+        text: "暨南校友网络恪守 “忠信笃敬” 的校训，互助共进，持续为学员、校友的事业长远发展和人生价值实现提供着强有力的支持与动力。",
+        textEn:
+          'Adhering to the motto of "Loyalty, Integrity, Courtesy," Jinan University alumni network supports and empowers each other, continuously contributing strong support and motivation for the long-term career development and life values realization of students and alumni.',
+      },
+    };
+  },
+  computed: {
+    userLanguage() {
+      return this.$store.state.userLanguage;
     },
-    computed: {
-        userLanguage() {
-            return this.$store.state.userLanguage;
-        }
+  },
+  watch: {
+    userLanguage(newVal) {
+      document.title = newVal == "1" ? "校友风采" : "Alumni";
     },
-    watch: {
-        userLanguage(newVal) {
-            document.title = newVal == "1" ? "校友风采" : "Alumni";
-        }
+  },
+  //方法集合
+  methods: {
+    initList() {
+      this.$request
+        .post(news.getNewsListPageUrl, this.listQuery)
+        .then((res) => {
+          res.data.data.list = res.data.data.list.map((item) => {
+            return {
+              ...item,
+              url: JSON.parse(item.annex).url,
+            };
+          });
+          this.list = this.list.length
+            ? this.list.concat(res.data.data.list)
+            : res.data.data.list;
+          this.totalPage = res.data.data.totalPage;
+        });
     },
-    //方法集合
-    methods: {
-        initList() {
-            this.$request.post(news.getNewsListPageUrl, this.listQuery)
-                .then(res => {
-                    res.data.data.list = res.data.data.list.map((item) => {
-                        return {
-                            ...item,
-                            url: JSON.parse(item.annex).url
-                        }
-                    })
-                    this.list = this.list.length ? this.list.concat(res.data.data.list) : res.data.data.list
-                    this.totalPage = res.data.data.totalPage
-                })
-        },
 
-        getMore() {
-            this.listQuery.current += 1
-            this.initList()
-        }
+    getMore() {
+      this.listQuery.current += 1;
+      this.initList();
     },
-    //生命周期 - 创建完成（可以访问当前this实例）
-    created() {
-
-    },
-    //生命周期 - 挂载完成（可以访问DOM元素）
-    mounted() {
-        this.initList()
-        document.title = this.userLanguage == "1" ? "校友风采" : "Alumni";
-    },
-    beforeCreate() { }, //生命周期 - 创建之前
-    beforeMount() { }, //生命周期 - 挂载之前
-    beforeUpdate() { }, //生命周期 - 更新之前
-    updated() { }, //生命周期 - 更新之后
-    beforeDestroy() { }, //生命周期 - 销毁之前
-    destroyed() { }, //生命周期 - 销毁完成
-    activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
-}
+  },
+  //生命周期 - 创建完成（可以访问当前this实例）
+  created() {},
+  //生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {
+    this.initList();
+    document.title = this.userLanguage == "1" ? "校友风采" : "Alumni";
+  },
+  beforeCreate() {}, //生命周期 - 创建之前
+  beforeMount() {}, //生命周期 - 挂载之前
+  beforeUpdate() {}, //生命周期 - 更新之前
+  updated() {}, //生命周期 - 更新之后
+  beforeDestroy() {}, //生命周期 - 销毁之前
+  destroyed() {}, //生命周期 - 销毁完成
+  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+};
 </script>
 
 <style scoped lang="less">
 .content-area {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    .content-image {
-        width: 444px;
-        height: 254px;
-        display: block;
-        border-radius: 23px;
-    }
-
-    .content-p {
-        width: 642px;
-    }
+  .content-p {
+    width: 642px;
+  }
+}
+.content-image {
+  width: 1120px;
+  height: 634px;
+  display: block;
+  margin-bottom: 30px;
 }
 /deep/.page-area {
-    width: 1200px;
-    margin: 0 auto;
-    padding: 80px 0;
+  width: 1200px;
+  margin: 0 auto;
+  padding: 80px 0;
 
-    .party {
-        margin-bottom: 80px;
-        color: #172C47;
+  .party {
+    margin-bottom: 80px;
+    color: #172c47;
 
-        .party-title {
-            font-weight: 600;
-            font-size: 52px;
-            margin-bottom: 22px;
-        }
-
-        .party-line {
-            width: 100%;
-            height: 1px;
-            background-color: #03499E;
-            opacity: 0.11;
-            margin-bottom: 60px;
-        }
-
-        .content-line {
-            margin: 30px 0 !important;
-        }
-
-        .party-content {
-            box-sizing: border-box;
-            padding: 0 40px;
-            font-weight: 500;
-            font-size: 24px;
-            line-height: 43px;
-
-            p {
-                font-weight: 500;
-                font-size: 24px;
-                line-height: 43px;
-                margin-top: 0;
-            }
-
-            .content-title {
-                font-weight: bold;
-                font-size: 28px;
-                line-height: 34px;
-                margin-top: 50px;
-                margin-bottom: 30px;
-            }
-        }
+    .party-title {
+      font-weight: 600;
+      font-size: 52px;
+      margin-bottom: 22px;
     }
+
+    .party-line {
+      width: 100%;
+      height: 1px;
+      background-color: #03499e;
+      opacity: 0.11;
+      margin-bottom: 60px;
+    }
+
+    .content-line {
+      margin: 30px 0 !important;
+    }
+
+    .party-content {
+      box-sizing: border-box;
+      padding: 0 40px;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 43px;
+
+      p {
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 43px;
+        margin-top: 0;
+      }
+
+      .content-title {
+        font-weight: bold;
+        font-size: 28px;
+        line-height: 34px;
+        margin-top: 50px;
+        margin-bottom: 30px;
+      }
+    }
+  }
 }
 </style>
