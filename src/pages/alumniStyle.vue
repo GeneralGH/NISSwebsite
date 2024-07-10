@@ -61,7 +61,7 @@
 
       <div class="party">
         <div class="party-title">
-          {{ userLanguage == "1" ? "杰出校友" : "Distinguished Alumni" }}
+          {{ userLanguage == "1" ? "校友感言" : "Distinguished Alumni" }}
         </div>
         <div class="party-line"></div>
 

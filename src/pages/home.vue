@@ -91,13 +91,9 @@
             {{ userLanguage == "2" ? "高级管理教育" : "Executive Education" }}
           </div>
 
-          <img
-            :src="
-              currentScroll == 0
-                ? '../../assets/home/mba.png'
-                : '../../assets/home/highEdu.png'
-            "
-            alt=""
+          <img v-show="currentScroll == 0" src='../../assets/home/mba.png' alt="" />
+
+          <img v-show="currentScroll == 2" src='../../assets/home/highEdu.png' alt=""
           />
         </div>
         <div class="info-right" id="contentTwoRight" ref="contentTwoRight">
@@ -265,35 +261,33 @@ export default {
       highEduList: [
         {
           title: "1个平台",
-          titleEn: "A Platform",
+          titleEn: "1 Platform",
           subTitle: "国际化的高管教育运作平台",
-          subTitleEn: "Lifelong Learning Platform",
+          subTitleEn: "International Executive Education Platform",
         },
         {
           title: "2重优势",
-          titleEn: "Dual Diplomas",
+          titleEn: "2 Advantages",
           subTitle: "汇聚国际雄厚师资，优秀管理团队",
-          subTitleEn:
-            "“211 Project” University “Double First-Class” Construction University",
+          subTitleEn: "Bringing together international faculty and an excellent management team",
         },
         {
           title: "3大灵活性",
-          titleEn: "Triple Crown Accreditation",
+          titleEn: "3 Flexibilities",
           subTitle: "灵活教学方式、授课时间地点及师资匹配",
-          subTitleEn: "AACSB Accredited & AMBA Accredited & BGA",
+          subTitleEn: "Flexible teaching methods, schedules, locations, and faculty matching",
         },
         {
           title: "多维课程",
-          titleEn: "Nine Systems",
+          titleEn: "Multi-Dimensional Courses",
           subTitle: "定制化课程设计，满足企业战略需求",
-          subTitleEn:
-            "Integrating Chinese Business Culture with Modern Management Wisdom",
+          subTitleEn: "Customized course design to meet corporate strategic needs",
         },
         {
           title: "一站式服务",
-          titleEn: "Century-old Prestigious School",
+          titleEn: "One-Stop Service",
           subTitle: "全方位参与",
-          subTitleEn: "The Highest Institution for Overseas Chinese",
+          subTitleEn: "Comprehensive involvement",
         },
       ],
       alumniList: [],
@@ -659,7 +653,7 @@ body {
       height: 630px;
       position: sticky;
       top: 200px;
-      flex: 1;
+      /* flex: 1; */
 
       .title {
         font-size: 40px;
@@ -680,7 +674,7 @@ body {
     }
 
     .info-right {
-      margin-left: 150px;
+      margin-left: 70px;
       margin-top: -30px;
       // height: 45rem;
       // overflow-y: scroll;
