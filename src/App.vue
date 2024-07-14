@@ -22,7 +22,6 @@ export default Vue.extend({
     } else {
       this.$store.dispatch('setUserLanguage', userLanguage);
     }
-    console.log(this.$store.state.userLanguage)
   },
 });
 </script>
