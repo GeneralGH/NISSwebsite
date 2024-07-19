@@ -1,13 +1,14 @@
 <!--  -->
 <template>
     <div>
-        <div v-for="(item, index) in list" :key="item.id">
-            <div class="news-item" :style="index % 2 !== 0 ? 'flex-direction: row-reverse;' : ''" @click="toDetail(item)">
+        <div v-for="(item, index) in list" :key="item.id" class="news-box">
+            <div class="news-item" :style="index % 2 !== 0 ? 'flex-direction: row-reverse;' : ''"
+                @click="toDetail(item)">
                 <div class="news-info">
                     <div class="news-title">{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
                     <div class="news-content">
                         <div>
-                            {{ contentToStr(userLanguage == '1' ? item.content : item.contentEn)}}
+                            {{ contentToStr(userLanguage == '1' ? item.content : item.contentEn) }}
                         </div>
                     </div>
                     <div class="btn">
@@ -21,10 +22,36 @@
             </div>
             <div class="party-line"></div>
         </div>
-        <div class="getMore">
-            <t-button variant="text" theme="primary" size="large" @click="getMore">{{ isEnd ? userLanguage == '1' ? '没有更多了' : 'noMore' : userLanguage == '1' ? '加载更多' : 'getMore'}}</t-button>
+
+        <div class="news-mobile-box">
+            <div v-for="(item, index) in list" :key="item.id" class="mobile-item">
+            <div class="" :style="index % 2 !== 0 ? 'flex-direction: row-reverse;' : ''"
+                @click="toDetail(item)">
+                <div class="news-info">
+                    <div>
+                    <img class="mobile-cover" :src="userLanguage == '1' ? item.url : item.urlEn" alt="">
+                </div>
+                    <div class="mobile-title">{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
+                    <div class="mobile-content">
+                        <div>
+                            {{ contentToStr(userLanguage == '1' ? item.content : item.contentEn) }}
+                        </div>
+                    </div>
+              
+                </div>
+                <div class="btn mobile-btn">
+                        <div>{{ userLanguage == '1' ? '了解详情' : 'Learn More' }}</div>
+                        <img class="rightArrow" src="../../../assets/header/rightArrow.png" alt="">
+                    </div>
+            </div>
+            <div class="party-line"></div>
         </div>
-        
+        </div>
+        <div class="getMore">
+            <t-button variant="text" theme="primary" size="large" @click="getMore">{{ isEnd ? userLanguage == '1' ?
+                '没有更多了' : 'noMore' : userLanguage == '1' ? '加载更多' : 'getMore'}}</t-button>
+        </div>
+
     </div>
 </template>
 
@@ -99,11 +126,69 @@ export default {
 </script>
 
 <style scoped lang="less">
+@media (max-width: 720px) {
+    .news-mobile-box {
+        display: block !important;
+        .mobile-title{
+        width: 100%;
+        font-size: 36px;
+color: #172C47;
+line-height: 56px;
+font-weight: bold;
+        }
+      .mobile-item{
+        margin-bottom: 100px;
+      }
+      .party-line{
+        display: none;
+      }
+        .mobile-btn{
+            margin-top: 20px;
+        }
+        
+        .mobile-content{
+            display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  height: 3em; 
+  line-height: 1.5em; 
+  color: #172C47;
+  font-weight: 500;
+  margin-top: 20px;
+
+        }
+
+    }
+
+
+    .getMore{
+            display: none !important;
+        }
+    .news-box {
+        display: none !important;
+    }
+    .mobile-cover{
+        width: 100%;
+        height: 400px;
+        border-radius: 10px;
+    }
+
+}
+
+.news-mobile-box {
+    display: none;
+}
+
+
 .getMore {
     display: flex;
     justify-content: center;
     margin-top: 100px;
 }
+
 .party-line {
     margin: 80px 0;
 }
@@ -113,7 +198,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-
+ 
     .new-cover {
         width: 354px;
         height: 270px;

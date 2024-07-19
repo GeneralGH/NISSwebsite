@@ -54,6 +54,13 @@ export default {
 </script>
 
 <style scoped lang="less">
+@media(max-width:720px){
+ .teachingStaff-area{
+   width: 100% !important;
+   padding: 0 20px !important;
+   box-sizing: border-box;
+ }
+}
 /deep/.teachingStaff-area {
   width: 1200px;
   margin: 0 auto;

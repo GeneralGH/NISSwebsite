@@ -7,7 +7,7 @@
       <div class="content-body">
         <div class="leftSticky">
           <div class="leftList">
-            <div class="title">
+            <div class="title z-title">
               {{ userLanguage == "1" ? "暨南大学" : "JNU" }}<br />{{
                 userLanguage == "1" ? "新加坡MBA项目" : "MBA Program (Mandarin)"
               }}
@@ -191,9 +191,27 @@ export default {
     userLanguage(newVal) {
       document.title = newVal == "1" ? "课程项目" : "Programmes"
     },
+    '$route'(to, from) {
+     this.scrollToHash()
+    }
   },
   //方法集合
   methods: {
+    scrollToHash() {
+      this.isScrolling = true;
+      this.$nextTick(() => {
+        const hash = this.$route.hash;
+        const options = hash.replace('#', '');
+          const element = document.getElementById(options);
+          if(element){
+            element.style.scrollMarginTop = "110px"; 
+            element .scrollIntoView({ behavior: 'smooth' });
+  
+          }
+          this.isScrolling = false;
+        
+      });
+    },
     scrollToAnchor(anchor) {
         clearTimeout(this.scrollTimeout)
       this.isScrolling = false;
@@ -266,7 +284,7 @@ export default {
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    /* window.addEventListener('scroll', this.handleScroll); */
+    this.scrollToHash();
     if (this.$route.params.anchor) {
       let str = "options" + this.$route.params.anchor;
       const element = document.getElementById(str);
@@ -279,9 +297,11 @@ export default {
     document.title = this.userLanguage == "1" ? "课程项目" : "Programmes"
   },
   beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
+  beforeMount() {}, //生命周期 - 挂载之前f
   beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
+  updated() {
+    this.scrollToHash();
+  }, //生命周期 - 更新之后
   beforeDestroy() {
     /* window.removeEventListener('scroll', this.handleScroll); */
   }, //生命周期 - 销毁之前
@@ -291,6 +311,25 @@ export default {
 </script>
 
 <style scoped lang="less">
+@media(max-width:720px){
+
+  .pageBody {
+    width:100% !important;
+    padding:0 !important;
+  }
+  #options1 {
+    box-sizing: border-box !important;
+  }
+  .content-body{
+    width: 100% !important;
+  }
+  .leftSticky{
+    display: none !important;
+  }
+  .leftList{
+    display: none !important;
+  }
+}
 .leftList {
   /* width: 25%; */
 }

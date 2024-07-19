@@ -138,6 +138,26 @@ export default {
 </script>
 
 <style scoped lang="less">
+@media(max-width:720px){
+ .party{
+   width: 100% !important;
+ }
+  .search-bg{
+    width: 100px !important;
+    margin: 0 !important;
+  display: none !important;
+    >img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+  .initial-area{
+    width: 720px !important;
+  }
+  .party-line {
+    width: 100% !important;
+  }
+}
 .input {
     width: 100%;
     height: 60%;

@@ -272,7 +272,19 @@ export default {
 
 <style scoped lang="less">
 @import url("./index.css");
-
+@media(max-width:720px){
+  .module-card {
+    width:16rem !important;
+   margin-right: 0 !important;
+    margin-left: 1rem !important;
+  }
+  .info-content >p {
+    line-height: 20px !important;
+  }
+  .title {
+    margin-left: 70px;
+  }
+}
 .module-card-list {
   display: flex;
   flex-wrap: wrap;

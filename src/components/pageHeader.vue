@@ -4,6 +4,27 @@
     <!-- <img v-if="currentPath == '/consultationForm'" id="image" ref="headerBg"
             src="../../assets/header/aboutUsHeaderBg.png" class="header-bg"> -->
     <div class="header-nav-area">
+      <div class="header-mobile">
+        <div class="logo">
+          <img
+            style="display: block"
+            src="../../assets/header/logo.png"
+            alt=""
+          />
+        </div>
+        <div
+          class="header-mobile-bread"
+          style="width: 48px; height: 48px; margin-right: 35px"
+        >
+          <img
+            @click="showOverlay"
+            src="../../assets/menu.png"
+            width="48"
+            height="48"
+            alt=""
+          />
+        </div>
+      </div>
       <div class="header-content">
         <div class="logo">
           <img src="../../assets/header/logo.png" alt="" />
@@ -46,6 +67,58 @@
           </div>
         </div>
       </div>
+      <Overlay :visible.sync="isOverlayVisible">
+        <div style="color: #ffffff">
+          <div
+            style="
+              margin: 20px auto;
+              width: 85%;
+              box-sizing: border-box;
+              display: flex;
+              justify-content: space-between;
+            "
+          >
+            <div style="font-size: 30px" @click="goBack"><</div>
+            <div style="font-size: 30px" @click="hideOverlay">x</div>
+          </div>
+          <div
+            style="margin: 60px auto; width: 85%; font-size: 20px"
+            v-if="showChildren === true"
+          >
+            <div
+              style="margin-top: 40px"
+              v-if="index === 0"
+              v-for="(item, index) in displayMenu"
+              :key="index"
+              :class="{ 'overlay-color': currentItem === item.item }"
+              @click="handleClick(item, index)"
+            >
+              {{ item.item || item }}
+            </div>
+            <div
+              :class="[currentItem === item.item ? 'overlay-color' : '']"
+              style="margin-left: 20px; margin-top: 40px"
+              v-if="index !== 0"
+              v-for="(item, index) in displayMenu"
+              :key="index"
+              @click="handleClick(item, index)"
+            >
+              {{ item.item || item }}
+            </div>
+          </div>
+          <div style="margin: 60px auto; width: 85%; font-size: 20px" v-else>
+            <div
+              style="margin-top: 40px"
+              v-for="(item, index) in displayMenu"
+              :key="index"
+              :class="{ 'overlay-color': currentItem === item.item }"
+              @click="handleClick(item, index)"
+            >
+              {{ item.item || item }}
+            </div>
+          </div>
+        </div>
+      </Overlay>
 
       <!-- <div style="color: white;">
                 {{ userLanguage }}
@@ -104,10 +177,13 @@ import ChatImg from "../../assets/header/silderIcon/Chat.png";
 import unApplyImg from "../../assets/header/silderIcon/uncheckApply.png";
 import unProjectImg from "../../assets/header/silderIcon/uncheckProject.png";
 import unChatImg from "../../assets/header/silderIcon/uncheckSide.png";
+import Overlay from "../components/Overlay.vue";
+import router from "../router.js";
 
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {
+    Overlay,
     HomeHeader,
     CourseProjects,
     TeachingStaffHeader,
@@ -118,6 +194,23 @@ export default {
   data() {
     //这里存放数据
     return {
+      isOverlayVisible: false,
+      currentItem: "",
+      overlayMenu: [
+        { item: "首页", path: "/", children: [] },
+        { item: "关于我们", path: "/aboutUs", children: [] },
+        {
+          item: "课程项目",
+          path: "/courseProjects",
+          children: ["项目概述", "课程体系", "招生信息"],
+        },
+        { item: "师资力量", path: "/teachingStaff", children: [] },
+        { item: "校友风采", path: "/alumniStyle", children: [] },
+        { item: "语言", children: ["中文", "英文"] },
+      ],
+      displayMenu: [],
+      breadcrumbs: [],
+      showChildren: false,
       imageUrl: "",
       navList: [
         { name: "首页", nameEn: "Home", path: "/" },
@@ -170,6 +263,74 @@ export default {
   },
   //方法集合
   methods: {
+    mobileClick(item) {
+      if (item.path) {
+        router.push(item.path);
+      }
+    },
+    handleClick(item, index) {
+      const idMap = {
+        项目概述: "options1",
+        课程体系: "options2",
+        招生信息: "options3",
+      };
+      const elementId = idMap[item.item];
+      this.currentItem = item.item;
+      if (item.children && item.children.length) {
+        this.displayMenu = item.children.map((child) => ({
+          item: child,
+          children: [],
+        }));
+        this.displayMenu.unshift({
+          item: item.item,
+          children: [],
+        });
+        this.breadcrumbs.push(item.item);
+        this.showChildren = true;
+      } else if (elementId) {
+        this.hideOverlay();
+        router.push({ path: "/courseProjects", hash: `#${elementId}` });
+      } else if (item.path) {
+        this.hideOverlay();
+        router.push(item.path);
+      } else {
+        localStorage.setItem("userLanguage", item.item == "中文" ? "1" : "2");
+        this.$store.dispatch("setUserLanguage", item.item == "中文" ? "1" : "2");
+        this.hideOverlay();
+      }
+    },
+    scrollToElement(id) {
+      this.$nextTick(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.style.scrollMarginTop = "100px"; // 添加 scroll-margin-top 属性
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    },
+    goBack() {
+      this.breadcrumbs.pop();
+      if (this.breadcrumbs.length === 0) {
+        this.displayMenu = this.overlayMenu;
+        this.showChildren = false;
+      } else {
+        const parentItem = this.overlayMenu.find(
+          (menuItem) =>
+            menuItem.item === this.breadcrumbs[this.breadcrumbs.length - 1]
+        );
+        this.displayMenu = parentItem.children.map((child) => ({
+          item: child,
+          children: [],
+        }));
+      }
+    },
+    hideOverlay() {
+      this.isOverlayVisible = false;
+      // this.goBack();
+    },
+    showOverlay() {
+      this.isOverlayVisible = true;
+    },
     toPage(item) {
       if (!item.path) {
         return;
@@ -214,7 +375,9 @@ export default {
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.displayMenu = this.overlayMenu;
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   async mounted() {
     this.currentPath = this.$route.path;
@@ -246,6 +409,15 @@ export default {
 </script>
 
 <style scoped lang="less">
+@media (max-width: 720px) {
+  .header-content {
+    display: none;
+  }
+}
+.overlay-color {
+  color: #ff9c00 !important;
+}
+
 .articleHeader {
   width: 100%;
   height: 100px;
@@ -269,14 +441,57 @@ export default {
     transform: translateX(-50%); */
 }
 
+.header-mobile .logo {
+  display: none;
+}
+
+.header-mobile-bread {
+  display: none;
+}
+
 @media (max-width: 720px) {
+  .sidebar {
+    display: none !important;
+  }
+
   .header-nav {
     display: none !important;
+  }
+
+  .logo {
+    display: none;
   }
 
   .logo img {
     width: 181px;
     height: 53px;
+    margin-left: 40px;
+  }
+
+  .header-content {
+    width: 100vw !important;
+    height: 100px !important;
+  }
+
+  .header-tools {
+    display: none !important;
+  }
+
+  .header-mobile {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    background-color: #0b1420;
+    justify-content: space-between;
+  }
+
+  .header-mobile .logo {
+    display: block !important;
+  }
+
+  .header-mobile-bread {
+    display: block !important;
   }
 }
 
@@ -421,7 +636,7 @@ export default {
   width: 91px;
   height: 295px;
   background: #ffffff;
-  border-radius: 20px 0px 0px 20px;
+  border-radius: 20px 0 0 20px;
   right: 0;
   bottom: 50%;
   font-weight: bold;

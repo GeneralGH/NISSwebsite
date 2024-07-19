@@ -105,6 +105,32 @@ export default {
 </script>
 
 <style scoped lang="less">
+@media (max-width: 720px) {
+  .homeRightArrow-area{
+    bottom: 100px !important;
+  }
+  .content-area {
+    height: 666px !important;
+  }
+  .cover-textarea{
+    height: 613px !important;
+    width: 100vw;
+    .cover-text{
+      width: 450px;
+      font-size: 62px;
+      bottom: 60px !important;
+    }
+  }
+  .cover-text:before {
+    display: none;
+  }
+  .cover-textarea:before {
+   display: none; 
+  }
+  .swiper-img{
+    height: 666px !important;
+  }
+}
 /deep/.t-swiper__navigation {
   display: none;
 }

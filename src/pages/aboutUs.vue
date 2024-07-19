@@ -4,9 +4,7 @@
     <pageHeader />
     <div class="page-area">
       <WhoWeAre />
-
       <Partners />
-
       <div class="party">
         <div class="party-title">
           {{ userLanguage == "1" ? "学院新闻" : "College News" }}
@@ -102,6 +100,38 @@ export default {
 </script>
 
 <style scoped lang="less">
+@media (max-width: 720px) {
+  /deep/.page-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 !important;
+    width: 100% !important;
+    .party-content{
+      width: 100% !important;
+      padding: 0 40px !important;
+    }
+    .party{
+      width: 100%;
+    margin: 0 !important;
+    }
+    .party-line{
+      display: none;
+    }
+    .party-title{
+      margin-top: 60px;
+      margin-left: 40px;
+    }
+    .module-card{
+      margin: 50px 0 !important;
+    
+    .content{
+      line-height: 60px !important;
+    }
+    }
+  }
+ 
+}
 /deep/.t-swiper__container__item, /deep/.t-swiper__container {
   border-radius: 30px !important;
 }

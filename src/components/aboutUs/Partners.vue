@@ -125,6 +125,14 @@ export default {
 </script>
 
 <style scoped lang="less">
+@media (max-width: 720px) {
+    .party{
+      width: 700px;
+    }
+    .bottom-list{
+      display: none !important;
+    }
+}
 /deep/.t-swiper__navigation {
   display: none;
 }

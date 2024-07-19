@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div ref="appContainer" id="appContainer">
-    <pageHeader />
+    <pageHeader/>
 
     <div class="content-one">
       <!-- <div class="subtitle">
@@ -26,13 +26,13 @@
         <!-- <div class="info-left">
           <img src="../../assets/home/contentOne.png" alt="">
         </div> -->
-        <div class="info-right">
+        <div class="info-right class-title">
           <div
-            class="info-item module-card"
-            v-for="(item, index) in infoList"
-            @mouseover="isHovered = index"
-            @mouseleave="isHovered = -1"
-            @mouseenter="jump(item, index)"
+              class="info-item module-card"
+              v-for="(item, index) in infoList"
+              @mouseover="isHovered = index"
+              @mouseleave="isHovered = -1"
+              @mouseenter="jump(item, index)"
           >
             <div style="width: 100%">
               <div class="info-title">
@@ -42,12 +42,9 @@
                 </div>
               </div>
               <div
-                class="info-subTitle"
-                v-html="
-                  userLanguage == '1'
-                    ? item.subTitle.replace('\n', '<br/>')
-                    : item.subTitleEn.replace('\n', '<br/>')
-                "
+                  class="info-subTitle"
+                  v-html="userLanguage == '1'? item.subTitle.replace('\n', '<br/>')
+                    : item.subTitleEn.replace('\n', '<br/>')"
               >
                 <!-- {{ userLanguage == '1' ? item.subTitle : item.subTitleEn }} -->
               </div>
@@ -55,32 +52,31 @@
             </div>
             <div class="homeRightArrow-area">
               <img
-                v-show="isHovered == index"
-                class="homeRightArrow"
-                src="../../assets/home/homeRightArrow.png"
-                alt=""
+                  v-show="isHovered == index"
+                  class="homeRightArrow"
+                  src="../../assets/home/homeRightArrow.png"
+                  alt=""
               />
             </div>
           </div>
         </div>
       </div>
-    </div>
-
+    </div>  
     <div class="content-two" ref="contentTwo">
       <div class="content-info" id="content-info">
-        <div class="info-left">
+        <div class="info-left content-se">
           <div class="title" v-show="currentScroll == 0">
             {{
               userLanguage == "1"
-                ? "成为最具价值的终身学习平台"
-                : "To be an invaluable lifelong learning platform"
+                  ? "成为最具价值的终身学习平台"
+                  : "To be an invaluable lifelong learning platform"
             }}
           </div>
           <div class="subTitle" v-show="currentScroll == 0">
             {{
               userLanguage == "2"
-                ? "成为最具价值的终身学习平台"
-                : "To be an invaluable lifelong learning platform"
+                  ? "成为最具价值的终身学习平台"
+                  : "To be an invaluable lifelong learning platform"
             }}
           </div>
 
@@ -91,16 +87,16 @@
             {{ userLanguage == "2" ? "高级管理教育" : "Executive Education" }}
           </div>
 
-          <img v-show="currentScroll == 0" src='../../assets/home/mba.png' alt="" />
+          <img v-show="currentScroll == 0" src='../../assets/home/mba.png' alt=""/>
 
           <img v-show="currentScroll == 2" src='../../assets/home/highEdu.png' alt=""
           />
         </div>
         <div class="info-right" id="contentTwoRight" ref="contentTwoRight">
           <div
-            class="info-item"
-            v-for="(item, index) in scrollList"
-            :key="index"
+              class="info-item"
+              v-for="(item, index) in scrollList"
+              :key="index"
           >
             <div class="title">
               {{ userLanguage == "1" ? item.title : item.titleEn }}
@@ -112,7 +108,6 @@
         </div>
       </div>
     </div>
-
     <div class="content-three">
       <div class="title">
         {{ userLanguage == "1" ? "校友寄语" : "Alumni Testimonials" }}
@@ -121,17 +116,17 @@
 
       <div class="alumni-scroll">
         <vue-seamless-scroll
-          :data="alumniList"
-          :class-option="classOption"
-          id="vueSeamlessScroll"
-          ref="vueSeamlessScroll"
+            :data="alumniList"
+            :class-option="classOption"
+            id="vueSeamlessScroll"
+            ref="vueSeamlessScroll"
         >
           <div class="alumni-item" v-for="(item, index) in alumniList">
             <div v-show="index % 2 === 0" style="position: relative">
               <img
-                class="dialog-bg"
-                src="../../assets/home/topDialog.png"
-                alt=""
+                  class="dialog-bg"
+                  src="../../assets/home/topDialog.png"
+                  alt=""
               />
               <div class="dialog-content dialog-content-top">
                 <div>{{ userLanguage == "1" ? item.wrote : item.wroteEn }}</div>
@@ -139,7 +134,7 @@
             </div>
             <div v-show="index % 2 !== 0">
               <div class="alumni-info">
-                {{ userLanguage == "1" ? item.company : item.companyEn }}<br />
+                {{ userLanguage == "1" ? item.company : item.companyEn }}<br/>
                 {{ userLanguage == "1" ? item.workPost : item.workPostEn }}
               </div>
               <div class="alumni-class">
@@ -147,10 +142,10 @@
               </div>
             </div>
             <t-image
-              class="alumni-img"
-              :src="item.imgPath"
-              fit="cover"
-              position="center"
+                class="alumni-img"
+                :src="item.imgPath"
+                fit="cover"
+                position="center"
             >
               <template #loading>
                 {{ "" }}
@@ -159,7 +154,7 @@
             <!-- <img class="alumni-img" :src="item.imgPath" alt=""> -->
             <div v-show="index % 2 === 0">
               <div class="alumni-info">
-                {{ userLanguage == "1" ? item.company : item.companyEn }}<br />
+                {{ userLanguage == "1" ? item.company : item.companyEn }}<br/>
                 {{ userLanguage == "1" ? item.workPost : item.workPostEn }}
               </div>
               <div class="alumni-class">
@@ -168,9 +163,9 @@
             </div>
             <div v-show="index % 2 !== 0" style="position: relative">
               <img
-                class="dialog-bg"
-                src="../../assets/home/buttonDialog.png"
-                alt=""
+                  class="dialog-bg"
+                  src="../../assets/home/buttonDialog.png"
+                  alt=""
               />
               <div class="dialog-content dialog-content-bottom">
                 <div>{{ userLanguage == "1" ? item.wrote : item.wroteEn }}</div>
@@ -180,8 +175,7 @@
         </vue-seamless-scroll>
       </div>
     </div>
-
-    <PageFooter />
+    <PageFooter/>
   </div>
 </template>
 
@@ -230,7 +224,7 @@ export default {
           titleEn: "Dual Diplomas",
           subTitle: "“211工程”大学 “双一流”建设高校",
           subTitleEn:
-            "“211 Project” University “Double First-Class” Construction University",
+              "“211 Project” University “Double First-Class” Construction University",
         },
         {
           title: "3冠认证",
@@ -243,7 +237,7 @@ export default {
           titleEn: "Nine Systems",
           subTitle: "融合中国商业文化与现代管理智慧",
           subTitleEn:
-            "Integrating Chinese Business Culture with Modern Management Wisdom",
+              "Integrating Chinese Business Culture with Modern Management Wisdom",
         },
         {
           title: "百年名校",
@@ -384,8 +378,8 @@ export default {
       for (let i = 0; i < this.infoTwoList.length; i++) {
         currentHeight += this.numberScorll;
         if (
-          scrollTop + clientHeight > currentHeight - this.scollInv &&
-          currentHeight > scrollTop - this.scollInv
+            scrollTop + clientHeight > currentHeight - this.scollInv &&
+            currentHeight > scrollTop - this.scollInv
         ) {
           this.infoTwoList[i].isOpacity = false;
         } else {
@@ -394,8 +388,8 @@ export default {
       }
 
       if (
-        (scrollHeight - (scrollTop + clientHeight)) / clientHeight <= 0.05 &&
-        inv > 0
+          (scrollHeight - (scrollTop + clientHeight)) / clientHeight <= 0.05 &&
+          inv > 0
       ) {
         this.contentTwoRightMax = true;
       } else {
@@ -417,12 +411,12 @@ export default {
 
     initList() {
       this.$request
-        .post(Alumni.getAlumniListPageUrl, this.listQuery)
-        .then((res) => {
-          this.alumniList = res.data.data.list.map((item) => {
-            return { ...item, imgPath: JSON.parse(item.image).url };
+          .post(Alumni.getAlumniListPageUrl, this.listQuery)
+          .then((res) => {
+            this.alumniList = res.data.data.list.map((item) => {
+              return {...item, imgPath: JSON.parse(item.image).url};
+            });
           });
-        });
     },
 
     getContainer() {
@@ -430,7 +424,8 @@ export default {
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     const windowHeight = window.innerHeight;
@@ -483,22 +478,28 @@ export default {
 
     this.scrollList = this.infoTwoList;
   },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
+  beforeCreate() {
+  }, //生命周期 - 创建之前
+  beforeMount() {
+  }, //生命周期 - 挂载之前
+  beforeUpdate() {
+  }, //生命周期 - 更新之前
+  updated() {
+  }, //生命周期 - 更新之后
   beforeDestroy() {
     window.removeEventListener("mousewheel", this.handleWheel, {
       passive: false,
     });
   }, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  destroyed() {
+  }, //生命周期 - 销毁完成
+  activated() {
+  }, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 
 <style scoped lang="less">
-/deep/img {
+/deep/ img {
   -webkit-user-drag: none;
 
   -moz-user-drag: none;
@@ -507,6 +508,109 @@ export default {
 
   user-drag: none;
 }
+
+@media (max-width: 720px) {
+  .header-mobile{
+    width: 100%;
+    z-index: 99999 !important;
+    overflow: hidden;
+  }
+  .homeRightArrow-area{
+    bottom: -1px !important;
+  }
+  .class-title{
+    .info-item{
+      margin-left: 50px;
+      padding-top: 20px !important; 
+    }
+  }
+  .content-one, .content-two, .content-three {
+  position: relative;
+  z-index: 1; 
+  padding-top: 60px; 
+}
+.content-one{
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+}
+.title{
+  font-size: 89px !important;
+}
+.content-two{
+margin-top: 60px !important;
+}
+
+  #appContainer {
+    position: relative;
+  }
+  .content-three{
+      padding: 100px 0 0 50px !important;
+      margin-bottom: 100px !important;
+    .title {
+      font-size: 50px !important;
+    }
+ 
+      
+  }
+  .content-se{
+    display: flex;
+    flex-direction: column;
+padding: 0 90px;
+  }
+  .content-two{
+    margin-top: 230px;
+  }
+  .content-info{
+    width: 100% !important;
+   display: flex;
+    flex-direction: column;
+     margin-top: 0 !important;
+     padding: 0 !important ;
+  }
+  .info-left{
+    height: 35rem !important;
+    overflow-y: hidden !important;
+    .title {
+      font-size: 50px !important;
+    }
+  }
+  .info-left{
+    position: absolute;
+    top: 1% !important;
+  }
+  .class-title{
+    height: 450px;
+    align-items: center;
+    .info-item {
+      height: 350px !important;
+    }
+  }
+  .info-right {
+    width: 90vw !important;
+    padding: 5px 10px !important;
+    z-index: 999;
+    overflow-y: hidden !important;
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      width: 500px !important;
+      height: auto ; /* 自适应高度 */
+      word-wrap: initial;
+      word-break: initial;
+      margin-left: 30px;
+    
+    }
+  }
+  .content-one{
+    padding-top: 0 !important;
+  }
+  .content-info{
+    margin-top: -60px !important;
+    height: auto;
+    overflow-y: hidden !important;
+  }
+}
+
 
 body {
   overflow-y: scroll;
@@ -559,8 +663,8 @@ body {
       justify-content: space-between;
 
       .info-item {
-        width: 385px !important;
-        height: 334px !important;
+        width: 385px;
+        height: 334px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -687,12 +791,10 @@ body {
         .title {
           font-size: 110px;
           font-weight: bold;
-          background: linear-gradient(
-            -90deg,
-            #03499e 30%,
-            #f9c99f 59%,
-            #ff9c00 100%
-          );
+          background: linear-gradient(-90deg,
+          #03499e 30%,
+          #f9c99f 59%,
+          #ff9c00 100%);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;

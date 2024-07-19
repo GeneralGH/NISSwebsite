@@ -316,7 +316,17 @@ export default {
 
 <style scoped lang="less">
 @import url("./index.css");
-
+@media(max-width:720px){
+  .title{
+    margin-left: 70px;
+  }
+  .one-imgs img{
+    width: 10rem !important;
+  }
+  .content-item{
+    width:100vw !important;
+  }
+}
 .networkingList {
   display: flex;
   align-items: baseline;

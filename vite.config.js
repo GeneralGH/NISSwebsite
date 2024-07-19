@@ -7,6 +7,9 @@ const postcss = px2rem({
 });
 
 export default {
+    server:{
+        host: '0.0.0.0',
+    },
     base: './', // 添加publicPath配置
     css: {
         postcss: {

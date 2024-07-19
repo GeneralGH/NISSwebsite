@@ -1,4 +1,3 @@
-<!--  -->
 <template>
   <div class="party">
     <div class="party-title">
@@ -7,20 +6,14 @@
     <div class="party-line"></div>
 
     <div class="party-content">
-      <div>
+      <div class="party-text">
         {{
           userLanguage == "1"
             ? "南洋社会科学学院是新加坡教育部精深局批准注册的高等教育机构，致力于构筑融汇东西方优质高等教育资源的终身学习平台。学院与顶尖高校、杰出高等教育机构合作，解析和传播支撑中国成功高速发展的理论与经验，研究和传授西方社科领域教研的最新发展方向与成果，培养兼具东方智慧与全球视野的复合型人才。"
             : "Nanyang Institute of Social Sciences (NISS) is an institute of higher education registered with SkillsFuture Singapore (SSG) under the Ministry of Education of Singapore, aiming to create a lifelong learning platform that incorporates quality higher education resources from the East and the West.NISS cooperates with top universities and outstanding higher education institutions. It seeks to deconstruct and disseminate the theories and experiences that support China’s rapid economic development, share the cutting-edge research of western social sciences, and cultivate interdisciplinary talents with eastern wisdom and global vision."
         }}
       </div>
-      <div
-        style="
-          display: flex;
-          align-items: baseline;
-          justify-content: space-between;
-        "
-      >
+      <div class="card-container">
         <div class="module-card">
           <div class="title">
             {{ userLanguage == "1" ? "学院的愿景" : "Our Vision" }}
@@ -64,6 +57,7 @@
   </div>
 </template>
 
+
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
@@ -99,5 +93,37 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
+@media (max-width: 720px) {
+
+  .party-title{
+    width: 300px !important;
+    margin-left: 50px;
+  }
+  .card-container{
+    display: flex;
+    justify-content: space-between;
+  }
+  .content{
+    font-size: 40px !important;
+  }
+  .module-card{
+    width: 320px !important;
+    
+  }
+  .page-area{
+    width: 100px !important;
+  }
+  .party-line{
+    width: 300px !important;
+  }
+
+
+
+}
+
+.card-container{
+    display: flex;
+    justify-content: space-between;
+  }
 </style>

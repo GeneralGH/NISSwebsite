@@ -61,7 +61,7 @@
                     <div class="form-row">
                         <div class="form-item full-item">
                             <div class="form-item-label">{{ userLanguage == '1' ? '已在中国境外居住时间' : 'Time Resided Outside of China' }}<span
-                                    style="font-weight: 500; color: #172C47;">{{ userLanguage == '1' ? '（不包括留学及公派出国的时间）' : '（excluding study and official assignments abroad）' }}</span><span>*</span></div>
+                                    style="font-weight: 500; color: #172C47;" class="bk-label">{{ userLanguage == '1' ? '（不包括留学及公派出国的时间）' : '（excluding study and official assignments abroad）' }}</span><span>*</span></div>
                             <div style="position: relative;">
                                 <t-form-item name="residenceTime">
                                     <sSelect @optionChange="(item) => { formData.residenceTime = item.label }"
@@ -169,7 +169,7 @@
 
                     <div class="form-row" style="height: auto;">
                         <div class="form-item full-item">
-                            <div class="form-item-label">{{ userLanguage == '1' ? '隐私政策' : 'Privacy Policy' }}<span>*</span></div>
+                            <div class="form-item-label label-zc">{{ userLanguage == '1' ? '隐私政策' : 'Privacy Policy' }}<span>*</span></div>
                             <div style="display: flex;">
                                 <!-- <t-radio v-model="ok" @click="ok = !ok"></t-radio> -->
                                 <div class="form-ok-area" :class="{ formUnOk: !ok }" @click="ok = !ok">
@@ -192,7 +192,7 @@
                         </div>
                     </div>
 
-                    <div class="form-row">
+                    <div class="form-row row-footer">
                         <div class="form-item full-item"
                             style="display: flex; align-items: center; justify-content: center;">
                             <div class="submit-btn"><t-button size="large" class="btn" type="submit">{{ userLanguage == '1' ? '确定，提交表格' : 'Submit' }}</t-button>
@@ -366,6 +366,93 @@ export default {
 </script>
 
 <style scoped lang="less">
+@media(max-width:720px){
+  .party-content{
+    width: 700px;
+  }
+  .bk-label{
+    font-size: 20px;
+  }
+  .select-area{
+    margin-bottom: 200px !important;
+  }
+  .form-area{
+    display: flex;
+    flex-direction: column;
+  }
+  .form-row{
+    display: flex;
+    flex-direction: column;
+height: 400px !important;
+  }
+.tips{
+  width: 200px !important;
+}
+/deep/.page-area {
+  width: 100% !important;
+}
+.tips-title{
+  width: 600px;
+  line-height: 35px !important;
+}
+.submit-btn{
+  display: flex;
+  justify-content: center;
+}
+.tips-content{
+  width: 600px;
+  line-height: 30px !important;
+}
+.btn {
+  width: 300px !important;
+}
+  .item-area{
+    width: 550px;
+  }
+  .form-row:nth-child(1){
+    height:350px !important;
+  }
+  .form-row:nth-child(2){
+    height:350px !important;
+  }
+  .form-row:nth-child(3){
+    width: 100%;
+    height: 150px !important;
+  }
+  .form-row:nth-child(4){
+    height: 150px !important;
+  }
+  .form-row:nth-child(5){
+    height: 150px !important;
+  }
+  .form-row:nth-child(6){
+    height: 320px !important;
+  }
+  .form-row:nth-child(7){
+    height: 150px !important;
+  }
+  .form-row:nth-child(8){
+    height: 150px !important;
+  }
+  .form-row:nth-child(9){
+    height: 150px !important;
+  }
+  .form-row:nth-child(10){
+    height: 300px !important;
+  }
+  .form-row:nth-child(11){
+    height: 350px !important;
+  }
+  .row-footer{
+    height: 80px !important;
+  }
+  .label-zc{
+    margin-top: 50px;
+  }
+  .form-item{
+    margin-bottom: 20px;
+  }
+}
 /deep/.t-is-error .t-input__extra {
     font-size: 20px;
     margin-top: 15px;
@@ -393,6 +480,7 @@ export default {
 .submit-btn {
     width: 223px;
     height: 73px;
+  margin-top: 50px;
 
     .btn {
         width: 100%;

@@ -94,6 +94,14 @@ export default {
 </script>
 
 <style scoped lang="less">
+@media (max-width: 720px) {
+  .alumni-item{
+    width: 16.7rem !important;
+  }
+  .alumni-title{
+    width: 106% !important;
+  }
+}
 .expanded {
   height: 472px !important;
   border-radius: 24px 24px 24px 24px !important;

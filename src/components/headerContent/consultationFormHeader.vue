@@ -48,6 +48,11 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 720px) {
+  .content-img {
+    width: 100vw;
+  }
+}
 .content-area {
     height: 620px;
     margin: 0 auto;

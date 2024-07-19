@@ -4,7 +4,7 @@
     <pageHeader />
     <div class="page-area">
       <div class="party">
-        <div class="party-title">
+        <div class="party-title" id="school">
           {{ userLanguage == "1" ? "校友网络" : "Alumni Network" }}
         </div>
         <div class="party-line"></div>
@@ -177,6 +177,29 @@ export default {
 </script>
 
 <style scoped lang="less">
+@media (max-width: 720px) {
+  .page-area{
+    width: 100vw !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 20px !important;
+    .party{
+      width: 100% !important;
+      margin:  0 !important;
+      .party-title{
+        margin-top: 50px;
+      }
+      .party-content{
+        width: 100% !important;
+        padding: 0 !important;
+        .content-image{
+          width: 100% !important;
+          height: auto !important;
+        }
+      }
+    }
+  }
+}
 .content-area {
   display: flex;
   justify-content: space-between;

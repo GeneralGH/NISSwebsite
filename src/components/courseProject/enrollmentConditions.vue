@@ -132,6 +132,17 @@ export default {
 
 <style scoped lang="less">
 @import url('./index.css');
+@media(max-width:720px) {
+  .title{
+    margin-left: 70px;
+  }
+  .des{
+      width: 90%;
+  }
+  .space-two{
+    width: 100%;
+  }
+}
 
 .space-one {
     margin-bottom: 40px;
