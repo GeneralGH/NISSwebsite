@@ -8,10 +8,15 @@
 
     <div class="party-content">
       <div class="swiper-area">
-        <t-swiper :duration="300" :interval="2000" :current="current" :onChange="onChange">
+        <t-swiper
+          :duration="300"
+          :interval="2000"
+          :current="current"
+          :onChange="onChange"
+        >
           <t-swiper-item
             v-for="(item, index) in schoolList"
-            :key="index" 
+            :key="index"
             class="swiper-item-area"
           >
             <div class="swiper-item">
@@ -30,7 +35,8 @@
       <div class="bottom-list">
         <div
           v-for="(item, index) in schoolList"
-          :key="index" @click="current = index"
+          :key="index"
+          @click="current = index"
           style="cursor: pointer; position: relative"
         >
           <t-image
@@ -40,8 +46,14 @@
             position="center"
             :lazy="true"
           />
-          <div v-show="current != index" class="item-cover-title">{{ item.title }}</div>
+          <div v-show="current != index" class="item-cover-title">
+            {{ item.title }}
+          </div>
         </div>
+      </div>
+      <div class="index-list">
+        <div class="index" v-for="(item, index) in schoolList"
+        :key="index" :style="{ backgroundColor : index == current ? '#E98225' : '#172C47' }"></div>
       </div>
     </div>
   </div>
@@ -89,7 +101,7 @@ export default {
           img: fiveImg,
         },
       ],
-      current: 0
+      current: 0,
     };
   },
   computed: {
@@ -106,9 +118,9 @@ export default {
   //方法集合
   methods: {
     onChange(e) {
-      console.log(e)
-      this.current = e
-    }
+      console.log(e);
+      this.current = e;
+    },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
@@ -126,12 +138,26 @@ export default {
 
 <style scoped lang="less">
 @media (max-width: 720px) {
-    .party{
-      width: 700px;
+  .party {
+    width: 700px;
+  }
+  .bottom-list {
+    display: none !important;
+  }
+  .index-list {
+    display: flex !important;
+    width: 128px;
+    margin: 0 auto;
+    margin-top: 25px;
+    align-items: center;
+    justify-content: space-between;
+    
+    .index {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
     }
-    .bottom-list{
-      display: none !important;
-    }
+  }
 }
 /deep/.t-swiper__navigation {
   display: none;
@@ -163,6 +189,10 @@ export default {
   width: 100%;
   height: 580px;
   border-radius: 30px !important;
+}
+
+.index-list {
+  display: none;
 }
 
 /deep/.t-swiper__content {

@@ -90,20 +90,20 @@
               v-if="index === 0"
               v-for="(item, index) in displayMenu"
               :key="index"
-              :class="{ 'overlay-color': currentItem === item.item }"
+              :class="{ 'overlay-color': currentPath == item.path }"
               @click="handleClick(item, index)"
             >
-              {{ item.item || item }}
+              {{ userLanguage == "1" ? item.item : item.nameEn || item }}
             </div>
             <div
-              :class="[currentItem === item.item ? 'overlay-color' : '']"
+              :class="[currentPath == item.path ? 'overlay-color' : '']"
               style="margin-left: 20px; margin-top: 40px"
               v-if="index !== 0"
               v-for="(item, index) in displayMenu"
               :key="index"
               @click="handleClick(item, index)"
             >
-              {{ item.item || item }}
+              {{ userLanguage == "1" ? item.item.item : item.item.nameEn }}
             </div>
           </div>
           <div style="margin: 60px auto; width: 85%; font-size: 20px" v-else>
@@ -111,10 +111,10 @@
               style="margin-top: 40px"
               v-for="(item, index) in displayMenu"
               :key="index"
-              :class="{ 'overlay-color': currentItem === item.item }"
+              :class="{ 'overlay-color': currentPath == item.path }"
               @click="handleClick(item, index)"
             >
-              {{ item.item || item }}
+              {{ userLanguage == "1" ? item.item : item.nameEn || item }}
             </div>
           </div>
         </div>
@@ -197,16 +197,33 @@ export default {
       isOverlayVisible: false,
       currentItem: "",
       overlayMenu: [
-        { item: "首页", path: "/", children: [] },
-        { item: "关于我们", path: "/aboutUs", children: [] },
+        { item: "首页", nameEn: "Home", path: "/", children: [] },
+        { item: "关于我们", nameEn: "About Us", path: "/aboutUs", children: [] },
         {
           item: "课程项目",
+          nameEn: "Programmes",
           path: "/courseProjects",
-          children: ["项目概述", "课程体系", "招生信息"],
+          children: [
+            {
+              item: "项目概述",
+              nameEn: 'Program Overview'
+            },
+            {
+              item: "课程体系",
+              nameEn: 'Curriculum System'
+            },
+            {
+              item: "招生信息",
+              nameEn: 'Admissions Information'
+            }
+          ],
         },
-        { item: "师资力量", path: "/teachingStaff", children: [] },
-        { item: "校友风采", path: "/alumniStyle", children: [] },
-        { item: "语言", children: ["中文", "英文"] },
+        { item: "师资力量", nameEn: "Faculty", path: "/teachingStaff", children: [] },
+        { item: "校友风采", nameEn: "Alumni", path: "/alumniStyle", children: [] },
+        { item: "语言", nameEn: "Language", children: [
+          { item: '中文', nameEn: '中文' },
+          { item: 'English', nameEn: 'English' }
+        ] },
       ],
       displayMenu: [],
       breadcrumbs: [],
@@ -274,7 +291,7 @@ export default {
         课程体系: "options2",
         招生信息: "options3",
       };
-      const elementId = idMap[item.item];
+      const elementId = idMap[item.item.item];
       this.currentItem = item.item;
       if (item.children && item.children.length) {
         this.displayMenu = item.children.map((child) => ({
@@ -283,6 +300,7 @@ export default {
         }));
         this.displayMenu.unshift({
           item: item.item,
+          nameEn: item.nameEn,
           children: [],
         });
         this.breadcrumbs.push(item.item);
@@ -294,8 +312,9 @@ export default {
         this.hideOverlay();
         router.push(item.path);
       } else {
-        localStorage.setItem("userLanguage", item.item == "中文" ? "1" : "2");
-        this.$store.dispatch("setUserLanguage", item.item == "中文" ? "1" : "2");
+        console.log(item)
+        localStorage.setItem("userLanguage", item.item.item == "中文" ? "1" : "2");
+        this.$store.dispatch("setUserLanguage", item.item.item == "中文" ? "1" : "2");
         this.hideOverlay();
       }
     },
