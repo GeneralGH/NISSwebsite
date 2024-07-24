@@ -145,13 +145,14 @@
       v-if="currentPath == '/alumniStyle'"
     />
 
-    <div class="sidebar">
+    <div class="sidebar" :class="{'sidebar-zh': userLanguage == '1', 'sidebar-en': userLanguage !== '1'}">
       <div
         class="sidebar-item"
         v-for="(item, index) in sidebarList"
         @click="toPage({ path: item.path })"
         @mouseover="isHovered = index"
         @mouseleave="isHovered = -1"
+        :key="index"
       >
         <img :src="isHovered == index ? item.imgPath : item.unImgPath" alt="" />
         <div>{{ userLanguage == "1" ? item.name : item.nameEn }}</div>
@@ -650,10 +651,18 @@ export default {
   }
 }
 
-.sidebar {
-  position: fixed;
+.sidebar-zh {
   width: 91px;
   height: 295px;
+}
+
+.sidebar-en {
+  width: 120px;
+  height: 335px;
+}
+
+.sidebar {
+  position: fixed;
   background: #ffffff;
   border-radius: 20px 0 0 20px;
   right: 0;

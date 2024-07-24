@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div ref="appContainer" id="appContainer">
-    <pageHeader/>
+    <pageHeader />
 
     <div class="content-one">
       <!-- <div class="subtitle">
@@ -27,13 +27,8 @@
           <img src="../../assets/home/contentOne.png" alt="">
         </div> -->
         <div class="info-right class-title">
-          <div
-              class="info-item module-card"
-              v-for="(item, index) in infoList"
-              @mouseover="isHovered = index"
-              @mouseleave="isHovered = -1"
-              @mouseenter="jump(item, index)"
-          >
+          <div class="info-item module-card" v-for="(item, index) in infoList" @mouseover="isHovered = index"
+            @mouseleave="isHovered = -1" @mouseenter="jump(item, index)">
             <div style="width: 100%">
               <div class="info-title">
                 <div>{{ userLanguage == "1" ? item.title : item.titleEn }}</div>
@@ -41,42 +36,35 @@
                   <div v-show="isHovered == index"></div>
                 </div>
               </div>
-              <div
-                  class="info-subTitle"
-                  v-html="userLanguage == '1'? item.subTitle.replace('\n', '<br/>')
-                    : item.subTitleEn.replace('\n', '<br/>')"
-              >
-                <!-- {{ userLanguage == '1' ? item.subTitle : item.subTitleEn }} -->
+              <div class="info-subTitle">
+                <div v-for="str in item.subTitle" v-show="userLanguage == '1'">{{ str }}</div>
+                <div v-for="str in item.subTitleEn" v-show="userLanguage == '2'">{{ str }}</div>
               </div>
               <div class="line" v-show="isHovered == index"></div>
             </div>
             <div class="homeRightArrow-area">
-              <img
-                  v-show="isHovered == index"
-                  class="homeRightArrow"
-                  src="../../assets/home/homeRightArrow.png"
-                  alt=""
-              />
+              <img v-show="isHovered == index" class="homeRightArrow" src="../../assets/home/homeRightArrow.png"
+                alt="" />
             </div>
           </div>
         </div>
       </div>
-    </div>  
+    </div>
     <div class="content-two" ref="contentTwo">
       <div class="content-info" id="content-info">
         <div class="info-left content-se">
           <div class="title" v-show="currentScroll == 0">
             {{
               userLanguage == "1"
-                  ? "成为最具价值的终身学习平台"
-                  : "To be an invaluable lifelong learning platform"
+                ? "暨南大学新加坡MBA项目"
+                : "JNU MBA PROGRAM"
             }}
           </div>
           <div class="subTitle" v-show="currentScroll == 0">
             {{
               userLanguage == "2"
-                  ? "成为最具价值的终身学习平台"
-                  : "To be an invaluable lifelong learning platform"
+                ? "暨南大学新加坡MBA项目"
+                : "JNU MBA PROGRAM"
             }}
           </div>
 
@@ -87,17 +75,12 @@
             {{ userLanguage == "2" ? "高级管理教育" : "Executive Education" }}
           </div>
 
-          <img v-show="currentScroll == 0" src='../../assets/home/mba.png' alt=""/>
+          <img v-show="currentScroll == 0" src='../../assets/home/mba.png' alt="" />
 
-          <img v-show="currentScroll == 2" src='../../assets/home/highEdu.png' alt=""
-          />
+          <img v-show="currentScroll == 2" src='../../assets/home/highEdu.png' alt="" />
         </div>
         <div class="info-right" id="contentTwoRight" ref="contentTwoRight">
-          <div
-              class="info-item"
-              v-for="(item, index) in scrollList"
-              :key="index"
-          >
+          <div class="info-item" v-for="(item, index) in scrollList" :key="index">
             <div class="title">
               {{ userLanguage == "1" ? item.title : item.titleEn }}
             </div>
@@ -115,38 +98,26 @@
       <div class="subTitle">Their Stories</div>
 
       <div class="alumni-scroll">
-        <vue-seamless-scroll
-            :data="alumniList"
-            :class-option="classOption"
-            id="vueSeamlessScroll"
-            ref="vueSeamlessScroll"
-        >
+        <vue-seamless-scroll :data="alumniList" :class-option="classOption" id="vueSeamlessScroll"
+          ref="vueSeamlessScroll">
           <div class="alumni-item" v-for="(item, index) in alumniList">
             <div v-show="index % 2 === 0" style="position: relative">
-              <img
-                  class="dialog-bg"
-                  src="../../assets/home/topDialog.png"
-                  alt=""
-              />
+              <img class="dialog-bg" src="../../assets/home/topDialog.png" alt="" />
               <div class="dialog-content dialog-content-top">
                 <div>{{ userLanguage == "1" ? item.wrote : item.wroteEn }}</div>
               </div>
             </div>
             <div v-show="index % 2 !== 0">
               <div class="alumni-info">
-                {{ userLanguage == "1" ? item.company : item.companyEn }}<br/>
-                {{ userLanguage == "1" ? item.workPost : item.workPostEn }}
+                {{ userLanguage == "1" ? item.name : item.nameEn }}<br />
+                {{ (userLanguage == "1" ? item.company : item.companyEn) + ' ' + (userLanguage == "1" ? item.workPost :
+                  item.workPostEn) }}
               </div>
               <div class="alumni-class">
                 {{ userLanguage == "1" ? item.grade : item.gradeEn }}
               </div>
             </div>
-            <t-image
-                class="alumni-img"
-                :src="item.imgPath"
-                fit="cover"
-                position="center"
-            >
+            <t-image class="alumni-img" :src="item.imgPath" fit="cover" position="center">
               <template #loading>
                 {{ "" }}
               </template>
@@ -154,19 +125,16 @@
             <!-- <img class="alumni-img" :src="item.imgPath" alt=""> -->
             <div v-show="index % 2 === 0">
               <div class="alumni-info">
-                {{ userLanguage == "1" ? item.company : item.companyEn }}<br/>
-                {{ userLanguage == "1" ? item.workPost : item.workPostEn }}
+                {{ userLanguage == "1" ? item.name : item.nameEn }}<br />
+                {{ (userLanguage == "1" ? item.company : item.companyEn) + ' ' + (userLanguage == "1" ? item.workPost :
+                  item.workPostEn) }}
               </div>
               <div class="alumni-class">
                 {{ userLanguage == "1" ? item.grade : item.gradeEn }}
               </div>
             </div>
             <div v-show="index % 2 !== 0" style="position: relative">
-              <img
-                  class="dialog-bg"
-                  src="../../assets/home/buttonDialog.png"
-                  alt=""
-              />
+              <img class="dialog-bg" src="../../assets/home/buttonDialog.png" alt="" />
               <div class="dialog-content dialog-content-bottom">
                 <div>{{ userLanguage == "1" ? item.wrote : item.wroteEn }}</div>
               </div>
@@ -175,7 +143,7 @@
         </vue-seamless-scroll>
       </div>
     </div>
-    <PageFooter/>
+    <PageFooter />
   </div>
 </template>
 
@@ -195,21 +163,21 @@ export default {
         {
           title: "MBA",
           titleEn: "MBA",
-          subTitle: "暨南大学新加坡\n中文MBA项目",
-          subTitleEn: "JNU MBA Program (Mandarin)",
+          subTitle: ['暨南大学新加坡', '中文MBA项目'],
+          subTitleEn: ['JNU MBA Program', '(Mandarin)'],
           path: "/courseProjects",
         },
         {
           title: "DBA",
           titleEn: "DBA",
-          subTitle: "法国南特商学院新加\n坡DBA项目",
-          subTitleEn: "Audencia DBA Program",
+          subTitle: ['南特高等商学院', '新加坡DBA', '项目'],
+          subTitleEn: ['Audencia', 'DBA', 'Program'],
         },
         {
-          title: "高等教育管理",
+          title: "EE",
           titleEn: "Executive Education",
-          subTitle: "企业定制化课程",
-          subTitleEn: "Customized Corporate Courses",
+          subTitle: ["企业定制化课程"],
+          subTitleEn: ['Customized', 'Corporate Courses'],
         },
       ],
       infoTwoList: [
@@ -224,7 +192,7 @@ export default {
           titleEn: "Dual Diplomas",
           subTitle: "“211工程”大学 “双一流”建设高校",
           subTitleEn:
-              "“211 Project” University “Double First-Class” Construction University",
+            "“211 Project” University “Double First-Class” Construction University",
         },
         {
           title: "3冠认证",
@@ -237,7 +205,7 @@ export default {
           titleEn: "Nine Systems",
           subTitle: "融合中国商业文化与现代管理智慧",
           subTitleEn:
-              "Integrating Chinese Business Culture with Modern Management Wisdom",
+            "Integrating Chinese Business Culture with Modern Management Wisdom",
         },
         {
           title: "百年名校",
@@ -378,8 +346,8 @@ export default {
       for (let i = 0; i < this.infoTwoList.length; i++) {
         currentHeight += this.numberScorll;
         if (
-            scrollTop + clientHeight > currentHeight - this.scollInv &&
-            currentHeight > scrollTop - this.scollInv
+          scrollTop + clientHeight > currentHeight - this.scollInv &&
+          currentHeight > scrollTop - this.scollInv
         ) {
           this.infoTwoList[i].isOpacity = false;
         } else {
@@ -388,8 +356,8 @@ export default {
       }
 
       if (
-          (scrollHeight - (scrollTop + clientHeight)) / clientHeight <= 0.05 &&
-          inv > 0
+        (scrollHeight - (scrollTop + clientHeight)) / clientHeight <= 0.05 &&
+        inv > 0
       ) {
         this.contentTwoRightMax = true;
       } else {
@@ -411,12 +379,12 @@ export default {
 
     initList() {
       this.$request
-          .post(Alumni.getAlumniListPageUrl, this.listQuery)
-          .then((res) => {
-            this.alumniList = res.data.data.list.map((item) => {
-              return {...item, imgPath: JSON.parse(item.image).url};
-            });
+        .post(Alumni.getAlumniListPageUrl, this.listQuery)
+        .then((res) => {
+          this.alumniList = res.data.data.list.map((item) => {
+            return { ...item, imgPath: JSON.parse(item.image).url };
           });
+        });
     },
 
     getContainer() {
@@ -510,101 +478,144 @@ export default {
 }
 
 @media (max-width: 720px) {
-  .header-mobile{
+  .header-mobile {
     width: 100%;
     z-index: 99999 !important;
     overflow: hidden;
   }
-  .homeRightArrow-area{
+
+  .homeRightArrow-area {
     bottom: -1px !important;
   }
-  .class-title{
-    .info-item{
+
+  .class-title {
+    .info-item {
       margin-left: 50px;
-      padding-top: 20px !important; 
+      padding-top: 20px !important;
     }
   }
-  .content-one, .content-two, .content-three {
-  position: relative;
-  z-index: 1; 
-  padding-top: 60px; 
-}
-.content-one{
-  padding-bottom: 0 !important;
-  padding-top: 0 !important;
-}
-.title{
-  font-size: 89px !important;
-}
-.content-two{
-margin-top: 60px !important;
-}
+
+  .content-one,
+  .content-two,
+  .content-three {
+    position: relative;
+    z-index: 1;
+    padding-top: 60px;
+  }
+
+  .content-one {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .title {
+    font-size: 89px !important;
+  }
+
+  .content-two {
+    margin-top: 60px !important;
+
+    .info-left {
+      .title {
+        font-size: 42px !important;
+      }
+    }
+  }
 
   #appContainer {
     position: relative;
   }
-  .content-three{
-      padding: 100px 0 0 50px !important;
-      margin-bottom: 100px !important;
+
+  #contentTwoRight {
+    .info-item {
+      width: 500px !important;
+      padding: 40px 40px 0 40px !important;
+    }
+  }
+
+  .content-three {
+    padding: 100px 0 0 50px !important;
+    margin-bottom: 100px !important;
+
     .title {
       font-size: 50px !important;
     }
- 
-      
+
+
   }
-  .content-se{
+
+  .content-se {
     display: flex;
     flex-direction: column;
-padding: 0 90px;
+    padding: 0 90px;
   }
-  .content-two{
+
+  .content-two {
     margin-top: 230px;
   }
-  .content-info{
+
+  .content-info {
     width: 100% !important;
-   display: flex;
+    display: flex;
     flex-direction: column;
-     margin-top: 0 !important;
-     padding: 0 !important ;
+    margin-top: 0 !important;
+    padding: 0 !important;
   }
-  .info-left{
+
+  .info-left {
     height: 35rem !important;
     overflow-y: hidden !important;
+
     .title {
       font-size: 50px !important;
     }
   }
-  .info-left{
+
+  .info-left {
     position: absolute;
     top: 1% !important;
   }
-  .class-title{
+
+  .class-title {
     height: 450px;
     align-items: center;
+
     .info-item {
       height: 350px !important;
     }
   }
+
   .info-right {
     width: 90vw !important;
     padding: 5px 10px !important;
     z-index: 999;
     overflow-y: hidden !important;
+    margin: 0 auto !important;
+
     .info-item {
       display: flex;
       flex-direction: column;
       width: 500px !important;
-      height: auto ; /* 自适应高度 */
+      height: auto;
+      /* 自适应高度 */
       word-wrap: initial;
       word-break: initial;
-      margin-left: 30px;
-    
+      margin-left: 0px;
+      box-sizing: border-box;
+      width: 190px !important;
+      padding: 40px 20px 0 20px !important;
+    }
+
+    .info-title {
+      font-size: 24px !important;
     }
   }
-  .content-one{
+
+  .content-one {
     padding-top: 0 !important;
   }
-  .content-info{
+
+  .content-info {
     margin-top: -60px !important;
     height: auto;
     overflow-y: hidden !important;
@@ -791,10 +802,7 @@ body {
         .title {
           font-size: 110px;
           font-weight: bold;
-          background: linear-gradient(-90deg,
-          #03499e 30%,
-          #f9c99f 59%,
-          #ff9c00 100%);
+          background-image: linear-gradient(-90deg, #03499e 30%, #f9c99f 59%, #ff9c00 100%);
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;

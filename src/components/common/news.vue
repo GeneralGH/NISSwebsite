@@ -48,8 +48,7 @@
         </div>
         </div>
         <div class="getMore">
-            <t-button variant="text" theme="primary" size="large" @click="getMore">{{ isEnd ? userLanguage == '1' ?
-                '没有更多了' : 'noMore' : userLanguage == '1' ? '加载更多' : 'getMore'}}</t-button>
+            <t-button variant="text" theme="primary" size="large" @click="getMore" v-show="!isEnd">{{ userLanguage == '1' ? '加载更多' : 'getMore'}}</t-button>
         </div>
 
     </div>

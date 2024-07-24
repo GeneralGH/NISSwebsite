@@ -130,6 +130,10 @@ export default {
   .swiper-img{
     height: 666px !important;
   }
+
+  /deep/.t-swiper__arrow {
+    display: none;
+  }
 }
 /deep/.t-swiper__navigation {
   display: none;
