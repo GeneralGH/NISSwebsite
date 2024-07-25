@@ -9,14 +9,16 @@
             {{
               userLanguage == "1"
                 ? "感谢您对暨南大学新加坡MBA项目的关注，如果您希望进一步了解项目，请准确填写下列信息，我们的项目负责老师会尽快与您联系。"
-                : "Thank you for your interest in the Jinan University Singapore MBA program. For further information, please fill out the following details accurately. Our project manager will contact you promptly."
+                : "Thank you for your interest in the Jinan University Singapore MBA program. For further information,
+            please fill out the following details accurately.Our project manager will contact you promptly."
             }}
           </p>
           <p>
             {{
               userLanguage == "1"
                 ? "您可以拨打+65 6530 3520，直接联络我们，资深老师帮你深入了解暨南大学新加坡MBA项目及申请流程。"
-                : "You can also reach us directly at +65 6530 3520, where our experienced staff will assist you in understanding the Jinan University Singapore MBA program and its application process in depth."
+                : "You can also reach us directly at +65 6530 3520, where our experienced staff will assist you in
+            understanding the Jinan University Singapore MBA program and its application process in depth."
             }}
           </p>
         </div>
@@ -32,14 +34,10 @@
               </div>
               <div>
                 <t-form-item name="name">
-                  <sInput
-                    v-model="formData.name"
-                    :placeholder="
-                      userLanguage == '1'
-                        ? '请填写您的姓名'
-                        : 'Please enter your name'
-                    "
-                  />
+                  <sInput v-model="formData.name" :placeholder="userLanguage == '1'
+                    ? '请填写您的姓名'
+                    : 'Please enter your name'
+                    " />
                 </t-form-item>
               </div>
             </div>
@@ -49,19 +47,13 @@
               </div>
               <div style="position: relative">
                 <t-form-item name="nationality">
-                  <sSelect
-                    @optionChange="
-                      (item) => {
-                        formData.nationality = item.label;
-                      }
-                    "
-                    :options="nationalityOptions"
-                    :placeholder="
-                      userLanguage == '1'
-                        ? '请填写您的国籍'
-                        : 'Please enter your nationality'
-                    "
-                  />
+                  <sSelect @optionChange="(item) => {
+                    formData.nationality = item.label;
+                  }
+                    " :options="nationalityOptions" :placeholder="userLanguage == '1'
+                      ? '请填写您的国籍'
+                      : 'Please enter your nationality'
+                      " />
                 </t-form-item>
               </div>
             </div>
@@ -78,19 +70,13 @@
               </div>
               <div style="position: relative">
                 <t-form-item name="residence">
-                  <sSelect
-                    @optionChange="
-                      (item) => {
-                        formData.residence = item.label;
-                      }
-                    "
-                    :options="residenceStatusOptions"
-                    :placeholder="
-                      userLanguage == '1'
-                        ? '请选择您的新加坡居留身份'
-                        : 'Please select your residency status in Singapore'
-                    "
-                  />
+                  <sSelect @optionChange="(item) => {
+                    formData.residence = item.label;
+                  }
+                    " :options="residenceStatusOptions" :placeholder="userLanguage == '1'
+                      ? '请选择您的新加坡居留身份'
+                      : 'Please select your residency status in Singapore'
+                      " />
                 </t-form-item>
               </div>
             </div>
@@ -101,19 +87,13 @@
               </div>
               <div style="position: relative">
                 <t-form-item name="qualification">
-                  <sSelect
-                    @optionChange="
-                      (item) => {
-                        formData.qualification = item.label;
-                      }
-                    "
-                    :options="highestEducationalOptions"
-                    :placeholder="
-                      userLanguage == '1'
-                        ? '请选择您的最高学历'
-                        : 'Please select your highest education level'
-                    "
-                  />
+                  <sSelect @optionChange="(item) => {
+                    formData.qualification = item.label;
+                  }
+                    " :options="highestEducationalOptions" :placeholder="userLanguage == '1'
+                      ? '请选择您的最高学历'
+                      : 'Please select your highest education level'
+                      " />
                 </t-form-item>
               </div>
             </div>
@@ -126,31 +106,21 @@
                   userLanguage == "1"
                     ? "已在中国境外居住时间"
                     : "Time Resided Outside of China"
-                }}<span
-                  style="font-weight: 500; color: #172c47"
-                  class="bk-label"
-                  >{{
-                    userLanguage == "1"
-                      ? "（不包括留学及公派出国的时间）"
-                      : "（excluding study and official assignments abroad）"
-                  }}</span
-                ><span>*</span>
+                }}<span style="font-weight: 500; color: #172c47" class="bk-label">{{
+                  userLanguage == "1"
+                    ? "（不包括留学及公派出国的时间）"
+                    : "（excluding study and official assignments abroad）"
+                }}</span><span>*</span>
               </div>
               <div style="position: relative">
                 <t-form-item name="residenceTime">
-                  <sSelect
-                    @optionChange="
-                      (item) => {
-                        formData.residenceTime = item.label;
-                      }
-                    "
-                    :options="outsideTimeOptions"
-                    :placeholder="
-                      userLanguage == '1'
-                        ? '请选择已在中国境外居住时间'
-                        : 'Please select the time you have resided outside of China'
-                    "
-                  />
+                  <sSelect @optionChange="(item) => {
+                    formData.residenceTime = item.label;
+                  }
+                    " :options="outsideTimeOptions" :placeholder="userLanguage == '1'
+                      ? '请选择已在中国境外居住时间'
+                      : 'Please select the time you have resided outside of China'
+                      " />
                 </t-form-item>
               </div>
             </div>
@@ -163,14 +133,10 @@
               </div>
               <div>
                 <t-form-item name="company">
-                  <sInput
-                    v-model="formData.company"
-                    :placeholder="
-                      userLanguage == '1'
-                        ? '请填写您的公司'
-                        : 'Please enter your company'
-                    "
-                  />
+                  <sInput v-model="formData.company" :placeholder="userLanguage == '1'
+                    ? '请填写您的公司'
+                    : 'Please enter your company'
+                    " />
                 </t-form-item>
               </div>
             </div>
@@ -183,14 +149,10 @@
               </div>
               <div>
                 <t-form-item name="post">
-                  <sInput
-                    v-model="formData.post"
-                    :placeholder="
-                      userLanguage == '1'
-                        ? '请填写您的职位'
-                        : 'Please enter your position'
-                    "
-                  />
+                  <sInput v-model="formData.post" :placeholder="userLanguage == '1'
+                    ? '请填写您的职位'
+                    : 'Please enter your position'
+                    " />
                 </t-form-item>
               </div>
             </div>
@@ -202,11 +164,8 @@
                 {{ userLanguage == "1" ? "区号" : "Area Code" }}
               </div>
               <div>
-                <sInput
-                  v-model="formData.areaCode"
-                  :isAreaCode="true"
-                  :placeholder="userLanguage == '1' ? '+ 区号' : '+ Area Code'"
-                />
+                <sInput v-model="formData.areaCode" :isAreaCode="true"
+                  :placeholder="userLanguage == '1' ? '+ 区号' : '+ Area Code'" />
               </div>
             </div>
             <div class="form-item phone-item">
@@ -216,15 +175,10 @@
               </div>
               <div>
                 <t-form-item name="phone">
-                  <sInput
-                    :isPhone="true"
-                    v-model="formData.phone"
-                    :placeholder="
-                      userLanguage == '1'
-                        ? '请填写您的手机号码'
-                        : 'Please enter your mobile number'
-                    "
-                  />
+                  <sInput :isPhone="true" v-model="formData.phone" :placeholder="userLanguage == '1'
+                    ? '请填写您的手机号码'
+                    : 'Please enter your mobile number'
+                    " />
                 </t-form-item>
               </div>
             </div>
@@ -238,14 +192,10 @@
               </div>
               <div>
                 <t-form-item name="email">
-                  <sInput
-                    v-model="formData.email"
-                    :placeholder="
-                      userLanguage == '1'
-                        ? '请填写您的E-mail邮箱地址'
-                        : 'Please enter your email address'
-                    "
-                  />
+                  <sInput v-model="formData.email" :placeholder="userLanguage == '1'
+                    ? '请填写您的E-mail邮箱地址'
+                    : 'Please enter your email address'
+                    " />
                 </t-form-item>
               </div>
             </div>
@@ -262,19 +212,13 @@
               </div>
               <div style="position: relative">
                 <t-form-item name="consultationMethods">
-                  <sSelect
-                    @optionChange="
-                      (item) => {
-                        formData.consultationMethods = item.label;
-                      }
-                    "
-                    :options="consultingServiceOptions"
-                    :placeholder="
-                      userLanguage == '1'
-                        ? '请选择你倾向的咨询沟通方式'
-                        : 'Please select your preferred consultation method'
-                    "
-                  />
+                  <sSelect @optionChange="(item) => {
+                    formData.consultationMethods = item.label;
+                  }
+                    " :options="consultingServiceOptions" :placeholder="userLanguage == '1'
+                      ? '请选择你倾向的咨询沟通方式'
+                      : 'Please select your preferred consultation method'
+                      " />
                 </t-form-item>
               </div>
             </div>
@@ -291,17 +235,11 @@
               </div>
               <div style="position: relative">
                 <t-form-item name="obtainingChannels">
-                  <sSelect
-                    @optionChange="
-                      (item) => {
-                        formData.obtainingChannels = item.label;
-                      }
-                    "
-                    :options="knowingChannelOptions"
-                    :placeholder="
-                      userLanguage == '1' ? '请选择您得知的渠道' : '暂无英文'
-                    "
-                  />
+                  <sSelect @optionChange="(item) => {
+                    formData.obtainingChannels = item.label;
+                  }
+                    " :options="knowingChannelOptions" :placeholder="userLanguage == '1' ? '请选择您得知的渠道' : '暂无英文'
+                      " />
                 </t-form-item>
               </div>
             </div>
@@ -318,19 +256,13 @@
               </div>
               <div style="position: relative">
                 <t-form-item name="consultationDateDay">
-                  <sDatePicker
-                    @optionChange="
-                      (item) => {
-                        formData.consultationDateDay = item;
-                      }
-                    "
-                    ref="sDatePicker"
-                    :placeholder="
-                      userLanguage == '1'
-                        ? '请选择预约咨询日期'
-                        : 'Please select a preferred consultation date'
-                    "
-                  />
+                  <sDatePicker @optionChange="(item) => {
+                    formData.consultationDateDay = item;
+                  }
+                    " ref="sDatePicker" :placeholder="userLanguage == '1'
+                      ? '请选择预约咨询日期'
+                      : 'Please select a preferred consultation date'
+                      " />
                 </t-form-item>
               </div>
             </div>
@@ -344,19 +276,13 @@
               </div>
               <div style="position: relative">
                 <t-form-item name="consultationDateTime">
-                  <sSelect
-                    :isTime="true"
-                    @optionChange="
-                      (item) => {
-                        formData.consultationDateTime = item.label;
-                      }
-                    "
-                    :placeholder="
-                      userLanguage == '1'
-                        ? '请选择预约咨询时间'
-                        : 'Please select a preferred consultation time'
-                    "
-                  />
+                  <sSelect :isTime="true" @optionChange="(item) => {
+                    formData.consultationDateTime = item.label;
+                  }
+                    " :placeholder="userLanguage == '1'
+                      ? '请选择预约咨询时间'
+                      : 'Please select a preferred consultation time'
+                      " />
                 </t-form-item>
               </div>
             </div>
@@ -370,11 +296,7 @@
               </div>
               <div style="display: flex">
                 <!-- <t-radio v-model="ok" @click="ok = !ok"></t-radio> -->
-                <div
-                  class="form-ok-area"
-                  :class="{ formUnOk: !ok }"
-                  @click="ok = !ok"
-                >
+                <div class="form-ok-area" :class="{ formUnOk: !ok }" @click="ok = !ok">
                   <img src="../../assets/form/formOk.png" alt="" v-show="ok" />
                 </div>
                 <div class="tips">
@@ -397,14 +319,11 @@
           </div>
 
           <div class="form-row row-footer">
-            <div
-              class="form-item full-item"
-              style="
+            <div class="form-item full-item" style="
                 display: flex;
                 align-items: center;
                 justify-content: center;
-              "
-            >
+              ">
               <div class="submit-btn">
                 <t-button size="large" class="btn" type="submit">{{
                   userLanguage == "1" ? "确定，提交表格" : "Submit"
@@ -433,6 +352,7 @@ export default {
   data() {
     //这里存放数据
     return {
+      urlSource: '',
       nationalityOptions: [
         { label: "新加坡 ｜ Singapo", value: 1 },
         { label: "中国 ｜ China", value: 2 },
@@ -497,6 +417,7 @@ export default {
         obtainingChannels: "",
         consultationDateDay: "",
         consultationDateTime: "",
+        source: ''
       },
       btnDisabled: false,
       rules: {
@@ -653,22 +574,36 @@ export default {
         this.$message.warning(firstError);
       }
     },
-    submit() {},
+    submit() { },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() { },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     this.$refs.sDatePicker.initDate();
     document.title = this.userLanguage == "1" ? "咨询表单" : "consultationForm";
+    // 获取当前页面的完整URL
+    var currentURL = window.location.href;
+
+    // 使用URLSearchParams获取参数值
+    var searchParams = new URLSearchParams(new URL(currentURL).search);
+    var sourceValue = searchParams.get('source');
+
+    if (sourceValue) {
+      this.formData.source = sourceValue
+      this.$request.post(formApi.addVisitNumUrl + sourceValue)
+    }
+
+    // 输出source参数的值
+    console.log(sourceValue); // 这里会输出参数source的值
   },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  beforeCreate() { }, //生命周期 - 创建之前
+  beforeMount() { }, //生命周期 - 挂载之前
+  beforeUpdate() { }, //生命周期 - 更新之前
+  updated() { }, //生命周期 - 更新之后
+  beforeDestroy() { }, //生命周期 - 销毁之前
+  destroyed() { }, //生命周期 - 销毁完成
+  activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 
@@ -677,90 +612,116 @@ export default {
   .party-content {
     width: 700px;
   }
+
   .bk-label {
     font-size: 20px;
   }
+
   .select-area {
     margin-bottom: 200px !important;
   }
+
   .form-area {
     display: flex;
     flex-direction: column;
   }
+
   .form-row {
     display: flex;
     flex-direction: column;
     height: 400px !important;
     margin-bottom: 70px !important;
   }
+
   .tips {
     width: 200px !important;
   }
+
   /deep/.page-area {
     width: 100% !important;
   }
+
   .tips-title {
     width: 600px;
     line-height: 35px !important;
   }
+
   .submit-btn {
     display: flex;
     justify-content: center;
   }
+
   .tips-content {
     width: 600px;
     line-height: 30px !important;
   }
+
   .btn {
     width: 300px !important;
   }
+
   .item-area {
     width: 550px;
   }
+
   .form-row:nth-child(1) {
     height: 350px !important;
   }
+
   .form-row:nth-child(2) {
     height: 350px !important;
   }
+
   .form-row:nth-child(3) {
     width: 100%;
     height: 150px !important;
   }
+
   .form-row:nth-child(4) {
     height: 150px !important;
   }
+
   .form-row:nth-child(5) {
     height: 150px !important;
   }
+
   .form-row:nth-child(6) {
     height: 320px !important;
   }
+
   .form-row:nth-child(7) {
     height: 150px !important;
   }
+
   .form-row:nth-child(8) {
     height: 150px !important;
   }
+
   .form-row:nth-child(9) {
     height: 150px !important;
   }
+
   .form-row:nth-child(10) {
     height: 300px !important;
   }
+
   .form-row:nth-child(11) {
     height: 350px !important;
   }
+
   .row-footer {
     height: 80px !important;
   }
+
   .label-zc {
     margin-top: 50px;
   }
+
   .form-item {
     margin-bottom: 50px !important;
   }
 }
+
 /deep/.t-is-error .t-input__extra {
   font-size: 20px;
   margin-top: 15px;
@@ -867,8 +828,7 @@ export default {
     height: 200px;
   }
 
-  .form-item {
-  }
+  .form-item {}
 
   .normal-item {
     width: 530px;
