@@ -213,6 +213,7 @@ export default {
   height: 634px;
   display: block;
   margin-bottom: 30px;
+  border-radius: 16px;
 }
 /deep/.page-area {
   width: 1200px;
