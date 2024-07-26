@@ -326,6 +326,10 @@ export default {
   .content-item{
     width:100vw !important;
   }
+
+  .networkingList {
+    flex-wrap: nowrap !important;
+  }
 }
 .networkingList {
   display: flex;

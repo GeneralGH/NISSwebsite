@@ -277,6 +277,7 @@ export default {
     width:16rem !important;
    margin-right: 0 !important;
     margin-left: 1rem !important;
+    height: auto;
   }
   .info-content >p {
     line-height: 20px !important;

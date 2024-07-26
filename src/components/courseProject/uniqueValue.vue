@@ -148,6 +148,12 @@ export default {
 <style scoped lang="less">
 @import url('./index.css');
 
+/* @media(max-width:720px){
+  .networkingList {
+    flex-wrap: nowrap !important;
+  }
+} */
+
 .space-one {
     margin-bottom: 40px;
 }

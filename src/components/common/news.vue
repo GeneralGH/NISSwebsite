@@ -25,30 +25,30 @@
 
         <div class="news-mobile-box">
             <div v-for="(item, index) in list" :key="item.id" class="mobile-item">
-            <div class="" :style="index % 2 !== 0 ? 'flex-direction: row-reverse;' : ''"
-                @click="toDetail(item)">
-                <div class="news-info">
-                    <div>
-                    <img class="mobile-cover" :src="userLanguage == '1' ? item.url : item.urlEn" alt="">
-                </div>
-                    <div class="mobile-title">{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
-                    <div class="mobile-content">
+                <div class="" :style="index % 2 !== 0 ? 'flex-direction: row-reverse;' : ''" @click="toDetail(item)">
+                    <div class="news-info">
                         <div>
-                            {{ contentToStr(userLanguage == '1' ? item.content : item.contentEn) }}
+                            <img class="mobile-cover" :src="userLanguage == '1' ? item.url : item.urlEn" alt="">
                         </div>
+                        <div class="mobile-title">{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
+                        <div class="mobile-content">
+                            <div>
+                                {{ contentToStr(userLanguage == '1' ? item.content : item.contentEn) }}
+                            </div>
+                        </div>
+
                     </div>
-              
-                </div>
-                <div class="btn mobile-btn">
+                    <div class="btn mobile-btn">
                         <div>{{ userLanguage == '1' ? '了解详情' : 'Learn More' }}</div>
                         <img class="rightArrow" src="../../../assets/header/rightArrow.png" alt="">
                     </div>
+                </div>
+                <div class="party-line"></div>
             </div>
-            <div class="party-line"></div>
-        </div>
         </div>
         <div class="getMore">
-            <t-button variant="text" theme="primary" size="large" @click="getMore" v-show="!isEnd">{{ userLanguage == '1' ? '加载更多' : 'getMore'}}</t-button>
+            <t-button variant="text" theme="primary" size="large" @click="getMore" v-show="!isEnd">{{ userLanguage ==
+                '1' ? '加载更多' : 'getMore'}}</t-button>
         </div>
 
     </div>
@@ -128,48 +128,54 @@ export default {
 @media (max-width: 720px) {
     .news-mobile-box {
         display: block !important;
-        .mobile-title{
-        width: 100%;
-        font-size: 36px;
-color: #172C47;
-line-height: 56px;
-font-weight: bold;
+
+        .mobile-title {
+            width: 100%;
+            font-size: 36px;
+            color: #172C47;
+            line-height: 56px;
+            font-weight: bold;
         }
-      .mobile-item{
-        margin-bottom: 100px;
-      }
-      .party-line{
-        display: none;
-      }
-        .mobile-btn{
+
+        .mobile-item {
+            margin-bottom: 100px;
+        }
+
+        .party-line {
+            display: none;
+        }
+
+        .mobile-btn {
             margin-top: 20px;
         }
-        
-        .mobile-content{
+
+        .mobile-content {
             display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: normal;
-  height: 3em; 
-  line-height: 1.5em; 
-  color: #172C47;
-  font-weight: 500;
-  margin-top: 20px;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            height: 3em;
+            line-height: 1.5em;
+            color: #172C47;
+            font-weight: 500;
+            margin-top: 20px;
 
         }
 
     }
 
 
-    .getMore{
-            display: none !important;
-        }
+    .getMore {
+        display: none !important;
+    }
+
     .news-box {
         display: none !important;
     }
-    .mobile-cover{
+
+    .mobile-cover {
         width: 100%;
         height: 400px;
         border-radius: 10px;
@@ -197,7 +203,7 @@ font-weight: bold;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
- 
+
     .new-cover {
         width: 354px;
         height: 270px;
@@ -245,7 +251,7 @@ font-weight: bold;
 }
 
 .btn {
-    width: 174px;
+    width: fit-content;
     height: 52px;
     background: #FF9C00;
     border-radius: 26px;
@@ -255,12 +261,13 @@ font-weight: bold;
     font-weight: bold;
     font-size: 20px;
     color: #FFFFFF;
-    padding-left: 40px;
+    padding: 0 20px 0 40px;
     box-sizing: border-box;
 }
 
 .rightArrow {
     width: 21px;
     height: 21px;
+    margin-left: 15px;
 }
 </style>

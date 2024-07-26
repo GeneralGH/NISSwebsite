@@ -13,7 +13,7 @@
           <div>
             <img class="content-image" :src="JNUniversityNetwork" alt="" />
             <div class="content-p">
-              {{ userLanguage == '1' ? '自南洋社会科学学院成立以来，每年有来自超过20多个行业的学生选择加入我们。我们的校友网络遍布世界各地，超过大半的校友在大型跨国公司任职，超过20%的校友创立了自己的企业。他们秉承着学院的价值观念，不断追求卓越，在各个经济领域展现出卓越才能，创造价值并服务社会。' : '暂无英文' }}
+              {{ userLanguage == '1' ? '自南洋社会科学学院成立以来，每年有来自超过20多个行业的学生选择加入我们。我们的校友网络遍布世界各地，超过大半的校友在大型跨国公司任职，超过20%的校友创立了自己的企业。他们秉承着学院的价值观念，不断追求卓越，在各个经济领域展现出卓越才能，创造价值并服务社会。' : "Since its inception, the Nanyang School of Social Sciences has attracted students from over 20 industries each year. Our alumni network spans the globe, with more than half working in large multinational corporations and over 20% founding their own businesses. They uphold the school's values, continuously striving for excellence, showcasing their talents in various economic sectors, creating value, and serving society." }}
             </div>
           </div>
         </div>
