@@ -28,7 +28,7 @@
         </div> -->
         <div class="info-right class-title">
           <div class="info-item module-card" v-for="(item, index) in infoList" @mouseover="isHovered = index"
-            @mouseleave="isHovered = -1" @mouseenter="jump(item, index)">
+            @mouseleave="isHovered = -1" @mouseenter="jump(item, index)" :class="{ 'is-hovered': isHovered == index }">
             <div style="width: 100%">
               <div class="info-title">
                 <div>{{ userLanguage == "1" ? item.title : item.titleEn }}</div>
@@ -477,6 +477,14 @@ export default {
   user-drag: none;
 }
 
+.module-card::before {
+  background-image: repeating-linear-gradient(125deg, rgba(4, 74, 159, 0.2) 80%, rgba(4, 74, 159, 0.2));
+}
+
+.module-card.is-hovered::before {
+  background-image: repeating-linear-gradient(125deg, #FF9C00, #FFCC9E, #74B6EB 80%, #68AAEC, #04499F);
+}
+
 @media (max-width: 720px) {
   .header-mobile {
     width: 100%;
@@ -485,7 +493,7 @@ export default {
   }
 
   .homeRightArrow-area {
-    bottom: -1px !important;
+    bottom: 10px !important;
   }
 
   .class-title {
@@ -506,20 +514,28 @@ export default {
   .content-one {
     padding-bottom: 0 !important;
     padding-top: 0 !important;
+    margin-top: -100px;
   }
 
   .title {
     font-size: 89px !important;
+    word-break: break-all;
   }
 
   .content-two {
-    margin-top: 60px !important;
+    margin-top: 0px !important;
 
     .info-left {
+      height: 31rem !important;
       .title {
         font-size: 42px !important;
       }
     }
+  }
+
+  .content-two .content-info .info-right .info-item .subTitle {
+    margin-top: 20px !important;
+    margin-bottom: 100px !important;
   }
 
   #appContainer {
@@ -529,7 +545,7 @@ export default {
   #contentTwoRight {
     .info-item {
       width: 500px !important;
-      padding: 40px 40px 0 40px !important;
+      padding: 0 40px 0 40px !important;
     }
   }
 
@@ -547,7 +563,7 @@ export default {
   .content-se {
     display: flex;
     flex-direction: column;
-    padding: 0 90px;
+    padding: 0 70px;
   }
 
   .content-two {
@@ -607,12 +623,23 @@ export default {
     }
 
     .info-title {
-      font-size: 24px !important;
+      font-size: 32px !important;
     }
   }
 
   .content-one {
     padding-top: 0 !important;
+    margin-top: -180px;
+    .content-info .info-right {
+      /* align-items: baseline; */
+      height: 550px;
+
+      .info-item:hover {
+        margin-top: -50px !important;
+      }
+    }
+    
+    
   }
 
   .content-info {
@@ -633,8 +660,9 @@ body {
 }
 
 .content-one {
-  padding-top: 100px;
   padding-bottom: 123px;
+  position: relative;
+  z-index: 150;
 
   .subtitle {
     font-weight: 300;
@@ -654,7 +682,7 @@ body {
   .content-info {
     display: flex;
     align-items: center;
-    margin-top: 120px;
+    margin-top: -50px;
     justify-content: center;
 
     .info-left {

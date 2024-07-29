@@ -12,16 +12,14 @@
             alt=""
           />
         </div>
-        <div
-          class="header-mobile-bread"
-          style="width: 48px; height: 48px; margin-right: 35px"
-        >
-          <img
+        <div class="header-mobile-bread">
+          <t-image
             @click="showOverlay"
+            class="menu-img"
             src="../../assets/menu.png"
-            width="48"
-            height="48"
-            alt=""
+            fit="cover"
+            position="center"
+            :lazy="true"
           />
         </div>
       </div>
@@ -69,24 +67,12 @@
       </div>
       <Overlay :visible.sync="isOverlayVisible">
         <div style="color: #ffffff">
-          <div
-            style="
-              margin: 20px auto;
-              width: 85%;
-              box-sizing: border-box;
-              display: flex;
-              justify-content: space-between;
-            "
-          >
-            <div style="font-size: 30px" @click="goBack"><</div>
-            <div style="font-size: 30px" @click="hideOverlay">x</div>
+          <div class="menu-area">
+            <div @click="goBack"><</div>
+            <div @click="hideOverlay">x</div>
           </div>
-          <div
-            style="margin: 60px auto; width: 85%; font-size: 20px"
-            v-if="showChildren === true"
-          >
-            <div
-              style="margin-top: 40px"
+          <div class="menu-content" v-if="showChildren === true" >
+            <div class="menu-one"
               v-if="index === 0"
               v-for="(item, index) in displayMenu"
               :key="index"
@@ -97,7 +83,7 @@
             </div>
             <div
               :class="[currentPath == item.path ? 'overlay-color' : '']"
-              style="margin-left: 20px; margin-top: 40px"
+              class="menu-two"
               v-if="index !== 0"
               v-for="(item, index) in displayMenu"
               :key="index"
@@ -106,9 +92,9 @@
               {{ userLanguage == "1" ? item.item.item : item.item.nameEn }}
             </div>
           </div>
-          <div style="margin: 60px auto; width: 85%; font-size: 20px" v-else>
+          <div class="menu-three" v-else>
             <div
-              style="margin-top: 40px"
+              class="menu-one"
               v-for="(item, index) in displayMenu"
               :key="index"
               :class="{ 'overlay-color': currentPath == item.path }"
@@ -145,7 +131,13 @@
       v-if="currentPath == '/alumniStyle'"
     />
 
-    <div class="sidebar" :class="{'sidebar-zh': userLanguage == '1', 'sidebar-en': userLanguage !== '1'}">
+    <div
+      class="sidebar"
+      :class="{
+        'sidebar-zh': userLanguage == '1',
+        'sidebar-en': userLanguage !== '1',
+      }"
+    >
       <div
         class="sidebar-item"
         v-for="(item, index) in sidebarList"
@@ -199,7 +191,12 @@ export default {
       currentItem: "",
       overlayMenu: [
         { item: "首页", nameEn: "Home", path: "/", children: [] },
-        { item: "关于我们", nameEn: "About Us", path: "/aboutUs", children: [] },
+        {
+          item: "关于我们",
+          nameEn: "About Us",
+          path: "/aboutUs",
+          children: [],
+        },
         {
           item: "课程项目",
           nameEn: "Programmes",
@@ -207,24 +204,38 @@ export default {
           children: [
             {
               item: "项目概述",
-              nameEn: 'Program Overview'
+              nameEn: "Program Overview",
             },
             {
               item: "课程体系",
-              nameEn: 'Curriculum System'
+              nameEn: "Curriculum System",
             },
             {
               item: "招生信息",
-              nameEn: 'Admissions Information'
-            }
+              nameEn: "Admissions Information",
+            },
           ],
         },
-        { item: "师资力量", nameEn: "Faculty", path: "/teachingStaff", children: [] },
-        { item: "校友风采", nameEn: "Alumni", path: "/alumniStyle", children: [] },
-        { item: "语言", nameEn: "Language", children: [
-          { item: '中文', nameEn: '中文' },
-          { item: 'English', nameEn: 'English' }
-        ] },
+        {
+          item: "师资力量",
+          nameEn: "Faculty",
+          path: "/teachingStaff",
+          children: [],
+        },
+        {
+          item: "校友风采",
+          nameEn: "Alumni",
+          path: "/alumniStyle",
+          children: [],
+        },
+        {
+          item: "语言",
+          nameEn: "Language",
+          children: [
+            { item: "中文", nameEn: "中文" },
+            { item: "English", nameEn: "English" },
+          ],
+        },
       ],
       displayMenu: [],
       breadcrumbs: [],
@@ -313,9 +324,15 @@ export default {
         this.hideOverlay();
         router.push(item.path);
       } else {
-        console.log(item)
-        localStorage.setItem("userLanguage", item.item.item == "中文" ? "1" : "2");
-        this.$store.dispatch("setUserLanguage", item.item.item == "中文" ? "1" : "2");
+        console.log(item);
+        localStorage.setItem(
+          "userLanguage",
+          item.item.item == "中文" ? "1" : "2"
+        );
+        this.$store.dispatch(
+          "setUserLanguage",
+          item.item.item == "中文" ? "1" : "2"
+        );
         this.hideOverlay();
       }
     },
@@ -433,6 +450,22 @@ export default {
   .header-content {
     display: none;
   }
+
+  .menu-area {
+    margin: 36px auto;
+    margin-bottom: 110px;
+    width: 85%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    div {
+      font-size: 23px;
+    }
+  }
+
+  .menu-content {
+    margin: 60px auto; width: 85%;
+  }
 }
 .overlay-color {
   color: #ff9c00 !important;
@@ -456,7 +489,7 @@ export default {
   top: 0;
   width: 100%;
   height: 100px;
-  z-index: 110;
+  z-index: 200;
   /* left: 50%;
     transform: translateX(-50%); */
 }
@@ -466,7 +499,13 @@ export default {
 }
 
 .header-mobile-bread {
+  margin-right: 40px;
   display: none;
+
+  .menu-img {
+    background: transparent;
+    width: 55px;
+  }
 }
 
 @media (max-width: 720px) {
@@ -689,5 +728,17 @@ export default {
     width: 47px;
     height: 47px;
   }
+}
+
+.menu-one {
+  margin-top: 40px;
+}
+
+.menu-two {
+  margin-left: 20px; margin-top: 40px;
+}
+
+.menu-three {
+  margin: 60px auto; width: 85%; font-size: 24px;
 }
 </style>

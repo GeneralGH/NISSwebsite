@@ -4,15 +4,8 @@
     <t-swiper :duration="300" :interval="2000" :navigation="{ size: 'large' }">
       <t-swiper-item v-for="item in list" :key="item.id">
         <div class="swiper-item" @click="jump(item)">
-          <t-image
-            class="swiper-img"
-            :src="
-              userLanguage == '1' ? item.previewImgUrl : item.previewImgUrlEn
-            "
-            fit="cover"
-            position="center"
-            :lazy="true"
-          />
+          <t-image class="swiper-img" :src="userLanguage == '1' ? item.previewImgUrl : item.previewImgUrlEn
+            " fit="cover" position="center" :lazy="true" />
         </div>
       </t-swiper-item>
     </t-swiper>
@@ -49,7 +42,7 @@ export default {
     },
   },
   watch: {
-    userLanguage(newVal) {},
+    userLanguage(newVal) { },
   },
   //方法集合
   methods: {
@@ -87,47 +80,59 @@ export default {
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() { },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     if (this.$route.path == "/") {
       this.initList();
     }
   },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  beforeCreate() { }, //生命周期 - 创建之前
+  beforeMount() { }, //生命周期 - 挂载之前
+  beforeUpdate() { }, //生命周期 - 更新之前
+  updated() { }, //生命周期 - 更新之后
+  beforeDestroy() { }, //生命周期 - 销毁之前
+  destroyed() { }, //生命周期 - 销毁完成
+  activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 
 <style scoped lang="less">
 @media (max-width: 720px) {
-  .homeRightArrow-area{
+  .homeRightArrow-area {
     bottom: 100px !important;
   }
+
   .content-area {
     height: 666px !important;
   }
-  .cover-textarea{
+
+  .cover-textarea {
     height: 613px !important;
     width: 100vw;
-    .cover-text{
+    top: -40px !important;
+
+    .cover-text {
       width: 450px;
       font-size: 62px;
       bottom: 60px !important;
     }
   }
+
   .cover-text:before {
-    display: none;
+    top: 170px !important;
+    /* display: none; */
   }
+
   .cover-textarea:before {
-   display: none; 
+    /* display: none;  */
+    top: 155px !important;
+    animation: heroTopLinePhone 0.4s linear forwards !important;
+    animation-delay: 1s !important;
+    /* height: 50px !important; */
   }
-  .swiper-img{
+
+  .swiper-img {
     height: 666px !important;
   }
 
@@ -135,9 +140,11 @@ export default {
     display: none;
   }
 }
+
 /deep/.t-swiper__navigation {
   display: none;
 }
+
 .content-area {
   height: 900px;
   margin: 0 auto;
@@ -147,7 +154,7 @@ export default {
 .cover-textarea {
   position: absolute;
   width: 100%;
-  top: 0;
+  top: -130px;
   height: 900px;
   z-index: 50;
   text-align: center;
@@ -158,7 +165,7 @@ export default {
 
 .cover-textarea:before {
   content: "";
-  top: 120px;
+  top: 240px;
   animation: heroTopLine 1s linear forwards;
   animation-delay: 1s;
   height: 0;
@@ -185,7 +192,7 @@ export default {
 .cover-text:before {
   content: "";
   top: 100px;
-  animation: heroBottomLine 1s linear forwards;
+  animation: heroBottomLine 1.3s linear forwards;
   animation-delay: 2.2s;
   height: 0;
   left: 50%;
@@ -195,11 +202,13 @@ export default {
   background: white;
   z-index: 1;
 }
+
 @keyframes fade-in {
   0% {
     opacity: 0;
     transform: translateY(100%);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0%);
@@ -210,8 +219,19 @@ export default {
   0% {
     height: 0;
   }
+
   100% {
-    height: 270px;
+    height: 160px;
+  }
+}
+
+@keyframes heroTopLinePhone {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 50px;
   }
 }
 
@@ -219,6 +239,7 @@ export default {
   0% {
     height: 0;
   }
+
   100% {
     height: 380px;
   }

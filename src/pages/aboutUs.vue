@@ -113,10 +113,11 @@ export default {
     }
     .party{
       width: 100%;
-    margin: 0 !important;
+      margin: 0 !important;
     }
     .party-line{
-      display: none;
+      width: 675px !important;
+      margin: 0 auto;
     }
     .party-title{
       margin-top: 60px;
