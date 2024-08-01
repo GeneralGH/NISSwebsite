@@ -426,7 +426,6 @@ export default {
           // ...
 
           // 控制整个页面的滚动
-          console.log(document.body.scrollTop, diffY)
           document.documentElement.scrollTop -= diffY;
           /* document.body.scrollTop -= diffY; */
         }
