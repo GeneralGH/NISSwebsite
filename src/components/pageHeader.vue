@@ -13,14 +13,21 @@
           />
         </div>
         <div class="header-mobile-bread">
-          <t-image
+          <img
+          class="menu-img"
+            style="display: block"
+            src="../../assets/menu.png"
+            alt=""
+            @click="showOverlay"
+          />
+          <!-- <t-image
             @click="showOverlay"
             class="menu-img"
-            src="../../assets/menu.png"
+            :src="menuPng"
             fit="cover"
             position="center"
             :lazy="true"
-          />
+          /> -->
         </div>
       </div>
       <div class="header-content">

@@ -97,7 +97,7 @@
       </div>
       <div class="subTitle">Their Stories</div>
 
-      <div class="alumni-scroll">
+      <div class="alumni-scroll" id="alumni-scroll">
         <vue-seamless-scroll :data="alumniList" :class-option="classOption" id="vueSeamlessScroll"
           ref="vueSeamlessScroll">
           <div class="alumni-item" v-for="(item, index) in alumniList">
@@ -390,6 +390,56 @@ export default {
     getContainer() {
       return this.$refs.contentTwo;
     },
+
+    scorllView() {
+      let startY = 0;
+      let isScrolling = false;
+      let isAlumniScroll = false;
+
+      const alumniScroll = document.getElementById('alumni-scroll');
+      const bodyElement = document.querySelector('body');
+
+      alumniScroll.addEventListener('touchstart', (event) => {
+        startY = event.touches[0].clientY;
+        isScrolling = false;
+
+        // 判断是否在 alumni-scroll 区域内
+        const rect = alumniScroll.getBoundingClientRect();
+        if (
+          event.touches[0].clientY >= rect.top &&
+          event.touches[0].clientY <= rect.bottom
+        ) {
+          isAlumniScroll = true;
+        } else {
+          isAlumniScroll = false;
+        }
+      });
+
+      alumniScroll.addEventListener('touchmove', (event) => {
+        if (isAlumniScroll) {
+          // 在 alumni-scroll 区域内，阻止整个页面的滚动
+          event.preventDefault();
+
+          const diffY = event.touches[0].clientY - startY;
+
+          // 在这里可以根据 diffY 的值来实现 alumni-scroll 区域的滚动逻辑
+          // ...
+
+          // 控制整个页面的滚动
+          console.log(document.body.scrollTop, diffY)
+          document.documentElement.scrollTop -= diffY;
+          /* document.body.scrollTop -= diffY; */
+        }
+
+        startY = event.touches[0].clientY;
+        isScrolling = true;
+      });
+
+      alumniScroll.addEventListener('touchend', () => {
+        isScrolling = false;
+        isAlumniScroll = false;
+      });
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
@@ -439,6 +489,8 @@ export default {
     this.vueSeamlessScroll.addEventListener("mouseleave", function (event) {
       that.moveFlag = false;
     });
+
+    this.scorllView()
 
     this.initList();
 
@@ -527,6 +579,7 @@ export default {
 
     .info-left {
       height: 31rem !important;
+
       .title {
         font-size: 42px !important;
       }
@@ -630,6 +683,7 @@ export default {
   .content-one {
     padding-top: 0 !important;
     margin-top: -180px;
+
     .content-info .info-right {
       /* align-items: baseline; */
       height: 550px;
@@ -638,8 +692,8 @@ export default {
         margin-top: -50px !important;
       }
     }
-    
-    
+
+
   }
 
   .content-info {
