@@ -48,7 +48,7 @@
               <div style="position: relative">
                 <t-form-item name="nationality">
                   <sSelect @optionChange="(item) => {
-                    formData.nationality = item.label;
+                    formData.nationality = userLanguage == '1' ? item.label : item.labelEn;
                   }
                     " :options="nationalityOptions" :placeholder="userLanguage == '1'
                       ? '请填写您的国籍'
@@ -71,7 +71,7 @@
               <div style="position: relative">
                 <t-form-item name="residence">
                   <sSelect @optionChange="(item) => {
-                    formData.residence = item.label;
+                    formData.residence = userLanguage == '1' ? item.label : item.labelEn;
                   }
                     " :options="residenceStatusOptions" :placeholder="userLanguage == '1'
                       ? '请选择您的新加坡居留身份'
@@ -88,7 +88,7 @@
               <div style="position: relative">
                 <t-form-item name="qualification">
                   <sSelect @optionChange="(item) => {
-                    formData.qualification = item.label;
+                    formData.qualification = userLanguage == '1' ? item.label : item.labelEn;
                   }
                     " :options="highestEducationalOptions" :placeholder="userLanguage == '1'
                       ? '请选择您的最高学历'
@@ -115,7 +115,7 @@
               <div style="position: relative">
                 <t-form-item name="residenceTime">
                   <sSelect @optionChange="(item) => {
-                    formData.residenceTime = item.label;
+                    formData.residenceTime = userLanguage == '1' ? item.label : item.labelEn;
                   }
                     " :options="outsideTimeOptions" :placeholder="userLanguage == '1'
                       ? '请选择已在中国境外居住时间'
@@ -213,7 +213,7 @@
               <div style="position: relative">
                 <t-form-item name="consultationMethods">
                   <sSelect @optionChange="(item) => {
-                    formData.consultationMethods = item.label;
+                    formData.consultationMethods = userLanguage == '1' ? item.label : item.labelEn;
                   }
                     " :options="consultingServiceOptions" :placeholder="userLanguage == '1'
                       ? '请选择你倾向的咨询沟通方式'
@@ -230,15 +230,15 @@
                 {{
                   userLanguage == "1"
                     ? "如何得知暨南大学新加坡MBA硕士学位项目"
-                    : "暂无英文"
+                    : "How did you learn about the JNU MBA program?"
                 }}<span>*</span>
               </div>
               <div style="position: relative">
                 <t-form-item name="obtainingChannels">
                   <sSelect @optionChange="(item) => {
-                    formData.obtainingChannels = item.label;
+                    formData.obtainingChannels = userLanguage == '1' ? item.label : item.labelEn;
                   }
-                    " :options="knowingChannelOptions" :placeholder="userLanguage == '1' ? '请选择您得知的渠道' : '暂无英文'
+                    " :options="knowingChannelOptions" :placeholder="userLanguage == '1' ? '请选择您得知的渠道' : 'Please choose the channel you are aware of'
                       " />
                 </t-form-item>
               </div>
@@ -354,52 +354,53 @@ export default {
     return {
       urlSource: '',
       nationalityOptions: [
-        { label: "新加坡 ｜ Singapo", value: 1 },
-        { label: "中国 ｜ China", value: 2 },
-        { label: "其他 ｜ Other", value: 3 },
+        { label: "新加坡", labelEn: 'Singapo', value: 1 },
+        { label: "中国", labelEn: 'China', value: 2 },
+        { label: "其他", labelEn: 'Other', value: 3 },
       ],
       residenceStatusOptions: [
-        { label: "新加坡公民 | Singapore Citizen", value: 1 },
-        { label: "PR", value: 2 },
-        { label: "EP", value: 3 },
-        { label: "SP", value: 4 },
-        { label: "WP", value: 5 },
-        { label: "其他 | Other", value: 6 },
+        { label: "新加坡公民", labelEn: 'Singapore Citizen', value: 1 },
+        { label: "PR", labelEn: 'PR', value: 2 },
+        { label: "EP", labelEn: 'EP', value: 3 },
+        { label: "SP", labelEn: 'SP', value: 4 },
+        { label: "WP", labelEn: 'WP', value: 5 },
+        { label: "其他", labelEn: 'Other', value: 6 },
       ],
       highestEducationalOptions: [
-        { label: "博士 | PhD", value: 1 },
-        { label: "硕士 | Master's", value: 2 },
-        { label: "本科 | Bachelor's", value: 3 },
-        { label: "大专 | Degree's", value: 4 },
-        { label: "其他 | Other", value: 5 },
+        { label: "博士", labelEn: 'PhD', value: 1 },
+        { label: "硕士", labelEn: "Master's", value: 2 },
+        { label: "本科", labelEn: "Bachelor's", value: 3 },
+        { label: "大专", labelEn: "Degree's", value: 4 },
+        { label: "其他", labelEn: 'Other', value: 5 },
       ],
       outsideTimeOptions: [
-        { label: "5年及以上 | 5 years and above", value: 1 },
-        { label: "4-5年 | 4-5 years", value: 2 },
-        { label: "3-4年 | 3-4 years", value: 3 },
-        { label: "2-3年 | 2-3 years", value: 4 },
-        { label: "1-2年 | 1-2 years", value: 5 },
-        { label: "1年及以下 | Less than 1 year", value: 6 },
+        { label: "5年及以上", labelEn: '5 years and above', value: 1 },
+        { label: "4-5年", labelEn: '4-5 years', value: 2 },
+        { label: "3-4年", labelEn: '3-4 years', value: 3 },
+        { label: "2-3年", labelEn: '2-3 years', value: 4 },
+        { label: "1-2年", labelEn: '1-2 years', value: 5 },
+        { label: "1年及以下", labelEn: 'Less than 1 year', value: 6 },
       ],
       consultingServiceOptions: [
         {
-          label: "面谈（强烈推荐）| In-person (strongly recommended)",
+          label: "面谈（强烈推荐）",
+          labelEn: 'In-person (strongly recommended)',
           value: 1,
         },
-        { label: "视频 | Video", value: 2 },
-        { label: "电话 | Phone", value: 3 },
+        { label: "视频", labelEn: 'Video', value: 2 },
+        { label: "电话", labelEn: 'Phone', value: 3 },
       ],
       knowingChannelOptions: [
-        { label: "微信公众号", value: 1 },
-        { label: "微信朋友圈", value: 2 },
-        { label: "小红书", value: 3 },
-        { label: "邮件", value: 4 },
-        { label: "Linkedin", value: 5 },
-        { label: "Facebook", value: 6 },
-        { label: "YouTube", value: 7 },
-        { label: "微博", value: 8 },
-        { label: "同事、朋友等介绍", value: 9 },
-        { label: "其他", value: 10 },
+        { label: "微信公众号", labelEn: 'WeChat official accounts', value: 1 },
+        { label: "微信朋友圈", labelEn: 'WeChat Moments', value: 2 },
+        { label: "小红书", labelEn: 'Red', value: 3 },
+        { label: "邮件", labelEn: 'E-mail', value: 4 },
+        { label: "Linkedin", labelEn: 'Linkedin', value: 5 },
+        { label: "Facebook", labelEn: 'Facebook', value: 6 },
+        { label: "YouTube", labelEn: 'YouTube', value: 7 },
+        { label: "微博", labelEn: 'Weibo', value: 8 },
+        { label: "同事、朋友等介绍", labelEn: 'Referral by Colleagues, Friends, etc', value: 9 },
+        { label: "其他", labelEn: 'Others', value: 10 },
       ],
       ok: false,
       formData: {

@@ -22,7 +22,7 @@
                 </div>
                 <div class="options-list">
                     <div :class="item.label == chooseLabel ? 'option-check' : 'option-item'" v-for="item in options"
-                        :key="item.value" @click.stop="optionChange(item)">{{ item.label }}</div>
+                        :key="item.value" @click.stop="optionChange(item)">{{ (isDate || isTime) ? item.label : userLanguage == '1' ? item.label : item.labelEn }}</div>
                 </div>
             </div>
         </div>
@@ -50,7 +50,8 @@ export default {
         placeholder: { type: String, default: '' },
         value: { type: String, default: '' },
         options: { type: Array, default: () => [] },
-        isTime: { type: Boolean, default: false }
+        isTime: { type: Boolean, default: false },
+        isDate: { type: Boolean, default: false }
     },
     //监听属性 类似于data概念
     computed: {},
@@ -78,7 +79,7 @@ export default {
         },
 
         optionChange(item) {
-            this.chooseLabel = item.label
+            this.chooseLabel = (this.isTime || this.is) ? item.label : this.userLanguage == '1' ? item.label : item.labelEn
             this.isRotated = false
             this.$emit('optionChange', item)
         },

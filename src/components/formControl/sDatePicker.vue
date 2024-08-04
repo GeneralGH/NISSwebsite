@@ -15,11 +15,11 @@
             <div class="date">
                 <div class="year-month-area">
                     <div class="month">
-                        <sSelect ref="monthSelect" @optionChange="monthChange" :options="monthOptions"
+                        <sSelect :isDate="true" ref="monthSelect" @optionChange="monthChange" :type="'time'" :options="monthOptions"
                             :placeholder="'请选择月份'" />
                     </div>
                     <div class="year">
-                        <sSelect ref="yearSelect" @optionChange="yearChange" :options="yearOptions"
+                        <sSelect :isDate="true" ref="yearSelect" @optionChange="yearChange" :type="'time'" :options="yearOptions"
                             :placeholder="'请选择年份'" />
                     </div>
                 </div>
