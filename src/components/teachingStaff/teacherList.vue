@@ -142,12 +142,13 @@ export default {
 
             div {
                 margin-top: 23px;
-                display: -webkit-box;
+                /* display: -webkit-box;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 1;
-                overflow: hidden;
+                overflow: hidden; */
                 /* 设置文本超出部分省略 */
-                text-overflow: ellipsis;
+                /* text-overflow: ellipsis; */
+                width: 140%;
             }
         }
     }

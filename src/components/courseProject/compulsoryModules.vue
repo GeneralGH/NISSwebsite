@@ -3,7 +3,7 @@
   <div>
     <div class="content-item" id="options2-1">
       <div class="title">
-        {{ userLanguage == "1" ? "必修模块" : "sCore Modules" }}
+        {{ userLanguage == "1" ? "必修模块" : "Core Modules" }}
       </div>
       <div class="line"></div>
       <div class="info-content">
@@ -60,7 +60,7 @@
         <div class="item-footer">
           {{
             userLanguage == "1"
-              ? "* 课程可调整，以实际课程安排为准"
+              ? "* 课程如有调整，以实际安排为准"
               : "* Courses may be adjusted according to the actual course schedule."
           }}
         </div>

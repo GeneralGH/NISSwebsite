@@ -78,7 +78,7 @@
         <div class="img-item">
           <img src="../../../assets/courseProjects/one.png" alt="" />
           <div class="tow-title">
-            {{ userLanguage == "1" ? "春季秋季" : "Spring and Autumn" }}<br />{{
+            {{ userLanguage == "1" ? "春秋两季" : "Spring and Autumn" }}<br />{{
               userLanguage == "1" ? "滚动招生" : "Rolling Admissions"
             }}
           </div>
@@ -108,18 +108,18 @@
       </div>
       <div class="line"></div>
       <div class="info">
-        · {{ userLanguage == "1" ? "中文教学" : "Taught in Chinese" }}<br />
+        · {{ userLanguage == "1" ? "中文教学" : "Integrate Chinese business culture and modern management wisdom" }}<br />
         ·
         {{
           userLanguage == "1"
             ? "新加坡就读，享受港澳台华侨外特殊申请政策"
-            : "Study in Singapore, Enjoy Special Application Policies for Hong Kong, Macau, Taiwan, and Overseas Chinese"
+            : "Professional system and valuable qualification"
         }}<br />
         ·
         {{
           userLanguage == "1"
             ? "免中国MBA联考"
-            : "No Chinese MBA Entrance Exam Required"
+            : "Develop a broad international perspective"
         }}<br />
         ·
         {{
@@ -130,7 +130,7 @@
         ·
         {{
           userLanguage == "1"
-            ? "大专文凭可报考"
+            ? "大专文凭可申请"
             : "Associate Degree Holders Eligible to Apply"
         }}<br />
         ·
@@ -146,7 +146,7 @@
             : "Gain Comprehensive Empowerment for Career Development with 1+1+N+2"
         }}
       </div>
-      <div class="four-area">
+      <div class="four-area" v-show="userLanguage == '1'">
         <img
           class="fourImg"
           src="../../../assets/courseProjects/four.png"
@@ -157,7 +157,7 @@
 
     <div class="content-item" id="options1-4">
       <div class="title">
-        {{ userLanguage == "1" ? "海外游学" : "Overseas Module" }}
+        {{ userLanguage == "1" ? "国际交换" : "Overseas Module" }}
       </div>
       <div class="line"></div>
       <img
@@ -174,7 +174,7 @@
       </div>
     </div>
 
-    <div class="content-item" id="options1-5">
+    <div class="content-item" id="options1-5" v-if="userLanguage == '1'">
       <div class="title">
         {{ userLanguage == "1" ? "学生画像" : "Student Profile" }}
       </div>
@@ -395,7 +395,7 @@ export default {
   img {
     width: 260px;
     height: 329px;
-    margin-right: 20px;
+    margin-right: 60px;
   }
 }
 

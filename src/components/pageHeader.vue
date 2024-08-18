@@ -75,8 +75,12 @@
       <Overlay :visible.sync="isOverlayVisible">
         <div style="color: #ffffff">
           <div class="menu-area">
-            <div @click="goBack"><</div>
-            <div @click="hideOverlay">x</div>
+            <div><img src="../../assets/mBack.png" alt=""  @click="goBack"></div>
+            <div><img src="../../assets/mClose.png" alt="" @click="hideOverlay"></div>
+          </div>
+
+          <div class="menu-content" v-if="showChildren === true" @click="handleClick({children: [], path: '/', item: '首页'})">
+            <div class="menu-one">{{ userLanguage == '1' ? '首页' : 'Home' }}</div>
           </div>
           <div class="menu-content" v-if="showChildren === true" >
             <div class="menu-one"
@@ -230,8 +234,8 @@ export default {
           children: [],
         },
         {
-          item: "校友风采",
-          nameEn: "Alumni",
+          item: "精英网络",
+          nameEn: "Students",
           path: "/alumniStyle",
           children: [],
         },
@@ -253,12 +257,12 @@ export default {
         { name: "关于我们", nameEn: "About Us", path: "/aboutUs" },
         { name: "课程项目", nameEn: "Programmes", path: "/courseProjects" },
         { name: "师资力量", nameEn: "Faculty", path: "/teachingStaff" },
-        { name: "校友风采", nameEn: "Alumni", path: "/alumniStyle" },
+        { name: "精英网络", nameEn: "Students", path: "/alumniStyle" },
       ],
       currentPath: "/",
       bgHeigth: "",
       sidebarList: [
-        {
+        /* {
           name: "立即申请",
           nameEn: "Apply Now",
           path: "",
@@ -271,10 +275,10 @@ export default {
           path: "",
           imgPath: ProjectImg,
           unImgPath: unProjectImg,
-        },
+        }, */
         {
           name: "1对1咨询",
-          nameEn: "One-on-One Consultation",
+          nameEn: "Schedule an Info Session",
           path: "/consultationForm",
           imgPath: ChatImg,
           unImgPath: unChatImg,
@@ -285,7 +289,7 @@ export default {
       isRotated: false,
       lanageList: [
         { label: "中文", value: "1" },
-        { label: "English", value: "2" },
+        { label: "En", value: "2" },
       ],
     };
   },
@@ -330,8 +334,11 @@ export default {
       } else if (item.path) {
         this.hideOverlay();
         router.push(item.path);
+        window.scrollTo({
+          top: 0,
+          behavior: "instant", // 可选，使用平滑滚动效果
+        });
       } else {
-        console.log(item);
         localStorage.setItem(
           "userLanguage",
           item.item.item == "中文" ? "1" : "2"
@@ -436,10 +443,10 @@ export default {
         const scrollHeight = window.scrollY;
         const opacity = scrollHeight / containerHeight;
 
-        headerNavArea.style.backgroundColor = `rgba(11, 20, 32, ${opacity})`;
+        headerNavArea.style.backgroundColor = `rgba(22, 58, 107, ${opacity})`;
       });
     } else {
-      headerNavArea.style.backgroundColor = `rgba(11, 20, 32, 1)`;
+      headerNavArea.style.backgroundColor = `rgba(22, 58, 107, 1)`;
     }
   },
   beforeCreate() {}, //生命周期 - 创建之前
@@ -461,12 +468,16 @@ export default {
   .menu-area {
     margin: 36px auto;
     margin-bottom: 110px;
-    width: 85%;
+    width: 95%;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     div {
       font-size: 23px;
+    }
+    img {
+      width: 81px;
+      height: 81px;
     }
   }
 
@@ -699,17 +710,17 @@ export default {
 
 .sidebar-zh {
   width: 91px;
-  height: 295px;
+  height: 195px;
 }
 
 .sidebar-en {
   width: 120px;
-  height: 335px;
+  height: 205px;
 }
 
 .sidebar {
   position: fixed;
-  background: #ffffff;
+  background: #ff9c00;
   border-radius: 20px 0 0 20px;
   right: 0;
   bottom: 50%;
@@ -727,8 +738,13 @@ export default {
   .sidebar-item {
     width: 100%;
     text-align: center;
-    color: #172c47;
+    /* color: #172c47; */
+    color: #fff;
     cursor: pointer;
+
+    div:hover {
+      color: #172c47;
+    }
   }
 
   img {
@@ -738,7 +754,7 @@ export default {
 }
 
 .menu-one {
-  margin-top: 40px;
+  margin-top: 40px; font-size: 24px;
 }
 
 .menu-two {

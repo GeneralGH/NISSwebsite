@@ -1,8 +1,8 @@
 <!--  -->
 <template>
     <div class="party">
-        <div class="party-title">{{ userLanguage == '1' ? '更多师资力量' : 'Explore more faculty resources' }}</div>
-        <div class="party-line"></div>
+        <!-- <div class="party-title">{{ userLanguage == '1' ? '更多师资力量' : 'Explore more faculty resources' }}</div>
+        <div class="party-line"></div> -->
 
         <div class="search-area">
             <div class="search-title">{{ userLanguage == '1' ? '姓名搜索' : 'Search by name' }}</div>

@@ -123,7 +123,7 @@ export default {
               id: "options1-3",
             },
             {
-              name: "海外游学",
+              name: "国际交换",
               nameEn: "Overseas Module",
               id: "options1-4",
             },
@@ -329,6 +329,10 @@ export default {
   .leftList{
     display: none !important;
   }
+
+  .templateCss {
+    width: 100% !important;
+  }
 }
 .leftList {
   /* width: 25%; */
@@ -339,6 +343,8 @@ export default {
   position: sticky;
   top: 150px;
   height: 1080px;
+  box-sizing: border-box;
+  padding-left: 100px;
 }
 
 .sticky {
@@ -369,7 +375,7 @@ export default {
   }
 
   .content-body {
-    width: 1400px;
+    width: 2000px;
     display: flex;
     margin: 0 auto;
     margin-top: 50px;
@@ -442,7 +448,7 @@ export default {
 
 .btn {
   margin-top: 20px;
-  width: 174px;
+  width: 200px;
   height: 52px;
   background: #ff9c00;
   border-radius: 26px;

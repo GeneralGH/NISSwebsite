@@ -11,8 +11,8 @@
                 ? "关于我们"
                 : "About Us"
               : userLanguage == "1"
-              ? "校友风采"
-              : "Alumni"
+              ? "精英网络"
+              : "Students"
           }}
           /
         </span>
@@ -322,7 +322,7 @@ export default {
 }
 
 /deep/ .page-area {
-  width: 1200px;
+  width: 2000px;
   margin: 0 auto;
   padding: 30px 0 160px 0;
 }
@@ -370,7 +370,7 @@ export default {
 }
 
 .article-content {
-  width: 814px;
+  width: 1300px;
 }
 
 .more-article {

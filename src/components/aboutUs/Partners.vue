@@ -32,7 +32,7 @@
           </t-swiper-item>
         </t-swiper>
       </div>
-      <div class="bottom-list">
+      <!-- <div class="bottom-list">
         <div
           v-for="(item, index) in schoolList"
           :key="index"
@@ -50,11 +50,11 @@
             {{ item.title }}
           </div>
         </div>
-      </div>
-      <div class="index-list">
+      </div> -->
+      <!-- <div class="index-list">
         <div class="index" v-for="(item, index) in schoolList"
         :key="index" :style="{ backgroundColor : index == current ? '#E98225' : '#172C47' }"></div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -80,7 +80,7 @@ export default {
           subTitle: "暨南大学-百年名校 华侨最高学府",
           img: oneImg,
         },
-        {
+        /* {
           title: "法国里昂商学院",
           subTitle: "法国里昂商学院-欧洲最古老商学院之一",
           img: twoImg,
@@ -89,17 +89,17 @@ export default {
           title: "名古屋商学院",
           subTitle: "名古屋商学院-AACSB国际认证",
           img: threeImg,
-        },
+        }, */
         {
           title: "南特高等商学院",
           subTitle: "南特高等商学院-欧洲顶级高等商学院",
           img: fourImg,
         },
-        {
+        /* {
           title: "萨兰托大学",
           subTitle: "萨兰托大学-意大利公立大学",
           img: fiveImg,
-        },
+        }, */
       ],
       current: 0,
     };
@@ -187,7 +187,7 @@ export default {
 .swiper-img,
 .swiper-area {
   width: 100%;
-  height: 580px;
+  height: 1080px;
   border-radius: 30px !important;
 }
 

@@ -4,7 +4,7 @@
     <pageHeader />
     <div class="teachingStaff-area">
       <OurTeachers />
-      <EliteTeam />
+      <!-- <EliteTeam /> -->
       <MoreTeachers />
     </div>
     <PageFooter />
@@ -62,7 +62,7 @@ export default {
  }
 }
 /deep/.teachingStaff-area {
-  width: 1200px;
+  width: 2000px;
   margin: 0 auto;
   padding: 80px 0;
 

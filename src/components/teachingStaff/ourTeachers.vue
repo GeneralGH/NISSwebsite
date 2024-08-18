@@ -6,7 +6,7 @@
     </div>
     <div class="party-line"></div>
 
-    <div>
+    <!-- <div>
       <div class="module-card-list">
         <div class="module-card" v-for="item in ourTeachersInfo">
           <div>
@@ -22,7 +22,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="party-info">
       <div
@@ -207,8 +207,9 @@ export default {
 }
 
 .party-slogan-line {
-  width: 265px;
+  width: 400px;
   height: 1px;
   background-color: #172c47;
+  margin: 0 auto;
 }
 </style>

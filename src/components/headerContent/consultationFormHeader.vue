@@ -54,7 +54,7 @@ export default {
   }
 }
 .content-area {
-    height: 620px;
+    height: 350px;
     margin: 0 auto;
 }
 

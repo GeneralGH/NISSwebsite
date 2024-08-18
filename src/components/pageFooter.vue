@@ -15,13 +15,14 @@
           <img src="../../assets/header/logo.png" alt="">
         </div>
         <div class="registration-info">
+          <div>Nanyang Institute of Social Sciences</div>
           <div>Registration No. 20183165E</div>
           <div>Registration Period: 10.05 2024 - 09.05 2028</div>
         </div>
         <div class="contact-information">
           <img src="../../assets/footer/facebook.png" alt="">
           <img src="../../assets/footer/ins.png" alt="">
-          <img src="../../assets/footer/weixin.png" alt="">
+          <!-- <img src="../../assets/footer/weixin.png" alt=""> -->
           <img src="../../assets/footer/phone.png" alt="">
         </div>
       </div>
@@ -58,6 +59,7 @@
         </div>
       </div>
       <div class="registration-info">
+        <div>Nanyang Institute of Social Sciences</div>
         <div>Registration No. 20183165E</div>
         <div>Registration Period: 10.05 2024 - 09.05 2028</div>
       </div>
@@ -82,7 +84,7 @@ export default {
           nameEn: 'Program Navigation',
           list: [
             {name: 'MBA', nameEn: 'MBA', path: '/courseProjects'},
-            {name: 'DBA', nameEn: 'DBA', path: ''},
+            /* {name: 'DBA', nameEn: 'DBA', path: ''}, */
             {name: '高等教育', nameEn: 'Executive Education', path: ''}
           ]
         },
@@ -341,7 +343,7 @@ export default {
       color: #FFFFFF;
       flex: 1;
 
-      :first-child {
+      div {
         margin-bottom: 10px;
       }
     }

@@ -137,7 +137,7 @@ export default {
   border-radius: 30px !important;
 }
 /deep/.page-area {
-  width: 1200px;
+  width: 2000px;
   margin: 0 auto;
   padding: 80px 0;
 

@@ -60,20 +60,20 @@
                 : "JNU MBA PROGRAM"
             }}
           </div>
-          <div class="subTitle" v-show="currentScroll == 0">
+          <!-- <div class="subTitle" v-show="currentScroll == 0">
             {{
               userLanguage == "2"
                 ? "暨南大学新加坡MBA项目"
                 : "JNU MBA PROGRAM"
             }}
-          </div>
+          </div> -->
 
           <div class="title" v-show="currentScroll == 2">
             {{ userLanguage == "1" ? "高级管理教育" : "Executive Education" }}
           </div>
-          <div class="subTitle" v-show="currentScroll == 2">
+          <!-- <div class="subTitle" v-show="currentScroll == 2">
             {{ userLanguage == "2" ? "高级管理教育" : "Executive Education" }}
-          </div>
+          </div> -->
 
           <img v-show="currentScroll == 0" src='../../assets/home/mba.png' alt="" />
 
@@ -167,74 +167,62 @@ export default {
           subTitleEn: ['JNU MBA Program', '(Mandarin)'],
           path: "/courseProjects",
         },
-        {
+        /* {
           title: "DBA",
           titleEn: "DBA",
-          subTitle: ['南特高等商学院', '新加坡DBA', '项目'],
-          subTitleEn: ['Audencia', 'DBA', 'Program'],
-        },
+          subTitle: ['南特高等商学院', '亚太中文DBA项目'],
+          subTitleEn: ['Audencia Business School', 'Asia-Pacific DBA Program', '(Chinese)'],
+        }, */
         {
           title: "EE",
-          titleEn: "Executive Education",
-          subTitle: ["企业定制化课程"],
-          subTitleEn: ['Customized', 'Corporate Courses'],
+          titleEn: "EE",
+          subTitle: ["高管教育"],
+          subTitleEn: ['Executive Education'],
         },
       ],
       infoTwoList: [
         {
-          title: "1个平台",
-          titleEn: "A Platform",
-          subTitle: "终身学习平台",
-          subTitleEn: "Lifelong Learning Platform",
+          title: "华侨最高学府",
+          titleEn: "Paramount University for Overseas Chinese",
+          subTitle: "百年名校、211工程大学、双一流建设高校",
+          subTitleEn: "Under Project 211 and Double First-Class Initiative",
         },
         {
-          title: "2证文凭",
+          title: "顶级认证",
           titleEn: "Dual Diplomas",
-          subTitle: "“211工程”大学 “双一流”建设高校",
+          subTitle: "AACSB、AMBA、BGA",
           subTitleEn:
             "“211 Project” University “Double First-Class” Construction University",
         },
         {
-          title: "3冠认证",
+          title: "双证文凭",
           titleEn: "Triple Crown Accreditation",
-          subTitle: "AACSB认证 & AMBA认证 & B",
+          subTitle: "硕士学位证和毕业证，全球认可",
           subTitleEn: "AACSB Accredited & AMBA Accredited & BGA",
         },
         {
-          title: "9大体系",
+          title: "一个平台",
           titleEn: "Nine Systems",
-          subTitle: "融合中国商业文化与现代管理智慧",
+          subTitle: "交良师、结益友、融资源的终身学习平台",
           subTitleEn:
             "Integrating Chinese Business Culture with Modern Management Wisdom",
-        },
-        {
-          title: "百年名校",
-          titleEn: "Century-old Prestigious School",
-          subTitle: "中国百年名校 华侨最高学府",
-          subTitleEn: "The Highest Institution for Overseas Chinese",
-        },
-        {
-          title: "1+1+N+2",
-          titleEn: "1+1+N+2",
-          subTitle: "全面赋能职业发展",
-          subTitleEn: "Comprehensive Empowerment for Career Development",
-        },
+        }
       ],
       highEduList: [
         {
-          title: "1个平台",
+          title: "一个平台",
           titleEn: "1 Platform",
           subTitle: "国际化的高管教育运作平台",
           subTitleEn: "International Executive Education Platform",
         },
         {
-          title: "2重优势",
+          title: "双重优势",
           titleEn: "2 Advantages",
           subTitle: "汇聚国际雄厚师资，优秀管理团队",
           subTitleEn: "Bringing together international faculty and an excellent management team",
         },
         {
-          title: "3大灵活性",
+          title: "灵活选择",
           titleEn: "3 Flexibilities",
           subTitle: "灵活教学方式、授课时间地点及师资匹配",
           subTitleEn: "Flexible teaching methods, schedules, locations, and faculty matching",
@@ -246,9 +234,9 @@ export default {
           subTitleEn: "Customized course design to meet corporate strategic needs",
         },
         {
-          title: "一站式服务",
+          title: "全方位服务",
           titleEn: "One-Stop Service",
-          subTitle: "全方位参与",
+          subTitle: "扩大业务视野，提高管理和领导能力，助力企业的长期发展",
           subTitleEn: "Comprehensive involvement",
         },
       ],
@@ -370,9 +358,9 @@ export default {
     },
 
     jump(item, index) {
-      if (index == 1) {
+      /* if (index == 1) {
         return;
-      }
+      } */
       this.currentScroll = index;
       this.scrollList = index ? this.highEduList : this.infoTwoList;
     },
@@ -569,7 +557,7 @@ export default {
   }
 
   .title {
-    font-size: 89px !important;
+    font-size: 70px !important;
     word-break: break-all;
   }
 
@@ -577,7 +565,7 @@ export default {
     margin-top: 0px !important;
 
     .info-left {
-      height: 31rem !important;
+      height: 28rem !important;
 
       .title {
         font-size: 42px !important;
@@ -586,8 +574,8 @@ export default {
   }
 
   .content-two .content-info .info-right .info-item .subTitle {
-    margin-top: 20px !important;
-    margin-bottom: 100px !important;
+    margin-top: 10px !important;
+    margin-bottom: 60px !important;
   }
 
   #appContainer {
@@ -599,6 +587,11 @@ export default {
       width: 500px !important;
       padding: 0 40px 0 40px !important;
     }
+    
+
+    .subTitle {
+      width: 150% !important;
+    }
   }
 
   .content-three {
@@ -608,8 +601,6 @@ export default {
     .title {
       font-size: 50px !important;
     }
-
-
   }
 
   .content-se {
@@ -752,7 +743,8 @@ body {
       display: flex;
       width: 1200px;
       margin: 0 auto;
-      justify-content: space-between;
+      /* justify-content: space-between; */
+      justify-content: space-around;
 
       .info-item {
         width: 385px;
@@ -838,7 +830,7 @@ body {
   padding-top: 130px;
 
   .content-info {
-    width: 1200px;
+    width: 2000px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -854,7 +846,7 @@ body {
       .title {
         font-size: 40px;
         font-weight: bold;
-        margin-bottom: 15px;
+        margin-bottom: 50px;
       }
 
       .subTitle {
@@ -870,7 +862,8 @@ body {
     }
 
     .info-right {
-      margin-left: 70px;
+      box-sizing: border-box;
+      padding-left: 200px;
       margin-top: -30px;
       // height: 45rem;
       // overflow-y: scroll;

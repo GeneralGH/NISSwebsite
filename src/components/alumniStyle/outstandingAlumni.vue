@@ -113,7 +113,10 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     transition: opacity 0.5s ease;
-    text-align: center;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 0 20px;
+    line-height: 40px;
   }
 }
 .alumni-list {
