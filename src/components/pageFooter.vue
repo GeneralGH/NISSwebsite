@@ -29,7 +29,7 @@
       <div class="webSign">@ 2024 NISS. All rights reserved.</div>
       <div class="back-top-area">
         <div class="order-message-area" @click="jump('/consultationForm')">
-          <div>{{ userLanguage == '1' ? '预约一对一咨询' : 'Schedule an Info Session' }}</div>
+          <div :class="userLanguage == '1' ? 'zh' : 'en'">{{ userLanguage == '1' ? '预约一对一咨询' : 'Schedule an Info Session' }}</div>
           <img src="../../assets/footer/Side.png" alt="">
         </div>
         <div class="back-top">
@@ -251,10 +251,18 @@ export default {
 
     div {
       font-weight: bold;
-      font-size: 20px;
+      
       color: #03499E;
       line-height: 46px;
       margin-left: 15px;
+    }
+
+    .zh {
+      font-size: 20px;
+    }
+
+    .en {
+      font-size: 12px;
     }
 
     img {

@@ -144,6 +144,9 @@ export default {
   .bottom-list {
     display: none !important;
   }
+  .swiper-img, .swiper-area {
+    height: 580px !important;
+  }
   .index-list {
     display: flex !important;
     width: 128px;

@@ -68,7 +68,7 @@
             }}
           </div> -->
 
-          <div class="title" v-show="currentScroll == 2">
+          <div class="title" v-show="currentScroll == 1">
             {{ userLanguage == "1" ? "高级管理教育" : "Executive Education" }}
           </div>
           <!-- <div class="subTitle" v-show="currentScroll == 2">
@@ -77,11 +77,11 @@
 
           <img v-show="currentScroll == 0" src='../../assets/home/mba.png' alt="" />
 
-          <img v-show="currentScroll == 2" src='../../assets/home/highEdu.png' alt="" />
+          <img v-show="currentScroll == 1" src='../../assets/home/highEdu.png' alt="" />
         </div>
         <div class="info-right" id="contentTwoRight" ref="contentTwoRight">
           <div class="info-item" v-for="(item, index) in scrollList" :key="index">
-            <div class="title">
+            <div :class="userLanguage == '1' ? 'title' : 'titleEn'">
               {{ userLanguage == "1" ? item.title : item.titleEn }}
             </div>
             <div class="subTitle">
@@ -189,23 +189,21 @@ export default {
         },
         {
           title: "顶级认证",
-          titleEn: "Dual Diplomas",
+          titleEn: "International Accreditation",
           subTitle: "AACSB、AMBA、BGA",
-          subTitleEn:
-            "“211 Project” University “Double First-Class” Construction University",
+          subTitleEn: "AACSB、AMBA、BGA",
         },
         {
           title: "双证文凭",
-          titleEn: "Triple Crown Accreditation",
+          titleEn: "Recognized Degrees",
           subTitle: "硕士学位证和毕业证，全球认可",
-          subTitleEn: "AACSB Accredited & AMBA Accredited & BGA",
+          subTitleEn: "Globally Recognized Master's Degree & Graduation Certificate",
         },
         {
           title: "一个平台",
-          titleEn: "Nine Systems",
+          titleEn: "One Platform",
           subTitle: "交良师、结益友、融资源的终身学习平台",
-          subTitleEn:
-            "Integrating Chinese Business Culture with Modern Management Wisdom",
+          subTitleEn: "Lifelong Learning",
         }
       ],
       highEduList: [
@@ -213,31 +211,31 @@ export default {
           title: "一个平台",
           titleEn: "1 Platform",
           subTitle: "国际化的高管教育运作平台",
-          subTitleEn: "International Executive Education Platform",
+          subTitleEn: "Global Executive Education",
         },
         {
           title: "双重优势",
-          titleEn: "2 Advantages",
+          titleEn: "Dual Strengths",
           subTitle: "汇聚国际雄厚师资，优秀管理团队",
-          subTitleEn: "Bringing together international faculty and an excellent management team",
+          subTitleEn: "International Faculty, Top Management",
         },
         {
           title: "灵活选择",
-          titleEn: "3 Flexibilities",
+          titleEn: "Flexible Options",
           subTitle: "灵活教学方式、授课时间地点及师资匹配",
-          subTitleEn: "Flexible teaching methods, schedules, locations, and faculty matching",
+          subTitleEn: "Teaching, Time, Location & Faculty Match",
         },
         {
           title: "多维课程",
-          titleEn: "Multi-Dimensional Courses",
+          titleEn: "Multi-Dimensional",
           subTitle: "定制化课程设计，满足企业战略需求",
-          subTitleEn: "Customized course design to meet corporate strategic needs",
+          subTitleEn: "Custom Courses for Strategic Needs",
         },
         {
           title: "全方位服务",
-          titleEn: "One-Stop Service",
+          titleEn: "Comprehensive Service",
           subTitle: "扩大业务视野，提高管理和领导能力，助力企业的长期发展",
-          subTitleEn: "Comprehensive involvement",
+          subTitleEn: "Broaden Business Vision, Enhance Leadership for Long-Term Growth",
         },
       ],
       alumniList: [],
@@ -587,7 +585,7 @@ export default {
       width: 500px !important;
       padding: 0 40px 0 40px !important;
     }
-    
+
 
     .subTitle {
       width: 150% !important;
@@ -680,10 +678,13 @@ export default {
 
       .info-item:hover {
         margin-top: -50px !important;
+        background: #1f456a;
+
+        div {
+          color: white;
+        }
       }
     }
-
-
   }
 
   .content-info {
@@ -814,6 +815,11 @@ body {
 
       .info-item:hover {
         margin-top: -25px;
+        background: #1f456a;
+
+        div {
+          color: white;
+        }
       }
 
       .info-item:not(:hover) {
@@ -875,6 +881,15 @@ body {
       .info-item {
         .title {
           font-size: 110px;
+          font-weight: bold;
+          background-image: linear-gradient(-90deg, #03499e 30%, #f9c99f 59%, #ff9c00 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+
+        .titleEn {
+          font-size: 65px;
           font-weight: bold;
           background-image: linear-gradient(-90deg, #03499e 30%, #f9c99f 59%, #ff9c00 100%);
           -webkit-background-clip: text;

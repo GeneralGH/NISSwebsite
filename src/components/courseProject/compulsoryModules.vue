@@ -66,6 +66,26 @@
         </div>
       </div>
     </div>
+
+    <div class="content-item" id="options1-4">
+      <div class="title">
+        {{ userLanguage == "1" ? "国际交换" : "Overseas Module" }}
+      </div>
+      <div class="line"></div>
+      <img
+      style="width: 100%;"
+        class="outlearn fourImg"
+        src="../../../assets/courseProjects/outlearn.png"
+        alt=""
+      />
+      <div class="info">
+        {{
+          userLanguage == "1"
+            ? "国际深度交流学习项目。每年暨南大学MBA的学生们都有机会申请至海外合作高校开展3 – 6个月的学习交流，部分交流院校提供奖学金名额。"
+            : "International Immersion Programs. Every year, MBA students at Jinan University can apply for exchange programs at overseas partner universities, lasting 3-6 months. Some of these partner institutions offer scholarship opportunities."
+        }}
+      </div>
+    </div>
   </div>
 </template>
 

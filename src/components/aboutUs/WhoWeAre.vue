@@ -20,10 +20,7 @@
           </div>
           <div class="line"></div>
           <div class="content">
-            {{ userLanguage == "1" ? "打造" : "To be" }}
-            {{ userLanguage == "1" ? "最具价值的" : "an invaluable" }}
-            {{ userLanguage == "1" ? "终身" : "lifelong" }}
-            {{ userLanguage == "1" ? "学习平台" : "learning platform" }}
+            {{ userLanguage == "1" ? "打造最具价值的终身学习平台" : "To be an invaluable lifelong learning platform" }}
           </div>
         </div>
         <div class="module-card">
@@ -32,18 +29,7 @@
           </div>
           <div class="line"></div>
           <div class="content">
-            {{ userLanguage == "1" ? "培养" : "To cultivate" }}
-            {{
-              userLanguage == "1"
-                ? "融贯中西"
-                : "high-level talents integrating"
-            }}
-            {{
-              userLanguage == "1"
-                ? "知行合一"
-                : "Chinese and Western and connecting"
-            }}
-            {{ userLanguage == "1" ? "的高层次人才" : "theory with practice" }}
+            {{ userLanguage == "1" ? "培养融贯中西知行合一的高层次人才" : "To cultivate high-level talents integrating Chinese and Western and connecting theory with practice" }}
           </div>
         </div>
       </div>
@@ -96,14 +82,18 @@ export default {
   }
   .card-container{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+
+    .module-card {
+      width: 100% !important;
+      min-height: 400px !important;
+    }
   }
   .content{
     font-size: 40px !important;
   }
   .module-card{
     width: 320px !important;
-    
   }
   .page-area{
     width: 100px !important;

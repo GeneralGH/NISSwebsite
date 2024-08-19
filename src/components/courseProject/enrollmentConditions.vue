@@ -79,6 +79,18 @@
                 * {{ userLanguage == '1' ? '具体日期以校历为准。' : 'The actual dates will be based on the school calendar.' }}
             </div>
         </div>
+
+        <div class="content-item" id="options3-5">
+            <div class="title">{{ userLanguage == '1' ? '学费' : 'Tuition Fees' }}</div>
+            <div class="line"></div>
+            <div class="des">
+                {{ userLanguage == '1' ? '项目总学费：S$49,000（不含GST，2025年春季入学学费参考）' : 'S$49,000 (2024 Fall Intake, before Goods & Services Tax)' }}
+            </div>
+
+            <div class="ps last-ps">
+                * {{ userLanguage == '1' ? '项目提供教科书参考书目清单，由学生自行选择购买，费用自理。' : '暂无' }}
+            </div>
+        </div>
     </div>
 </template>
 

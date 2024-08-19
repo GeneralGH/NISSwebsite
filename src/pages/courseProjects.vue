@@ -72,7 +72,7 @@
         </div>
 
         <div class="templateCss">
-          <t-space direction="vertical" size="large">
+          <t-space direction="vertical" size="large" style="width: 100%;">
             <AboutUs id="options1" />
             <compulsoryModules id="options2" />
             <enrollmentConditions id="options3" />
@@ -122,15 +122,11 @@ export default {
               nameEn: "Program Advantages",
               id: "options1-3",
             },
-            {
-              name: "国际交换",
-              nameEn: "Overseas Module",
-              id: "options1-4",
-            },
+            
             {
               name: "学生画像",
               nameEn: "Student Profile",
-              id: "options1-5",
+              id: "options1-4",
             },
           ],
         },
@@ -141,6 +137,11 @@ export default {
           list: [
             { name: "必修模块", nameEn: "Core Modules", id: "options2-1" },
             { name: "选修模块", nameEn: "Elective Modules", id: "options2-2" },
+            {
+              name: "国际交换",
+              nameEn: "Overseas Module",
+              id: "options2-3",
+            },
           ],
         },
         {
@@ -163,6 +164,11 @@ export default {
               name: "入学与毕业时间",
               nameEn: "Enrollment and Graduation Dates",
               id: "options3-4",
+            },
+            {
+              name: "学费",
+              nameEn: "Tuition Fees",
+              id: "options3-5",
             },
           ],
         },
@@ -333,6 +339,11 @@ export default {
   .templateCss {
     width: 100% !important;
   }
+
+  /* img {
+    width: 100% !important;
+  } */
+  
 }
 .leftList {
   /* width: 25%; */
