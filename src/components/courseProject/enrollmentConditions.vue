@@ -84,7 +84,7 @@
             <div class="title">{{ userLanguage == '1' ? '学费' : 'Tuition Fees' }}</div>
             <div class="line"></div>
             <div class="des">
-                {{ userLanguage == '1' ? '项目总学费：S$49,000（不含GST，2025年春季入学学费参考）' : 'S$49,000 (2024 Fall Intake, before Goods & Services Tax)' }}
+                {{ userLanguage == '1' ? '项目总学费：S$49,000（不含GST，2025年春季入学学费参考），分12期等额支付。' : 'S$49,000 (2024 Fall Intake, before Goods & Services Tax)' }}
             </div>
 
             <div class="ps last-ps">

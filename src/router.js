@@ -6,6 +6,8 @@ import AboutUs from './pages/aboutUs.vue'
 import AlumniStyle from './pages/alumniStyle.vue'
 import ConsultationForm from './pages/consultationForm.vue'
 import Article from './pages/article.vue'
+import HighEdu from './pages/highEdu.vue'
+import Policy from './pages/policy.vue'
 import Vue from 'vue';
 
 Vue.use(VueRouter)
@@ -47,6 +49,16 @@ const routes = [
         path: '/article',
         component: Article
     },
+    {
+        name: 'highEdu',
+        path: '/highEdu',
+        component: HighEdu
+    },
+    {
+        name: 'policy',
+        path: '/policy',
+        component: Policy
+    }
 ]
 
 const router = new VueRouter({

@@ -1,12 +1,12 @@
 <!--  -->
 <template>
   <div class="party">
-    <div class="party-title">
+    <!-- <div class="party-title">
       {{ userLanguage == "1" ? "我们的教师群体" : "Faculty" }}
     </div>
-    <div class="party-line"></div>
+    <div class="party-line"></div> -->
 
-    <!-- <div>
+    <div>
       <div class="module-card-list">
         <div class="module-card" v-for="item in ourTeachersInfo">
           <div>
@@ -22,15 +22,15 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
-    <div class="party-info">
+    <!-- <div class="party-info">
       <div
         v-html="
           userLanguage == '1' ? htmlContent.content : htmlContent.contentEn
         "
       ></div>
-    </div>
+    </div> -->
 
     <!-- <div class="party-info">
             <div style="flex: 1;">
@@ -43,7 +43,7 @@
             </div>
         </div> -->
 
-    <div class="party-slogan">
+    <!-- <div class="party-slogan">
       <div class="party-slogan-line"></div>
       <div>
         {{
@@ -53,7 +53,7 @@
         }}
       </div>
       <div class="party-slogan-line"></div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -71,7 +71,6 @@ export default {
         { name: "专职教师", value: "140", unit: "位", id: 10 },
         { name: "博士学位教师", value: "92", unit: "%", id: 11 },
         { name: "教授、副教授", value: "114", unit: "位", id: 12 },
-        { name: "博士生导师", value: "51", unit: "位", id: 13 },
       ],
       htmlContent: {
         content: "",
@@ -162,7 +161,8 @@ export default {
 .module-card-list {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 250px;
 }
 .module-card {
   width: 266px;

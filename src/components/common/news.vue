@@ -46,11 +46,6 @@
                 <div class="party-line"></div>
             </div>
         </div>
-        <div class="getMore">
-            <t-button variant="text" theme="primary" size="large" @click="getMore" v-show="!isEnd">{{ userLanguage ==
-                '1' ? '加载更多' : 'getMore'}}</t-button>
-        </div>
-
     </div>
 </template>
 
@@ -69,7 +64,6 @@ export default {
     },
     props: {
         list: { type: Array, default: () => [] },
-        isEnd: { type: Boolean, default: false }
     },
     filter: {
 
@@ -98,13 +92,6 @@ export default {
                 behavior: 'instant' // 可选，使用平滑滚动效果
             });
         },
-
-        getMore() {
-            if (this.isEnd) {
-                return
-            }
-            this.$emit('getMore')
-        }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
@@ -166,11 +153,6 @@ export default {
 
     }
 
-
-    .getMore {
-        display: none !important;
-    }
-
     .news-box {
         display: none !important;
     }
@@ -185,13 +167,6 @@ export default {
 
 .news-mobile-box {
     display: none;
-}
-
-
-.getMore {
-    display: flex;
-    justify-content: center;
-    margin-top: 100px;
 }
 
 .party-line {

@@ -12,11 +12,11 @@
         <div class="party-line"></div>
 
         <div class="party-content">
-          <News
-            :list="list"
-            @getMore="getMore"
-            :isEnd="listQuery.current == totalPage"
-          />
+          <News :list="list" />
+          <div class="pagination">
+            <t-pagination v-model="listQuery.current" :total="totalPage" :page-size.sync="listQuery.size"
+              :showPageSize="false" :totalContent="false" @change="pageChange" showPageNumber />
+          </div>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@ export default {
     return {
       listQuery: {
         current: 1,
-        size: 10,
+        size: 2,
         type: 1,
       },
       list: [],
@@ -70,74 +70,94 @@ export default {
               urlEn: JSON.parse(item.annexEn).url,
             };
           });
-          this.list = this.list.length
-            ? this.list.concat(res.data.data.list)
-            : res.data.data.list;
-          this.totalPage = res.data.data.totalPage;
+          this.list = res.data.data.list
+          this.totalPage = res.data.data.totalCount;
         });
     },
 
-    getMore() {
-      this.listQuery.current += 1;
-      this.initList();
+    pageChange(e) {
+      this.listQuery.current = e.current
+      this.initList()
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() { },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     this.initList();
     document.title = this.userLanguage == "1" ? "关于我们" : "About US";
   },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  beforeCreate() { }, //生命周期 - 创建之前
+  beforeMount() { }, //生命周期 - 挂载之前
+  beforeUpdate() { }, //生命周期 - 更新之前
+  updated() { }, //生命周期 - 更新之后
+  beforeDestroy() { }, //生命周期 - 销毁之前
+  destroyed() { }, //生命周期 - 销毁完成
+  activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 
 <style scoped lang="less">
 @media (max-width: 720px) {
+  .pagination {
+    width: 80vw;
+    display: block !important;
+    font-size: 18px;
+    color: #172c47;
+    height: 66px;
+    line-height: 66px;
+  }
+
+  /deep/.t-pagination {
+    right: 170px !important;
+    bottom: 60px;
+  }
+
   /deep/.page-area {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 !important;
     width: 100% !important;
-    .party-content{
+
+    .party-content {
       width: 100% !important;
       padding: 0 40px !important;
     }
-    .party{
+
+    .party {
       width: 100%;
       margin: 0 !important;
     }
-    .party-line{
+
+    .party-line {
       width: 675px !important;
       margin: 0 auto;
     }
-    .party-title{
+
+    .party-title {
       margin-top: 60px;
       margin-left: 40px;
     }
-    .module-card{
+
+    .module-card {
       margin: 50px 0 !important;
-    
-    .content{
-      line-height: 60px !important;
-    }
+
+      .content {
+        line-height: 60px !important;
+      }
     }
   }
- 
+
 }
-/deep/.t-swiper__container__item, /deep/.t-swiper__container {
+
+/deep/.t-swiper__container__item,
+/deep/.t-swiper__container {
   border-radius: 30px !important;
 }
+
 /deep/.page-area {
-  width: 2000px;
+  width: 1650px;
   margin: 0 auto;
   padding: 80px 0;
 
@@ -195,5 +215,26 @@ export default {
       }
     }
   }
+}
+
+.pagination {
+  position: relative;
+  width: 100%;
+}
+
+/deep/ .t-pagination {
+  position: absolute;
+  transform: scale(1.5);
+  right: 500px;
+}
+
+/deep/ .t-pagination__number.t-is-current {
+  background-color: #172C47;
+  border-color: #172C47;
+  color: #FF9C00;
+}
+
+/deep/ .t-pagination__number {
+  color: #172C47;
 }
 </style>

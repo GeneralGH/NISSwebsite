@@ -46,17 +46,17 @@
         </div>
         <div class="header-tools">
           <div class="header-language">
-            <div class="flex" @click="turnArrow">
+            <div class="flex" @click="languageChange({ value: userLanguage == '1' ? '2' : '1' })">
               <div class="langeContent">
                 {{ userLanguage == "1" ? "中文" : "English" }}
               </div>
-              <img
+              <!-- <img
                 :class="{ rotated: isRotated }"
                 src="../../assets/header/downArrow.png"
                 alt=""
-              />
+              /> -->
             </div>
-            <div class="lagTypes" v-show="isRotated">
+            <!-- <div class="lagTypes" v-show="isRotated">
               <div class="line"></div>
               <div
                 :class="
@@ -68,7 +68,7 @@
               >
                 {{ item.label }}
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@
             </div> -->
     </div>
     <!-- 各个页面不同展示 -->
-    <div class="articleHeader" v-if="currentPath == '/article'"></div>
+    <div class="articleHeader" v-if="currentPath == '/article' || currentPath == '/highEdu' || currentPath == '/policy'"></div>
     <HomeHeader v-if="currentPath == '/'" />
     <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/courseProjects'" />
     <TeachingStaffHeader
@@ -422,7 +422,7 @@ export default {
     languageChange(item) {
       localStorage.setItem("userLanguage", item.value);
       this.$store.dispatch("setUserLanguage", item.value);
-      this.isRotated = !this.isRotated;
+      /* this.isRotated = !this.isRotated; */
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -438,7 +438,7 @@ export default {
     const headerNavArea = document.querySelector(".header-nav-area");
     const containerHeight = document.getElementById("container").offsetHeight;
 
-    if (this.currentPath !== "/article") {
+    if (this.currentPath !== "/article" && this.currentPath !== "/highEdu" && this.currentPath !== "/policy") {
       window.addEventListener("scroll", () => {
         const scrollHeight = window.scrollY;
         const opacity = scrollHeight / containerHeight;
@@ -638,7 +638,7 @@ export default {
       position: absolute;
       cursor: pointer;
       background-color: rgba(11, 20, 32, 1);
-      width: 138px;
+      width: 110px;
       min-height: 40px;
       border-radius: 20px;
       border: 3px solid #ffffff;
@@ -649,12 +649,12 @@ export default {
       .flex {
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: center;
       }
 
       .langeContent {
         line-height: 40px;
-        margin-left: 15px;
+        /* margin-left: 15px; */
       }
 
       img {

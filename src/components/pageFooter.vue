@@ -85,7 +85,7 @@ export default {
           list: [
             {name: 'MBA', nameEn: 'MBA', path: '/courseProjects'},
             /* {name: 'DBA', nameEn: 'DBA', path: ''}, */
-            {name: '高等教育', nameEn: 'Executive Education', path: ''}
+            {name: '高等教育', nameEn: 'Executive Education', path: '/highEdu'}
           ]
         },
         {
@@ -93,7 +93,7 @@ export default {
           nameEn: 'Related Links',
           list: [
             {name: '联系我们', nameEn: 'Contact Us', path: '/aboutUs'},
-            {name: '相关政策', nameEn: 'Privacy Policy', path: ''}
+            {name: '相关政策', nameEn: 'Privacy Policy', path: '/policy'}
           ]
         },
         {

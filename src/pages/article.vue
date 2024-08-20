@@ -76,7 +76,7 @@
             </div>
           </div>
           <div class="pagination">
-            <t-pagination v-model="listQuery.current" :total="listData.totalPage" :page-size.sync="listQuery.size" :showPageSize="false" :totalContent="false" @change="pageChange" showPageNumber />
+            <t-pagination v-model="listQuery.current" :total="listData.totalCount" :page-size.sync="listQuery.size" :showPageSize="false" :totalContent="false" @change="pageChange" showPageNumber />
             <!-- <div style="display: flex;">
               <div class="pagination-item twoPagBtn firstBtn">首页</div>
               <div class="pagination-item onePagBtn">< 上一页</div>
@@ -322,13 +322,13 @@ export default {
 }
 
 /deep/ .page-area {
-  width: 2000px;
+  width: 1650px;
   margin: 0 auto;
   padding: 30px 0 160px 0;
 }
 
 .pagination {
-  display: none;
+  /* display: none; */
 }
 
 .path-list {

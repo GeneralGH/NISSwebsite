@@ -67,7 +67,7 @@
       </div>
     </div>
 
-    <div class="content-item" id="options1-4">
+    <div class="content-item" id="options2-3">
       <div class="title">
         {{ userLanguage == "1" ? "国际交换" : "Overseas Module" }}
       </div>
@@ -323,8 +323,8 @@ export default {
 }
 
 .module-card {
-  margin-right: 20px;
-  margin-bottom: 20px;
+  margin-right: 140px;
+  margin-bottom: 60px;
   padding: 27px 0px 20px 0px;
 }
 

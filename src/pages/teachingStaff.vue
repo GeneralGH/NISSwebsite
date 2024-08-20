@@ -62,7 +62,7 @@ export default {
  }
 }
 /deep/.teachingStaff-area {
-  width: 2000px;
+  width: 1650px;
   margin: 0 auto;
   padding: 80px 0;
 

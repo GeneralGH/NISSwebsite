@@ -4,19 +4,19 @@
     <pageHeader />
     <div class="page-area">
       <div class="party">
-        <div class="party-title" id="school">
+        <!-- <div class="party-title" id="school">
           {{ userLanguage == "1" ? "精英网络" : "Alumni Network" }}
         </div>
         <div class="party-line"></div>
 
         <div class="party-content">
           <div>
-           <!--  <img class="content-image" :src="JNUniversityNetwork" alt="" /> -->
+            <img class="content-image" :src="JNUniversityNetwork" alt="" />
             <div class="content-p">
               {{ userLanguage == '1' ? '自南洋社会科学学院成立以来，每年有来自超过20多个行业的学生选择加入我们。我们的校友网络遍布世界各地，超过大半的校友在大型跨国公司任职，超过20%的校友创立了自己的企业。他们秉承着学院的价值观念，不断追求卓越，在各个经济领域展现出卓越才能，创造价值并服务社会。' : "Since its inception, the Nanyang School of Social Sciences has attracted students from over 20 industries each year. Our alumni network spans the globe, with more than half working in large multinational corporations and over 20% founding their own businesses. They uphold the school's values, continuously striving for excellence, showcasing their talents in various economic sectors, creating value, and serving society." }}
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- <div class="party-content">
                     <div class="content-title">{{ userLanguage == '1' ? '暨南大学校友网络' : 'Jinan University Alumni Network' }}</div>
@@ -61,7 +61,7 @@
 
       <div class="party">
         <div class="party-title">
-          {{ userLanguage == "1" ? "学员感言" : "Distinguished Alumni" }}
+          {{ userLanguage == "1" ? "他们说" : "They say" }}
         </div>
         <div class="party-line"></div>
 
@@ -72,16 +72,18 @@
 
       <div class="party">
         <div class="party-title">
-          {{ userLanguage == "1" ? "学员风采" : "Alumni Updates" }}
+          {{ userLanguage == "1" ? "遇见他们" : "Meet them" }}
         </div>
         <div class="party-line"></div>
 
         <div class="party-content">
           <News
             :list="list"
-            @getMore="getMore"
-            :isEnd="listQuery.current == totalPage"
           />
+          <div class="pagination">
+            <t-pagination v-model="listQuery.current" :total="totalPage" :page-size.sync="listQuery.size"
+              :showPageSize="false" :totalContent="false" @change="pageChange" showPageNumber />
+          </div>
         </div>
       </div>
     </div>
@@ -106,7 +108,7 @@ export default {
     return {
       listQuery: {
         current: 1,
-        size: 10,
+        size: 2,
         type: 2,
       },
       list: [],
@@ -147,16 +149,13 @@ export default {
               url: JSON.parse(item.annex).url,
             };
           });
-          this.list = this.list.length
-            ? this.list.concat(res.data.data.list)
-            : res.data.data.list;
-          this.totalPage = res.data.data.totalPage;
+          this.list = res.data.data.list
+          this.totalPage = res.data.data.totalCount;
         });
     },
-
-    getMore() {
-      this.listQuery.current += 1;
-      this.initList();
+    pageChange(e) {
+      this.listQuery.current = e.current
+      this.initList()
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -177,11 +176,11 @@ export default {
 </script>
 
 <style scoped lang="less">
-.content-p {
-  font-size: 30px !important;
-  line-height: 52px;
-}
 @media (max-width: 720px) {
+  /deep/.t-pagination {
+    right: 170px !important;
+    bottom: 60px;
+  }
   .page-area{
     width: 100vw !important;
     box-sizing: border-box !important;
@@ -220,7 +219,7 @@ export default {
   border-radius: 16px;
 }
 /deep/.page-area {
-  width: 2000px;
+  width: 1650px;
   margin: 0 auto;
   padding: 80px 0;
 
@@ -269,5 +268,26 @@ export default {
       }
     }
   }
+}
+
+.pagination {
+  position: relative;
+  width: 100%;
+}
+
+/deep/ .t-pagination {
+  position: absolute;
+  transform: scale(1.5);
+  right: 500px;
+}
+
+/deep/ .t-pagination__number.t-is-current {
+  background-color: #172C47;
+  border-color: #172C47;
+  color: #FF9C00;
+}
+
+/deep/ .t-pagination__number {
+  color: #172C47;
 }
 </style>

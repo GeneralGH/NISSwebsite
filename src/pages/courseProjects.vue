@@ -9,7 +9,7 @@
           <div class="leftList">
             <div class="title z-title">
               {{ userLanguage == "1" ? "暨南大学" : "JNU" }}<br />{{
-                userLanguage == "1" ? "新加坡MBA项目" : "MBA Program (Mandarin)"
+                userLanguage == "1" ? "新加坡中文MBA项目" : "MBA Program (Mandarin)"
               }}
             </div>
             <div class="optionsList">
@@ -124,7 +124,7 @@ export default {
             },
             
             {
-              name: "学生画像",
+              name: "在读学生画像",
               nameEn: "Student Profile",
               id: "options1-4",
             },
@@ -355,7 +355,7 @@ export default {
   top: 150px;
   height: 1080px;
   box-sizing: border-box;
-  padding-left: 100px;
+  // padding-left: 100px;
 }
 
 .sticky {
@@ -386,7 +386,7 @@ export default {
   }
 
   .content-body {
-    width: 2000px;
+    width: 1650px;
     display: flex;
     margin: 0 auto;
     margin-top: 50px;

@@ -53,26 +53,19 @@
       <div class="info-content p-space">
         {{
           userLanguage == "1"
-            ? "暨南大学新加坡MBA硕士学位项目（简称“暨南大学新加坡MBA项目”） 是暨南大学在新加坡的中文工商管理硕士（MBA）教学项目，由暨南大学管理学院与南洋社会科学学院合作举办。"
+            ? "暨南大学新加坡中文MBA硕士学位项目（简称“暨南大学新加坡中文MBA项目”） 由南洋社会科学学院与暨南大学管理学院合作举办，是在新加坡以中文教学的工商管理硕士（MBA）项目，毕业后授予暨南大学工商管理硕士学位证书和硕士研究生毕业证书。"
             : "Jinan University (JNU) is one of the first national institutions of higher education in China to develop business education. Business is also a strong discipline that JNU is proud of. In 1993, JNU became the first institution in South China to offer an MBA education."
         }}
       </div>
-      <!-- <div class="info-content bigTitle p-space">
-                {{ userLanguage == '1' ? '“始有暨南，便有商科”' : 'Business is also a strong discipline that JNU is proud of' }}
-            </div> -->
       <div class="info-content p-space">
         {{
           userLanguage == "1"
-            ? "项目面向华侨、港澳台地区人士和外籍人士招生，采取“申请审核制”，即考生报名并提交学校规定的申请材料；材料审核合格者，无需参加笔试，可径直参加面试；学校择优录取。"
+            ? "项目面向华侨、港澳台地区人士和非中国籍人士招生，采取“申请审核制”，无需参加笔试，通过面试择优录取。"
             : "JNU MBA Program aims to provide quality education on business management for young managers on the uptrend in their careers, and help them understand the culture of Chinese business, expand their developing space and improve their leadership and problem-solving capacity."
         }}
       </div>
-      <div class="info-content p-space">
-        {{
-          userLanguage == "1"
-            ? "暨南大学新加坡中文MBA项目分春、秋两季招生，分别在每年3月、9月入学。项目在新加坡招生和授课，中文教学，2年学制，在职学习。毕业后授予暨南大学工商管理硕士学位证书和硕士研究生毕业证书，学历学位在中国及海外均被认可。"
-            : "JNU MBA Program was awarded “2014 China’s Most Valuable Part-time MBA Programme” by Forbes Chinese Edition."
-        }}
+      <div class="info-content p-space" v-show="userLanguage == '2'">
+        JNU MBA Program was awarded “2014 China's Most Valuable Part-time MBA Programme” by Forbes Chinese Edition.
       </div>
       <div class="two-imgs">
         <div class="img-item">
@@ -108,42 +101,24 @@
       </div>
       <div class="line"></div>
       <div class="info">
-        · {{ userLanguage == "1" ? "中文教学" : "Integrate Chinese business culture and modern management wisdom" }}<br />
+        · {{ userLanguage == "1" ? "申请优势：免联考、免英文成绩、大专及以上学历可申请" : "Integrate Chinese business culture and modern management wisdom" }}<br />
         ·
         {{
           userLanguage == "1"
-            ? "新加坡就读，享受港澳台华侨外特殊申请政策"
+            ? "语言优势：中文授课，高效学习"
             : "Professional system and valuable qualification"
         }}<br />
         ·
         {{
           userLanguage == "1"
-            ? "免中国MBA联考"
+            ? "时间优势：在职学习，集中授课"
             : "Develop a broad international perspective"
         }}<br />
         ·
         {{
           userLanguage == "1"
-            ? "无英语入学要求"
+            ? "文凭优势：双证文凭，全球认可"
             : "No English Admission Requirements"
-        }}<br />
-        ·
-        {{
-          userLanguage == "1"
-            ? "大专文凭可申请"
-            : "Associate Degree Holders Eligible to Apply"
-        }}<br />
-        ·
-        {{
-          userLanguage == "1"
-            ? "时间灵活，集中授课"
-            : "Flexible Schedule, Intensive Classes"
-        }}<br />
-        ·
-        {{
-          userLanguage == "1"
-            ? "1+1+N+2全面赋能职业发展"
-            : "Gain Comprehensive Empowerment for Career Development with 1+1+N+2"
         }}
       </div>
       <div class="four-area" v-show="userLanguage == '1'">
@@ -157,7 +132,7 @@
 
     <div class="content-item" id="options1-5" v-if="userLanguage == '1'">
       <div class="title">
-        {{ userLanguage == "1" ? "学生画像" : "Student Profile" }}
+        {{ userLanguage == "1" ? "在读学生画像" : "Student Profile" }}
       </div>
       <div class="line"></div>
       <div class="info">
@@ -229,37 +204,23 @@ export default {
         },
         {
           id: 6,
-          name: "来自不同专业",
+          name: "不同行业",
           nameEn: "Diverse Backgrounds",
-          value: "20",
+          value: "20+",
           valueEn: "",
         },
         {
           id: 7,
-          name: "跨多国工作经历",
+          name: "跨国工作经历",
           nameEn: "International Experience",
           value: "43%",
           valueEn: "",
         },
         {
-          id: 9,
-          name: "有技术、工程背景",
-          nameEn: "Technical Background",
-          value: "38%",
-          valueEn: "",
-        },
-        {
           id: 10,
-          name: "任公司管理岗",
+          name: "任各级管理岗位",
           nameEn: "Management Roles",
-          value: "80%",
-          valueEn: "",
-        },
-        {
-          id: 11,
-          name: "拥有自己的企业",
-          nameEn: "Entrepreneurial Spirit",
-          value: "52%",
+          value: "82%",
           valueEn: "",
         },
       ],
@@ -270,10 +231,10 @@ export default {
       return this.$store.state.userLanguage;
     },
     firstFour() {
-      return this.StudentList.slice(0, 4); // 获取前4个元素
+      return this.StudentList.slice(0, 3); // 获取前3个元素
     },
     lastThree() {
-      return this.StudentList.slice(4); // 获取后3个元素
+      return this.StudentList.slice(3); // 获取后2个元素
     },
   },
   watch: {
@@ -315,8 +276,9 @@ export default {
 .networkingList {
   display: flex;
   align-items: baseline;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 155px;
 
   .networkItem, .networkItemCenter {
     width: 205px;

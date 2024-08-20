@@ -56,7 +56,7 @@
           <div class="title" v-show="currentScroll == 0">
             {{
               userLanguage == "1"
-                ? "暨南大学新加坡MBA项目"
+                ? "暨南大学新加坡中文MBA项目"
                 : "JNU MBA PROGRAM"
             }}
           </div>
@@ -200,7 +200,7 @@ export default {
           subTitleEn: "Globally Recognized Master's Degree & Graduation Certificate",
         },
         {
-          title: "一个平台",
+          title: "精英平台",
           titleEn: "One Platform",
           subTitle: "交良师、结益友、融资源的终身学习平台",
           subTitleEn: "Lifelong Learning",

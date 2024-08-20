@@ -92,7 +92,7 @@ export default {
         }, */
         {
           title: "南特高等商学院",
-          subTitle: "南特高等商学院-欧洲顶级高等商学院",
+          subTitle: "南特高等商学院-欧洲一流商学院",
           img: fourImg,
         },
         /* {
@@ -118,7 +118,6 @@ export default {
   //方法集合
   methods: {
     onChange(e) {
-      console.log(e);
       this.current = e;
     },
   },

@@ -57,4 +57,11 @@ body {
   outline: 2px solid transparent;
   outline-offset: -2px;
 }
+
+.commonText {
+  font-size: 28px !important;
+  line-height: 48px !important;
+  color: #172c47;
+  margin-bottom: 30px;
+}
 </style>
