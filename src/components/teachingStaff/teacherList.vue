@@ -88,6 +88,11 @@ export default {
 </script>
 
 <style scoped lang="less">
+@media (max-width: 720px) {
+    .teacher-list {
+        display: block !important;
+    }
+}
 .noListTips {
     text-align: center;
     color: #999;
@@ -128,7 +133,7 @@ export default {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            /* height: 100%; */
+            width: 240px;
 
             .teacher-name {
                 font-weight: bold;

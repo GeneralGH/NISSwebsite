@@ -11,7 +11,7 @@
                 ? "关于我们"
                 : "About Us"
               : userLanguage == "1"
-              ? "精英网络"
+              ? "学员社区"
               : "Students"
           }}
           /
@@ -48,16 +48,16 @@
           <div class="more-article">
             <div
               class="more-article-itme"
-              v-for="item in pcBottomList"
+              v-for="(item, index) in pcBottomList"
               :key="item.id"
               @click="toDetail(item)"
             >
-              <img
-                class="more-article-itmeImg"
-                :src="userLanguage == '1' ? item.url : item.urlEn"
-                alt=""
-              />
-              <div>{{ userLanguage == "1" ? item.title : item.titleEn }}</div>
+              <icon class="item-icon" name="chevron-left" v-if="index == 0" />
+              <div :style="{ textAlign: index == 1 ? 'end' : 'start', flex: 1 }">
+                <div class="icon-sigin">{{ index == 0 ? 'Previous' : 'Next' }}</div>
+                <div class="item-title">{{ userLanguage == "1" ? item.title : item.titleEn }}</div>
+              </div>
+              <icon class="item-icon" name="chevron-right" v-if="index == 1" />
             </div>
           </div>
         </div>
@@ -97,10 +97,11 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 import news from "../api/news";
+import { Icon } from 'tdesign-icons-vue';
 
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: { Icon },
   data() {
     //这里存放数据
     return {
@@ -370,27 +371,53 @@ export default {
 }
 
 .article-content {
-  width: 1300px;
+  width: 1200px;
 }
 
 .more-article {
   display: flex;
   justify-content: space-between;
   margin-top: 160px;
-  margin-bottom: 160px;
+  margin-bottom: 40px;
+  height: 200px;
+}
+
+.more-article-itme:hover {
+  background: #f77300;
+  color: white;
 }
 
 .more-article-itme {
-  width: 390px;
+  display: flex;
+  width: 49%;
   font-weight: bold;
   font-size: 24px;
   color: #172c47;
   line-height: 38px;
   cursor: pointer;
-}
+  transition: all .2s;
+  background: #f6f6f6;
+  box-sizing: border-box;
+  padding: 30px 40px;
+  
 
-.more-article-itme:hover {
-  color: #03499e;
+  .item-icon {
+    font-size: 40px;
+    margin: 20px 20px;
+  }
+
+  .icon-sigin {
+    margin-bottom: 15px;
+  }
+
+  .item-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+  }
 }
 
 .more-article-itmeImg {

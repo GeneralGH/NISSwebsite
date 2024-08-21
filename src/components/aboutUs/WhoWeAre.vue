@@ -16,19 +16,19 @@
       <div class="card-container">
         <div class="module-card">
           <div class="title">
-            {{ userLanguage == "1" ? "学院的愿景" : "Our Vision" }}
+            {{ userLanguage == "1" ? "愿景" : "Vision" }}
           </div>
           <div class="line"></div>
-          <div class="content">
+          <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
             {{ userLanguage == "1" ? "打造最具价值的终身学习平台" : "To be an invaluable lifelong learning platform" }}
           </div>
         </div>
         <div class="module-card">
           <div class="title">
-            {{ userLanguage == "1" ? "学院的使命" : "Our Mission" }}
+            {{ userLanguage == "1" ? "使命" : "Mission" }}
           </div>
           <div class="line"></div>
-          <div class="content">
+          <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
             {{ userLanguage == "1" ? "培养融贯中西知行合一的高层次人才" : "To cultivate high-level talents integrating Chinese and Western and connecting theory with practice" }}
           </div>
         </div>

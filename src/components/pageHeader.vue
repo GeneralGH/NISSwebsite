@@ -122,7 +122,7 @@
             </div> -->
     </div>
     <!-- 各个页面不同展示 -->
-    <div class="articleHeader" v-if="currentPath == '/article' || currentPath == '/highEdu' || currentPath == '/policy'"></div>
+    <div class="articleHeader" v-if="currentPath == '/article' || currentPath == '/highEdu' || currentPath == '/policy' || currentPath == '/contactUs'"></div>
     <HomeHeader v-if="currentPath == '/'" />
     <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/courseProjects'" />
     <TeachingStaffHeader
@@ -234,7 +234,7 @@ export default {
           children: [],
         },
         {
-          item: "精英网络",
+          item: "学员社区",
           nameEn: "Students",
           path: "/alumniStyle",
           children: [],
@@ -257,7 +257,7 @@ export default {
         { name: "关于我们", nameEn: "About Us", path: "/aboutUs" },
         { name: "课程项目", nameEn: "Programmes", path: "/courseProjects" },
         { name: "师资力量", nameEn: "Faculty", path: "/teachingStaff" },
-        { name: "精英网络", nameEn: "Students", path: "/alumniStyle" },
+        { name: "学员社区", nameEn: "Students", path: "/alumniStyle" },
       ],
       currentPath: "/",
       bgHeigth: "",
@@ -438,7 +438,7 @@ export default {
     const headerNavArea = document.querySelector(".header-nav-area");
     const containerHeight = document.getElementById("container").offsetHeight;
 
-    if (this.currentPath !== "/article" && this.currentPath !== "/highEdu" && this.currentPath !== "/policy") {
+    if (this.currentPath !== "/article" && this.currentPath !== "/highEdu" && this.currentPath !== "/policy" && this.currentPath !== '/contactUs') {
       window.addEventListener("scroll", () => {
         const scrollHeight = window.scrollY;
         const opacity = scrollHeight / containerHeight;
@@ -741,10 +741,10 @@ export default {
     /* color: #172c47; */
     color: #fff;
     cursor: pointer;
+  }
 
-    div:hover {
-      color: #172c47;
-    }
+  .sidebar-item:hover {
+    color: #172c47;
   }
 
   img {

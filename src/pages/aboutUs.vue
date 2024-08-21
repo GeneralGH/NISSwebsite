@@ -212,6 +212,12 @@ export default {
           font-size: 62px;
           line-height: 80px;
         }
+
+        .contentEn {
+          font-weight: 600;
+          font-size: 42px;
+          line-height: 80px;
+        }
       }
     }
   }

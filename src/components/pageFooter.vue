@@ -20,10 +20,9 @@
           <div>Registration Period: 10.05 2024 - 09.05 2028</div>
         </div>
         <div class="contact-information">
-          <img src="../../assets/footer/facebook.png" alt="">
-          <img src="../../assets/footer/ins.png" alt="">
-          <!-- <img src="../../assets/footer/weixin.png" alt=""> -->
-          <img src="../../assets/footer/phone.png" alt="">
+          <img @click="toOther('https://www.facebook.com/SGNISS/')" src="../../assets/footer/facebook.png" alt="">
+          <img @click="toOther('https://www.linkedin.com/company/nanyang-institute-of-social-sciences/about/')" src="../../assets/footer/ins.png" alt="">
+          <img @click="copyPhone" src="../../assets/footer/phone.png" alt="">
         </div>
       </div>
       <div class="webSign">@ 2024 NISS. All rights reserved.</div>
@@ -40,10 +39,10 @@
 
     <div class="footer-mobile" style=" margin: 0 25px 0 45px;">
       <div class="toplist-area">
-        <div class="list-item" v-for="(item, index) in topList">
+        <div class="list-item" v-for="(item, index) in topList" :key="index">
           <div class="item-name">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
           <div class="item-child" v-if="index === 0">
-            <div v-for="(i) in item.list" @click="jump(i.path)">{{ userLanguage == '1' ? i.name : i.nameEn }}</div>
+            <div v-for="(i, itemIndex) in item.list" @click="jump(i.path)" :key="itemIndex">{{ userLanguage == '1' ? i.name : i.nameEn }}</div>
           </div>
         </div>
       </div>
@@ -52,10 +51,9 @@
           <img style="width: 100%; height: 100%;" src="../../assets/header/logo.png" alt="">
         </div>
         <div class="contact-information">
-          <img class="icon" src="../../assets/footer/facebook.png" alt="">
-          <img class="icon" src="../../assets/footer/ins.png" alt="">
-          <img class="icon" src="../../assets/footer/weixin.png" alt="">
-          <img class="icon" src="../../assets/footer/phone.png" alt="">
+          <img @click="toOther('https://www.facebook.com/SGNISS/')" class="icon" src="../../assets/footer/facebook.png" alt="">
+          <img @click="toOther('https://www.linkedin.com/company/nanyang-institute-of-social-sciences/about/')" class="icon" src="../../assets/footer/ins.png" alt="">
+          <img @click="callPhoneNumber" class="icon" src="../../assets/footer/phone.png" alt="">
         </div>
       </div>
       <div class="registration-info">
@@ -83,17 +81,17 @@ export default {
           name: '项目导航',
           nameEn: 'Program Navigation',
           list: [
-            {name: 'MBA', nameEn: 'MBA', path: '/courseProjects'},
+            { name: 'MBA', nameEn: 'MBA', path: '/courseProjects' },
             /* {name: 'DBA', nameEn: 'DBA', path: ''}, */
-            {name: '高等教育', nameEn: 'Executive Education', path: '/highEdu'}
+            { name: '高等教育', nameEn: 'Executive Education', path: '/highEdu' }
           ]
         },
         {
           name: '相关链接',
           nameEn: 'Related Links',
           list: [
-            {name: '联系我们', nameEn: 'Contact Us', path: '/aboutUs'},
-            {name: '相关政策', nameEn: 'Privacy Policy', path: '/policy'}
+            { name: '联系我们', nameEn: 'Contact Us', path: '/contactUs' },
+            { name: '相关政策', nameEn: 'Privacy Policy', path: '/policy' }
           ]
         },
         {
@@ -104,8 +102,8 @@ export default {
               name: `地址：30 Orange Grove Road, #07-77 RELC Building，Singapore 258352`,
               nameEn: 'Address: 30 Orange Grove Road, #07-77 RELC Building, Singapore 258352'
             },
-            {name: '邮箱：Enquiry@niss.edu.sg', nameEn: 'Email: enquiry@niss.edu.sg'},
-            {name: '电话：+65 6592 0000', nameEn: 'Telephone: +65 6592 0000'}
+            { name: '邮箱：Enquiry@niss.edu.sg', nameEn: 'Email: enquiry@niss.edu.sg' },
+            { name: '电话：+65 6592 0000', nameEn: 'Telephone: +65 6592 0000' }
           ]
         }
       ]
@@ -122,6 +120,24 @@ export default {
   },
   //方法集合
   methods: {
+    copyPhone() {
+      const phoneNumber = '+65 6592 0000';
+      navigator.clipboard.writeText(phoneNumber)
+        .then(() => {
+          // 复制成功
+          this.$message.success('电话号码已成功复制')
+        })
+    },
+
+    toOther(url) {
+      window.open(url, '_blank');
+    },
+
+    callPhoneNumber() {
+      const phoneNumber = '+65 6592 0000';
+      window.location.href = 'tel:' + phoneNumber;
+    },
+
     jump(path) {
       if (!path) {
         return
@@ -167,7 +183,7 @@ export default {
 
 <style scoped lang="less">
 @media (max-width: 720px) {
-  .web-sign{
+  .web-sign {
     color: #9498a0;
     display: flex;
     justify-content: center;
@@ -175,7 +191,8 @@ export default {
     height: 40px;
     margin-top: 20px;
   }
-  .registration-info{
+
+  .registration-info {
     color: #9498a0;
     display: flex;
     flex-direction: column;
@@ -183,23 +200,27 @@ export default {
     align-items: center;
     margin-top: 40px;
   }
-  .mobile-web-info{
+
+  .mobile-web-info {
     margin-top: 60px;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
-    .logo{
+
+    .logo {
       width: 213px;
       height: 62px;
     }
-    .contact-information{
-      .icon{
+
+    .contact-information {
+      .icon {
         width: 40px;
         height: 40px;
         padding-left: 20px;
       }
     }
   }
+
   .footer-div {
     display: none !important;
   }
@@ -211,13 +232,16 @@ export default {
   .back-top-area {
     display: none !important;
   }
-  .footer-mobile{
+
+  .footer-mobile {
     display: block !important;
-    .toplist-area{
+
+    .toplist-area {
       display: flex;
       flex-direction: column;
     }
-    .item-name{
+
+    .item-name {
       font-size: 24px !important;
       height: 54px !important;
       line-height: 54px !important;
@@ -251,7 +275,7 @@ export default {
 
     div {
       font-weight: bold;
-      
+
       color: #03499E;
       line-height: 46px;
       margin-left: 15px;

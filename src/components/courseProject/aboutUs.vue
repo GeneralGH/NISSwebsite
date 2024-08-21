@@ -67,8 +67,8 @@
       <div class="info-content p-space" v-show="userLanguage == '2'">
         JNU MBA Program was awarded “2014 China's Most Valuable Part-time MBA Programme” by Forbes Chinese Edition.
       </div>
-      <div class="two-imgs">
-        <div class="img-item">
+      <div class="two-imgs" v-if="userLanguage == '1'">
+        <div class="img-item-one">
           <img src="../../../assets/courseProjects/one.png" alt="" />
           <div class="tow-title">
             {{ userLanguage == "1" ? "春秋两季" : "Spring and Autumn" }}<br />{{
@@ -76,7 +76,7 @@
             }}
           </div>
         </div>
-        <div class="img-item">
+        <div class="img-item-one">
           <img src="../../../assets/courseProjects/two.png" alt="" />
           <div class="tow-title">
             {{ userLanguage == "1" ? "在新加坡" : "In Singapore" }}<br />{{
@@ -84,12 +84,71 @@
             }}
           </div>
         </div>
-        <div class="img-item">
+        <div class="img-item-one">
           <img src="../../../assets/courseProjects/three.png" alt="" />
           <div class="tow-title">
             {{ userLanguage == "1" ? "2年学制" : "2-Year Program" }}<br />{{
               userLanguage == "1" ? "在职学习" : "Part-Time Study"
             }}
+          </div>
+        </div>
+      </div>
+
+      <div class="two-imgs" v-if="userLanguage == '2'">
+        <div class="img-item">
+          <img src="../../../assets/courseProjects/Program/location.png" alt="" />
+          <div class="tow-title">
+            <div>Location</div>
+            <div class="subTitle">Singapore</div>
+          </div>
+        </div>
+        <div class="img-item">
+          <img src="../../../assets/courseProjects/Program/mode-of-delivery.png" alt="" />
+          <div class="tow-title">
+            <div>Mode of Delivery</div>
+            <div class="subTitle">Face-to-face</div>
+          </div>
+        </div>
+        <div class="img-item">
+          <img src="../../../assets/courseProjects/Program/format.png" alt="" />
+          <div class="tow-title">
+            <div>Format</div>
+            <div class="subTitle">Part-time</div>
+          </div>
+        </div>
+        <div class="img-item">
+          <img src="../../../assets/courseProjects/Program/Language-of-Instruction.png" alt="" />
+          <div class="tow-title">
+            <div>Language of Instruction</div>
+            <div class="subTitle">Chinese</div>
+          </div>
+        </div>
+        <div class="img-item">
+          <img src="../../../assets/courseProjects/Program/Duration.png" alt="" />
+          <div class="tow-title">
+            <div>Duration: 24 months</div>
+            <div class="subTitle">12 months of classroom-based learning & 12 months of thesis writing</div>
+          </div>
+        </div>
+        <div class="img-item">
+          <img src="../../../assets/courseProjects/Program/intake.png" alt="" />
+          <div class="tow-title">
+            <div>Intake</div>
+            <div class="subTitle">2 intakes/year Every March & September</div>
+          </div>
+        </div>
+        <div class="img-item">
+          <img src="../../../assets/courseProjects/Program/diverse.png" alt="" />
+          <div class="tow-title">
+            <div>Diverse Exposure</div>
+            <div class="subTitle">Academic forums, corporate visits, overseas exchange programs, etc.</div>
+          </div>
+        </div>
+        <div class="img-item">
+          <img src="../../../assets/courseProjects/Program/Certificate.png" alt="" />
+          <div class="tow-title">
+            <div>Certificate Awarded</div>
+            <div class="subTitle">Degree Certificate and Graduation Certificate from Jinan University</div>
           </div>
         </div>
       </div>
@@ -120,6 +179,16 @@
             ? "文凭优势：双证文凭，全球认可"
             : "No English Admission Requirements"
         }}
+      </div>
+    </div>
+
+    <div class="content-item" id="options1-4">
+      <div class="title">
+        {{ userLanguage == "1" ? "全面赋能" : "Program Introduction" }}
+      </div>
+      <div class="line"></div>
+      <div class="info">
+        · 1+1+N+2全面赋能职业发展
       </div>
       <div class="four-area" v-show="userLanguage == '1'">
         <img
@@ -264,9 +333,14 @@ export default {
   }
   .one-imgs img{
     width: 10rem !important;
+    margin-right: 45px !important;
   }
   .content-item{
     width:100vw !important;
+  }
+
+  .img-item {
+    flex-basis: calc(45% - 9px) !important;
   }
 
   .networkingList {
@@ -344,18 +418,22 @@ export default {
 
 .two-imgs {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-around;
   text-align: center;
   box-sizing: border-box;
   padding: 0 40px;
+  flex-wrap: wrap;
 
-  .img-item {
-    width: 98px;
+  .img-item, .img-item-one {
+    flex-basis: calc(25% - 9px);
+    /* width: 98px; */
     text-align: center;
+    margin-bottom: 40px;
   }
 
   img {
+    margin: 0 auto;
     width: 98px;
     height: 98px;
     display: block;
@@ -366,6 +444,12 @@ export default {
     font-size: 24px;
     color: #172c47;
     margin-top: 15px;
+  }
+
+  .subTitle {
+    font-size: 20px;
+    font-weight: normal;
+    margin-top: 10px;
   }
 }
 

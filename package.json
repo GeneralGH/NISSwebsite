@@ -27,9 +27,10 @@
     "tdesign-vue": "latest",
     "vite-plugin-vue2-svg": "^0.3.0",
     "vue": "~2.6.14",
-    "vuex": "^3.6.2",
     "vue-router": "^3.0.0",
-    "vue-seamless-scroll": "^1.1.23"
+    "vue-seamless-scroll": "^1.1.23",
+    "vue2-google-maps": "^0.10.7",
+    "vuex": "^3.6.2"
   },
   "description": "学院官网"
 }

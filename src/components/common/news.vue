@@ -1,9 +1,12 @@
 <!--  -->
 <template>
-    <div>
+    <div class="news-area">
         <div v-for="(item, index) in list" :key="item.id" class="news-box">
-            <div class="news-item" :style="index % 2 !== 0 ? 'flex-direction: row-reverse;' : ''"
-                @click="toDetail(item)">
+            <div class="news-item" @click="toDetail(item)">
+                <div>
+                    <t-image class="new-cover" :src="userLanguage == '1' ? item.url : item.urlEn" fit="cover" position="center" :lazy="true" />
+                    <!-- <img class="new-cover" :src="userLanguage == '1' ? item.url : item.urlEn" alt=""> -->
+                </div>
                 <div class="news-info">
                     <div class="news-title">{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
                     <div class="news-content">
@@ -16,14 +19,11 @@
                         <img class="rightArrow" src="../../../assets/header/rightArrow.png" alt="">
                     </div>
                 </div>
-                <div>
-                    <img class="new-cover" :src="userLanguage == '1' ? item.url : item.urlEn" alt="">
-                </div>
             </div>
-            <div class="party-line"></div>
+            <!-- <div class="party-line"></div> -->
         </div>
 
-        <div class="news-mobile-box">
+        <!-- <div class="news-mobile-box">
             <div v-for="(item, index) in list" :key="item.id" class="mobile-item">
                 <div class="" :style="index % 2 !== 0 ? 'flex-direction: row-reverse;' : ''" @click="toDetail(item)">
                     <div class="news-info">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="party-line"></div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -113,6 +113,23 @@ export default {
 
 <style scoped lang="less">
 @media (max-width: 720px) {
+    .news-area {
+        display: block !important;
+    }
+
+    .news-info {
+        width: 100% !important;
+    }
+
+    .new-cover {
+        width: 100% !important;
+        height: 300px !important;
+    }
+
+    .news-item {
+        margin-bottom: 60px;
+    }
+
     .news-mobile-box {
         display: block !important;
 
@@ -154,7 +171,7 @@ export default {
     }
 
     .news-box {
-        display: none !important;
+        // width: 100%;
     }
 
     .mobile-cover {
@@ -163,6 +180,13 @@ export default {
         border-radius: 10px;
     }
 
+}
+
+.news-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 100px;
 }
 
 .news-mobile-box {
@@ -174,13 +198,10 @@ export default {
 }
 
 .news-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     cursor: pointer;
 
     .new-cover {
-        width: 354px;
+        width: 100%;
         height: 270px;
         border-radius: 20px;
         display: block;
@@ -188,10 +209,11 @@ export default {
 
     .news-info {
         width: 726px;
-        height: 272px;
+        height: 230px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        margin-top: 50px;
 
         .news-title {
             font-weight: bold;

@@ -124,8 +124,9 @@ export default {
     width: 100%;
     display: flex;
     justify-content: space-around !important;
-    flex-wrap: wrap !important;
-    gap: 20px; /* 可以根据需要调整间距 */
+    /* flex-wrap: wrap !important; */
+    margin-top: 40px;
+    gap: 20px !important; /* 可以根据需要调整间距 */
     .module-card {
       width: 300px;
       box-sizing: border-box;

@@ -122,11 +122,15 @@ export default {
               nameEn: "Program Advantages",
               id: "options1-3",
             },
-            
+            {
+              name: "全面赋能",
+              nameEn: "Program Advantages",
+              id: "options1-4",
+            },
             {
               name: "在读学生画像",
               nameEn: "Student Profile",
-              id: "options1-4",
+              id: "options1-5",
             },
           ],
         },

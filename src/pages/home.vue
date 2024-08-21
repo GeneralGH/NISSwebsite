@@ -81,10 +81,10 @@
         </div>
         <div class="info-right" id="contentTwoRight" ref="contentTwoRight">
           <div class="info-item" v-for="(item, index) in scrollList" :key="index">
-            <div :class="userLanguage == '1' ? 'title' : 'titleEn'">
+            <div :class="userLanguage == '1' ? 'title' : 'titleEn'" style="width: 150%;">
               {{ userLanguage == "1" ? item.title : item.titleEn }}
             </div>
-            <div class="subTitle">
+            <div class="subTitle" style="width: 130%;">
               {{ userLanguage == "1" ? item.subTitle : item.subTitleEn }}
             </div>
           </div>
@@ -185,58 +185,52 @@ export default {
           title: "华侨最高学府",
           titleEn: "Paramount University for Overseas Chinese",
           subTitle: "百年名校、211工程大学、双一流建设高校",
-          subTitleEn: "Under Project 211 and Double First-Class Initiative",
+          subTitleEn: "A Century of Academic Excellence | Project-211 & Double First-Class University",
         },
         {
           title: "顶级认证",
-          titleEn: "International Accreditation",
+          titleEn: "International Accreditations",
           subTitle: "AACSB、AMBA、BGA",
           subTitleEn: "AACSB、AMBA、BGA",
         },
         {
           title: "双证文凭",
-          titleEn: "Recognized Degrees",
+          titleEn: "Dual credentials",
           subTitle: "硕士学位证和毕业证，全球认可",
-          subTitleEn: "Globally Recognized Master's Degree & Graduation Certificate",
+          subTitleEn: "Master’s Degree Certificate & Certificate of Graduation",
         },
         {
           title: "精英平台",
-          titleEn: "One Platform",
+          titleEn: "Elite Platform",
           subTitle: "交良师、结益友、融资源的终身学习平台",
-          subTitleEn: "Lifelong Learning",
+          subTitleEn: "Engaging with Inspiring Mentors | Connecting with Valuable Peers | Collaborating with Extensive Resources",
         }
       ],
       highEduList: [
         {
-          title: "一个平台",
-          titleEn: "1 Platform",
-          subTitle: "国际化的高管教育运作平台",
-          subTitleEn: "Global Executive Education",
+          title: "聚焦前沿",
+          titleEn: "Cutting-Edge Focus",
+          subTitle: "针对商业前沿和热点的模块化课程",
+          subTitleEn: "Modular courses addressing the latest trends and key issues in business",
         },
         {
-          title: "双重优势",
-          titleEn: "Dual Strengths",
-          subTitle: "汇聚国际雄厚师资，优秀管理团队",
-          subTitleEn: "International Faculty, Top Management",
+          title: "量身定制",
+          titleEn: "Tailored Solutions",
+          subTitle: "针对企业个性化需求，量身定制精品课程",
+          subTitleEn: "Customized high-quality courses designed to meet the specific needs of businesses",
         },
         {
-          title: "灵活选择",
-          titleEn: "Flexible Options",
-          subTitle: "灵活教学方式、授课时间地点及师资匹配",
-          subTitleEn: "Teaching, Time, Location & Faculty Match",
+          title: "一流师资",
+          titleEn: "Top-Tier Faculty",
+          subTitle: "执教全球顶尖商学院经验的特聘教授团队",
+          subTitleEn: "A distinguished team of professors with experience from leading global business schools",
         },
         {
-          title: "多维课程",
-          titleEn: "Multi-Dimensional",
-          subTitle: "定制化课程设计，满足企业战略需求",
-          subTitleEn: "Custom Courses for Strategic Needs",
-        },
-        {
-          title: "全方位服务",
-          titleEn: "Comprehensive Service",
-          subTitle: "扩大业务视野，提高管理和领导能力，助力企业的长期发展",
-          subTitleEn: "Broaden Business Vision, Enhance Leadership for Long-Term Growth",
-        },
+          title: "国际平台",
+          titleEn: "Global Platform",
+          subTitle: "融贯中西的国际化终身学习平台",
+          subTitleEn: "An integrated global lifelong learning platform bridging Eastern and Western perspectives",
+        }
       ],
       alumniList: [],
       isHovered: -1,

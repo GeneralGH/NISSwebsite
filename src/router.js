@@ -8,6 +8,7 @@ import ConsultationForm from './pages/consultationForm.vue'
 import Article from './pages/article.vue'
 import HighEdu from './pages/highEdu.vue'
 import Policy from './pages/policy.vue'
+import ContactUs from './pages/contactUs.vue'
 import Vue from 'vue';
 
 Vue.use(VueRouter)
@@ -58,6 +59,11 @@ const routes = [
         name: 'policy',
         path: '/policy',
         component: Policy
+    },
+    {
+        name: 'contactUs',
+        path: '/contactUs',
+        component: ContactUs
     }
 ]
 

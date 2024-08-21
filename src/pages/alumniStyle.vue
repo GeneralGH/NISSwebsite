@@ -76,6 +76,19 @@
         </div>
         <div class="party-line"></div>
 
+        <!-- <div style="display: flex; justify-content: space-around; margin-bottom: 50px;">
+          <div style="width: 32%; height: 200px; background-color: red;"></div>
+          <div style="width: 33%; height: 200px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="width: 100%; height: 95px; background-color: red;"></div>
+            <div style="width: 100%; height: 95px; background-color: red;"></div>
+          </div>
+          <div style="width: 32%; height: 200px; background-color: red;"></div>
+        </div> -->
+
+        <div>
+          <img src="../../assets/test.png" alt="" style="width: 100%; margin-bottom: 100px;">
+        </div>
+
         <div class="party-content">
           <News
             :list="list"

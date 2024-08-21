@@ -2,18 +2,8 @@
 <template>
   <div class="alumni-list">
     <div class="alumni-item" v-for="item in list" :key="item.id">
-      <div
-        class="alumni-img"
-        @mouseover="item.introductionShow = true"
-        @mouseleave="item.introductionShow = false"
-      >
-        <t-image
-          class="alumni-cover"
-          :src="item.url"
-          fit="cover"
-          position="center"
-          :lazy="true"
-        />
+      <div class="alumni-img" @mouseover="item.introductionShow = true" @mouseleave="item.introductionShow = false">
+        <t-image class="alumni-cover" :src="item.url" fit="cover" position="center" :lazy="true" />
         <div class="alumni-title" :class="{ expanded: item.introductionShow }">
           <div class="alumni-content" v-show="!item.introductionShow">
             {{ userLanguage == "1" ? item.grade : item.gradeEn }}
@@ -58,7 +48,7 @@ export default {
     },
   },
   watch: {
-    userLanguage(newVal) {},
+    userLanguage(newVal) { },
   },
   //方法集合
   methods: {
@@ -78,30 +68,35 @@ export default {
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() { },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     this.initList();
   },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  beforeCreate() { }, //生命周期 - 创建之前
+  beforeMount() { }, //生命周期 - 挂载之前
+  beforeUpdate() { }, //生命周期 - 更新之前
+  updated() { }, //生命周期 - 更新之后
+  beforeDestroy() { }, //生命周期 - 销毁之前
+  destroyed() { }, //生命周期 - 销毁完成
+  activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 
 <style scoped lang="less">
 @media (max-width: 720px) {
-  .alumni-item{
+  .alumni-list {
+    justify-content: space-between;
+  }
+  .alumni-item {
     width: 16.7rem !important;
   }
-  .alumni-title{
+
+  .alumni-title {
     width: 106% !important;
   }
 }
+
 .expanded {
   height: 472px !important;
   border-radius: 24px 24px 24px 24px !important;
@@ -119,16 +114,21 @@ export default {
     line-height: 40px;
   }
 }
+
 .alumni-list {
   display: flex;
-  gap: 29px;
   flex-wrap: wrap;
 
   .alumni-item {
+    flex-basis: calc(33.3% - 9px);
+    /* 33.33% 是 100% 的三分之一，减去间距的宽度 */
     width: 354px;
     margin-bottom: 40px;
 
     .alumni-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
       height: 472px;
       position: relative;
@@ -144,7 +144,7 @@ export default {
       .alumni-title {
         position: absolute;
         bottom: 0;
-        width: 100%;
+        width: 354px;
         text-align: center;
         height: 60px;
         background: rgba(23, 44, 71, 0.86);
@@ -167,16 +167,21 @@ export default {
     }
 
     .alumni-name {
+      width: 354px;
+      margin: 0 auto;
       font-weight: 500;
       font-size: 32px;
       line-height: 42px;
-      margin: 20px 0 10px 0;
+      margin-top: 20px;
     }
 
     .alumni-position {
+      width: 354px;
+      margin: 0 auto;
       font-weight: 500;
       font-size: 24px;
       line-height: 42px;
+      margin-top: 10px;
     }
   }
 }

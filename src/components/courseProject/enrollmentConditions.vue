@@ -65,7 +65,7 @@
             <div class="title">{{ userLanguage == '1' ? '入学与毕业时间' : 'Enrollment and Graduation Dates' }}</div>
             <div class="line"></div>
             <div class="space-two">
-                <img style="width: 100%;" src="../../../assets/courseProjects/schoolDate.png" alt="">
+                <img style="width: 100%;" :src="userLanguage == '1' ? schoolDate : schoolDateEn" alt="">
             </div>
             <div class="des">
                 {{ userLanguage == '1' ? '以下举例说明：' : 'Here are some examples to illustrate:' }} 
@@ -86,10 +86,6 @@
             <div class="des">
                 {{ userLanguage == '1' ? '项目总学费：S$49,000（不含GST，2025年春季入学学费参考），分12期等额支付。' : 'S$49,000 (2024 Fall Intake, before Goods & Services Tax)' }}
             </div>
-
-            <div class="ps last-ps">
-                * {{ userLanguage == '1' ? '项目提供教科书参考书目清单，由学生自行选择购买，费用自理。' : '暂无' }}
-            </div>
         </div>
     </div>
 </template>
@@ -97,6 +93,8 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
+import schoolDate from '../../../assets/courseProjects/schoolDate.png'
+import schoolDateEn from '../../../assets/courseProjects/schoolDateEn.png'
 
 export default {
     //import引入的组件需要注入到对象中才能使用
@@ -105,7 +103,9 @@ export default {
         //这里存放数据
         return {
             applyImg: '',
-            enrollmentBatchImg: ''
+            enrollmentBatchImg: '',
+            schoolDate,
+            schoolDateEn
         };
     },
     computed: {
