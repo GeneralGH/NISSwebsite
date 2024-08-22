@@ -6,7 +6,7 @@
         {{ userLanguage == "1" ? "关于暨南大学" : "About Jinan University" }}
       </div>
       <div class="line"></div>
-      <div class="info">
+      <div class="info-content">
         ·
         {{
           userLanguage == "1"
@@ -156,10 +156,10 @@
 
     <div class="content-item" id="options1-3">
       <div class="title">
-        {{ userLanguage == "1" ? "项目优势" : "Program Introduction" }}
+        {{ userLanguage == "1" ? "项目优势" : "Program Advantages" }}
       </div>
       <div class="line"></div>
-      <div class="info">
+      <div class="info-content">
         · {{ userLanguage == "1" ? "申请优势：免联考、免英文成绩、大专及以上学历可申请" : "Integrate Chinese business culture and modern management wisdom" }}<br />
         ·
         {{
@@ -182,12 +182,12 @@
       </div>
     </div>
 
-    <div class="content-item" id="options1-4">
+    <div class="content-item" id="options1-4" v-show="userLanguage == '1'">
       <div class="title">
         {{ userLanguage == "1" ? "全面赋能" : "Program Introduction" }}
       </div>
       <div class="line"></div>
-      <div class="info">
+      <div class="info-content">
         · 1+1+N+2全面赋能职业发展
       </div>
       <div class="four-area" v-show="userLanguage == '1'">
@@ -204,7 +204,7 @@
         {{ userLanguage == "1" ? "在读学生画像" : "Student Profile" }}
       </div>
       <div class="line"></div>
-      <div class="info">
+      <div class="info-content">
         <div class="networkingList">
           <div
             v-for="(item, index) in firstFour"
@@ -345,6 +345,7 @@ export default {
 
   .networkingList {
     flex-wrap: nowrap !important;
+    gap: 100px !important;
   }
 }
 .networkingList {
@@ -382,7 +383,7 @@ export default {
   }
 
   .networkItemCenter {
-    margin: 0 60px !important;
+    /* margin: 0 60px !important; */
   }
 }
 

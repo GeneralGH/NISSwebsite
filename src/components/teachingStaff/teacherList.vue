@@ -102,10 +102,11 @@ export default {
 
     .teacher-list {
         display: flex;
-        align-items: center;
-        /* justify-content: space-between;
-        flex-wrap: wrap; */
-        gap: 120px;
+        /* align-items: center; */
+        /* justify-content: space-between; */
+        flex-wrap: wrap;
+        width: 120%;
+        /* gap: 120px; */
     }
 
 
@@ -116,7 +117,9 @@ export default {
     }
 
     .teacher-item {
-        width: 560px;
+        /* width: 560px; */
+        /* flex: 1; */
+        flex-basis: calc(33% - 9px);
         height: 360px;
         display: flex;
         margin-bottom: 52px;
@@ -154,7 +157,7 @@ export default {
                 overflow: hidden; */
                 /* 设置文本超出部分省略 */
                 /* text-overflow: ellipsis; */
-                width: 140%;
+                width: 130%;
             }
         }
     }

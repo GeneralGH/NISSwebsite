@@ -33,12 +33,11 @@
                     {{ userLanguage == "1" ? item.name : item.nameEn }}
                   </div>
                   <div
+                    v-show="isEmpowerment(child)"
                     class="item-subTitle"
-                    :style="{
-                      color:
-                        currentTemplate == child.id ? '#FF9C00' : '#172C47',
-                    }"
-                    v-for="(child, index) in item.list"
+                    :style="{ color: currentTemplate == child.id ? '#FF9C00' : '#172C47', }"
+                    v-for="(child, childIndex) in item.list"
+                    :key="childIndex"
                     @click="scrollToAnchor(child.id)"
                   >
                     <div
@@ -200,6 +199,7 @@ export default {
   watch: {
     userLanguage(newVal) {
       document.title = newVal == "1" ? "课程项目" : "Programmes"
+      /* this.isEmpowerment(newVal) */
     },
     '$route'(to, from) {
      this.scrollToHash()
@@ -289,6 +289,18 @@ export default {
                 });
             }); */
     },
+
+    isEmpowerment(val) {
+      if (val.name == '全面赋能' || val.name == '在读学生画像') {
+        if (this.userLanguage == '1') {
+          return true
+        } else {
+          return false
+        }
+      } else {
+        return true
+      }
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
@@ -305,6 +317,7 @@ export default {
       this.fllowUpdate();
     }
     document.title = this.userLanguage == "1" ? "课程项目" : "Programmes"
+    /* this.isEmpowerment(this.userLanguage) */
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前f

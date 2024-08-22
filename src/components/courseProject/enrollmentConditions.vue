@@ -6,7 +6,7 @@
             <div class="line"></div>
             <div class="info-content space-one">
                 <div class="info-title">{{ userLanguage == '1' ? '学历与工作年限要求' : 'Admission Requirements' }}</div>
-                <div class="info">
+                <div class="info-content">
                     · {{ userLanguage == '1' ? '研究生毕业后，具有至少两年工作经验；' : 'postgraduate degree level with at least 2 years of working experience' }}<br>
                     · {{ userLanguage == '1' ? '大学本科毕业后，具有至少三年工作经验；' : 'degree level with at least 3 years of working experience' }}<br>
                     · {{ userLanguage == '1' ? '大专学历毕业后，具有至少五年工作经验。' : 'diploma level with at least 8 years of working experience, at least 30 years old' }}<br>
@@ -15,7 +15,7 @@
             </div>
             <div class="info-content space-one">
                 <div class="info-title">{{ userLanguage == '1' ? '申请人身份要求:' : 'Applicant Identity Requirements:' }}</div>
-                <div class="info">
+                <div class="info-content">
                     <div class="des-title">· {{ userLanguage == '1' ? '华侨申请人' : 'For Overseas Chinese Applicants' }}</div>
                     <div class="des">
                         {{ userLanguage == '1' ? '已取得住在国长期或永久居留权，并已在住在国连续居留2年，两年内累计居留不少于18个月。' : 'Must have obtained long-term or permanent residency in the residing country and have continuously resided there for at least two years, accumulating no less than 18 months within the two-year period.' }}
@@ -24,19 +24,19 @@
                         {{ userLanguage == '1' ? '未取得住在国长期或永久居留权者，但已取得住在国连续5年以上（含5年）合法居留资格，且5年内在住在国累计居留不少于30个月。出国留学和因公出国工作不能视为定居。' : 'For individuals who have not obtained long-term or permanent residency in the residing country but have legally resided continuously for at least five years (including the fifth year), they must also have accumulated no less than 30 months of residence within the five-year period in the residing country. Studying abroad or working abroad for official reasons cannot be considered as settlement.' }}
                     </div>
                 </div>
-                <div class="info">
+                <div class="info-content">
                     <div class="des-title">· {{ userLanguage == '1' ? '外籍申请人' : 'For Non-Overseas Chinese Applicants:' }}</div>
                     <div class="des">
                         {{ userLanguage == '1' ? '须是非中国籍的其他国家公民，持有效外国护照。' : 'Must be citizens of countries other than China, holding valid foreign passports.' }}
                     </div>
                 </div>
-                <div class="info">
+                <div class="info-content">
                     <div class="des-title">· {{ userLanguage == '1' ? '港澳地区申请人' : 'For Applicants from Hong Kong and Macau:' }}</div>
                     <div class="des">
                         {{ userLanguage == '1' ? '持有香港或澳门永久性居民身份证和《港澳居民来往内地通行证》或《港澳居民居住证》。:' : 'Must hold permanent resident identity cards of Hong Kong or Macau and either a "Mainland Travel Permit for Hong Kong and Macau Residents" or a "Residence Permit for Hong Kong and Macau Residents."' }}
                     </div>
                 </div>
-                <div class="info">
+                <div class="info-content">
                     <div class="des-title">· {{ userLanguage == '1' ? '台湾地区申请人' : 'For Applicants from Taiwan:' }}</div>
                     <div class="des">
                         {{ userLanguage == '1' ? '持《台湾居民来往大陆通行证》或《台湾居民居住证》。' : 'Must hold a "Mainland Travel Permit for Taiwan Residents" or a "Residence Permit for Taiwan Residents."' }}
@@ -67,11 +67,11 @@
             <div class="space-two">
                 <img style="width: 100%;" :src="userLanguage == '1' ? schoolDate : schoolDateEn" alt="">
             </div>
-            <div class="des">
+            <div class="info-content des">
                 {{ userLanguage == '1' ? '以下举例说明：' : 'Here are some examples to illustrate:' }} 
             </div>
 
-            <div class="des">
+            <div class="info-content des">
                 {{ userLanguage == '1' ? '对于2022年9月（秋季入学）入学的学生，如已修满所有学分并通过论文答辩，将在2024年8月毕业。' : 'For example, for students who are enrolled in September 2022 (Fall intake), they will graduate in August 2024, given that all the required credits have been obtained. The degree will be conferred by January 2025.' }}
             </div>
 
@@ -83,7 +83,7 @@
         <div class="content-item" id="options3-5">
             <div class="title">{{ userLanguage == '1' ? '学费' : 'Tuition Fees' }}</div>
             <div class="line"></div>
-            <div class="des">
+            <div class="info-content des">
                 {{ userLanguage == '1' ? '项目总学费：S$49,000（不含GST，2025年春季入学学费参考），分12期等额支付。' : 'S$49,000 (2024 Fall Intake, before Goods & Services Tax)' }}
             </div>
         </div>
@@ -150,6 +150,7 @@ export default {
   }
   .des{
       width: 90%;
+      margin-bottom: 20px;
   }
   .space-two{
     width: 100%;
@@ -165,14 +166,15 @@ export default {
 }
 
 .ps {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     margin-left: 20px;
-    margin-top: -35px;
+    margin-top: 15px;
 }
 
 .last-ps {
     margin-top: 20px !important;
+    padding: 0 30px;
 }
 
 .info-content {
@@ -196,7 +198,7 @@ export default {
     font-size: 20px;
     margin-left: 30px;
     line-height: 34px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .module-card-list {
