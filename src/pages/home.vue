@@ -56,7 +56,7 @@
           <div class="title" v-show="currentScroll == 0">
             {{
               userLanguage == "1"
-                ? "暨南大学新加坡中文MBA项目"
+                ? `暨南大学新加坡中文MBA项目`
                 : "JNU MBA PROGRAM"
             }}
           </div>
@@ -95,7 +95,7 @@
       <div class="title">
         {{ userLanguage == "1" ? "校友寄语" : "Alumni Testimonials" }}
       </div>
-      <div class="subTitle">Their Stories</div>
+      <!-- <div class="subTitle">Their Stories</div> -->
 
       <div class="alumni-scroll" id="alumni-scroll">
         <vue-seamless-scroll :data="alumniList" :class-option="classOption" id="vueSeamlessScroll"
@@ -163,7 +163,7 @@ export default {
         {
           title: "MBA",
           titleEn: "MBA",
-          subTitle: ['暨南大学新加坡', '中文MBA项目'],
+          subTitle: ['暨南大学', '新加坡', '中文MBA', '项目'],
           subTitleEn: ['JNU MBA Program', '(Mandarin)'],
           path: "/courseProjects",
         },

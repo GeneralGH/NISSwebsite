@@ -135,6 +135,7 @@ export default {
       border: 1px solid #ccc; /* 示例样式，可以去掉 */
       border-radius: 16px; /* 示例样式，可以去掉 */
       margin-bottom: 20px;
+      height: 260px;
     }
     .module-card::before {
       top: -5px;
@@ -150,13 +151,17 @@ export default {
     width: 60px !important;
   }
   .item-name {
-    font-size: 30px !important;
+    font-size: 24px !important;
   }
   .party-title {
     margin-top: 100px !important;
   }
   .party-info {
     display: none !important;
+  }
+
+  .item-value {
+    font-size: 70px !important;
   }
 }
 .module-card-list {

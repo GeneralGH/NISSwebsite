@@ -40,7 +40,7 @@
 
         <div class="article-content">
           <div class="commonText">This website may contain links to other websites. We are not responsible for the privacy practices or the content of such websites.</div>
-          <div class="commonText">Cookies may be set by parties other than us. These “third-party cookies” may, for example, originate from websites such as YouTube, Twitter, Facebook, Soundcloud, or other social media services for which www.nibi.edu.sg has implemented “plug-ins”. Since the cookie policies of these sites change over time, you should determine their policies by visiting the privacy policy pages of these sites directly.</div>
+          <div class="commonText">Cookies may be set by parties other than us. These“third-party cookies”may, for example, originate from websites such as YouTube, Twitter, Facebook, Soundcloud, or other social media services for which www.nibi.edu.sg has implemented “plug-ins”. Since the cookie policies of these sites change over time, you should determine their policies by visiting the privacy policy pages of these sites directly.</div>
           <div class="commonText subTitle">Information Protection</div>
         </div>
 

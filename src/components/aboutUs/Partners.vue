@@ -27,7 +27,7 @@
                 position="center"
                 :lazy="true"
               />
-              <div class="school-subtitle">{{ item.subTitle }}</div>
+              <div class="school-subtitle">{{ userLanguage == '1' ? item.subTitle : item.subTitleEn }}</div>
             </div>
           </t-swiper-item>
         </t-swiper>
@@ -78,6 +78,7 @@ export default {
         {
           title: "暨南大学",
           subTitle: "暨南大学-百年名校 华侨最高学府",
+          subTitleEn: 'Jinan University',
           img: oneImg,
         },
         /* {
@@ -93,6 +94,7 @@ export default {
         {
           title: "南特高等商学院",
           subTitle: "南特高等商学院-欧洲一流商学院",
+          subTitleEn: 'Audencia Business School',
           img: fourImg,
         },
         /* {

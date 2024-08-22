@@ -329,7 +329,7 @@ export default {
 @import url("./index.css");
 @media(max-width:720px){
   .title{
-    margin-left: 70px;
+    margin-left: 30px;
   }
   .one-imgs img{
     width: 10rem !important;

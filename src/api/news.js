@@ -7,7 +7,9 @@ const news = {
 
     editNewsUrl: '/api/news/editNews',
 
-    getNewsByIdUrl: '/api/news/getNewsById/'
+    getNewsByIdUrl: '/api/news/getNewsById/',
+
+    getLastAndNextUrl: '/api/news/getLastAndNext'
 }
 
 export default news

@@ -28,11 +28,11 @@
       </div>
 
       <div class="article-info">
-        <div class="article-title">
+        <div :class="userLanguage == '1' ? 'article-title' : 'article-titleEn'">
           {{ userLanguage == "1" ? data.title : data.titleEn }}
         </div>
         <div class="article-author">
-          作者：{{
+          <span>{{ userLanguage == '1' ? '作者' : 'Author' }}</span>：{{
             userLanguage == "1" ? data.author : data.authorEn
           }}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{{
             dateChange(data.createTime)
@@ -47,14 +47,15 @@
           ></div>
           <div class="more-article">
             <div
-              class="more-article-itme"
-              v-for="(item, index) in pcBottomList"
+              :class="item.id ? 'more-article-itme' : 'more-article-itme-none'"
+              v-for="(item, index) in LastAndNext"
               :key="item.id"
               @click="toDetail(item)"
             >
               <icon class="item-icon" name="chevron-left" v-if="index == 0" />
               <div :style="{ textAlign: index == 1 ? 'end' : 'start', flex: 1 }">
-                <div class="icon-sigin">{{ index == 0 ? 'Previous' : 'Next' }}</div>
+                <div class="icon-sigin" v-show="userLanguage == 2">{{ index == 0 ? 'Previous' : 'Next' }}</div>
+                <div class="icon-sigin" v-show="userLanguage == 1">{{ index == 0 ? '上一个' : '下一个' }}</div>
                 <div class="item-title">{{ userLanguage == "1" ? item.title : item.titleEn }}</div>
               </div>
               <icon class="item-icon" name="chevron-right" v-if="index == 1" />
@@ -116,7 +117,8 @@ export default {
       },
       list: [],
       pcBottomList: [],
-      listData: ''
+      listData: '',
+      LastAndNext: []
     };
   },
   computed: {
@@ -130,9 +132,10 @@ export default {
   filter: {},
   //方法集合
   methods: {
-    echoData(id) {
-      this.$request.get(news.getNewsByIdUrl + id).then((res) => {
+    async echoData(id) {
+      await this.$request.get(news.getNewsByIdUrl + id).then((res) => {
         this.data = res.data.data;
+        this.getLastAndNext(id)
       });
     },
 
@@ -152,7 +155,7 @@ export default {
           /* console.log(this.listData) */
         });
 
-      this.$request
+      /* this.$request
         .post(news.getNewsListPageUrl, {
           current: 1,
           size: 2,
@@ -167,7 +170,7 @@ export default {
             };
           });
           this.pcBottomList = res.data.data.list;
-        });
+        }); */
     },
     
     pageChange(e) {
@@ -176,6 +179,9 @@ export default {
     },
 
     toDetail(item) {
+      if (!item.id) {
+        return
+      }
       window.scrollTo({
         top: 0,
         behavior: "instant", // 可选，使用平滑滚动效果
@@ -201,6 +207,12 @@ export default {
         behavior: "instant", // 可选，使用平滑滚动效果
       });
     },
+
+    getLastAndNext(id) {
+      this.$request.post(news.getLastAndNextUrl, { id: id, type: this.data.type }).then((res) => {
+        this.LastAndNext = [res.data.data.last ? res.data.data.last : {}, res.data.data.next ? res.data.data.next : {}];
+      })
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
@@ -349,11 +361,16 @@ export default {
   margin-bottom: 36px;
 }
 
-.article-title {
+.article-title, .article-titleEn {
   font-weight: 600;
-  font-size: 54px;
+  font-size: 48px;
   color: #172c47;
   line-height: 76px;
+}
+
+.article-titleEn {
+  font-size: 38px;
+  line-height: 58px;
 }
 
 .article-author {
@@ -387,7 +404,12 @@ export default {
   color: white;
 }
 
-.more-article-itme {
+.more-article-itme-none {
+  cursor: no-drop !important;
+  opacity: 0;
+}
+
+.more-article-itme, .more-article-itme-none {
   display: flex;
   width: 49%;
   font-weight: bold;

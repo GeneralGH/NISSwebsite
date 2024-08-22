@@ -24,7 +24,8 @@
 }
 
 .info-content {
-    font-weight: bold;
+    /* font-weight: bold; */
+    text-align: justify;
     font-size: 28px;
     color: #172C47;
     line-height: 48px !important;

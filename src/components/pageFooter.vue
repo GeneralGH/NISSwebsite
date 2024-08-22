@@ -41,7 +41,7 @@
       <div class="toplist-area">
         <div class="list-item" v-for="(item, index) in topList" :key="index">
           <div class="item-name">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
-          <div class="item-child" v-if="index === 0">
+          <div class="item-child" >
             <div v-for="(i, itemIndex) in item.list" @click="jump(i.path)" :key="itemIndex">{{ userLanguage == '1' ? i.name : i.nameEn }}</div>
           </div>
         </div>

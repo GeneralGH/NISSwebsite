@@ -146,7 +146,7 @@ export default {
 @import url('./index.css');
 @media(max-width:720px) {
   .title{
-    margin-left: 70px;
+    margin-left: 30px;
   }
   .des{
       width: 90%;
@@ -182,6 +182,7 @@ export default {
 }
 
 .info-title {
+    font-weight: bold;
     margin-bottom: 20px;
 }
 

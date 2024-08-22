@@ -91,6 +91,7 @@ export default {
 @media (max-width: 720px) {
     .teacher-list {
         display: block !important;
+        width: 100% !important;
     }
 }
 .noListTips {

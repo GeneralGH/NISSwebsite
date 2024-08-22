@@ -303,7 +303,7 @@ export default {
     line-height: 20px !important;
   }
   .title {
-    margin-left: 70px;
+    margin-left: 30px;
   }
 }
 .module-card-list {

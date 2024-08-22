@@ -528,7 +528,7 @@ export default {
 
 @media (max-width: 720px) {
   .sidebar {
-    display: none !important;
+    /* display: none !important; */
   }
 
   .header-nav {

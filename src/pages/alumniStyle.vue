@@ -76,17 +76,8 @@
         </div>
         <div class="party-line"></div>
 
-        <!-- <div style="display: flex; justify-content: space-around; margin-bottom: 50px;">
-          <div style="width: 32%; height: 200px; background-color: red;"></div>
-          <div style="width: 33%; height: 200px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div style="width: 100%; height: 95px; background-color: red;"></div>
-            <div style="width: 100%; height: 95px; background-color: red;"></div>
-          </div>
-          <div style="width: 32%; height: 200px; background-color: red;"></div>
-        </div> -->
-
         <div>
-          <img src="../../assets/test.png" alt="" style="width: 100%; margin-bottom: 100px;">
+          <t-image class="freeImg" :src="userLanguage == '1' ? freeImg.url : freeImg.urlEn" fit="cover" position="center" :lazy="true" style="width: 100%;" />
         </div>
 
         <div class="party-content">
@@ -138,6 +129,10 @@ export default {
         textEn:
           'Adhering to the motto of "Loyalty, Integrity, Courtesy," Jinan University alumni network supports and empowers each other, continuously contributing strong support and motivation for the long-term career development and life values realization of students and alumni.',
       },
+      freeImg: {
+        url: '',
+        urlEn: ''
+      }
     };
   },
   computed: {
@@ -176,6 +171,9 @@ export default {
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     this.initList();
+    this.$getPageContent(20).then((res) => {
+      this.freeImg = res
+    });
     document.title = this.userLanguage == "1" ? "校友风采" : "Alumni";
   },
   beforeCreate() {}, //生命周期 - 创建之前
@@ -190,6 +188,9 @@ export default {
 
 <style scoped lang="less">
 @media (max-width: 720px) {
+  .freeImg {
+    margin-bottom: 60px;
+  }
   /deep/.t-pagination {
     right: 170px !important;
     bottom: 60px;
@@ -215,6 +216,9 @@ export default {
       }
     }
   }
+}
+.freeImg {
+  margin-bottom: 100px;
 }
 .content-area {
   display: flex;

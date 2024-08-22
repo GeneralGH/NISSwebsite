@@ -48,11 +48,11 @@ export default {
     return {
       text_1: {
         zh: '南洋社会科学学院为企业和机构开发定制化的课程体系。课程设计团队从每个企业和机构的发展战略、愿景、文化和面临的挑战出发，针对个性化的需求，提供量身定制的课程方案，旨在满足企业和机构的战略需求，全面提升学员的管理理念和业务水平。',
-        en: 'NISS designs and delivers Custom Programs based on clients’ specific needs. Targeting to fulfilling our clients’ strategic needs, our Custom Program Team closely examines our clients’ corporate strategy, vision, and corporate culture, as well as the challenges they face, and designs executive education programs customized to these specific environments and requirements, and to raise the overall management skills and operational know-how of our students.'
+        en: 'NISS designs and delivers Custom Programs based on clients’specific needs. Targeting to fulfilling our clients’strategic needs, our Custom Program Team closely examines our clients’corporate strategy, vision, and corporate culture, as well as the challenges they face, and designs executive education programs customized to these specific environments and requirements, and to raise the overall management skills and operational know-how of our students.'
       },
       text_2: {
         zh: '我们的定制课程依托于自身国际化的运作平台、雄厚的师资力量、优秀的管理团队、专业的教学管理以及一流的设施，基于对课程需求的全方位深入了解，安排灵活、时间适中、专业程度高、实用性和针对性强，力求为企业和机构打造个性化的精品课程，帮助学员在较短时间内完善知识体系，扩大业务视野，提高管理和领导能力，助力企业和机构的长远发展。',
-        en: 'Having an outstanding team of faculty members and management team, on top of excellent training facilities, our Custom program is highly internationalized and of the highest quality. We ensure that we understand in-depth the clients’ specific needs, and design a program that is of suitable duration, of professional standard, and is highly practical and relevant. Such programs are instrumental in helping students quickly upgrade their knowledge, expand their horizons, improve their leadership and management skills, and in turn, help push their businesses and organizations to greater heights.'
+        en: 'Having an outstanding team of faculty members and management team, on top of excellent training facilities, our Custom program is highly internationalized and of the highest quality. We ensure that we understand in-depth the clients’specific needs, and design a program that is of suitable duration, of professional standard, and is highly practical and relevant. Such programs are instrumental in helping students quickly upgrade their knowledge, expand their horizons, improve their leadership and management skills, and in turn, help push their businesses and organizations to greater heights.'
       },
       text_3: {
         zh: '我们的课程设计团队会同您深度合作，为您量身打造个性化的课程。相对于公开课程，定制课程的设置更加多样，我们提供从单模块的专题课程到多模块的综合课程的各种方案。同时，定制课程的师资选用、教学方式以及授课时间和地点也更加灵活，注重传授思考和解决问题的方法，确保您的企业和机构达成学习目的，并带给学员最高质量的学习体验。',

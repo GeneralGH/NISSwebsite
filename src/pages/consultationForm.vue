@@ -229,6 +229,29 @@
               <div class="form-item-label">
                 {{
                   userLanguage == "1"
+                    ? "咨询项目"
+                    : "Preferred Consultation Method"
+                }}<span>*</span>
+              </div>
+              /* <div style="position: relative">
+                <t-form-item name="consultationMethods">
+                  <sSelect @optionChange="(item) => {
+                    formData.consultationMethods = userLanguage == '1' ? item.label : item.labelEn;
+                  }
+                    " :options="consultingServiceOptions" :placeholder="userLanguage == '1'
+                      ? '请选择你倾向的咨询沟通方式'
+                      : 'Please select your preferred consultation method'
+                      " />
+                </t-form-item> */
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-item full-item">
+              <div class="form-item-label">
+                {{
+                  userLanguage == "1"
                     ? "如何得知暨南大学新加坡MBA硕士学位项目"
                     : "How did you learn about the JNU MBA program?"
                 }}<span>*</span>
