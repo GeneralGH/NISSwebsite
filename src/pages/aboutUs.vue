@@ -7,7 +7,7 @@
       <Partners />
       <div class="party">
         <div class="party-title">
-          {{ userLanguage == "1" ? "学院新闻" : "College News" }}
+          {{ userLanguage == "1" ? "学院新闻" : "News" }}
         </div>
         <div class="party-line"></div>
 

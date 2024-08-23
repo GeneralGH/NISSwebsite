@@ -7,7 +7,7 @@
       </div>
       <div class="line"></div>
       <div class="info-content">
-        <div>
+        <div :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
           {{
             userLanguage == "1"
               ? "暨南大学新加坡MBA项目必修课分为职能模块、分析模块、领导力模块、综合模块、中国模块和学位论文六个模块，帮助学生从六大主要维度，奠定坚实的工商管理知识、理论与技能基础。学生须修满30个必修课学分。"
@@ -34,7 +34,7 @@
       </div>
       <div class="line"></div>
       <div class="info-content">
-        <div>
+        <div :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
           {{
             userLanguage == "1"
               ? "暨南大学新加坡MBA项目选修课分为综合管理模块、创新创业模块、资本运营模块、营销管理模块、运营管理模块、整合实践模块六个方向，助力拓宽和加深学生在特定领域的认知。学生须修满12个选修课学分。"
@@ -78,7 +78,7 @@
         src="../../../assets/courseProjects/outlearn.png"
         alt=""
       />
-      <div class="info-content">
+      <div class="info-content" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         {{
           userLanguage == "1"
             ? "国际深度交流学习项目。每年暨南大学MBA的学生们都有机会申请至海外合作高校开展3 – 6个月的学习交流，部分交流院校提供奖学金名额。"

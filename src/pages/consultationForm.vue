@@ -4,21 +4,19 @@
     <pageHeader />
     <div class="page-area">
       <div class="party">
-        <div class="party-content">
+        <div class="party-content" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
           <p>
             {{
               userLanguage == "1"
-                ? "感谢您对暨南大学新加坡MBA项目的关注，如果您希望进一步了解项目，请准确填写下列信息，我们的项目负责老师会尽快与您联系。"
-                : "Thank you for your interest in the Jinan University Singapore MBA program. For further information,
-            please fill out the following details accurately.Our project manager will contact you promptly."
+                ? "感谢对我们项目的关注！如果您希望进一步了解项目，请准确填写下列信息，我们的项目负责老师会尽快与您联系，帮你深入了解项目及申请流程。"
+                : "Thank you for your interest in our program! To learn more, please complete the form below, and our dedicated program team will get in touch with you shortly to discuss your suitability and guide you through the application process."
             }}
           </p>
           <p>
             {{
               userLanguage == "1"
-                ? "您可以拨打+65 6530 3520，直接联络我们，资深老师帮你深入了解暨南大学新加坡MBA项目及申请流程。"
-                : "You can also reach us directly at +65 6530 3520, where our experienced staff will assist you in
-            understanding the Jinan University Singapore MBA program and its application process in depth."
+                ? "如有任何疑问，您也可以拨打 +65 6320 3596，直接联络我们。"
+                : "If you have any questions, please also feel free to contact us directly at +65 6320 3596."
             }}
           </p>
         </div>
@@ -230,19 +228,19 @@
                 {{
                   userLanguage == "1"
                     ? "咨询项目"
-                    : "Preferred Consultation Method"
+                    : "Preferred Consultation Program"
                 }}<span>*</span>
               </div>
-              /* <div style="position: relative">
-                <t-form-item name="consultationMethods">
+              <div style="position: relative">
+                <t-form-item name="project">
                   <sSelect @optionChange="(item) => {
-                    formData.consultationMethods = userLanguage == '1' ? item.label : item.labelEn;
+                    formData.project = userLanguage == '1' ? item.label : item.labelEn;
                   }
-                    " :options="consultingServiceOptions" :placeholder="userLanguage == '1'
-                      ? '请选择你倾向的咨询沟通方式'
-                      : 'Please select your preferred consultation method'
+                    " :options="programOptions" :placeholder="userLanguage == '1'
+                      ? '请选择你想要咨询的项目'
+                      : 'Please select the program you would like to inquire about'
                       " />
-                </t-form-item> */
+                </t-form-item>
               </div>
             </div>
           </div>
@@ -413,6 +411,11 @@ export default {
         { label: "视频", labelEn: 'Video', value: 2 },
         { label: "电话", labelEn: 'Phone', value: 3 },
       ],
+      programOptions: [
+        { label: "暨南大学新加坡中文MBA", labelEn: 'JNU MBA Program', value: 1 },
+        { label: "南特高等商学院亚太中文DBA", labelEn: 'Asia-pacific DBA Program（Chinese）', value: 2 },
+        { label: "高管教育", labelEn: 'Executive Education', value: 3 },
+      ],
       knowingChannelOptions: [
         { label: "微信公众号", labelEn: 'WeChat official accounts', value: 1 },
         { label: "微信朋友圈", labelEn: 'WeChat Moments', value: 2 },
@@ -438,6 +441,7 @@ export default {
         phone: "",
         email: "",
         consultationMethods: "",
+        project: '',
         obtainingChannels: "",
         consultationDateDay: "",
         consultationDateTime: "",
@@ -525,6 +529,14 @@ export default {
           {
             required: true,
             message: "以何种方式进行咨询必填",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        project: [
+          {
+            required: true,
+            message: "想要咨询的项目必填",
             type: "error",
             trigger: "change",
           },

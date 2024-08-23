@@ -6,7 +6,7 @@
         {{ userLanguage == "1" ? "关于暨南大学" : "About Jinan University" }}
       </div>
       <div class="line"></div>
-      <div class="info-content">
+      <div class="info-content" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         ·
         {{
           userLanguage == "1"
@@ -50,21 +50,21 @@
         {{ userLanguage == "1" ? "项目介绍" : "Program Introduction" }}
       </div>
       <div class="line"></div>
-      <div class="info-content p-space">
+      <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         {{
           userLanguage == "1"
             ? "暨南大学新加坡中文MBA硕士学位项目（简称“暨南大学新加坡中文MBA项目”） 由南洋社会科学学院与暨南大学管理学院合作举办，是在新加坡以中文教学的工商管理硕士（MBA）项目，毕业后授予暨南大学工商管理硕士学位证书和硕士研究生毕业证书。"
             : "Jinan University (JNU) is one of the first national institutions of higher education in China to develop business education. Business is also a strong discipline that JNU is proud of. In 1993, JNU became the first institution in South China to offer an MBA education."
         }}
       </div>
-      <div class="info-content p-space">
+      <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         {{
           userLanguage == "1"
             ? "项目面向华侨、港澳台地区人士和非中国籍人士招生，采取“申请审核制”，无需参加笔试，通过面试择优录取。"
             : "JNU MBA Program aims to provide quality education on business management for young managers on the uptrend in their careers, and help them understand the culture of Chinese business, expand their developing space and improve their leadership and problem-solving capacity."
         }}
       </div>
-      <div class="info-content p-space" v-show="userLanguage == '2'">
+      <div class="info-content p-space" v-show="userLanguage == '2'" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         JNU MBA Program was awarded “2014 China's Most Valuable Part-time MBA Programme” by Forbes Chinese Edition.
       </div>
       <div class="two-imgs" v-if="userLanguage == '1'">
@@ -159,7 +159,7 @@
         {{ userLanguage == "1" ? "项目优势" : "Program Advantages" }}
       </div>
       <div class="line"></div>
-      <div class="info-content">
+      <div class="info-content" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         · {{ userLanguage == "1" ? "申请优势：免联考、免英文成绩、大专及以上学历可申请" : "Integrate Chinese business culture and modern management wisdom" }}<br />
         ·
         {{
@@ -204,7 +204,7 @@
         {{ userLanguage == "1" ? "在读学生画像" : "Student Profile" }}
       </div>
       <div class="line"></div>
-      <div class="info-content">
+      <div class="info-content" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         <div class="networkingList">
           <div
             v-for="(item, index) in firstFour"

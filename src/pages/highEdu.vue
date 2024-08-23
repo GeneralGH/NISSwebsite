@@ -15,15 +15,15 @@
           <div class="subTitle">
             <t-divider align="center"><span>{{ userLanguage == '1' ? '项目简介' : 'Overview' }}</span></t-divider>
           </div>
-          <div class="commonText">{{ userLanguage == '1' ? text_1.zh : text_1.en }}</div>
-          <div class="commonText">{{ userLanguage == '1' ? text_2.zh : text_2.en }}</div>
+          <div class="commonText" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">{{ userLanguage == '1' ? text_1.zh : text_1.en }}</div>
+          <div class="commonText" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">{{ userLanguage == '1' ? text_2.zh : text_2.en }}</div>
         </div>
 
         <div class="article-content">
           <div class="subTitle">
             <t-divider align="center"><span>{{ userLanguage == '1' ? '课程设计' : 'Our Methodology' }}</span></t-divider>
           </div>
-          <div class="commonText">{{ userLanguage == '1' ? text_3.zh : text_3.en }}</div>
+          <div class="commonText" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">{{ userLanguage == '1' ? text_3.zh : text_3.en }}</div>
         </div>
 
         <div class="article-content" style="text-align: center;">

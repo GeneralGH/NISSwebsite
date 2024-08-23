@@ -10,7 +10,7 @@
       </t-swiper-item>
     </t-swiper>
     <div class="cover-textarea">
-      <div class="cover-text">
+      <div :class="userLanguage == 1 ? 'cover-text' : 'cover-textEn'">
         {{ userLanguage == '1' ? '成为最具价值的终身学习平台' : 'To be an invaluable lifelong learning platform' }}
       </div>
     </div>
@@ -117,10 +117,21 @@ export default {
       font-size: 62px;
       bottom: 60px !important;
     }
+
+    .cover-textEn {
+      width: 650px;
+      font-size: 46px;
+      bottom: 60px !important;
+    }
   }
 
   .cover-text:before {
     top: 170px !important;
+    /* display: none; */
+  }
+
+  .cover-textEn:before {
+    top: 140px !important;
     /* display: none; */
   }
 
@@ -189,7 +200,33 @@ export default {
   position: relative;
 }
 
+.cover-textEn {
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  animation: fade-in 1s ease-in-out;
+  font-weight: bold;
+  font-size: 52px;
+  height: 60px;
+  z-index: 600;
+  position: relative;
+}
+
 .cover-text:before {
+  content: "";
+  top: 100px;
+  animation: heroBottomLine 1.3s linear forwards;
+  animation-delay: 2.2s;
+  height: 0;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 2px;
+  background: white;
+  z-index: 1;
+}
+
+.cover-textEn:before {
   content: "";
   top: 100px;
   animation: heroBottomLine 1.3s linear forwards;

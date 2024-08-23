@@ -10,6 +10,8 @@
         </div>
       </div>
 
+      <div id="map" style="width: 400px; height: 400px;"></div>
+
       <div class="article-area">
         <div class="article-content">
           <div class="img-List">
@@ -42,8 +44,22 @@
 </template>
 
 <script>
+const loader = new Loader({
+  apiKey: "AIzaSyDPPxEAU_t7roulHWxO6AaosCx8JC9ylz8",
+  version: "weekly",
+});
+
+loader.load().then(async () => {
+  const { Map } = await google.maps.importLibrary("maps");
+
+  map = new Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
+});
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
+import { Loader } from "@googlemaps/js-api-loader"
 
 export default {
   //import引入的组件需要注入到对象中才能使用
@@ -63,20 +79,20 @@ export default {
   filter: {},
   //方法集合
   methods: {
-    
+
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() { },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
   },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  beforeCreate() { }, //生命周期 - 创建之前
+  beforeMount() { }, //生命周期 - 挂载之前
+  beforeUpdate() { }, //生命周期 - 更新之前
+  updated() { }, //生命周期 - 更新之后
+  beforeDestroy() { }, //生命周期 - 销毁之前
+  destroyed() { }, //生命周期 - 销毁完成
+  activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 
@@ -95,14 +111,16 @@ export default {
     margin-bottom: 40px;
   }
 }
+
 @media (max-width: 720px) {
   .img-List {
     flex-direction: column;
   }
 
-  .img-List > div {
+  .img-List>div {
     margin-bottom: 50px;
   }
+
   .page-area {
     .path-list {
       margin-top: 20px;
@@ -131,6 +149,7 @@ export default {
       height: 70px !important;
     }
   }
+
   .article-content {
     line-height: 50px;
   }
@@ -308,14 +327,12 @@ export default {
   right: -3px;
   bottom: -3.5px;
   z-index: -1;
-  background-image: repeating-linear-gradient(
-    125deg,
-    #ff9c00,
-    #ffcc9e,
-    #74b6eb 80%,
-    #68aaec,
-    #04499f
-  );
+  background-image: repeating-linear-gradient(125deg,
+      #ff9c00,
+      #ffcc9e,
+      #74b6eb 80%,
+      #68aaec,
+      #04499f);
   border-radius: 8px;
   outline: 2px solid transparent;
   outline-offset: -2px;
@@ -336,6 +353,7 @@ export default {
   span {
     font-size: 34px;
   }
+
   margin-bottom: 50px;
 }
 

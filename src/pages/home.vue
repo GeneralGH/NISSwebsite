@@ -84,6 +84,9 @@
             <div :class="userLanguage == '1' ? 'title' : 'titleEn'" style="width: 150%;">
               {{ userLanguage == "1" ? item.title : item.titleEn }}
             </div>
+            <div class="titleEn" v-show="item.twoTitleEn && userLanguage == 2">
+              {{ item.twoTitleEn }}
+            </div>
             <div class="subTitle" style="width: 130%;">
               {{ userLanguage == "1" ? item.subTitle : item.subTitleEn }}
             </div>
@@ -183,7 +186,8 @@ export default {
       infoTwoList: [
         {
           title: "华侨最高学府",
-          titleEn: "Paramount University for Overseas Chinese",
+          titleEn: "Paramount University for ",
+          twoTitleEn: 'Overseas Chinese',
           subTitle: "百年名校、211工程大学、双一流建设高校",
           subTitleEn: "A Century of Academic Excellence | Project-211 & Double First-Class University",
         },

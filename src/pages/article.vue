@@ -20,7 +20,7 @@
           data.type == 1
             ? userLanguage == "1"
               ? "学院新闻"
-              : "College News"
+              : "News"
             : userLanguage == "1"
             ? "校友动态"
             : "Alumni Updates"

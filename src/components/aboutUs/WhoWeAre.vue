@@ -6,7 +6,7 @@
     <div class="party-line"></div>
 
     <div class="party-content">
-      <div class="commonText">
+      <div class="commonText" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         {{
           userLanguage == "1"
             ? "南洋社会科学学院是在新加坡教育部SkillsFuture Singapore注册的高等教育机构，致力于构筑融汇东西方优质高等教育资源的终身学习平台。学院与顶尖高校、杰出高等教育机构合作，解析和传播支撑中国成功高速发展的理论与经验，研究和传授西方社科领域教研的最新发展方向与成果，培养兼具东方智慧与全球视野的复合型人才。"
