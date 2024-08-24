@@ -10,7 +10,15 @@
         </div>
       </div>
 
-      <div id="map" style="width: 400px; height: 400px;"></div>
+      <!-- <div id="map" class="map-area"></div> -->
+
+      <iframe
+      class="map-area"
+        frameborder="0"
+        style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPPxEAU_t7roulHWxO6AaosCx8JC9ylz8&q=30+Orange+Grove+Rd,Singapore"
+        allowfullscreen
+      ></iframe>
 
       <div class="article-area">
         <div class="article-content">
@@ -44,7 +52,7 @@
 </template>
 
 <script>
-const loader = new Loader({
+/* const loader = new Loader({
   apiKey: "AIzaSyDPPxEAU_t7roulHWxO6AaosCx8JC9ylz8",
   version: "weekly",
 });
@@ -52,11 +60,23 @@ const loader = new Loader({
 loader.load().then(async () => {
   const { Map } = await google.maps.importLibrary("maps");
 
-  map = new Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
+  const map = new Map(document.getElementById("map"), {
+    center: { lat: 1.3137775, lng: 103.8248919 },
+    zoom: 15,
+    language: 'en'
   });
-});
+
+  const marker = new Map.marker.AdvancedMarkerElement({
+    map,
+    position: { lat: 1.3137775, lng: 103.8248919 },
+  });
+
+  marker.addListener('click', ({domEvent, latLng}) => {
+    const {target} = domEvent;
+    // Handle the click event.
+    // ...
+  });
+}); */
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 import { Loader } from "@googlemaps/js-api-loader"
@@ -85,6 +105,25 @@ export default {
   created() { },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    const loader = new Loader({
+      apiKey: "AIzaSyDPPxEAU_t7roulHWxO6AaosCx8JC9ylz8",
+      version: "weekly",
+    });
+
+    loader.load().then(() => {
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 1.3137775, lng: 103.8248919 },
+        zoom: 15,
+        language: "en", // 设置地图语言为英文
+        mapTypeControl: false, // 隐藏地图类型控件
+        streetViewControl: false, // 隐藏街景视图控件
+      });
+
+      const marker = new google.maps.Marker({
+        map: map,
+        position: { lat: 1.3137775, lng: 103.8248919 },
+      });
+    });
   },
   beforeCreate() { }, //生命周期 - 创建之前
   beforeMount() { }, //生命周期 - 挂载之前
@@ -113,6 +152,9 @@ export default {
 }
 
 @media (max-width: 720px) {
+  .map-area {
+    width: 100% !important;
+  }
   .img-List {
     flex-direction: column;
   }
@@ -359,5 +401,12 @@ export default {
 
 .article-content {
   margin-bottom: 150px;
+}
+
+.map-area {
+  width: 1600px;
+  height: 600px;
+  margin: 0 auto;
+  margin-bottom: 100px;
 }
 </style>

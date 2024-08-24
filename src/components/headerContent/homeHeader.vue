@@ -4,7 +4,7 @@
     <t-swiper :duration="300" :interval="2000" :navigation="{ size: 'large' }">
       <t-swiper-item v-for="item in list" :key="item.id">
         <div class="swiper-item" @click="jump(item)">
-          <t-image class="swiper-img" :src="userLanguage == '1' ? item.previewImgUrl : item.previewImgUrlEn
+          <t-image class="swiper-img" :src="userLanguage == '1' ? (isSmallScreen ? item.previewImgUrlM : item.previewImgUrl) : (isSmallScreen ? item.previewImgUrlMen : item.previewImgUrlEn)
             " fit="cover" position="center" :lazy="true" />
         </div>
       </t-swiper-item>
@@ -34,6 +34,7 @@ export default {
         size: 50,
         isShow: 1,
       },
+      isSmallScreen: false
     };
   },
   computed: {
@@ -57,6 +58,8 @@ export default {
               imgViewShow: false,
               previewImgUrl: JSON.parse(item.imageUrl).url,
               previewImgUrlEn: JSON.parse(item.imageUrlEn).url,
+              previewImgUrlM: item.imageUrlMobile ? JSON.parse(item.imageUrlMobile).url : '',
+              previewImgUrlMen: item.imageUrlMobileCn ? JSON.parse(item.imageUrlMobileCn).url : ''
             };
           });
           // console.log(this.list)
@@ -78,9 +81,15 @@ export default {
         this.$router.push({ path: `/article?id=${targetUrl.value}` });
       }
     },
+
+    checkScreenSize() {
+      this.isSmallScreen = window.innerWidth < 720; // 检查屏幕宽度是否小于720px
+    },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() { },
+  created() {
+    this.checkScreenSize()
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     if (this.$route.path == "/") {

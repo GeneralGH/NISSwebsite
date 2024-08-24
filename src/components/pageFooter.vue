@@ -83,7 +83,7 @@ export default {
           list: [
             { name: 'MBA', nameEn: 'MBA', path: '/courseProjects' },
             /* {name: 'DBA', nameEn: 'DBA', path: ''}, */
-            { name: '高等教育', nameEn: 'Executive Education', path: '/highEdu' }
+            { name: '高管教育', nameEn: 'Executive Education', path: '/highEdu' }
           ]
         },
         {

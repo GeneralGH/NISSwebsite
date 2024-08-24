@@ -26,9 +26,6 @@ export default {
     //监控data中的数据变化
     watch: {
         'imgUrl' (val) {
-            /* val.url = JSON.parse(val.url).url
-            val.targetUrl = JSON.parse(val.targetUrl) */
-            console.log(val, 'val')
         }
     },
     //方法集合

@@ -363,7 +363,7 @@ export default {
 
 .article-title, .article-titleEn {
   font-weight: 600;
-  font-size: 48px;
+  font-size: 42px;
   color: #172c47;
   line-height: 76px;
 }

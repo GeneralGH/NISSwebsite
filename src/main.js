@@ -33,7 +33,9 @@ Vue.prototype.$getPageContent = function(id) {
           let data = {
             ...res.data,
             url: JSON.parse(res.data.url).url,
-            urlEn: JSON.parse(res.data.urlEn).url
+            urlEn: JSON.parse(res.data.urlEn).url,
+            mUrl: res.data.urlMobile ? JSON.parse(res.data.urlMobile).url : '',
+            mUrlEn: res.data.urlMobileEn ? JSON.parse(res.data.urlMobileEn).url : ''
           }
           resolve(data)
         }
@@ -41,7 +43,9 @@ Vue.prototype.$getPageContent = function(id) {
           let url = ''
           let data = {
             url: JSON.parse(res.data.url).url,
-            urlEn: JSON.parse(res.data.urlEn).url
+            urlEn: JSON.parse(res.data.urlEn).url,
+            mUrl: res.data.urlMobile ? JSON.parse(res.data.urlMobile).url : '',
+            mUrlEn: res.data.urlMobileEn ? JSON.parse(res.data.urlMobileEn).url : ''
           }
           resolve(data)
         } else if(res.data.type == 1) {

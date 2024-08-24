@@ -126,19 +126,19 @@
     <HomeHeader v-if="currentPath == '/'" />
     <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/courseProjects'" />
     <TeachingStaffHeader
-      :imgUrl="userLanguage == '1' ? imgUrl.url : imgUrl.urlEn"
+      :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
       v-if="currentPath == '/teachingStaff'"
     />
     <AboutUsHeader
-      :imgUrl="userLanguage == '1' ? imgUrl.url : imgUrl.urlEn"
+      :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
       v-if="currentPath == '/aboutUs'"
     />
     <ConsultationFormHeader
-      :imgUrl="userLanguage == '1' ? imgUrl.url : imgUrl.urlEn"
+      :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
       v-if="currentPath == '/consultationForm'"
     />
     <AlumniStyleHeader
-      :imgUrl="userLanguage == '1' ? imgUrl.url : imgUrl.urlEn"
+      :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
       v-if="currentPath == '/alumniStyle'"
     />
 
@@ -291,6 +291,7 @@ export default {
         { label: "中文", value: "1" },
         { label: "En", value: "2" },
       ],
+      isSmallScreen: false
     };
   },
   computed: {
@@ -339,6 +340,15 @@ export default {
           behavior: "instant", // 可选，使用平滑滚动效果
         });
       } else {
+        console.log(item)
+        if (item.item == '课程项目') {
+          router.push({ path: "/courseProjects" })
+          window.scrollTo({
+            top: 0,
+            behavior: "instant", // 可选，使用平滑滚动效果
+          });
+          return
+        }
         localStorage.setItem(
           "userLanguage",
           item.item.item == "中文" ? "1" : "2"
@@ -413,6 +423,7 @@ export default {
           break;
       }
       this.imgUrl = await this.$getPageContent(id);
+      console.log(this.imgUrl)
     },
 
     turnArrow() {
@@ -427,6 +438,7 @@ export default {
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
+    this.isSmallScreen = window.innerWidth < 720
     this.displayMenu = this.overlayMenu;
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
