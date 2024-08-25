@@ -1,7 +1,7 @@
 <!--  -->
 <template>
     <div class="content-area">
-        <t-image class="content-img" :src="imgUrl.url" fit="cover" position="center" :lazy="true" @click="jump" />
+        <t-image class="content-img" :src="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)" fit="cover" position="center" :lazy="true" @click="jump" />
     </div>
 </template>
 
@@ -15,17 +15,22 @@ export default {
     data() {
         //这里存放数据
         return {
-
+            isSmallScreen: false
         };
     },
     props: {
         imgUrl: { type: Object, default: ()=> {} }
     },
     //监听属性 类似于data概念
-    computed: {},
+    computed: {
+        userLanguage() {
+        return this.$store.state.userLanguage;
+        },
+    },
     //监控data中的数据变化
     watch: {
         'imgUrl' (val) {
+            console.log(val)
         }
     },
     //方法集合
@@ -45,7 +50,8 @@ export default {
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
-
+        this.isSmallScreen = window.innerWidth <= 720
+        console.log(this.isSmallScreen)
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {

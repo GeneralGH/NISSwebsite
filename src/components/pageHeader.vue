@@ -349,6 +349,9 @@ export default {
           });
           return
         }
+        if (item.item == '语言') {
+          return
+        }
         localStorage.setItem(
           "userLanguage",
           item.item.item == "中文" ? "1" : "2"
@@ -422,8 +425,10 @@ export default {
           id = 19;
           break;
       }
-      this.imgUrl = await this.$getPageContent(id);
-      console.log(this.imgUrl)
+      if (id) {
+        this.imgUrl = await this.$getPageContent(id);
+        console.log(this.imgUrl)
+      }      
     },
 
     turnArrow() {
@@ -438,7 +443,7 @@ export default {
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.isSmallScreen = window.innerWidth < 720
+    this.isSmallScreen = window.innerWidth <= 720
     this.displayMenu = this.overlayMenu;
   },
   //生命周期 - 挂载完成（可以访问DOM元素）

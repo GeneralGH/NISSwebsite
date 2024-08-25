@@ -214,7 +214,7 @@ export default {
 }
 
 .info-content {
-    font-size: 28px !important;
+    // font-size: 28px !important;
 }
 
 .info-title {

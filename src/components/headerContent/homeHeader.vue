@@ -83,7 +83,7 @@ export default {
     },
 
     checkScreenSize() {
-      this.isSmallScreen = window.innerWidth < 720; // 检查屏幕宽度是否小于720px
+      this.isSmallScreen = window.innerWidth <= 720; // 检查屏幕宽度是否小于720px
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
