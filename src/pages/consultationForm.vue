@@ -8,8 +8,8 @@
           <p>
             {{
               userLanguage == "1"
-                ? "感谢对我们项目的关注！如果您希望进一步了解项目，请准确填写下列信息，我们的项目负责老师会尽快与您联系，帮你深入了解项目及申请流程。"
-                : "Thank you for your interest in our program! To learn more, please complete the form below, and our dedicated program team will get in touch with you shortly to discuss your suitability and guide you through the application process."
+                ? "感谢对我们项目的关注！如果您希望进一步了解项目，请准确填写下列信息，我们的项目负责老师会尽快与您联系，帮您深入了解项目及申请流程。"
+                : "Thank you for your interest in our program! To learn more, please complete the form below. Our dedicated program team will get in touch with you shortly to discuss your suitability and guide you through the application process."
             }}
           </p>
           <p>
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <t-form :data="formData" :rules="rules" @submit="onSubmit">
+      <t-form :data="formData" :rules="userLanguage == '1' ? rules : rulesEn" @submit="onSubmit">
         <!-- 表单 -->
         <div class="form-area">
           <div class="form-row">
@@ -50,7 +50,7 @@
                   }
                     " :options="nationalityOptions" :placeholder="userLanguage == '1'
                       ? '请填写您的国籍'
-                      : 'Please enter your nationality'
+                      : 'Please select your nationality'
                       " />
                 </t-form-item>
               </div>
@@ -63,7 +63,7 @@
                 {{
                   userLanguage == "1"
                     ? "所持新加坡居留身份"
-                    : "Residency Status in Singapore"
+                    : "Residential Status in Singapore"
                 }}<span>*</span>
               </div>
               <div style="position: relative">
@@ -103,11 +103,11 @@
                 {{
                   userLanguage == "1"
                     ? "已在中国境外居住时间"
-                    : "Time Resided Outside of China"
+                    : "Duration of residence outside of China"
                 }}<span style="font-weight: 500; color: #172c47" class="bk-label">{{
                   userLanguage == "1"
                     ? "（不包括留学及公派出国的时间）"
-                    : "（excluding study and official assignments abroad）"
+                    : "(excluding periods of study abroad and government-sponsored work assignments)."
                 }}</span><span>*</span>
               </div>
               <div style="position: relative">
@@ -117,7 +117,7 @@
                   }
                     " :options="outsideTimeOptions" :placeholder="userLanguage == '1'
                       ? '请选择已在中国境外居住时间'
-                      : 'Please select the time you have resided outside of China'
+                      : 'Please select the duration of residence outside of China'
                       " />
                 </t-form-item>
               </div>
@@ -228,7 +228,7 @@
                 {{
                   userLanguage == "1"
                     ? "咨询项目"
-                    : "Preferred Consultation Program"
+                    : "Program to inquire about"
                 }}<span>*</span>
               </div>
               <div style="position: relative">
@@ -250,8 +250,8 @@
               <div class="form-item-label">
                 {{
                   userLanguage == "1"
-                    ? "如何得知暨南大学新加坡MBA硕士学位项目"
-                    : "How did you learn about the JNU MBA program?"
+                    ? "您是如何得知项目的"
+                    : "How did you learn about the program?"
                 }}<span>*</span>
               </div>
               <div style="position: relative">
@@ -259,7 +259,7 @@
                   <sSelect @optionChange="(item) => {
                     formData.obtainingChannels = userLanguage == '1' ? item.label : item.labelEn;
                   }
-                    " :options="knowingChannelOptions" :placeholder="userLanguage == '1' ? '请选择您得知的渠道' : 'Please choose the channel you are aware of'
+                    " :options="knowingChannelOptions" :placeholder="userLanguage == '1' ? '请选择您得知的渠道' : 'Please select the source of information'
                       " />
                 </t-form-item>
               </div>
@@ -297,7 +297,7 @@
               </div>
               <div style="position: relative">
                 <t-form-item name="consultationDateTime">
-                  <sSelect :isTime="true" @optionChange="(item) => {
+                  <sSelect :isTime="true" :options="DateTimeOptions" @timeTypeChange="timeTypeChange" @optionChange="(item) => {
                     formData.consultationDateTime = item.label;
                   }
                     " :placeholder="userLanguage == '1'
@@ -366,6 +366,7 @@ import sInput from "../components/formControl/sInput.vue";
 import sSelect from "../components/formControl/sSelect.vue";
 import sDatePicker from "../components/formControl/sDatePicker.vue";
 import formApi from "../api/form";
+import timelist from '../components/formControl/timeData'
 
 export default {
   //import引入的组件需要注入到对象中才能使用
@@ -375,8 +376,8 @@ export default {
     return {
       urlSource: '',
       nationalityOptions: [
-        { label: "新加坡", labelEn: 'Singapo', value: 1 },
-        { label: "中国", labelEn: 'China', value: 2 },
+        { label: "新加坡", labelEn: 'Singaporean', value: 1 },
+        { label: "中国", labelEn: 'Chinese', value: 2 },
         { label: "其他", labelEn: 'Other', value: 3 },
       ],
       residenceStatusOptions: [
@@ -385,6 +386,8 @@ export default {
         { label: "EP", labelEn: 'EP', value: 3 },
         { label: "SP", labelEn: 'SP', value: 4 },
         { label: "WP", labelEn: 'WP', value: 5 },
+        { label: "LTVP", labelEn: 'LTVP', value: 7 },
+        { label: "DP", labelEn: 'DP', value: 8 },
         { label: "其他", labelEn: 'Other', value: 6 },
       ],
       highestEducationalOptions: [
@@ -413,7 +416,7 @@ export default {
       ],
       programOptions: [
         { label: "暨南大学新加坡中文MBA", labelEn: 'JNU MBA Program', value: 1 },
-        { label: "南特高等商学院亚太中文DBA", labelEn: 'Asia-pacific DBA Program（Chinese）', value: 2 },
+        // { label: "南特高等商学院亚太中文DBA", labelEn: 'Asia-pacific DBA Program（Chinese）', value: 2 },
         { label: "高管教育", labelEn: 'Executive Education', value: 3 },
       ],
       knowingChannelOptions: [
@@ -448,6 +451,7 @@ export default {
         source: ''
       },
       btnDisabled: false,
+      DateTimeOptions: [],
       rules: {
         name: [
           {
@@ -566,6 +570,124 @@ export default {
           },
         ],
       },
+      rulesEn: {
+        name: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        nationality: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        residence: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        qualification: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        residenceTime: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        company: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        post: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        phone: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        email: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+          {
+            email: { ignore_max_length: true },
+            message: "Required",
+          },
+        ],
+        consultationMethods: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        project: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        obtainingChannels: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        consultationDateDay: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+        consultationDateTime: [
+          {
+            required: true,
+            message: "Required",
+            type: "error",
+            trigger: "change",
+          },
+        ],
+      },
     };
   },
   computed: {
@@ -580,6 +702,9 @@ export default {
   },
   //方法集合
   methods: {
+    timeTypeChange(e) {
+      this.DateTimeOptions = e == 1 ? timelist.morningTimeSlots : timelist.afternoonTimeSlots
+    },
     onSubmit({ validateResult, firstError }) {
       if (validateResult === true) {
         if (this.btnDisabled) {
@@ -630,6 +755,8 @@ export default {
       this.$request.post(formApi.addVisitNumUrl + sourceValue)
     }
 
+    this.DateTimeOptions = timelist.morningTimeSlots
+
     // 输出source参数的值
     console.log(sourceValue); // 这里会输出参数source的值
   },
@@ -665,7 +792,7 @@ export default {
   .form-row {
     display: flex;
     flex-direction: column;
-    height: 400px !important;
+    /* height: 400px !important; */
     margin-bottom: 70px !important;
   }
 
@@ -738,7 +865,10 @@ export default {
   }
 
   .form-row:nth-child(10) {
-    height: 300px !important;
+    height: auto !important;
+    .form-item {
+      margin-bottom: 0 !important;
+    }
   }
 
   .form-row:nth-child(11) {
@@ -875,11 +1005,11 @@ export default {
   }
 
   .areaCode-item {
-    width: 15%;
+    width: 20%;
   }
 
   .phone-item {
-    width: 82%;
+    width: 77%;
   }
 
   .form-item-label {

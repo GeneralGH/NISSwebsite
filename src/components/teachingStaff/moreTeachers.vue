@@ -159,7 +159,7 @@ export default {
   }
 }
 .input {
-    width: 100%;
+    width: 90%;
     height: 60%;
     border: none;
     font-size: 32px;
@@ -181,7 +181,7 @@ export default {
 }
 
 .search-bg {
-    width: 980px;
+    width: 990px;
     height: 80px;
     background-repeat: no-repeat;
     background-size: cover;

@@ -19,6 +19,34 @@
           </div>
         </div>
       </div>
+
+      <div class="party space-pag" v-if="userLanguage == 2">
+        <div class="party-title">Organizational Chart</div>
+        <div class="party-line"></div>
+
+        <div class="party-content">
+          <OrganizationalChart />
+        </div>
+      </div>
+
+      <div class="party" v-if="userLanguage == 2">
+        <div class="party-title">Academic & Examination Board</div>
+        <div class="party-line"></div>
+
+        <div class="party-content">
+          <Examination />
+        </div>
+      </div>
+
+      <div class="party" v-if="userLanguage == 2">
+        <div class="party-title">Facilities</div>
+        <div class="party-line"></div>
+
+        <div class="party-content">
+          <Facilities />
+        </div>
+      </div>
+      
     </div>
     <PageFooter />
   </div>
@@ -31,10 +59,13 @@ import News from "../components/common/news.vue";
 import news from "../api/news";
 import WhoWeAre from "../components/aboutUs/WhoWeAre.vue";
 import Partners from "../components/aboutUs/Partners.vue";
+import OrganizationalChart from "../components/aboutUs/OrganizationalChart.vue";
+import Examination from "../components/aboutUs/Examination.vue";
+import Facilities from "../components/aboutUs/Facilities.vue";
 
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: { News, WhoWeAre, Partners },
+  components: { News, WhoWeAre, Partners, OrganizationalChart, Examination, Facilities },
   data() {
     //这里存放数据
     return {
@@ -226,6 +257,10 @@ export default {
 .pagination {
   position: relative;
   width: 100%;
+}
+
+.space-pag {
+  margin-top: 200px;
 }
 
 /deep/ .t-pagination {

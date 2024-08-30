@@ -14,7 +14,7 @@
                 <div class="ps">* {{ userLanguage == '1' ? '工作年限指从毕业获得证书(一般指每年的7月份)到被录取入学的时间' : 'Work experience refers to the period from the date of graduation and certificate issuance (usually in July each year) to the time of admission.' }}</div>
             </div>
             <div class="info-content space-one">
-                <div class="info-title">{{ userLanguage == '1' ? '申请人身份要求:' : 'Applicant Identity Requirements:' }}</div>
+                <div class="info-title">{{ userLanguage == '1' ? '申请人身份要求' : 'Applicant Identity Requirements' }}</div>
                 <div class="info-content">
                     <div class="des-title">· {{ userLanguage == '1' ? '华侨申请人' : 'For Overseas Chinese Applicants' }}</div>
                     <div class="des">
@@ -25,19 +25,19 @@
                     </div>
                 </div>
                 <div class="info-content">
-                    <div class="des-title">· {{ userLanguage == '1' ? '外籍申请人' : 'For Non-Overseas Chinese Applicants:' }}</div>
+                    <div class="des-title">· {{ userLanguage == '1' ? '外籍申请人' : 'For Non-Overseas Chinese Applicants' }}</div>
                     <div class="des">
                         {{ userLanguage == '1' ? '须是非中国籍的其他国家公民，持有效外国护照。' : 'Must be citizens of countries other than China, holding valid foreign passports.' }}
                     </div>
                 </div>
                 <div class="info-content">
-                    <div class="des-title">· {{ userLanguage == '1' ? '港澳地区申请人' : 'For Applicants from Hong Kong and Macau:' }}</div>
+                    <div class="des-title">· {{ userLanguage == '1' ? '港澳地区申请人' : 'For Applicants from Hong Kong and Macau' }}</div>
                     <div class="des">
-                        {{ userLanguage == '1' ? '持有香港或澳门永久性居民身份证和《港澳居民来往内地通行证》或《港澳居民居住证》。:' : 'Must hold permanent resident identity cards of Hong Kong or Macau and either a "Mainland Travel Permit for Hong Kong and Macau Residents" or a "Residence Permit for Hong Kong and Macau Residents."' }}
+                        {{ userLanguage == '1' ? '持有香港或澳门永久性居民身份证和《港澳居民来往内地通行证》或《港澳居民居住证》。' : 'Must hold permanent resident identity cards of Hong Kong or Macau and either a "Mainland Travel Permit for Hong Kong and Macau Residents" or a "Residence Permit for Hong Kong and Macau Residents."' }}
                     </div>
                 </div>
                 <div class="info-content">
-                    <div class="des-title">· {{ userLanguage == '1' ? '台湾地区申请人' : 'For Applicants from Taiwan:' }}</div>
+                    <div class="des-title">· {{ userLanguage == '1' ? '台湾地区申请人' : 'For Applicants from Taiwan' }}</div>
                     <div class="des">
                         {{ userLanguage == '1' ? '持《台湾居民来往大陆通行证》或《台湾居民居住证》。' : 'Must hold a "Mainland Travel Permit for Taiwan Residents" or a "Residence Permit for Taiwan Residents."' }}
                     </div>

@@ -9,6 +9,7 @@ import Article from './pages/article.vue'
 import HighEdu from './pages/highEdu.vue'
 import Policy from './pages/policy.vue'
 import ContactUs from './pages/contactUs.vue'
+import MbaProfessors from './pages/mbaProfessors.vue'
 import Vue from 'vue';
 
 Vue.use(VueRouter)
@@ -64,6 +65,11 @@ const routes = [
         name: 'contactUs',
         path: '/contactUs',
         component: ContactUs
+    },
+    {
+        name: 'mbaProfessors',
+        path: '/mbaProfessors',
+        component: MbaProfessors
     }
 ]
 

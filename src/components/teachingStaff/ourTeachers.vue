@@ -68,9 +68,9 @@ export default {
     //这里存放数据
     return {
       ourTeachersInfo: [
-        { name: "专职教师", value: "140", unit: "位", id: 10 },
-        { name: "博士学位教师", value: "92", unit: "%", id: 11 },
-        { name: "教授、副教授", value: "114", unit: "位", id: 12 },
+        { name: "", value: "", unit: "", id: 10 },
+        { name: "", value: "", unit: "", id: 11 },
+        { name: "", value: "", unit: "", id: 12 },
       ],
       htmlContent: {
         content: "",
@@ -89,8 +89,8 @@ export default {
   //方法集合
   methods: {
     async initData() {
-      this.ourTeachersInfo.forEach((item) => {
-        this.$getPageContent(item.id).then((res) => {
+      await this.ourTeachersInfo.forEach((item) => {
+         this.$getPageContent(item.id).then((res) => {
           item.name = res.title;
           item.value = res.content;
           item.unit = res.unit;
@@ -100,6 +100,10 @@ export default {
         });
       });
       this.htmlContent = await this.$getPageContent(14);
+      
+      setTimeout(() => {
+        this.$forceUpdate()
+      }, 1000);
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）

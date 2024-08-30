@@ -6,7 +6,7 @@
         <div class="list-item" v-for="(item, index) in topList">
           <div class="item-name">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
           <div class="item-child">
-            <div v-for="(i) in item.list" @click="jump(i.path)">{{ userLanguage == '1' ? i.name : i.nameEn }}</div>
+            <div :class="i.name == '相关政策' ? 'upbox' : ''" v-for="(i) in item.list" @click="jump(i.path)">{{ userLanguage == '1' ? i.name : i.nameEn }}</div>
           </div>
         </div>
       </div>
@@ -17,7 +17,7 @@
         <div class="registration-info">
           <div>Nanyang Institute of Social Sciences</div>
           <div>Registration No. 20183165E</div>
-          <div>Registration Period: 10.05 2024 - 09.05 2028</div>
+          <div>Registration Period: 10/05/2024 - 09/05/2028</div>
         </div>
         <div class="contact-information">
           <img @click="toOther('https://www.facebook.com/SGNISS/')" src="../../assets/footer/facebook.png" alt="">
@@ -25,7 +25,7 @@
           <img @click="copyPhone" src="../../assets/footer/phone.png" alt="">
         </div>
       </div>
-      <div class="webSign">@ 2024 NISS. All rights reserved.</div>
+      <div class="webSign">© 2024 NISS. All rights reserved.</div>
       <div class="back-top-area">
         <div class="order-message-area" @click="jump('/consultationForm')">
           <div :class="userLanguage == '1' ? 'zh' : 'en'">{{ userLanguage == '1' ? '预约一对一咨询' : 'Schedule an Info Session' }}</div>
@@ -53,15 +53,15 @@
         <div class="contact-information">
           <img @click="toOther('https://www.facebook.com/SGNISS/')" class="icon" src="../../assets/footer/facebook.png" alt="">
           <img @click="toOther('https://www.linkedin.com/company/nanyang-institute-of-social-sciences/about/')" class="icon" src="../../assets/footer/ins.png" alt="">
-          <img @click="callPhoneNumber" class="icon" src="../../assets/footer/phone.png" alt="">
+          <img @click="copyPhone" class="icon" src="../../assets/footer/phone.png" alt="">
         </div>
       </div>
       <div class="registration-info">
         <div>Nanyang Institute of Social Sciences</div>
         <div>Registration No. 20183165E</div>
-        <div>Registration Period: 10.05 2024 - 09.05 2028</div>
+        <div>Registration Period: 10/05/2024 - 09/05/2028</div>
       </div>
-      <div class="web-sign">@ 2024 NISS. All rights reserved.</div>
+      <div class="web-sign">© 2024 NISS. All rights reserved.</div>
     </div>
   </div>
 </template>
@@ -88,7 +88,7 @@ export default {
         },
         {
           name: '相关链接',
-          nameEn: 'Related Links',
+          nameEn: 'Links',
           list: [
             { name: '联系我们', nameEn: 'Contact Us', path: '/contactUs' },
             { name: '相关政策', nameEn: 'Privacy Policy', path: '/policy' }
@@ -102,7 +102,7 @@ export default {
               name: `地址：30 Orange Grove Road, #07-77 RELC Building，Singapore 258352`,
               nameEn: 'Address: 30 Orange Grove Road, #07-77 RELC Building, Singapore 258352'
             },
-            { name: '邮箱：Enquiry@niss.edu.sg', nameEn: 'Email: enquiry@niss.edu.sg' },
+            { name: '邮箱：enquiry@niss.edu.sg', nameEn: 'Email: enquiry@niss.edu.sg' },
             { name: '电话：+65 6592 0000', nameEn: 'Telephone: +65 6592 0000' }
           ]
         }
@@ -121,12 +121,13 @@ export default {
   //方法集合
   methods: {
     copyPhone() {
-      const phoneNumber = '+65 6592 0000';
+      /* const phoneNumber = '+65 6592 0000';
       navigator.clipboard.writeText(phoneNumber)
         .then(() => {
           // 复制成功
           this.$message.success('电话号码已成功复制')
-        })
+        }) */
+        window.open('https://api.whatsapp.com/send?phone=6565303520', '_blank');
     },
 
     toOther(url) {
@@ -182,6 +183,7 @@ export default {
 </script>
 
 <style scoped lang="less">
+
 @media (max-width: 720px) {
   .web-sign {
     color: #9498a0;
@@ -249,6 +251,10 @@ export default {
       border-bottom: 1px solid #2a5395;
     }
   }
+}
+
+.upbox {
+  margin-top: -2px !important;
 }
 
 .footer-mobile {

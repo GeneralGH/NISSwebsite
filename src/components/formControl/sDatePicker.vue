@@ -120,17 +120,17 @@ export default {
         },
 
         initDate() {
-            const date = new Date();
-            /* console.log(date, 'date') */
-            let year = date.getFullYear().toString();
-            let month = (date.getMonth() + 1).toString();
-            const monthItem = this.monthOptions.find(option => option.value === month);
-            this.$refs.monthSelect.chooseLabel = monthItem.label
-            this.$refs.yearSelect.chooseLabel = year
-            // 执行函数获取日期和上个月天数
-            this.yearChange({ value: year })
-            this.monthChange({ value: month })
-        },
+      const date = new Date();
+      let year = date.getFullYear().toString();
+      let month = (date.getMonth() + 1).toString();
+
+      const monthItem = this.monthOptions.find(option => option.value === month);
+      this.$refs.monthSelect.chooseLabel = monthItem.label;
+      this.$refs.yearSelect.chooseLabel = year;
+
+      this.yearChange({ value: year });
+      this.monthChange({ value: month });
+    },
 
         monthChange(e) {
             if (!this.year) {
@@ -156,33 +156,30 @@ export default {
         },
 
         getDaysInMonth(year, month) {
-            const daysInMonth = new Date(year, month, 0).getDate();
-            const dates = [];
-            this.firstDay = moment(`${year}-${month}`).startOf('month').day()
+      const daysInMonth = new Date(year, month, 0).getDate();
+      const dates = [];
+      const firstDay = new Date(year, month - 1, 1).getDay();
 
-            for (let day = 1; day <= daysInMonth; day++) {
-                const date = new Date(year, month - 1, day);
-                const formattedDate = date.toLocaleDateString('en-US', { day: 'numeric' });
+      for (let day = 1; day <= daysInMonth; day++) {
+        const formattedDate = day.toLocaleString('en-US', { minimumIntegerDigits: 2 });
 
-                dates.push({
-                    date: formattedDate,
-                });
-            }
-            return dates;
-        },
+        dates.push({
+          date: formattedDate,
+        });
+      }
+      return dates;
+    },
 
-        getPreMonthDays() {
-            let month = this.month;
-            let year = this.year;
-            month--;
-            if (month == 0) {
-                year--;
-                month = 12;
-            }
-            // 获取上个月的天数
-            const days = moment(`${year}-${month}`).daysInMonth();
-            this.preDays = days;
-        },
+    getPreMonthDays() {
+      let month = parseInt(this.month, 10) - 1;
+      let year = parseInt(this.year, 10);
+      if (month === 0) {
+        year--;
+        month = 12;
+      }
+      const days = new Date(year, month, 0).getDate();
+      this.preDays = days;
+    },
 
         clickDay(item) {
             this.currentDate = item.date

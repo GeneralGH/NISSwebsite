@@ -72,12 +72,6 @@
         {{ userLanguage == "1" ? "国际交换" : "Overseas Module" }}
       </div>
       <div class="line"></div>
-      <img
-      style="width: 100%;"
-        class="outlearn fourImg"
-        src="../../../assets/courseProjects/outlearn.png"
-        alt=""
-      />
       <div class="info-content" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         {{
           userLanguage == "1"
@@ -85,6 +79,7 @@
             : "International Immersion Programs. Every year, MBA students at Jinan University can apply for exchange programs at overseas partner universities, lasting 3-6 months. Some of these partner institutions offer scholarship opportunities."
         }}
       </div>
+      <img style="width: 100%;" class="outlearn fourImg" src="../../../assets/courseProjects/outlearn.png"/>
     </div>
   </div>
 </template>
@@ -354,5 +349,9 @@ export default {
     left: 10px;
     top: -5px;
   }
+}
+
+.fourImg {
+  margin-top: 50px;
 }
 </style>

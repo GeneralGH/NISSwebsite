@@ -122,7 +122,7 @@
             </div> -->
     </div>
     <!-- 各个页面不同展示 -->
-    <div class="articleHeader" v-if="currentPath == '/article' || currentPath == '/highEdu' || currentPath == '/policy' || currentPath == '/contactUs'"></div>
+    <div class="articleHeader" v-if="isNoTopImgPages.includes(currentPath)"></div>
     <HomeHeader v-if="currentPath == '/'" />
     <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/courseProjects'" />
     <TeachingStaffHeader
@@ -291,7 +291,8 @@ export default {
         { label: "中文", value: "1" },
         { label: "En", value: "2" },
       ],
-      isSmallScreen: false
+      isSmallScreen: false,
+      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors']
     };
   },
   computed: {
@@ -340,7 +341,6 @@ export default {
           behavior: "instant", // 可选，使用平滑滚动效果
         });
       } else {
-        console.log(item)
         if (item.item == '课程项目') {
           router.push({ path: "/courseProjects" })
           window.scrollTo({
@@ -427,7 +427,6 @@ export default {
       }
       if (id) {
         this.imgUrl = await this.$getPageContent(id);
-        console.log(this.imgUrl)
       }      
     },
 
@@ -455,7 +454,7 @@ export default {
     const headerNavArea = document.querySelector(".header-nav-area");
     const containerHeight = document.getElementById("container").offsetHeight;
 
-    if (this.currentPath !== "/article" && this.currentPath !== "/highEdu" && this.currentPath !== "/policy" && this.currentPath !== '/contactUs') {
+    if (!this.isNoTopImgPages.includes(this.currentPath)) {
       window.addEventListener("scroll", () => {
         const scrollHeight = window.scrollY;
         const opacity = scrollHeight / containerHeight;

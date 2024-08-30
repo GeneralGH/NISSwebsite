@@ -155,6 +155,7 @@ export default {
             return {
               ...item,
               url: JSON.parse(item.annex).url,
+              urlEn: JSON.parse(item.annexEn).url,
             };
           });
           this.list = res.data.data.list
@@ -190,6 +191,9 @@ export default {
 @media (max-width: 720px) {
   .freeImg {
     margin-bottom: 60px;
+  }
+  .pagination {
+    padding-top: 60px;
   }
   /deep/.t-pagination {
     right: 170px !important;

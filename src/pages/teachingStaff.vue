@@ -6,6 +6,7 @@
       <OurTeachers />
       <!-- <EliteTeam /> -->
       <MoreTeachers />
+      <div v-show="userLanguage == 2" class="mba-professors commonText" @click="toMbaProfessors">The full list of our lecturers can be found here.</div>
     </div>
     <PageFooter />
   </div>
@@ -36,7 +37,14 @@ export default {
     },
   },
   //方法集合
-  methods: {},
+  methods: {
+    toMbaProfessors() {
+      this.$router.push('/mbaProfessors')
+      window.scrollTo({
+        top: 0
+      });
+    }
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
@@ -84,5 +92,11 @@ export default {
       margin-bottom: 60px;
     }
   }
+}
+
+.mba-professors {
+  margin-top: 30px;
+  cursor: pointer;
+  color: #0052d9;
 }
 </style>

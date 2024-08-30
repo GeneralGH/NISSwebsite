@@ -77,7 +77,7 @@ export default {
       schoolList: [
         {
           title: "暨南大学",
-          subTitle: "暨南大学-百年名校 华侨最高学府",
+          subTitle: "暨南大学 - 百年名校，华侨最高学府",
           subTitleEn: 'Jinan University',
           img: oneImg,
         },
@@ -91,12 +91,12 @@ export default {
           subTitle: "名古屋商学院-AACSB国际认证",
           img: threeImg,
         }, */
-        {
+        /* {
           title: "南特高等商学院",
           subTitle: "南特高等商学院-欧洲一流商学院",
           subTitleEn: 'Audencia Business School',
           img: fourImg,
-        },
+        }, */
         /* {
           title: "萨兰托大学",
           subTitle: "萨兰托大学-意大利公立大学",
@@ -248,5 +248,9 @@ export default {
   line-height: 156px;
   font-weight: 400;
   font-size: 18px;
+}
+
+/deep/ .t-swiper__arrow {
+  display: none;
 }
 </style>

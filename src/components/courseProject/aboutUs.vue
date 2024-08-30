@@ -39,9 +39,13 @@
         }}
       </div>
       <div class="one-imgs">
-        <img src="../../../assets/courseProjects/AACSB.png" alt="" />
-        <img src="../../../assets/courseProjects/AMBA.png" alt="" />
-        <img src="../../../assets/courseProjects/BGA.png" alt="" />
+        <img v-show="!isSmallScreen" src="../../../assets/courseProjects/AACSB.png" alt="" />
+        <img v-show="!isSmallScreen" src="../../../assets/courseProjects/AMBA.png" alt="" />
+        <img v-show="!isSmallScreen" src="../../../assets/courseProjects/BGA.png" alt="" />
+
+        <img v-show="isSmallScreen" src="../../../assets/courseProjects/AACSBm.png" alt="" />
+        <img v-show="isSmallScreen" src="../../../assets/courseProjects/AMBAm.png" alt="" />
+        <img v-show="isSmallScreen" src="../../../assets/courseProjects/BGAm.png" alt="" />
       </div>
     </div>
 
@@ -256,6 +260,7 @@ export default {
   data() {
     //这里存放数据
     return {
+      isSmallScreen: false,
       StudentList: [
         {
           id: 4,
@@ -312,7 +317,9 @@ export default {
   //方法集合
   methods: {},
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.isSmallScreen = window.innerWidth <= 720
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前

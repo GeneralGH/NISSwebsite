@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="btn">
-                        <div>{{ userLanguage == '1' ? '了解更多' : 'Learn More' }}</div>
+                        <div>{{ userLanguage == '1' ? '了解更多' : 'Read more' }}</div>
                         <img class="rightArrow" src="../../../assets/header/rightArrow.png" alt="">
                     </div>
                 </div>
@@ -171,7 +171,7 @@ export default {
     }
 
     .news-box {
-        // width: 100%;
+        width: 100% !important;
     }
 
     .mobile-cover {
@@ -181,6 +181,11 @@ export default {
     }
 
 }
+
+.news-box {
+        width: 726px;
+        // width: 100%;
+    }
 
 .news-area {
     display: flex;

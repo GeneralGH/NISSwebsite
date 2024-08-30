@@ -11,7 +11,7 @@
     </t-swiper>
     <div class="cover-textarea">
       <div :class="userLanguage == 1 ? 'cover-text' : 'cover-textEn'">
-        {{ userLanguage == '1' ? '成为最具价值的终身学习平台' : 'To be an invaluable lifelong learning platform' }}
+        {{ userLanguage == '1' ? '打造最具价值的终身学习平台' : 'To be an invaluable lifelong learning platform' }}
       </div>
     </div>
   </div>

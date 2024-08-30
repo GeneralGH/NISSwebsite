@@ -51,7 +51,7 @@
                 </div>
               </div>
             </div>
-            <div class="btn">
+            <div class="btn" @click="Jump('/consultationForm')">
               <div>{{ userLanguage == "1" ? "申请加入" : "Apply Now" }}</div>
               <img
                 class="rightArrow"
@@ -59,7 +59,7 @@
                 alt=""
               />
             </div>
-            <div class="btn" style="background: #024a9c">
+            <div class="btn" style="background: #024a9c" @click="Jump('/contactUs')">
               <div>{{ userLanguage == "1" ? "联系我们" : "Connect Us" }}</div>
               <img
                 class="rightArrow"
@@ -300,6 +300,14 @@ export default {
       } else {
         return true
       }
+    },
+
+    Jump(path) {
+      this.$router.push(path)
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto' // 可选，使用平滑滚动效果
+      });
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）

@@ -1,6 +1,6 @@
 const timelist = {
     morningTimeSlots: [
-        {
+        /* {
             "value": "0000",
             "label": "00:00"
         },
@@ -79,7 +79,7 @@ const timelist = {
         {
             "value": "0930",
             "label": "09:30"
-        },
+        }, */
         {
             "value": "1000",
             "label": "10:00"
@@ -166,7 +166,7 @@ const timelist = {
             "value": "2000",
             "label": "20:00"
         },
-        {
+        /* {
             "value": "2030",
             "label": "20:30"
         },
@@ -193,7 +193,7 @@ const timelist = {
         {
             "value": "2330",
             "label": "23:30"
-        }
+        } */
     ]
 }
 

@@ -69,7 +69,7 @@
           </div> -->
 
           <div class="title" v-show="currentScroll == 1">
-            {{ userLanguage == "1" ? "高级管理教育" : "Executive Education" }}
+            {{ userLanguage == "1" ? "高管教育" : "Executive Education" }}
           </div>
           <!-- <div class="subTitle" v-show="currentScroll == 2">
             {{ userLanguage == "2" ? "高级管理教育" : "Executive Education" }}
@@ -199,8 +199,8 @@ export default {
         },
         {
           title: "双证文凭",
-          titleEn: "Dual credentials",
-          subTitle: "硕士学位证和毕业证，全球认可",
+          titleEn: "Dual Credentials",
+          subTitle: "硕士学位证书和毕业证书，全球认可",
           subTitleEn: "Master’s Degree Certificate & Certificate of Graduation",
         },
         {
@@ -968,7 +968,7 @@ body {
           -webkit-box-orient: vertical;
           overflow: hidden;
           text-overflow: ellipsis;
-          word-break: break-all;
+          word-break: break-word;
         }
       }
 
