@@ -17,6 +17,14 @@ Vue.use(VueRouter)
 const routes = [
     // 其他路由配置...
     {
+        path: '/zh-hans',
+        redirect: '/'
+    },
+    {
+        path: '/zh-hans/who-we-are',
+        redirect: '/aboutUs'
+    },
+    {
         name: 'home',
         path: '/',
         component: Home
