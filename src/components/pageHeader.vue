@@ -6,20 +6,10 @@
     <div class="header-nav-area">
       <div class="header-mobile">
         <div class="logo">
-          <img
-            style="display: block"
-            src="../../assets/header/logo.png"
-            alt=""
-          />
+          <img style="display: block" src="../../assets/header/logo.png" alt="" />
         </div>
         <div class="header-mobile-bread">
-          <img
-          class="menu-img"
-            style="display: block"
-            src="../../assets/menu.png"
-            alt=""
-            @click="showOverlay"
-          />
+          <img class="menu-img" style="display: block" src="../../assets/menu.png" alt="" @click="showOverlay" />
           <!-- <t-image
             @click="showOverlay"
             class="menu-img"
@@ -35,12 +25,8 @@
           <img src="../../assets/header/logo.png" alt="" />
         </div>
         <div class="header-nav">
-          <div
-            v-for="(item, index) in navList"
-            class="nav-item"
-            @click="toPage(item)"
-            :style="currentPath == item.path ? `color: #FF9C00;` : ''"
-          >
+          <div v-for="(item, index) in navList" class="nav-item" @click="toPage(item)"
+            :style="currentPath == item.path ? `color: #FF9C00;` : ''">
             {{ userLanguage == "1" ? item.name : item.nameEn }}
           </div>
         </div>
@@ -72,45 +58,33 @@
           </div>
         </div>
       </div>
+
+      <SuspendedWindow v-show="openWindow" />
+
       <Overlay :visible.sync="isOverlayVisible">
         <div style="color: #ffffff">
           <div class="menu-area">
-            <div><img src="../../assets/mBack.png" alt=""  @click="goBack"></div>
+            <div><img src="../../assets/mBack.png" alt="" @click="goBack"></div>
             <div><img src="../../assets/mClose.png" alt="" @click="hideOverlay"></div>
           </div>
 
-          <div class="menu-content" v-if="showChildren === true" @click="handleClick({children: [], path: '/', item: '首页'})">
+          <div class="menu-content" v-if="showChildren === true"
+            @click="handleClick({ children: [], path: '/', item: '首页' })">
             <div class="menu-one">{{ userLanguage == '1' ? '首页' : 'Home' }}</div>
           </div>
-          <div class="menu-content" v-if="showChildren === true" >
-            <div class="menu-one"
-              v-if="index === 0"
-              v-for="(item, index) in displayMenu"
-              :key="index"
-              :class="{ 'overlay-color': currentPath == item.path }"
-              @click="handleClick(item, index)"
-            >
+          <div class="menu-content" v-if="showChildren === true">
+            <div class="menu-one" v-if="index === 0" v-for="(item, index) in displayMenu" :key="index"
+              :class="{ 'overlay-color': currentPath == item.path }" @click="handleClick(item, index)">
               {{ userLanguage == "1" ? item.item : item.nameEn || item }}
             </div>
-            <div
-              :class="[currentPath == item.path ? 'overlay-color' : '']"
-              class="menu-two"
-              v-if="index !== 0"
-              v-for="(item, index) in displayMenu"
-              :key="index"
-              @click="handleClick(item, index)"
-            >
+            <div :class="[currentPath == item.path ? 'overlay-color' : '']" class="menu-two" v-if="index !== 0"
+              v-for="(item, index) in displayMenu" :key="index" @click="handleClick(item, index)">
               {{ userLanguage == "1" ? item.item.item : item.item.nameEn }}
             </div>
           </div>
           <div class="menu-three" v-else>
-            <div
-              class="menu-one"
-              v-for="(item, index) in displayMenu"
-              :key="index"
-              :class="{ 'overlay-color': currentPath == item.path }"
-              @click="handleClick(item, index)"
-            >
+            <div class="menu-one" v-for="(item, index) in displayMenu" :key="index"
+              :class="{ 'overlay-color': currentPath == item.path }" @click="handleClick(item, index)">
               {{ userLanguage == "1" ? item.item : item.nameEn || item }}
             </div>
           </div>
@@ -127,36 +101,23 @@
     <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/courseProjects'" />
     <TeachingStaffHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/teachingStaff'"
-    />
+      v-if="currentPath == '/teachingStaff'" />
     <AboutUsHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/aboutUs'"
-    />
+      v-if="currentPath == '/aboutUs'" />
     <ConsultationFormHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/consultationForm'"
-    />
+      v-if="currentPath == '/consultationForm'" />
     <AlumniStyleHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/alumniStyle'"
-    />
+      v-if="currentPath == '/alumniStyle'" />
 
-    <div
-      class="sidebar"
-      :class="{
-        'sidebar-zh': userLanguage == '1',
-        'sidebar-en': userLanguage !== '1',
-      }"
-    >
-      <div
-        class="sidebar-item"
-        v-for="(item, index) in sidebarList"
-        @click="toPage({ path: item.path })"
-        @mouseover="isHovered = index"
-        @mouseleave="isHovered = -1"
-        :key="index"
-      >
+    <div class="sidebar" :class="{
+      'sidebar-zh': userLanguage == '1',
+      'sidebar-en': userLanguage !== '1',
+    }">
+      <div class="sidebar-item" v-for="(item, index) in sidebarList" @click="toPage({ path: item.path })"
+        @mouseover="isHovered = index" @mouseleave="isHovered = -1" :key="index">
         <img :src="isHovered == index ? item.imgPath : item.unImgPath" alt="" />
         <div>{{ userLanguage == "1" ? item.name : item.nameEn }}</div>
       </div>
@@ -184,6 +145,8 @@ import unChatImg from "../../assets/header/silderIcon/uncheckSide.png";
 import Overlay from "../components/Overlay.vue";
 import router from "../router.js";
 
+import SuspendedWindow from "./SuspendedWindow.vue";
+
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {
@@ -194,6 +157,7 @@ export default {
     AboutUsHeader,
     AlumniStyleHeader,
     ConsultationFormHeader,
+    SuspendedWindow
   },
   data() {
     //这里存放数据
@@ -292,7 +256,8 @@ export default {
         { label: "En", value: "2" },
       ],
       isSmallScreen: false,
-      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors']
+      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors'],
+      openWindow: false
     };
   },
   computed: {
@@ -301,7 +266,7 @@ export default {
     },
   },
   watch: {
-    userLanguage(newVal) {},
+    userLanguage(newVal) { },
   },
   //方法集合
   methods: {
@@ -399,6 +364,10 @@ export default {
       if (!item.path) {
         return;
       }
+      if (item.name == '课程项目') {
+        this.openWindow = !this.openWindow
+        return
+      }
       this.$router.push(item.path);
       window.scrollTo({
         top: 0,
@@ -427,7 +396,7 @@ export default {
       }
       if (id) {
         this.imgUrl = await this.$getPageContent(id);
-      }      
+      }
     },
 
     turnArrow() {
@@ -465,13 +434,13 @@ export default {
       headerNavArea.style.backgroundColor = `rgba(22, 58, 107, 1)`;
     }
   },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  beforeCreate() { }, //生命周期 - 创建之前
+  beforeMount() { }, //生命周期 - 挂载之前
+  beforeUpdate() { }, //生命周期 - 更新之前
+  updated() { }, //生命周期 - 更新之后
+  beforeDestroy() { }, //生命周期 - 销毁之前
+  destroyed() { }, //生命周期 - 销毁完成
+  activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 
@@ -488,9 +457,11 @@ export default {
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
+
     div {
       font-size: 23px;
     }
+
     img {
       width: 81px;
       height: 81px;
@@ -498,9 +469,11 @@ export default {
   }
 
   .menu-content {
-    margin: 60px auto; width: 85%;
+    margin: 60px auto;
+    width: 85%;
   }
 }
+
 .overlay-color {
   color: #ff9c00 !important;
 }
@@ -770,14 +743,18 @@ export default {
 }
 
 .menu-one {
-  margin-top: 40px; font-size: 24px;
+  margin-top: 40px;
+  font-size: 24px;
 }
 
 .menu-two {
-  margin-left: 20px; margin-top: 40px;
+  margin-left: 20px;
+  margin-top: 40px;
 }
 
 .menu-three {
-  margin: 60px auto; width: 85%; font-size: 24px;
+  margin: 60px auto;
+  width: 85%;
+  font-size: 24px;
 }
 </style>
