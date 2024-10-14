@@ -14,7 +14,7 @@
         <div class="article-content">
           <div class="subTitle">
             <h2>List of Lecturers</h2>
-            <div>(Updated on 09 Jan 2024)</div>
+            <div>(Updated on 09 Sep 2024)</div>
           </div>
           <div class="commonText">
             <div>Course Title: MASTER OF BUSINESS ADMINISTRATION (MANDARIN)</div>
@@ -99,6 +99,17 @@
                   <td>PT</td>
                   <td>Managerial Economics</td>
                 </tr>
+
+                <tr>
+                  <td>Guo Chunfan</td>
+                  <td>Ph.D</td>
+                  <td>South China University of Technology</td>
+                  <td>Associate Professor</td>
+                  <td>Corporate Strategic Management, Investment Decision, Tourism Economy</td>
+                  <td>PT</td>
+                  <td>Managerial Economics</td>
+                </tr>
+
                 <tr>
                   <td>Hao Yingqi</td>
                   <td>Ph.D</td>
@@ -270,6 +281,17 @@
                   <td>PT</td>
                   <td>Corporate Governance</td>
                 </tr>
+
+                <tr>
+                  <td>Tan Xiaoping</td>
+                  <td>Ph.D</td>
+                  <td>Jinan University</td>
+                  <td>Professor</td>
+                  <td>Accounting, Corporate Finance</td>
+                  <td>PT</td>
+                  <td>Financial Accounting</td>
+                </tr>
+
                 <tr>
                   <td>Tan Youchao</td>
                   <td>Ph.D</td>
@@ -338,6 +360,17 @@
                   <td>PT</td>
                   <td>Market Research</td>
                 </tr>
+
+                <tr>
+                  <td>Wang Rui</td>
+                  <td>Ph.D</td>
+                  <td>Huazhong University of Science and Technology</td>
+                  <td>Lecturer</td>
+                  <td>Consumer Behavior, Corporate Social Responsibility (CSR), Strategic Marketing</td>
+                  <td>PT</td>
+                  <td>Corporate Social Responsibility and Business Ethics</td>
+                </tr>
+
                 <tr>
                   <td rowspan="2">Wang Wei</td>
                   <td rowspan="2">Ph.D</td>
@@ -474,7 +507,7 @@
                   <td>Ph.D</td>
                   <td>Huazhong University of Science and Technology</td>
                   <td>Associate Professor</td>
-                  <td>E-commerce，circulation modernization</td>
+                  <td>E-commerce, circulation modernization</td>
                   <td>PT</td>
                   <td>Marketing Management</td>
                 </tr>

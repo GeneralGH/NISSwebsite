@@ -78,12 +78,29 @@ const routes = [
         name: 'mbaProfessors',
         path: '/mbaProfessors',
         component: MbaProfessors
+    },
+    {
+        path: '*',
+        redirect: '/'
     }
 ]
 
 const router = new VueRouter({
     mode: 'history',
-    routes: routes
+    routes: routes.map(route => {
+        // 在每个路由配置中添加 beforeEnter 钩子函数
+        route.beforeEnter = (to, from, next) => {
+            // 判断路径字符串的最后一位是否为 '/'
+            console.log(to.path)
+            if (to.path.slice(-1) === '/' && to.path != '/') {
+                // 重定向到 '*' 路径
+                next({ path: '/zh-hans' })
+            } else {
+                next();
+            }
+        }
+        return route;
+    })
 })
 
 export default router

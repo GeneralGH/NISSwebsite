@@ -48,7 +48,7 @@
           <div class="header-language">
             <div class="flex" @click="languageChange({ value: userLanguage == '1' ? '2' : '1' })">
               <div class="langeContent">
-                {{ userLanguage == "1" ? "中文" : "English" }}
+                {{ userLanguage == "1" ? "English" : "中文" }}
               </div>
               <!-- <img
                 :class="{ rotated: isRotated }"
