@@ -37,7 +37,7 @@
                 </div>
               </div>
               <div class="info-subTitle">
-                <div v-for="str in item.subTitle" v-show="userLanguage == '1'">{{ str }}</div>
+                <div :class="str == '（新加坡班）' ? 'textLeft' : ''" v-for="str in item.subTitle" v-show="userLanguage == '1'">{{ str }}</div>
                 <div v-for="str in item.subTitleEn" v-show="userLanguage == '2'">{{ str }}</div>
               </div>
               <div class="line" v-show="isHovered == index"></div>
@@ -56,7 +56,7 @@
           <div class="title" v-show="currentScroll == 0">
             {{
               userLanguage == "1"
-                ? `暨南大学新加坡中文MBA项目`
+                ? `暨南大学中文MBA（新加坡班）`
                 : "JNU MBA PROGRAM"
             }}
           </div>
@@ -166,7 +166,7 @@ export default {
         {
           title: "MBA",
           titleEn: "MBA",
-          subTitle: ['暨南大学', '新加坡', '中文MBA', '项目'],
+          subTitle: ['暨南大学', '中文MBA', '（新加坡班）'],
           subTitleEn: ['JNU MBA Program', '(Mandarin)'],
           path: "/jnumba",
         },
@@ -1021,5 +1021,9 @@ body {
   /* 对于IE和Edge */
   scrollbar-width: none;
   /* 对于Firefox */
+}
+
+.textLeft {
+  margin-left: -13px;
 }
 </style>

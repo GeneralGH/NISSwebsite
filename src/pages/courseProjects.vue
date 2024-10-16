@@ -9,7 +9,7 @@
           <div class="leftList">
             <div class="title z-title">
               {{ userLanguage == "1" ? "暨南大学" : "JNU" }}<br />{{
-                userLanguage == "1" ? "新加坡中文MBA项目" : "MBA Program (Mandarin)"
+                userLanguage == "1" ? "中文MBA（新加坡班）" : "MBA Program (Mandarin)"
               }}
             </div>
             <div class="optionsList">

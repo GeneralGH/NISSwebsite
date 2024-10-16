@@ -80,11 +80,11 @@ const routes = [
         path: '/mbaProfessors',
         component: MbaProfessors
     },
-    {
+    /* {
         name: 'promotionAmbassador',
         path: '/promotionAmbassador',
         component: PromotionAmbassador
-    },
+    }, */
     {
         path: '*',
         redirect: '/'

@@ -70,7 +70,7 @@
         </div>
       </div>
 
-      <div class="party">
+      <!-- <div class="party">
         <div class="party-title">
           {{ userLanguage == "1" ? "宣传大使" : "They say" }}
         </div>
@@ -79,7 +79,7 @@
         <div class="party-content">
           <OutstandingAlumni />
         </div>
-      </div>
+      </div> -->
 
       <div class="party">
         <div class="party-title">
