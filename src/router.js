@@ -10,6 +10,7 @@ import HighEdu from './pages/highEdu.vue'
 import Policy from './pages/policy.vue'
 import ContactUs from './pages/contactUs.vue'
 import MbaProfessors from './pages/mbaProfessors.vue'
+import PromotionAmbassador from './pages/promotionAmbassador.vue'
 import Vue from 'vue';
 
 Vue.use(VueRouter)
@@ -78,6 +79,11 @@ const routes = [
         name: 'mbaProfessors',
         path: '/mbaProfessors',
         component: MbaProfessors
+    },
+    {
+        name: 'promotionAmbassador',
+        path: '/promotionAmbassador',
+        component: PromotionAmbassador
     },
     {
         path: '*',
