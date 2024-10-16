@@ -168,7 +168,7 @@ export default {
           titleEn: "MBA",
           subTitle: ['暨南大学', '新加坡', '中文MBA', '项目'],
           subTitleEn: ['JNU MBA Program', '(Mandarin)'],
-          path: "/courseProjects",
+          path: "/jnumba",
         },
         /* {
           title: "DBA",

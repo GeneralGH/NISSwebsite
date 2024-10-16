@@ -4,16 +4,15 @@
     <pageHeader />
     <div class="page-area">
       <div class="path-list" @click="backPage">
-        <span class="upPath"
-          >{{
-            data.type == 1
-              ? userLanguage == "1"
-                ? "关于我们"
-                : "About Us"
-              : userLanguage == "1"
+        <span class="upPath">{{
+          data.type == 1
+            ? userLanguage == "1"
+              ? "关于我们"
+              : "About Us"
+            : userLanguage == "1"
               ? "学员社区"
               : "Students"
-          }}
+        }}
           /
         </span>
         <span>{{
@@ -22,8 +21,8 @@
               ? "学院新闻"
               : "News"
             : userLanguage == "1"
-            ? "校友动态"
-            : "Alumni Updates"
+              ? "校友动态"
+              : "Alumni Updates"
         }}</span>
       </div>
 
@@ -42,16 +41,10 @@
 
       <div class="article-area">
         <div class="article-content">
-          <div
-            v-html="userLanguage == '1' ? data.content : data.contentEn"
-          ></div>
+          <div v-html="userLanguage == '1' ? data.content : data.contentEn"></div>
           <div class="more-article">
-            <div
-              :class="item.id ? 'more-article-itme' : 'more-article-itme-none'"
-              v-for="(item, index) in LastAndNext"
-              :key="item.id"
-              @click="toDetail(item)"
-            >
+            <div :class="item.id ? 'more-article-itme' : 'more-article-itme-none'" v-for="(item, index) in LastAndNext"
+              :key="item.id" @click="toDetail(item)">
               <icon class="item-icon" name="chevron-left" v-if="index == 0" />
               <div :style="{ textAlign: index == 1 ? 'end' : 'start', flex: 1 }">
                 <div class="icon-sigin" v-show="userLanguage == 2">{{ index == 0 ? 'Previous' : 'Next' }}</div>
@@ -66,18 +59,14 @@
           <div class="other-article-list-title">
             {{ userLanguage == "1" ? "其他新闻" : "Other News" }}
           </div>
-          <div
-            class="other-article-item"
-            v-for="item in list"
-            :key="item.id"
-            @click="toDetail(item)"
-          >
+          <div class="other-article-item" v-for="item in list" :key="item.id" @click="toDetail(item)">
             <div class="other-article-item-content">
               {{ userLanguage == "1" ? item.title : item.titleEn }}
             </div>
           </div>
           <div class="pagination">
-            <t-pagination v-model="listQuery.current" :total="listData.totalCount" :page-size.sync="listQuery.size" :showPageSize="false" :totalContent="false" @change="pageChange" showPageNumber />
+            <t-pagination v-model="listQuery.current" :total="listData.totalCount" :page-size.sync="listQuery.size"
+              :showPageSize="false" :totalContent="false" @change="pageChange" showPageNumber />
             <!-- <div style="display: flex;">
               <div class="pagination-item twoPagBtn firstBtn">首页</div>
               <div class="pagination-item onePagBtn">< 上一页</div>
@@ -109,7 +98,7 @@ export default {
       listQuery: {
         current: 1,
         size: 5,
-        type: 1,  
+        type: 1,
       },
       data: {
         title: "",
@@ -127,16 +116,20 @@ export default {
     },
   },
   watch: {
-    userLanguage(newVal) {},
+    userLanguage(newVal) { },
   },
   filter: {},
   //方法集合
   methods: {
     async echoData(id) {
-      await this.$request.get(news.getNewsByIdUrl + id).then((res) => {
+      await this.$request.get(news.getNewsByIdUrl + id)
+      .then((res) => {
         this.data = res.data.data;
         this.getLastAndNext(id)
-      });
+      })
+      .catch((err) => {
+        this.$message.error('获取文章失败')
+      })
     },
 
     initList() {
@@ -172,7 +165,7 @@ export default {
           this.pcBottomList = res.data.data.list;
         }); */
     },
-    
+
     pageChange(e) {
       this.listQuery.current = e.current
       this.initList()
@@ -186,7 +179,20 @@ export default {
         top: 0,
         behavior: "instant", // 可选，使用平滑滚动效果
       });
-      this.echoData(item.id);
+      // 获取当前页面的地址
+      const currentUrl = window.location.href;
+
+      // 获取当前页面的id参数值
+      const urlParams = new URLSearchParams(window.location.search);
+      const currentId = urlParams.get('id');
+
+      // 点击其他文章后获取新的id值
+      const newId = item.id;
+
+      // 更新地址的id参数并刷新页面
+      const newUrl = currentUrl.replace(`id=${currentId}`, `id=${newId}`);
+      window.location.href = newUrl;
+      // this.echoData(item.id);
     },
 
     dateChange(val) {
@@ -215,7 +221,7 @@ export default {
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() { },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -228,13 +234,13 @@ export default {
       this.initList();
     }
   },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  beforeCreate() { }, //生命周期 - 创建之前
+  beforeMount() { }, //生命周期 - 挂载之前
+  beforeUpdate() { }, //生命周期 - 更新之前
+  updated() { }, //生命周期 - 更新之后
+  beforeDestroy() { }, //生命周期 - 销毁之前
+  destroyed() { }, //生命周期 - 销毁完成
+  activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 
@@ -242,6 +248,7 @@ export default {
 /deep/ video {
   width: 100% !important;
 }
+
 @media (max-width: 720px) {
   .page-area {
     .path-list {
@@ -271,6 +278,7 @@ export default {
       height: 70px !important;
     }
   }
+
   .article-content {
     line-height: 50px;
   }
@@ -361,7 +369,8 @@ export default {
   margin-bottom: 36px;
 }
 
-.article-title, .article-titleEn {
+.article-title,
+.article-titleEn {
   font-weight: 600;
   font-size: 42px;
   color: #172c47;
@@ -409,7 +418,8 @@ export default {
   opacity: 0;
 }
 
-.more-article-itme, .more-article-itme-none {
+.more-article-itme,
+.more-article-itme-none {
   display: flex;
   width: 49%;
   font-weight: bold;
@@ -421,7 +431,7 @@ export default {
   background: #f6f6f6;
   box-sizing: border-box;
   padding: 30px 40px;
-  
+
 
   .item-icon {
     font-size: 40px;
@@ -489,14 +499,12 @@ export default {
   right: -3px;
   bottom: -3.5px;
   z-index: -1;
-  background-image: repeating-linear-gradient(
-    125deg,
-    #ff9c00,
-    #ffcc9e,
-    #74b6eb 80%,
-    #68aaec,
-    #04499f
-  );
+  background-image: repeating-linear-gradient(125deg,
+      #ff9c00,
+      #ffcc9e,
+      #74b6eb 80%,
+      #68aaec,
+      #04499f);
   border-radius: 8px;
   outline: 2px solid transparent;
   outline-offset: -2px;

@@ -30,8 +30,8 @@ const routes = [
         component: Home
     },
     {
-        name: 'courseProjects',
-        path: '/courseProjects',
+        name: 'jnumba',
+        path: '/jnumba',
         component: CourseProjects
     },
     {

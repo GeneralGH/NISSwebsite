@@ -124,7 +124,7 @@
     <!-- 各个页面不同展示 -->
     <div class="articleHeader" v-if="isNoTopImgPages.includes(currentPath)"></div>
     <HomeHeader v-if="currentPath == '/'" />
-    <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/courseProjects'" />
+    <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/jnumba'" />
     <TeachingStaffHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
       v-if="currentPath == '/teachingStaff'"
@@ -211,7 +211,7 @@ export default {
         {
           item: "课程项目",
           nameEn: "Programmes",
-          path: "/courseProjects",
+          path: "/jnumba",
           children: [
             {
               item: "项目概述",
@@ -255,7 +255,7 @@ export default {
       navList: [
         { name: "首页", nameEn: "Home", path: "/" },
         { name: "关于我们", nameEn: "About Us", path: "/aboutUs" },
-        { name: "课程项目", nameEn: "Programmes", path: "/courseProjects" },
+        { name: "课程项目", nameEn: "Programmes", path: "/jnumba" },
         { name: "师资力量", nameEn: "Faculty", path: "/teachingStaff" },
         { name: "学员社区", nameEn: "Students", path: "/alumniStyle" },
       ],
@@ -332,7 +332,7 @@ export default {
         this.showChildren = true;
       } else if (elementId) {
         this.hideOverlay();
-        router.push({ path: "/courseProjects", hash: `#${elementId}` });
+        router.push({ path: "/jnumba", hash: `#${elementId}` });
       } else if (item.path) {
         this.hideOverlay();
         router.push(item.path);
@@ -342,7 +342,7 @@ export default {
         });
       } else {
         if (item.item == '课程项目') {
-          router.push({ path: "/courseProjects" })
+          router.push({ path: "/jnumba" })
           window.scrollTo({
             top: 0,
             behavior: "instant", // 可选，使用平滑滚动效果
@@ -409,7 +409,7 @@ export default {
     async getPageHedaerImg() {
       let id = null;
       switch (this.currentPath) {
-        case "/courseProjects":
+        case "/jnumba":
           id = 3;
           break;
         case "/teachingStaff":
