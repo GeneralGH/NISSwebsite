@@ -141,6 +141,10 @@
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
       v-if="currentPath == '/alumniStyle'"
     />
+    <PromotionAmbassador
+      :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
+      v-if="currentPath == '/promotionAmbassador'"
+    />
 
     <div
       class="sidebar"
@@ -173,6 +177,7 @@ import TeachingStaffHeader from "./headerContent/teachingStaffHeader.vue";
 import AboutUsHeader from "./headerContent/aboutUsHeader.vue";
 import AlumniStyleHeader from "./headerContent/alumniStyleHeader.vue";
 import ConsultationFormHeader from "./headerContent/consultationFormHeader.vue";
+import PromotionAmbassador from "./headerContent/promotionAmbassador.vue";
 
 import ApplyImg from "../../assets/header/silderIcon/Apply.png";
 import ProjectImg from "../../assets/header/silderIcon/Project.png";
@@ -194,6 +199,7 @@ export default {
     AboutUsHeader,
     AlumniStyleHeader,
     ConsultationFormHeader,
+    PromotionAmbassador
   },
   data() {
     //这里存放数据
@@ -423,6 +429,9 @@ export default {
           break;
         case "/consultationForm":
           id = 19;
+          break;
+        case "/promotionAmbassador":
+          id = 21
           break;
       }
       if (id) {

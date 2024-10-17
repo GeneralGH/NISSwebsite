@@ -1,0 +1,515 @@
+<!--  -->
+<template>
+  <div>
+    <pageHeader />
+    <div class="page-area">
+      <div class="path-list" @click="backPage">
+        <span class="upPath">{{
+          data.type == 1
+            ? userLanguage == "1"
+              ? "关于我们"
+              : "About Us"
+            : userLanguage == "1"
+              ? "学员社区"
+              : "Students"
+        }}
+          /
+        </span>
+        <span>{{
+          data.type == 1
+            ? userLanguage == "1"
+              ? "学院新闻"
+              : "News"
+            : userLanguage == "1"
+              ? "校友动态"
+              : "Alumni Updates"
+        }}</span>
+      </div>
+
+      <div class="article-info">
+        <div :class="userLanguage == '1' ? 'article-title' : 'article-titleEn'">
+          {{ userLanguage == "1" ? data.title : data.titleEn }}
+        </div>
+        <div class="article-author">
+          <span>{{ userLanguage == '1' ? '作者' : 'Author' }}</span>：{{
+            userLanguage == "1" ? data.author : data.authorEn
+          }}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{{
+            dateChange(data.createTime)
+          }}
+        </div>
+      </div>
+
+      <div class="article-area">
+        <div class="article-content">
+          <div v-html="userLanguage == '1' ? data.content : data.contentEn"></div>
+          <!-- <div class="more-article">
+            <div :class="item.id ? 'more-article-itme' : 'more-article-itme-none'" v-for="(item, index) in LastAndNext"
+              :key="item.id" @click="toDetail(item)">
+              <icon class="item-icon" name="chevron-left" v-if="index == 0" />
+              <div :style="{ textAlign: index == 1 ? 'end' : 'start', flex: 1 }">
+                <div class="icon-sigin" v-show="userLanguage == 2">{{ index == 0 ? 'Previous' : 'Next' }}</div>
+                <div class="icon-sigin" v-show="userLanguage == 1">{{ index == 0 ? '上一个' : '下一个' }}</div>
+                <div class="item-title">{{ userLanguage == "1" ? item.title : item.titleEn }}</div>
+              </div>
+              <icon class="item-icon" name="chevron-right" v-if="index == 1" />
+            </div>
+          </div> -->
+        </div>
+        <!-- <div class="other-article-list">
+          <div class="other-article-list-title">
+            {{ userLanguage == "1" ? "其他新闻" : "Other News" }}
+          </div>
+          <div class="other-article-item" v-for="item in list" :key="item.id" @click="toDetail(item)">
+            <div class="other-article-item-content">
+              {{ userLanguage == "1" ? item.title : item.titleEn }}
+            </div>
+          </div>
+          <div class="pagination">
+            <t-pagination v-model="listQuery.current" :total="listData.totalCount" :page-size.sync="listQuery.size"
+              :showPageSize="false" :totalContent="false" @change="pageChange" showPageNumber />
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <PageFooter />
+  </div>
+</template>
+
+<script>
+//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
+//例如：import 《组件名称》 from '《组件路径》';
+import news from "../api/news";
+import { Icon } from 'tdesign-icons-vue';
+
+export default {
+  //import引入的组件需要注入到对象中才能使用
+  components: { Icon },
+  data() {
+    //这里存放数据
+    return {
+      listQuery: {
+        current: 1,
+        size: 5,
+        type: 1,
+      },
+      data: {
+        title: "",
+        content: "",
+      },
+      list: [],
+      pcBottomList: [],
+      listData: '',
+      LastAndNext: []
+    };
+  },
+  computed: {
+    userLanguage() {
+      return this.$store.state.userLanguage;
+    },
+  },
+  watch: {
+    userLanguage(newVal) { },
+  },
+  filter: {},
+  //方法集合
+  methods: {
+    async echoData(id) {
+      await this.$request.get(news.getNewsByIdUrl + id)
+      .then((res) => {
+        this.data = res.data.data;
+        this.getLastAndNext(id)
+      })
+      .catch((err) => {
+        this.$message.error('获取文章失败')
+      })
+    },
+
+    initList() {
+      this.$request
+        .post(news.getNewsListPageUrl, this.listQuery)
+        .then((res) => {
+          res.data.data.list = res.data.data.list.map((item) => {
+            return {
+              ...item,
+              url: JSON.parse(item.annex).url,
+              urlEn: JSON.parse(item.annexEn).url,
+            };
+          });
+          this.list = res.data.data.list;
+          this.listData = res.data.data
+          /* console.log(this.listData) */
+        });
+
+      /* this.$request
+        .post(news.getNewsListPageUrl, {
+          current: 1,
+          size: 2,
+          type: 1,
+        })
+        .then((res) => {
+          res.data.data.list = res.data.data.list.map((item) => {
+            return {
+              ...item,
+              url: JSON.parse(item.annex).url,
+              urlEn: JSON.parse(item.annexEn).url,
+            };
+          });
+          this.pcBottomList = res.data.data.list;
+        }); */
+    },
+
+    pageChange(e) {
+      this.listQuery.current = e.current
+      this.initList()
+    },
+
+    toDetail(item) {
+      if (!item.id) {
+        return
+      }
+      window.scrollTo({
+        top: 0,
+        behavior: "instant", // 可选，使用平滑滚动效果
+      });
+      // 获取当前页面的地址
+      const currentUrl = window.location.href;
+
+      // 获取当前页面的id参数值
+      const urlParams = new URLSearchParams(window.location.search);
+      const currentId = urlParams.get('id');
+
+      // 点击其他文章后获取新的id值
+      const newId = item.id;
+
+      // 更新地址的id参数并刷新页面
+      const newUrl = currentUrl.replace(`id=${currentId}`, `id=${newId}`);
+      window.location.href = newUrl;
+      // this.echoData(item.id);
+    },
+
+    dateChange(val) {
+      const date = new Date(val);
+
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+
+      return `${year}/${month}/${day}`;
+    },
+
+    backPage() {
+      let path = this.data.type == 1 ? "/aboutUs" : "/alumniStyle";
+      this.$router.replace({ path: path });
+      window.scrollTo({
+        top: 0,
+        behavior: "instant", // 可选，使用平滑滚动效果
+      });
+    },
+
+    getLastAndNext(id) {
+      this.$request.post(news.getLastAndNextUrl, { id: id, type: this.data.type }).then((res) => {
+        this.LastAndNext = [res.data.data.last ? res.data.data.last : {}, res.data.data.next ? res.data.data.next : {}];
+      })
+    }
+  },
+  //生命周期 - 创建完成（可以访问当前this实例）
+  created() { },
+  //生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+
+    /* if (!id) {
+      this.$router.push({ name: "home" });
+    } else {
+      this.echoData(id);
+      this.initList();
+    } */
+  },
+  beforeCreate() { }, //生命周期 - 创建之前
+  beforeMount() { }, //生命周期 - 挂载之前
+  beforeUpdate() { }, //生命周期 - 更新之前
+  updated() { }, //生命周期 - 更新之后
+  beforeDestroy() { }, //生命周期 - 销毁之前
+  destroyed() { }, //生命周期 - 销毁完成
+  activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
+};
+</script>
+
+<style scoped lang="less">
+/deep/ video {
+  width: 100% !important;
+}
+
+@media (max-width: 720px) {
+  .page-area {
+    .path-list {
+      margin-top: 20px;
+    }
+
+    box-sizing: border-box;
+    width: 100% !important;
+    padding: 0 30px !important;
+
+    .article-info {
+      width: 100% !important;
+    }
+
+    .article-area {
+      width: 100% !important;
+
+      .article-content {
+        width: 100% !important;
+        color: #172c47;
+        font-size: 20px !important;
+      }
+    }
+
+    .other-article-item {
+      width: 80vw !important;
+      height: 70px !important;
+    }
+  }
+
+  .article-content {
+    line-height: 50px;
+  }
+
+  .more-article {
+    display: none !important;
+  }
+
+  .article-area {
+    flex-direction: column;
+  }
+
+  .other-article-list {
+    margin-bottom: 100px;
+  }
+
+  .pagination {
+    width: 80vw;
+    display: block !important;
+    font-size: 18px;
+    color: #172c47;
+    height: 66px;
+    line-height: 66px;
+    /* text-align: center;
+    justify-content: space-between; */
+
+    .pagination-item {
+      border-radius: 4px;
+      border: 1px solid rgba(23, 44, 71, 0.2);
+    }
+
+    .onePagBtn {
+      width: 96px;
+    }
+
+    .twoPagBtn {
+      width: 66px;
+    }
+
+    .threePagBtn {
+      width: 54px;
+    }
+
+    .firstBtn {
+      margin-right: 10px;
+    }
+
+    .endBtn {
+      margin-left: 10px;
+    }
+  }
+}
+
+/deep/ .t-pagination__number.t-is-current {
+  background-color: #172C47;
+  border-color: #172C47;
+  color: #FF9C00;
+}
+
+/deep/ .t-pagination__number {
+  color: #172C47;
+}
+
+/deep/ .page-area {
+  width: 1650px;
+  margin: 0 auto;
+  padding: 30px 0 160px 0;
+}
+
+.pagination {
+  /* display: none; */
+}
+
+.path-list {
+  cursor: pointer;
+  font-size: 20px;
+  color: #172c47;
+  height: 43px;
+  line-height: 43px;
+  margin-bottom: 38px;
+}
+
+.upPath {
+  font-weight: bold;
+}
+
+.article-info {
+  margin-bottom: 36px;
+}
+
+.article-title,
+.article-titleEn {
+  font-weight: 600;
+  font-size: 42px;
+  color: #172c47;
+  line-height: 76px;
+}
+
+.article-titleEn {
+  font-size: 38px;
+  line-height: 58px;
+}
+
+.article-author {
+  height: 97px;
+  line-height: 97px;
+  font-size: 20px;
+  color: #172c47;
+  font-weight: bold;
+  border-bottom: 2px solid rgba(3, 73, 158, 0.11);
+}
+
+.article-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+.article-content {
+  width: 1200px;
+}
+
+.more-article {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 160px;
+  margin-bottom: 40px;
+  height: 200px;
+}
+
+.more-article-itme:hover {
+  background: #f77300;
+  color: white;
+}
+
+.more-article-itme-none {
+  cursor: no-drop !important;
+  opacity: 0;
+}
+
+.more-article-itme,
+.more-article-itme-none {
+  display: flex;
+  width: 49%;
+  font-weight: bold;
+  font-size: 24px;
+  color: #172c47;
+  line-height: 38px;
+  cursor: pointer;
+  transition: all .2s;
+  background: #f6f6f6;
+  box-sizing: border-box;
+  padding: 30px 40px;
+
+
+  .item-icon {
+    font-size: 40px;
+    margin: 20px 20px;
+  }
+
+  .icon-sigin {
+    margin-bottom: 15px;
+  }
+
+  .item-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+  }
+}
+
+.more-article-itmeImg {
+  width: 100%;
+  height: 270px;
+  border-radius: 24px;
+  margin-bottom: 30px;
+}
+
+.other-article-list {
+  width: 350px;
+  font-weight: bold;
+  font-size: 24px;
+  color: #172c47;
+  line-height: 40px;
+}
+
+.other-article-list-title {
+  margin-bottom: 8px;
+}
+
+.other-article-item {
+  width: 100%;
+  height: 125px;
+  border-radius: 8px;
+  border: 1px solid rgba(23, 44, 71, 0.2);
+  font-weight: bold;
+  font-size: 18px;
+  color: #172c47;
+  line-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 15px 18px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  background-color: #fff;
+  position: relative;
+}
+
+.other-article-item:hover::before {
+  content: "";
+  position: absolute;
+  top: -3.5px;
+  left: -3px;
+  right: -3px;
+  bottom: -3.5px;
+  z-index: -1;
+  background-image: repeating-linear-gradient(125deg,
+      #ff9c00,
+      #ffcc9e,
+      #74b6eb 80%,
+      #68aaec,
+      #04499f);
+  border-radius: 8px;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+}
+
+.other-article-item-content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /*省略几行写几*/
+  -webkit-box-orient: vertical;
+}
+</style>

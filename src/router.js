@@ -11,6 +11,7 @@ import Policy from './pages/policy.vue'
 import ContactUs from './pages/contactUs.vue'
 import MbaProfessors from './pages/mbaProfessors.vue'
 import PromotionAmbassador from './pages/promotionAmbassador.vue'
+import PromotionAmbassadorDetail from './pages/promotionAmbassadorDetail.vue'
 import Vue from 'vue';
 
 Vue.use(VueRouter)
@@ -80,11 +81,16 @@ const routes = [
         path: '/mbaProfessors',
         component: MbaProfessors
     },
-    /* {
+    {
         name: 'promotionAmbassador',
         path: '/promotionAmbassador',
         component: PromotionAmbassador
-    }, */
+    },
+    {
+        name: 'promotionAmbassadorDetail',
+        path: '/promotionAmbassadorDetail',
+        component: PromotionAmbassadorDetail
+    },
     {
         path: '*',
         redirect: '/'

@@ -70,16 +70,16 @@
         </div>
       </div>
 
-      <!-- <div class="party">
+      <div class="party">
         <div class="party-title">
           {{ userLanguage == "1" ? "宣传大使" : "They say" }}
         </div>
         <div class="party-line"></div>
 
-        <div class="party-content">
-          <OutstandingAlumni />
+        <div @click="toXuanchuan">
+          <t-image class="freeImg" :src="userLanguage == '1' ? xuanchuanImg.url : xuanchuanImg.urlEn" fit="cover" position="center" :lazy="true" style="width: 100%; cursor: pointer;" />
         </div>
-      </div> -->
+      </div>
 
       <div class="party">
         <div class="party-title">
@@ -143,6 +143,10 @@ export default {
       freeImg: {
         url: '',
         urlEn: ''
+      },
+      xuanchuanImg: {
+        url: '',
+        urlEn: ''
       }
     };
   },
@@ -177,6 +181,14 @@ export default {
       this.listQuery.current = e.current
       this.initList()
     },
+
+    toXuanchuan() {
+      this.$router.push('/promotionAmbassador')
+      window.scrollTo({
+        top: 0,
+        behavior: 'instant' // 可选，使用平滑滚动效果
+      });
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
@@ -185,6 +197,9 @@ export default {
     this.initList();
     this.$getPageContent(20).then((res) => {
       this.freeImg = res
+    });
+    this.$getPageContent(22).then((res) => {
+      this.xuanchuanImg = res
     });
     document.title = this.userLanguage == "1" ? "校友风采" : "Alumni";
   },
