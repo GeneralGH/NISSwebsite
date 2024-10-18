@@ -1,7 +1,7 @@
 const xuanchuan = {
-    getPromotionListPageUrl: '/api/promotion/getPromotionListPage',
+    getPromotionListPageUrl: '/promotion/getPromotionListPage',
 
-    getPromotionByIdUrl: '/api/promotion/getPromotionById/',
+    getPromotionByIdUrl: '/promotion/getPromotionById/',
 }
 
 export default xuanchuan
