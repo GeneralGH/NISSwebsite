@@ -206,7 +206,7 @@ export default {
     },
 
     backPage() {
-      let path = this.data.type == 1 ? "/aboutUs" : "/alumniStyle";
+      let path = this.data.type == 1 ? "/aboutUs" : "/alumni";
       this.$router.replace({ path: path });
       window.scrollTo({
         top: 0,

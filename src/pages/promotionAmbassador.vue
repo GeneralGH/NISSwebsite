@@ -14,47 +14,12 @@
                 <div class="commonText" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
                     {{ userLanguage == "1" ? text : textEn }}
                 </div>
-                <!-- <div class="card-container">
-                    <div class="module-card">
-                        <div class="title">
-                            {{ userLanguage == "1" ? "责任" : "Vision" }}
-                        </div>
-                        <div class="line"></div>
-                        <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
-                            {{ userLanguage == "1" ? "1、招生宣传" : "To be an invaluable lifelong learning platform" }}
-                        </div>
-                        <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
-                            {{ userLanguage == "1" ? "2、品牌推广" : "To be an invaluable lifelong learning platform" }}
-                        </div>
-                        <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
-                            {{ userLanguage == "1" ? "3、活动支持" : "To be an invaluable lifelong learning platform" }}
-                        </div>
-                        <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
-                            {{ userLanguage == "1" ? "4、反馈建议" : "To be an invaluable lifelong learning platform" }}
-                        </div>
-                    </div>
-                    <div class="module-card">
-                        <div class="title">
-                            {{ userLanguage == "1" ? "权益" : "Mission" }}
-                        </div>
-                        <div class="line"></div>
-                        <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
-                            {{ userLanguage == "1" ? "1、“骄傲传承”奖" : "ce" }}
-                        </div>
-                        <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
-                            {{ userLanguage == "1" ? "2、年度联谊活动" : "Te" }}
-                        </div>
-                        <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
-                            {{ userLanguage == "1" ? "3、优先参与活动" : "Toce" }}
-                        </div>
-                    </div>
-                </div> -->
             </div>
 
 
             <div class="article-info">
                 <div class="article-title">
-                    {{ userLanguage == "1" ? '项目宣传大使风采' : 'NISS JNU MBA Style Ambassador' }}
+                    {{ userLanguage == "1" ? '项目宣传大使风采' : 'Ambassador' }}
                 </div>
             </div>
             <div class="party-line"></div>
@@ -66,20 +31,33 @@
                                 <div style="display: flex; justify-content: space-between;">
                                     <div>
                                         <div class="title">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
-                                        <div class="class">班级：{{ userLanguage == '1' ? item.classes : item.classesEn }}</div>
-                                        <div class="concact">邮箱：{{ userLanguage == '1' ? item.email : item.emailEn }}</div>
+                                        <div class="class">班级：{{ userLanguage == '1' ? item.classes : item.classesEn }}
+                                        </div>
+                                        <div class="concact">邮箱：{{ userLanguage == '1' ? item.email : item.emailEn }}
+                                        </div>
                                     </div>
                                     <div>
-                                        <t-image class="item-img" :src="userLanguage == '1' ? item.url : item.urlEn" shape="circle" fit="cover" />
+                                        <t-image-viewer v-model="item.imgShow"
+                                            :images="[userLanguage == '1' ? item.url : item.urlEn]"
+                                            :closeOnEscKeydown="false">
+                                            <template #trigger="{ open }">
+                                                <t-image @click="item.imgShow = true" class="item-img"
+                                                    :src="userLanguage == '1' ? item.url : item.urlEn" shape="circle"
+                                                    fit="cover" />
+                                            </template>
+                                        </t-image-viewer>
+
                                     </div>
                                 </div>
                             </div>
                             <div class="content">
-                                {{ userLanguage == '1' ? item.introduction : item.introductionEn }}
+                                <!-- <t-tooltip :content="userLanguage == '1' ? item.introduction : item.introductionEn"> -->
+                                    {{ userLanguage == '1' ? item.introduction : item.introductionEn }}
+                               <!--  </t-tooltip> -->
                             </div>
                         </div>
                         <div class="btn-img">
-                            <img src="../../assets/xuanchuan/one.png" alt="">
+                            <img @click="toDetail(item)" :src="userLanguage == '1' ? xzBtnZh : xzBtnEn" alt="">
                         </div>
                     </div>
                 </div>
@@ -92,6 +70,8 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 import xuanchuan from '../api/xuanchuan'
+import xzBtnZh from '../../assets/xuanchuan/one.png'
+import xzBtnEn from '../../assets/xuanchuan/two.png'
 
 export default {
     //import引入的组件需要注入到对象中才能使用
@@ -105,7 +85,10 @@ export default {
             },
             text: '为在新加坡打造暨南大学中文MBA项目的良好生态环境，南洋社会科学学院特制定“NISS暨南大学中文MBA（新加坡班）项目宣传大使”计划。所有暨南大学校友、暨南大学中文MBA（新加坡班）校友和在读学生，均可向NISS校友支持办公室申请成为“项目宣传大使”。',
             textEn: 'To further enhance the quality of student intake and the social influence of the JNU MBA Program, and to foster a positive ecosystem for the program in Singapore, NISS has launched the "NISS JNU MBA Program Ambassador" initiative.',
-            list: []
+            list: [],
+            visible: false,
+            xzBtnZh,
+            xzBtnEn
         };
     },
     computed: {
@@ -125,17 +108,18 @@ export default {
                 .post(xuanchuan.getPromotionListPageUrl, this.listQuery)
                 .then((res) => {
                     this.list = res.data.data.list.map((item) => {
-                        return { 
+                        return {
                             ...item,
                             url: JSON.parse(item.image).url,
-                            urlEn: JSON.parse(item.imageEn).url
+                            urlEn: JSON.parse(item.imageEn).url,
+                            imgShow: false
                         }
                     })
                 })
         },
 
-        toDetail() {
-            this.$router.push('/promotionAmbassadorDetail')
+        toDetail(item) {
+            this.$router.push({ path: `/AmbassadorDetail?id=${item.id}` })
             window.scrollTo({
                 top: 0,
                 behavior: 'instant' // 可选，使用平滑滚动效果
@@ -244,7 +228,7 @@ export default {
     .item {
         border-radius: 20px;
         width: 600px;
-        height: 600px;
+        height: 650px;
         background: rgb(22, 58, 107);
         margin-bottom: 45px;
         padding: 30px 40px;
@@ -252,6 +236,7 @@ export default {
         color: white;
         width: calc(50% - 20px);
         position: relative;
+
         .title {
             font-size: 42px;
             font-weight: bold;
@@ -272,20 +257,29 @@ export default {
             font-size: 24px;
             text-align: justify;
             height: 300px;
-            overflow: hidden;
+            /* overflow: hidden;
             text-overflow: ellipsis;
-            word-break: break-word;
+            word-break: break-word; */
             margin-top: 30px;
+
+            text-overflow: -o-ellipsis-lastline;
+            overflow: hidden; //溢出内容隐藏
+            text-overflow: ellipsis; //文本溢出部分用省略号表示
+            display: -webkit-box; //特别显示模式
+            -webkit-line-clamp: 7; //行数
+            line-clamp: 7;
+            -webkit-box-orient: vertical; //盒子中内容竖直排列
         }
 
         .item-img {
             width: 200px;
             height: 200px;
+            cursor: pointer;
         }
 
         .btn-img {
             position: absolute;
-            bottom: 20px;
+            bottom: 10px;
             right: 20px;
             display: flex;
 
@@ -301,14 +295,17 @@ export default {
     .card-container {
         display: block !important;
     }
+
     .module-card {
         width: 100% !important;
     }
+
     .page-area {
         width: 100vw !important;
         box-sizing: border-box !important;
         margin: 0 !important;
         padding: 0 20px !important;
+        margin-top: 80px !important;
 
         .party {
             width: 100% !important;
@@ -332,6 +329,7 @@ export default {
 
     .item {
         width: 100% !important;
+        height: 700px !important;
     }
 }
 

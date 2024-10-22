@@ -127,7 +127,7 @@
     <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/jnumba'" />
     <TeachingStaffHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/teachingStaff'"
+      v-if="currentPath == '/faculty'"
     />
     <AboutUsHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
@@ -139,11 +139,11 @@
     />
     <AlumniStyleHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/alumniStyle'"
+      v-if="currentPath == '/alumni'"
     />
     <PromotionAmbassador
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/promotionAmbassador'"
+      v-if="currentPath == '/Ambassador'"
     />
 
     <div
@@ -236,13 +236,13 @@ export default {
         {
           item: "师资力量",
           nameEn: "Faculty",
-          path: "/teachingStaff",
+          path: "/faculty",
           children: [],
         },
         {
           item: "学员社区",
           nameEn: "Students",
-          path: "/alumniStyle",
+          path: "/alumni",
           children: [],
         },
         {
@@ -262,8 +262,8 @@ export default {
         { name: "首页", nameEn: "Home", path: "/" },
         { name: "关于我们", nameEn: "About Us", path: "/aboutUs" },
         { name: "课程项目", nameEn: "Programmes", path: "/jnumba" },
-        { name: "师资力量", nameEn: "Faculty", path: "/teachingStaff" },
-        { name: "学员社区", nameEn: "Students", path: "/alumniStyle" },
+        { name: "师资力量", nameEn: "Faculty", path: "/faculty" },
+        { name: "学员社区", nameEn: "Students", path: "/alumni" },
       ],
       currentPath: "/",
       bgHeigth: "",
@@ -298,7 +298,7 @@ export default {
         { label: "En", value: "2" },
       ],
       isSmallScreen: false,
-      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors']
+      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors', '/AmbassadorDetail']
     };
   },
   computed: {
@@ -418,19 +418,19 @@ export default {
         case "/jnumba":
           id = 3;
           break;
-        case "/teachingStaff":
+        case "/faculty":
           id = 15;
           break;
         case "/aboutUs":
           id = 1;
           break;
-        case "/alumniStyle":
+        case "/alumni":
           id = 2;
           break;
         case "/consultationForm":
           id = 19;
           break;
-        case "/promotionAmbassador":
+        case "/Ambassador":
           id = 21
           break;
       }

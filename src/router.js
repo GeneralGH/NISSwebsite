@@ -37,8 +37,8 @@ const routes = [
         component: CourseProjects
     },
     {
-        name: 'teachingStaff',
-        path: '/teachingStaff',
+        name: 'faculty',
+        path: '/faculty',
         component: TeachingStaff
     },
     {
@@ -47,8 +47,8 @@ const routes = [
         component: AboutUs
     },
     {
-        name: 'alumniStyle',
-        path: '/alumniStyle',
+        name: 'alumni',
+        path: '/alumni',
         component: AlumniStyle
     },
     {
@@ -82,13 +82,13 @@ const routes = [
         component: MbaProfessors
     },
     {
-        name: 'promotionAmbassador',
-        path: '/promotionAmbassador',
+        name: 'Ambassador',
+        path: '/Ambassador',
         component: PromotionAmbassador
     },
     {
-        name: 'promotionAmbassadorDetail',
-        path: '/promotionAmbassadorDetail',
+        name: 'AmbassadorDetail',
+        path: '/AmbassadorDetail',
         component: PromotionAmbassadorDetail
     },
     {

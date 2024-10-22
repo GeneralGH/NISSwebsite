@@ -4,45 +4,20 @@
     <pageHeader />
     <div class="page-area">
       <div class="path-list" @click="backPage">
-        <span class="upPath">{{
-          data.type == 1
-            ? userLanguage == "1"
-              ? "关于我们"
-              : "About Us"
-            : userLanguage == "1"
-              ? "学员社区"
-              : "Students"
-        }}
-          /
-        </span>
-        <span>{{
-          data.type == 1
-            ? userLanguage == "1"
-              ? "学院新闻"
-              : "News"
-            : userLanguage == "1"
-              ? "校友动态"
-              : "Alumni Updates"
-        }}</span>
+        <span class="upPath">{{ userLanguage == "1" ? "学员社区" : "Students" }} / </span>
+        <span>{{ userLanguage == "1" ? "宣传大使" : "Ambassador" }}</span>
       </div>
 
       <div class="article-info">
         <div :class="userLanguage == '1' ? 'article-title' : 'article-titleEn'">
           {{ userLanguage == "1" ? data.title : data.titleEn }}
         </div>
-        <div class="article-author">
-          <span>{{ userLanguage == '1' ? '作者' : 'Author' }}</span>：{{
-            userLanguage == "1" ? data.author : data.authorEn
-          }}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{{
-            dateChange(data.createTime)
-          }}
-        </div>
       </div>
 
       <div class="article-area">
         <div class="article-content">
           <div v-html="userLanguage == '1' ? data.content : data.contentEn"></div>
-          <!-- <div class="more-article">
+          <div class="more-article">
             <div :class="item.id ? 'more-article-itme' : 'more-article-itme-none'" v-for="(item, index) in LastAndNext"
               :key="item.id" @click="toDetail(item)">
               <icon class="item-icon" name="chevron-left" v-if="index == 0" />
@@ -53,11 +28,11 @@
               </div>
               <icon class="item-icon" name="chevron-right" v-if="index == 1" />
             </div>
-          </div> -->
+          </div>
         </div>
-        <!-- <div class="other-article-list">
+        <div class="other-article-list">
           <div class="other-article-list-title">
-            {{ userLanguage == "1" ? "其他新闻" : "Other News" }}
+            {{ userLanguage == "1" ? "更多宣传大使" : "More Ambassadors" }}
           </div>
           <div class="other-article-item" v-for="item in list" :key="item.id" @click="toDetail(item)">
             <div class="other-article-item-content">
@@ -68,7 +43,7 @@
             <t-pagination v-model="listQuery.current" :total="listData.totalCount" :page-size.sync="listQuery.size"
               :showPageSize="false" :totalContent="false" @change="pageChange" showPageNumber />
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
     <PageFooter />
@@ -78,7 +53,7 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import news from "../api/news";
+import xuanchuan from "../api/xuanchuan";
 import { Icon } from 'tdesign-icons-vue';
 
 export default {
@@ -114,7 +89,7 @@ export default {
   //方法集合
   methods: {
     async echoData(id) {
-      await this.$request.get(news.getNewsByIdUrl + id)
+      await this.$request.get(xuanchuan.getPromotionByIdUrl + id)
       .then((res) => {
         this.data = res.data.data;
         this.getLastAndNext(id)
@@ -126,13 +101,13 @@ export default {
 
     initList() {
       this.$request
-        .post(news.getNewsListPageUrl, this.listQuery)
+        .post(xuanchuan.getPromotionListPageUrl, this.listQuery)
         .then((res) => {
           res.data.data.list = res.data.data.list.map((item) => {
             return {
               ...item,
-              url: JSON.parse(item.annex).url,
-              urlEn: JSON.parse(item.annexEn).url,
+              url: JSON.parse(item.image).url,
+              urlEn: JSON.parse(item.imageEn).url,
             };
           });
           this.list = res.data.data.list;
@@ -140,8 +115,8 @@ export default {
           /* console.log(this.listData) */
         });
 
-      /* this.$request
-        .post(news.getNewsListPageUrl, {
+      this.$request
+        .post(xuanchuan.getPromotionListPageUrl, {
           current: 1,
           size: 2,
           type: 1,
@@ -150,12 +125,12 @@ export default {
           res.data.data.list = res.data.data.list.map((item) => {
             return {
               ...item,
-              url: JSON.parse(item.annex).url,
-              urlEn: JSON.parse(item.annexEn).url,
+              url: JSON.parse(item.image).url,
+              urlEn: JSON.parse(item.iamgeEn).url,
             };
           });
           this.pcBottomList = res.data.data.list;
-        }); */
+        });
     },
 
     pageChange(e) {
@@ -198,8 +173,7 @@ export default {
     },
 
     backPage() {
-      let path = this.data.type == 1 ? "/aboutUs" : "/alumniStyle";
-      this.$router.replace({ path: path });
+      this.$router.replace({ path: '/Ambassador' });
       window.scrollTo({
         top: 0,
         behavior: "instant", // 可选，使用平滑滚动效果
@@ -207,7 +181,7 @@ export default {
     },
 
     getLastAndNext(id) {
-      this.$request.post(news.getLastAndNextUrl, { id: id, type: this.data.type }).then((res) => {
+      this.$request.post(xuanchuan.getLastAndNextUrl + id).then((res) => {
         this.LastAndNext = [res.data.data.last ? res.data.data.last : {}, res.data.data.next ? res.data.data.next : {}];
       })
     }
@@ -219,12 +193,12 @@ export default {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
 
-    /* if (!id) {
-      this.$router.push({ name: "home" });
+    if (!id) {
+      this.$router.push({ name: "Ambassador" });
     } else {
       this.echoData(id);
       this.initList();
-    } */
+    }
   },
   beforeCreate() { }, //生命周期 - 创建之前
   beforeMount() { }, //生命周期 - 挂载之前

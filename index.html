@@ -2,18 +2,28 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8"/>
-    <link rel="icon" href="./assets/logo.ico"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./assets/logo.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.18.js"></script>
     <title>NISS</title>
 </head>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'AW-16743728308');
+</script>
 
 <body>
-<div id="app">
-    <router-view></router-view>
-</div>
-<script type="module" src="./src/main.js"></script>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16743728308"></script>
+
 </body>
 
 </html>
