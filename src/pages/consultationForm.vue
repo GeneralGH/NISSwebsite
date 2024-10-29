@@ -345,7 +345,7 @@
                 align-items: center;
                 justify-content: center;
               ">
-              <div class="submit-btn">
+              <div class="submit-btn" @click="clickgtag">
                 <t-button size="large" class="btn" type="submit">{{
                   userLanguage == "1" ? "确定，提交表格" : "Submit"
                 }}</t-button>
@@ -736,6 +736,9 @@ export default {
       }
     },
     submit() { },
+    clickgtag() {
+      gtag('event', 'Form_Submit')
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() { },
