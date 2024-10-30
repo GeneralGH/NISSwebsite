@@ -345,7 +345,7 @@
                 align-items: center;
                 justify-content: center;
               ">
-              <div class="submit-btn" @click="clickgtag">
+              <div class="submit-btn">
                 <t-button size="large" class="btn" type="submit">{{
                   userLanguage == "1" ? "确定，提交表格" : "Submit"
                 }}</t-button>
@@ -721,6 +721,7 @@ export default {
               this.$message.error(res.data.msg);
               return;
             }
+            gtag('event', 'Form_Submit')
             this.btnDisabled = true;
             this.$message.success("提交成功，即将返回首页");
             setTimeout(() => {
@@ -735,10 +736,7 @@ export default {
         this.$message.warning(firstError);
       }
     },
-    submit() { },
-    clickgtag() {
-      gtag('event', 'Form_Submit')
-    }
+    submit() { }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() { },
