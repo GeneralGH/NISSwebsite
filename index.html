@@ -9,6 +9,12 @@
     <title>NISS</title>
 </head>
 
+<!-- Google tag (gtag.js) -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16743728308"></script>
+ <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-16743728308');</script>
+
+ <!-- Event snippet for Form_submit conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. --> <script> function gtag_report_conversion(url) { var callback = function () { if (typeof(url) != 'undefined') { window.location = url; } }; gtag('event', 'conversion', { 'send_to': 'AW-16743728308/YHVNCL7iweoZELSJhLA-', 'value': 1.0, 'currency': 'SGD', 'event_callback': callback }); return false; } </script>
+  
 <!-- Facebook Pixel Code -->
 <script>
     !function(f,b,e,v,n,t,s)
@@ -35,15 +41,13 @@
     gtag('js', new Date());
 
     gtag('config', 'AW-16743728308');
-</script>
+</script>    
 
 <body>
     <div id="app">
         <router-view></router-view>
     </div>
     <script type="module" src="./src/main.js"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16743728308"></script>
 
 </body>
 

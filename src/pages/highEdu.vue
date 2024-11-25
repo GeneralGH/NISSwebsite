@@ -76,6 +76,18 @@ export default {
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    // 加载SEO
+    const websiteSchema = { 
+        "@context": "https://schema.org", 
+        "@type": "WebSite", 
+        "name": "NISS-Executive Education", 
+        "description": "NISS creates custom programs tailored to clients' unique needs, aligning with their strategy, vision, and culture. Our team designs executive education to enhance management skills and operational expertise.", 
+        "url": "https://www.niss.edu.sg/highEdu" 
+    }
+    const script = document.createElement('script'); 
+    script.type = 'application/ld+json'; 
+    script.textContent = JSON.stringify(websiteSchema); 
+    document.head.appendChild(script)
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前

@@ -314,6 +314,19 @@ export default {
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    // 加载SEO
+    const websiteSchema = { 
+      "@context": "https://schema.org", 
+      "@type": "WebSite", 
+      "name": "NISS-JNU Chinese MBA in Singapore", 
+      "description": "The Jinan University MBA  Chinese program is dedicated to cultivating business leaders with a global perspective and innovative capabilities. Join this program to embark on a new chapter in your career and advance to higher levels of management!", 
+      "url": "https://www.niss.edu.sg/jnumba" 
+    }
+    const script = document.createElement('script'); 
+    script.type = 'application/ld+json'; 
+    script.textContent = JSON.stringify(websiteSchema); 
+    document.head.appendChild(script)
+
     this.scrollToHash();
     if (this.$route.params.anchor) {
       let str = "options" + this.$route.params.anchor;

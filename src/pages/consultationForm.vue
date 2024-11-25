@@ -742,6 +742,18 @@ export default {
   created() { },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    const websiteSchema = { 
+      "@context": "https://schema.org", 
+      "@type": "WebSite", 
+      "name": "Form-JNU Chinese MBA in Singapore", 
+      "description": "Thank you for your interest! Please complete the form below, and our team will contact you soon to discuss your fit and guide you through the application process.", 
+      "url": "https://www.niss.edu.sg/consultationForm" 
+    }
+    const script = document.createElement('script'); 
+    script.type = 'application/ld+json'; 
+    script.textContent = JSON.stringify(websiteSchema); 
+    document.head.appendChild(script)
+    
     this.$refs.sDatePicker.initDate();
     document.title = this.userLanguage == "1" ? "咨询表单" : "consultationForm";
     // 获取当前页面的完整URL

@@ -37,7 +37,8 @@
                 </div>
               </div>
               <div class="info-subTitle">
-                <div :class="str == '（新加坡班）' ? 'textLeft' : ''" v-for="str in item.subTitle" v-show="userLanguage == '1'">{{ str }}</div>
+                <div :class="str == '（新加坡班）' ? 'textLeft' : ''" v-for="str in item.subTitle"
+                  v-show="userLanguage == '1'">{{ str }}</div>
                 <div v-for="str in item.subTitleEn" v-show="userLanguage == '2'">{{ str }}</div>
               </div>
               <div class="line" v-show="isHovered == index"></div>
@@ -429,6 +430,110 @@ export default {
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    const websiteSchema = {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Nanyang Institute of Social Science",
+      "url": "https://www.niss.edu.sg/",
+      "description": "Nanyang Institute of Social Science offers advanced education opportunities in Singapore, specializing in MBA programs and professional development.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "30 Orange Grove Road, #07-77 RELC Building",
+        "addressLocality": "Singapore",
+        "postalCode": "258352"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+65 6592 0000",
+        "email": "enquiry@niss.edu.sg",
+        "contactType": "Customer Service"
+      },
+      "program": [
+        {
+          "@type": "EducationalOccupationalProgram",
+          "name": "JNU Chinese MBA program in Singapore",
+          "educationalCredentialAwarded": "MBA",
+          "hasCourse": {
+            "@type": "Course",
+            "courseMode": "Part-time",
+            "name": "JNU Chinese MBA(Singapore Class)"
+          }
+        }
+      ],
+      "@graph": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Nanyang Institute of Social Science",
+          "logo": "https://www.niss.edu.sg/assets/logo.12caeabd.png",
+          "url": "https://www.niss.edu.sg/",
+          "sameAs": [
+            "https://www.facebook.com/SGNISS",
+            "https://www.linkedin.com/company/nanyang-institute-of-social-sciences/"
+          ],
+          "brand": "NISS",
+          "slogan": "To be an invaluable lifelong learning platform"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "NISS-Nanyang Institute of Social Science",
+          "url": "https://www.niss.edu.sg/",
+          "description": "Explore educational programs, resources, and apply for MBA courses at Nanyang Institute of Social Science.",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.niss.edu.sg/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "inLanguage": [
+            "en",
+            "zh"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Home-anyang Institute of Social Science",
+          "url": "https://www.niss.edu.sg/",
+          "description": "Welcome to the Nanyang Institute of Social Science, offering quality education in Singapore.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "NISS-Nanyang Institute of Social Science",
+            "url": "https://www.niss.edu.sg/"
+          },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.niss.edu.sg/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "About Us",
+                "item": "https://www.niss.edu.sg/aboutUs"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Programs",
+                "item": "https://www.niss.edu.sg/jnumba"
+              }
+            ]
+          },
+          "primaryImageOfPage": "https://www.niss.edu.sg/api//profile/upload/2024/11/04/学校封面图_20241104175653A057.jpg"
+        }
+      ]
+    }
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(websiteSchema);
+    document.head.appendChild(script)
+
+
     const windowHeight = window.innerHeight;
     const contentTwoElement = document.querySelector(".content-two");
     const infoRight = document.getElementById("content-info");

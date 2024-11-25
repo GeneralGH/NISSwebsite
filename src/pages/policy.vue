@@ -88,6 +88,18 @@ export default {
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    // 加载SEO
+    const websiteSchema = { 
+      "@context": "https://schema.org", 
+      "@type": "WebSite", 
+      "name": "Policy-Nanyang Institute of Social Science", 
+      "description": "This Privacy Policy outlines privacy practices for www.niss.edu.sg. By using our site, you consent to the collection and use of your information as described in this policy.", 
+      "url": "https://www.niss.edu.sg/policy" 
+    }
+    const script = document.createElement('script'); 
+    script.type = 'application/ld+json'; 
+    script.textContent = JSON.stringify(websiteSchema); 
+    document.head.appendChild(script)
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前

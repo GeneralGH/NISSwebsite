@@ -134,7 +134,18 @@ export default {
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-
+        // 加载SEO
+        const websiteSchema = { 
+            "@context": "https://schema.org", 
+            "@type": "WebSite", 
+            "name": "Ambassador-JNU Chinese MBA in Singapore", 
+            "description": "Welcome to becoming a JNU Program Ambassador! To foster a thriving ecosystem for the Jinan University Chinese MBA in Singapore, NISS invites alumni and students to promote and expand the program’s impact.", 
+            "url": "https://www.niss.edu.sg/Ambassador" 
+        }
+        const script = document.createElement('script'); 
+        script.type = 'application/ld+json'; 
+        script.textContent = JSON.stringify(websiteSchema); 
+        document.head.appendChild(script)
     },
     beforeCreate() { }, //生命周期 - 创建之前
     beforeMount() { }, //生命周期 - 挂载之前

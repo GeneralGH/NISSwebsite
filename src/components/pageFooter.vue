@@ -16,7 +16,7 @@
         </div>
         <div class="registration-info">
           <div>Nanyang Institute of Social Sciences</div>
-          <div>Registration No. 201813165E</div>
+          <div>PEI Registration No. 201813165E</div>
           <div>Registration Period: 10/05/2024 - 09/05/2028</div>
         </div>
         <div class="contact-information">
@@ -58,7 +58,7 @@
       </div>
       <div class="registration-info">
         <div>Nanyang Institute of Social Sciences</div>
-        <div>Registration No. 201813165E</div>
+        <div>PEI Registration No. 201813165E</div>
         <div>Registration Period: 10/05/2024 - 09/05/2028</div>
       </div>
       <div class="web-sign">© 2024 NISS. All rights reserved.</div>
