@@ -58,7 +58,9 @@
           </div>
         </div>
       </div>
-      <SuspendedWindow v-show="openWindow" />
+      <transition name="slide-down">
+        <SuspendedWindow v-show="openWindow" />
+      </transition>
       <Overlay :visible.sync="isOverlayVisible">
         <div style="color: #ffffff">
           <div class="menu-area">
@@ -543,6 +545,7 @@ export default {
   width: 100%;
   height: 100px;
   z-index: 200;
+  transition: background-color 1s ease;
   /* left: 50%;
     transform: translateX(-50%); */
 }
@@ -814,5 +817,20 @@ export default {
   margin: 60px auto;
   width: 85%;
   font-size: 24px;
+}
+
+/* 定义过渡效果的CSS */
+.slide-down-enter-active, .slide-down-leave-active {
+  transition: all 1s ease; /* 过渡效果持续1秒，使用ease缓动函数 */
+}
+ 
+.slide-down-enter {
+  transform: translateY(-100%); /* 进入时从上方向下移动，初始位置在视口上方 */
+  opacity: 0; /* 进入时透明度为0，实现淡入效果 */
+}
+ 
+.slide-down-leave-to /* 在Vue 2.1.8及以上版本中，使用.slide-down-leave-to */ {
+  transform: translateY(-100%); /* 退出时从下方向上反向移动，最终位置在视口下方 */
+  opacity: 0; /* 退出时透明度为0，实现淡出效果 */
 }
 </style>
