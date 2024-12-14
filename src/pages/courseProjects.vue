@@ -169,7 +169,7 @@ export default {
               id: "options3-4",
             },
             {
-              name: "学费",
+              name: "学费及奖学金",
               nameEn: "Tuition Fees",
               id: "options3-5",
             },

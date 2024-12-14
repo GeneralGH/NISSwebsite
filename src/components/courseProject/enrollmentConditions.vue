@@ -81,12 +81,18 @@
         </div>
 
         <div class="content-item" id="options3-5">
-            <div class="title">{{ userLanguage == '1' ? '学费' : 'Tuition Fees' }}</div>
+            <div class="title">{{ userLanguage == '1' ? '学费及奖学金' : 'Tuition Fees' }}</div>
             <div class="line"></div>
             <div class="info-content des">
-                {{ userLanguage == '1' ? '项目总学费：S$49,000（不含GST，2025年春季入学学费参考），分12期等额支付。' : 'S$49,000 (2024 Fall Intake, before Goods & Services Tax)' }}
+                <p class="signOffset">·</p>{{ userLanguage == '1' ? '项目总学费：S$49,000（不含GST，2025年春季入学学费参考），分12期等额支付。' : 'S$49,000 (2024 Fall Intake, before Goods & Services Tax)' }}
             </div>
-        </div>
+            <div class="text-Offset info-content des">
+                {{ userLanguage == '1' ? '·“骄傲传承”奖学金：获“项目宣传大使”推荐的申请人，可获“骄傲传承”奖学金，总额1200新币。' : '' }}
+            </div>
+            <div class="text-Offset info-content des">
+                {{ userLanguage == '1' ? '·“骄傲同行”奖学金：申请人邀约优秀的朋友和自己共同就读项目，两人于同季成功入学后，可获“骄傲同行”奖学金，每人总额1200新币。' : '' }}
+            </div>
+        </div> 
     </div>
 </template>
 
@@ -259,5 +265,15 @@ export default {
     font-weight: 300;
     font-size: 16px;
     color: #172C47;
+}
+
+.text-Offset {
+    padding-left: 18px;
+}
+
+.signOffset {
+    display: inline;
+    margin-left: -13px;
+    margin-right: 15px;
 }
 </style>

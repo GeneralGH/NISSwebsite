@@ -6,20 +6,10 @@
     <div class="header-nav-area">
       <div class="header-mobile">
         <div class="logo">
-          <img
-            style="display: block"
-            src="../../assets/header/logo.png"
-            alt=""
-          />
+          <img style="display: block" src="../../assets/header/logo.png" alt="" />
         </div>
         <div class="header-mobile-bread">
-          <img
-          class="menu-img"
-            style="display: block"
-            src="../../assets/menu.png"
-            alt=""
-            @click="showOverlay"
-          />
+          <img class="menu-img" style="display: block" src="../../assets/menu.png" alt="" @click="showOverlay" />
           <!-- <t-image
             @click="showOverlay"
             class="menu-img"
@@ -35,12 +25,8 @@
           <img src="../../assets/header/logo.png" alt="" />
         </div>
         <div class="header-nav">
-          <div
-            v-for="(item, index) in navList"
-            class="nav-item"
-            @click="toPage(item)"
-            :style="currentPath == item.path ? `color: #FF9C00;` : ''"
-          >
+          <div v-for="(item, index) in navList" class="nav-item" @click="toPage(item)"
+            :style="currentPath == item.path ? `color: #FF9C00;` : ''">
             {{ userLanguage == "1" ? item.name : item.nameEn }}
           </div>
         </div>
@@ -75,42 +61,27 @@
       <Overlay :visible.sync="isOverlayVisible">
         <div style="color: #ffffff">
           <div class="menu-area">
-            <div><img src="../../assets/mBack.png" alt=""  @click="goBack"></div>
+            <div><img src="../../assets/mBack.png" alt="" @click="goBack"></div>
             <div><img src="../../assets/mClose.png" alt="" @click="hideOverlay"></div>
           </div>
 
-          <div class="menu-content" v-if="showChildren === true" @click="handleClick({children: [], path: '/', item: '首页'})">
+          <div class="menu-content" v-if="showChildren === true"
+            @click="handleClick({ children: [], path: '/', item: '首页' })">
             <div class="menu-one">{{ userLanguage == '1' ? '首页' : 'Home' }}</div>
           </div>
-          <div class="menu-content" v-if="showChildren === true" >
-            <div class="menu-one"
-              v-if="index === 0"
-              v-for="(item, index) in displayMenu"
-              :key="index"
-              :class="{ 'overlay-color': currentPath == item.path }"
-              @click="handleClick(item, index)"
-            >
+          <div class="menu-content" v-if="showChildren === true">
+            <div class="menu-one" v-if="index === 0" v-for="(item, index) in displayMenu" :key="index"
+              :class="{ 'overlay-color': currentPath == item.path }" @click="handleClick(item, index)">
               {{ userLanguage == "1" ? item.item : item.nameEn || item }}
             </div>
-            <div
-              :class="[currentPath == item.path ? 'overlay-color' : '']"
-              class="menu-two"
-              v-if="index !== 0"
-              v-for="(item, index) in displayMenu"
-              :key="index"
-              @click="handleClick(item, index)"
-            >
+            <div :class="[currentPath == item.path ? 'overlay-color' : '']" class="menu-two" v-if="index !== 0"
+              v-for="(item, index) in displayMenu" :key="index" @click="handleClick(item, index)">
               {{ userLanguage == "1" ? item.item.item : item.item.nameEn }}
             </div>
           </div>
           <div class="menu-three" v-else>
-            <div
-              class="menu-one"
-              v-for="(item, index) in displayMenu"
-              :key="index"
-              :class="{ 'overlay-color': currentPath == item.path }"
-              @click="handleClick(item, index)"
-            >
+            <div class="menu-one" v-for="(item, index) in displayMenu" :key="index"
+              :class="{ 'overlay-color': currentPath == item.path }" @click="handleClick(item, index)">
               {{ userLanguage == "1" ? item.item : item.nameEn || item }}
             </div>
           </div>
@@ -127,40 +98,26 @@
     <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/jnumba'" />
     <TeachingStaffHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/faculty'"
-    />
+      v-if="currentPath == '/faculty'" />
     <AboutUsHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/aboutUs'"
-    />
+      v-if="currentPath == '/aboutUs'" />
     <ConsultationFormHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/consultationForm'"
-    />
+      v-if="currentPath == '/consultationForm'" />
     <AlumniStyleHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/alumni'"
-    />
+      v-if="currentPath == '/alumni'" />
     <PromotionAmbassador
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/Ambassador'"
-    />
+      v-if="currentPath == '/Ambassador'" />
 
-    <div
-      class="sidebar"
-      :class="{
-        'sidebar-zh': userLanguage == '1',
-        'sidebar-en': userLanguage !== '1',
-      }"
-    >
-      <div
-        class="sidebar-item"
-        v-for="(item, index) in sidebarList"
-        @click="toPage({ path: item.path })"
-        @mouseover="isHovered = index"
-        @mouseleave="isHovered = -1"
-        :key="index"
-      >
+    <div class="sidebar" :class="{
+      'sidebar-zh': userLanguage == '1',
+      'sidebar-en': userLanguage !== '1',
+    }">
+      <div class="sidebar-item" v-for="(item, index) in sidebarList" @click="toPage({ path: item.path })"
+        @mouseover="isHovered = index" @mouseleave="isHovered = -1" :key="index">
         <img :src="isHovered == index ? item.imgPath : item.unImgPath" alt="" />
         <div>{{ userLanguage == "1" ? item.name : item.nameEn }}</div>
       </div>
@@ -188,7 +145,8 @@ import unProjectImg from "../../assets/header/silderIcon/uncheckProject.png";
 import unChatImg from "../../assets/header/silderIcon/uncheckSide.png";
 import Overlay from "../components/Overlay.vue";
 import router from "../router.js";
-
+import WhatsappImg from "../../assets/header/silderIcon/Whatsapp.png"
+import unWhatsappImg from "../../assets/header/silderIcon/ncheckWhatsapp.png"
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {
@@ -268,14 +226,14 @@ export default {
       currentPath: "/",
       bgHeigth: "",
       sidebarList: [
-        /* {
-          name: "立即申请",
-          nameEn: "Apply Now",
-          path: "",
-          imgPath: ApplyImg,
-          unImgPath: unApplyImg,
-        },
         {
+          name: "1对1咨询",
+          nameEn: "Schedule an Info Session",
+          path: "/consultationForm",
+          imgPath: ChatImg,
+          unImgPath: unChatImg,
+        },
+        /* {
           name: "项目导览",
           nameEn: "Program Overview",
           path: "",
@@ -283,11 +241,11 @@ export default {
           unImgPath: unProjectImg,
         }, */
         {
-          name: "1对1咨询",
-          nameEn: "Schedule an Info Session",
-          path: "/consultationForm",
-          imgPath: ChatImg,
-          unImgPath: unChatImg,
+          name: "WhatsApp",
+          nameEn: "WhatsApp",
+          path: "/send?phone=6563203595",
+          imgPath: WhatsappImg,
+          unImgPath: unWhatsappImg,
         },
       ],
       isHovered: -1,
@@ -307,7 +265,7 @@ export default {
     },
   },
   watch: {
-    userLanguage(newVal) {},
+    userLanguage(newVal) { },
   },
   //方法集合
   methods: {
@@ -402,10 +360,34 @@ export default {
       this.isOverlayVisible = true;
     },
     toPage(item) {
+      console.log(item.path)
       if (!item.path) {
+        console.log("无效路径");
         return;
       }
-      this.$router.push(item.path);
+      // 判断是否为外部链接
+      if (item.path.includes("6563203595")) {
+        const fullURL = `https://api.whatsapp.com${item.path}`;
+        console.log("外部链接:", fullURL);
+        window.open(fullURL, "_blank"); // 新标签页打开外链
+        return; // 跳过后续逻辑
+      }
+
+      // 判断是否为内部路由
+      if (item.path.startsWith("/")) {
+        if (this.$route.fullPath !== item.path) {
+          console.log("跳转到内部路由:", item.path);
+          this.$router.push(item.path).catch((err) => {
+            if (err.name !== "NavigationDuplicated") {
+              console.error(err); // 捕获并忽略重复导航错误
+            }
+          });
+        } else {
+          console.log("已在当前页面，跳过导航");
+        }
+      }
+
+      // 内部路由跳转后滚动到顶部
       window.scrollTo({
         top: 0,
         behavior: "instant", // 可选，使用平滑滚动效果
@@ -436,7 +418,7 @@ export default {
       }
       if (id) {
         this.imgUrl = await this.$getPageContent(id);
-      }      
+      }
     },
 
     turnArrow() {
@@ -474,13 +456,13 @@ export default {
       headerNavArea.style.backgroundColor = `rgba(22, 58, 107, 1)`;
     }
   },
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+  beforeCreate() { }, //生命周期 - 创建之前
+  beforeMount() { }, //生命周期 - 挂载之前
+  beforeUpdate() { }, //生命周期 - 更新之前
+  updated() { }, //生命周期 - 更新之后
+  beforeDestroy() { }, //生命周期 - 销毁之前
+  destroyed() { }, //生命周期 - 销毁完成
+  activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 
@@ -497,9 +479,11 @@ export default {
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
+
     div {
       font-size: 23px;
     }
+
     img {
       width: 81px;
       height: 81px;
@@ -507,9 +491,11 @@ export default {
   }
 
   .menu-content {
-    margin: 60px auto; width: 85%;
+    margin: 60px auto;
+    width: 85%;
   }
 }
+
 .overlay-color {
   color: #ff9c00 !important;
 }
@@ -553,7 +539,18 @@ export default {
 
 @media (max-width: 720px) {
   .sidebar {
-    /* display: none !important; */
+    width: 92px !important;
+    /* 缩小宽度 */
+    height: 200px !important;
+    /* 高度保持自适应 */
+    font-size: 14px !important;
+    z-index: 200 !important;
+
+    /* 字体缩小 */
+    img {
+      width: 48px !important;
+      height: 48px !important;
+    }
   }
 
   .header-nav {
@@ -734,13 +731,13 @@ export default {
 }
 
 .sidebar-zh {
-  width: 91px;
-  height: 195px;
+  width: 137px;
+  height: 293px;
 }
 
 .sidebar-en {
-  width: 120px;
-  height: 205px;
+  width: 137px;
+  height: 293px;
 }
 
 .sidebar {
@@ -750,7 +747,7 @@ export default {
   right: 0;
   bottom: 50%;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 24px;
   display: flex;
   flex-direction: column;
@@ -773,20 +770,24 @@ export default {
   }
 
   img {
-    width: 47px;
-    height: 47px;
+    width: 68px;
+    height: 68px;
   }
 }
 
 .menu-one {
-  margin-top: 40px; font-size: 24px;
+  margin-top: 40px;
+  font-size: 24px;
 }
 
 .menu-two {
-  margin-left: 20px; margin-top: 40px;
+  margin-left: 20px;
+  margin-top: 40px;
 }
 
 .menu-three {
-  margin: 60px auto; width: 85%; font-size: 24px;
+  margin: 60px auto;
+  width: 85%;
+  font-size: 24px;
 }
 </style>
