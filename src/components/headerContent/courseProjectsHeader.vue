@@ -30,7 +30,6 @@ export default {
     //监控data中的数据变化
     watch: {
         'imgUrl' (val) {
-            console.log(val)
         }
     },
     //方法集合

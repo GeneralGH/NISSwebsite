@@ -290,7 +290,7 @@ export default {
 @media(max-width:720px){
   .module-card {
     width:16rem !important;
-   margin-right: 0 !important;
+    margin-right: 0 !important;
     margin-left: 1rem !important;
     height: auto;
   }

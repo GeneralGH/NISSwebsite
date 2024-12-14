@@ -82,7 +82,7 @@ export default {
           nameEn: 'Program Navigation',
           list: [
             { name: 'MBA', nameEn: 'MBA', path: '/jnumba' },
-            /* {name: 'DBA', nameEn: 'DBA', path: ''}, */
+           /*  { name: '南特工商管理博士', nameEn: 'Doctor of Business Administration', path: ''}, */
             { name: '高管教育', nameEn: 'Executive Education', path: '/highEdu' }
           ]
         },

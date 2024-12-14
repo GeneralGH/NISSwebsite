@@ -12,6 +12,7 @@ import ContactUs from './pages/contactUs.vue'
 import MbaProfessors from './pages/mbaProfessors.vue'
 import PromotionAmbassador from './pages/promotionAmbassador.vue'
 import PromotionAmbassadorDetail from './pages/promotionAmbassadorDetail.vue'
+import DBA from './pages/DBA.vue'
 import Vue from 'vue';
 
 Vue.use(VueRouter)
@@ -41,6 +42,11 @@ const routes = [
         meta: {
             description: '暨南大学中文MBA（新加坡班），免联考、免英语，授课内容结合中国与西方管理知识，面向具备多年工作经验的专业人士开放申请。'
         }
+    },
+    {
+        name: 'DBArouter',
+        path: '/DBArouter',
+        component: DBA
     },
     {
         name: 'faculty',
@@ -133,7 +139,6 @@ const router = new VueRouter({
         // 在每个路由配置中添加 beforeEnter 钩子函数
         route.beforeEnter = (to, from, next) => {
             // 判断路径字符串的最后一位是否为 '/'
-            console.log(to.path)
             if (to.path.slice(-1) === '/' && to.path != '/') {
                 // 重定向到 '*' 路径
                 next({ path: '/zh-hans' })

@@ -171,12 +171,12 @@ export default {
           subTitleEn: ['JNU MBA Program', '(Mandarin)'],
           path: "/jnumba",
         },
-        /* {
-          title: "DBA",
+        {
+          title: "博士项目",
           titleEn: "DBA",
-          subTitle: ['南特高等商学院', '亚太中文DBA项目'],
-          subTitleEn: ['Audencia Business School', 'Asia-Pacific DBA Program', '(Chinese)'],
-        }, */
+          subTitle: ['南特高等商学院', '亚太中文工商管理博士'],
+          subTitleEn: ['Audencia Asia-pacific ', 'Doctor of Business Administration', 'Program (Mandarin)'],
+        },
         {
           title: "EE",
           titleEn: "EE",

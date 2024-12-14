@@ -58,6 +58,7 @@
           </div>
         </div>
       </div>
+      <SuspendedWindow v-show="openWindow" />
       <Overlay :visible.sync="isOverlayVisible">
         <div style="color: #ffffff">
           <div class="menu-area">
@@ -95,7 +96,7 @@
     <!-- 各个页面不同展示 -->
     <div class="articleHeader" v-if="isNoTopImgPages.includes(currentPath)"></div>
     <HomeHeader v-if="currentPath == '/'" />
-    <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/jnumba'" />
+    <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/jnumba' || currentPath == '/DBArouter'" />
     <TeachingStaffHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
       v-if="currentPath == '/faculty'" />
@@ -147,6 +148,7 @@ import Overlay from "../components/Overlay.vue";
 import router from "../router.js";
 import WhatsappImg from "../../assets/header/silderIcon/Whatsapp.png"
 import unWhatsappImg from "../../assets/header/silderIcon/ncheckWhatsapp.png"
+import SuspendedWindow from "./SuspendedWindow.vue";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {
@@ -157,7 +159,8 @@ export default {
     AboutUsHeader,
     AlumniStyleHeader,
     ConsultationFormHeader,
-    PromotionAmbassador
+    PromotionAmbassador,
+    SuspendedWindow
   },
   data() {
     //这里存放数据
@@ -256,7 +259,8 @@ export default {
         { label: "En", value: "2" },
       ],
       isSmallScreen: false,
-      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors', '/AmbassadorDetail']
+      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors', '/AmbassadorDetail'],
+      openWindow: false
     };
   },
   computed: {
@@ -266,6 +270,14 @@ export default {
   },
   watch: {
     userLanguage(newVal) { },
+    'openWindow' (val) {
+      const headerNavArea = document.querySelector(".header-nav-area")
+      if (val) {
+        headerNavArea.style.backgroundColor = `rgba(22, 58, 107, 1)`;
+      } else {
+        headerNavArea.style.backgroundColor = `rgba(22, 58, 107, 0)`;
+      }
+    }
   },
   //方法集合
   methods: {
@@ -360,32 +372,44 @@ export default {
       this.isOverlayVisible = true;
     },
     toPage(item) {
-      console.log(item.path)
       if (!item.path) {
-        console.log("无效路径");
         return;
+      }
+      // 判断是否展开课程项目
+      if (item.name == '课程项目') {
+        this.openWindow = !this.openWindow
+        return
       }
       // 判断是否为外部链接
       if (item.path.includes("6563203595")) {
         const fullURL = `https://api.whatsapp.com${item.path}`;
-        console.log("外部链接:", fullURL);
         window.open(fullURL, "_blank"); // 新标签页打开外链
         return; // 跳过后续逻辑
       }
-
-      // 判断是否为内部路由
+      // 判断跳转表单页带参
+      if (item.path == '/consultationForm') {
+        let params = { type: 0 }
+        if (this.$route.name == 'jnumba') {
+          params.type = 1
+        }
+        if (this.$route.name == 'DBArouter') {
+          params.type = 2
+        }
+        this.$router.push({name: 'consultationForm', params: params})
+        return
+      }
+      this.$router.push(item.path)
+      /* // 判断是否为内部路由
       if (item.path.startsWith("/")) {
         if (this.$route.fullPath !== item.path) {
-          console.log("跳转到内部路由:", item.path);
           this.$router.push(item.path).catch((err) => {
             if (err.name !== "NavigationDuplicated") {
               console.error(err); // 捕获并忽略重复导航错误
             }
           });
         } else {
-          console.log("已在当前页面，跳过导航");
         }
-      }
+      } */
 
       // 内部路由跳转后滚动到顶部
       window.scrollTo({
@@ -458,7 +482,7 @@ export default {
   },
   beforeCreate() { }, //生命周期 - 创建之前
   beforeMount() { }, //生命周期 - 挂载之前
-  beforeUpdate() { }, //生命周期 - 更新之前
+  beforeUpdate() {}, //生命周期 - 更新之前
   updated() { }, //生命周期 - 更新之后
   beforeDestroy() { }, //生命周期 - 销毁之前
   destroyed() { }, //生命周期 - 销毁完成
@@ -630,6 +654,7 @@ export default {
 
     .nav-item {
       cursor: pointer;
+      user-select: none;
     }
   }
 

@@ -233,7 +233,7 @@
               </div>
               <div style="position: relative">
                 <t-form-item name="project">
-                  <sSelect @optionChange="(item) => {
+                  <sSelect ref="projectSelectRef" @optionChange="(item) => {
                     formData.project = userLanguage == '1' ? item.label : item.labelEn;
                   }
                     " :options="programOptions" :placeholder="userLanguage == '1'
@@ -416,7 +416,7 @@ export default {
       ],
       programOptions: [
         { label: "暨南大学新加坡中文MBA", labelEn: 'JNU MBA Program', value: 1 },
-        // { label: "南特高等商学院亚太中文DBA", labelEn: 'Asia-pacific DBA Program（Chinese）', value: 2 },
+        { label: "南特高等商学院亚太中文DBA", labelEn: 'Asia-pacific DBA Program（Chinese）', value: 2 },
         { label: "高管教育", labelEn: 'Executive Education', value: 3 },
       ],
       knowingChannelOptions: [
@@ -771,7 +771,12 @@ export default {
     this.DateTimeOptions = timelist.morningTimeSlots
 
     // 输出source参数的值
-    console.log(sourceValue); // 这里会输出参数source的值
+    if (this.$route.params.type == 1) {
+      this.$refs.projectSelectRef.optionChange(this.programOptions[0])
+    }
+    if (this.$route.params.type == 2) {
+      this.$refs.projectSelectRef.optionChange(this.programOptions[1])
+    }
   },
   beforeCreate() { }, //生命周期 - 创建之前
   beforeMount() { }, //生命周期 - 挂载之前

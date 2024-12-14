@@ -8,13 +8,12 @@
         <div class="leftSticky">
           <div class="leftList">
             <div class="title z-title">
-              {{ userLanguage == "1" ? "暨南大学" : "JNU" }}<br />{{
-                userLanguage == "1" ? "中文MBA（新加坡班）" : "MBA Program (Mandarin)"
+              {{ userLanguage == "1" ? "南特高等商学院" : "Audencia Business School" }}<br />{{
+                userLanguage == "1" ? "亚太中文工商管理博士项目" : "Asia-pacific Doctor of Business Administration Program (Mandarin)"
               }}
             </div>
             <div class="optionsList">
               <div class="list-line-area">
-                <!-- <div class="list-line-header"></div> -->
                 <div class="list-line"></div>
               </div>
               <div class="list-area">
@@ -33,7 +32,6 @@
                     {{ userLanguage == "1" ? item.name : item.nameEn }}
                   </div>
                   <div
-                    v-show="isEmpowerment(child)"
                     class="item-subTitle"
                     :style="{ color: currentTemplate == child.id ? '#FF9C00' : '#172C47', }"
                     v-for="(child, childIndex) in item.list"
@@ -72,10 +70,9 @@
 
         <div class="templateCss">
           <t-space direction="vertical" size="large" style="width: 100%;">
-            <AboutUs id="options1" />
-            <compulsoryModules id="options2" />
-            <enrollmentConditions id="options3" />
-            <!-- <uniqueValue id="options4" /> -->
+            <DBA1 id="options1" />
+            <DBA2 id="options2" />
+            <DBA3 id="options3" />
           </t-space>
         </div>
       </div>
@@ -88,14 +85,12 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import AboutUs from "../components/courseProject/aboutUs.vue";
-import compulsoryModules from "../components/courseProject/compulsoryModules.vue";
-import enrollmentConditions from "../components/courseProject/enrollmentConditions.vue";
-import uniqueValue from "../components/courseProject/uniqueValue.vue";
-
+import DBA1 from '../components/courseProject/DBA1.vue';
+import DBA2 from '../components/courseProject/DBA2.vue';
+import DBA3 from '../components/courseProject/DBA3.vue';
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: { AboutUs, compulsoryModules, enrollmentConditions, uniqueValue },
+  components: { DBA1, DBA2, DBA3 },
   data() {
     //这里存放数据
     return {
@@ -107,30 +102,20 @@ export default {
           id: "options1",
           list: [
             {
-              name: "关于暨南大学",
-              nameEn: "About Jinan University",
+              name: "关于南特高等商学院",
+              nameEn: "About Audencia Business School",
               id: "options1-1",
             },
             {
               name: "项目介绍",
-              nameEn: "Program Introduction",
+              nameEn: "Program Overview",
               id: "options1-2",
             },
             {
               name: "项目优势",
-              nameEn: "Program Advantages",
+              nameEn: "Program Features",
               id: "options1-3",
-            },
-            {
-              name: "全面赋能",
-              nameEn: "Program Advantages",
-              id: "options1-4",
-            },
-            {
-              name: "在读学生画像",
-              nameEn: "Student Profile",
-              id: "options1-5",
-            },
+            }
           ],
         },
         {
@@ -138,52 +123,52 @@ export default {
           nameEn: "Curriculum System",
           id: "options2",
           list: [
-            { name: "必修模块", nameEn: "Core Modules", id: "options2-1" },
-            { name: "选修模块", nameEn: "Elective Modules", id: "options2-2" },
+            { name: "课程设置", nameEn: "Curriculum", id: "options2-1" },
+            { name: "研究基础模块", nameEn: "Research Foundation Modules", id: "options2-2" },
             {
-              name: "国际交换",
-              nameEn: "Overseas Module",
+              name: "研究专题模块",
+              nameEn: "Specialized Research Topics",
               id: "options2-3",
+            },
+            {
+              name: "研究实践模块",
+              nameEn: "Research Workshops",
+              id: "options2-4",
             },
           ],
         },
         {
           name: "招生信息",
-          nameEn: "Admissions Information",
+          nameEn: "Admissions",
           id: "options3",
           list: [
             {
-              name: "招生条件",
-              nameEn: "Admission Requirements",
+              name: "招生对象",
+              nameEn: "Who Are We Looking For?",
               id: "options3-1",
+            },
+            {
+              name: "申请条件",
+              nameEn: "Eligibility",
+              id: "options3-2",
             },
             {
               name: "申请流程",
               nameEn: "Application Process",
-              id: "options3-2",
+              id: "options3-3",
             },
-            /* { name: "招生批次", nameEn: "Admission Rounds", id: "options3-3" }, */
             {
               name: "入学与毕业时间",
-              nameEn: "Enrollment and Graduation Dates",
+              nameEn: "Commencement and Graduation",
               id: "options3-4",
             },
             {
-              name: "学费及奖学金",
-              nameEn: "Tuition Fees and Scholarship",
+              name: "学费",
+              nameEn: "Fees and Scholarships",
               id: "options3-5",
             },
           ],
         },
-        /* {
-          name: "独特价值",
-          id: "options4",
-          nameEn: "Unique Value",
-          list: [
-            { name: "独特价值", nameEn: "Unique Value", id: "options4-1" },
-            { name: "人脉资源", nameEn: "Network Resources", id: "options4-2" },
-          ],
-        }, */
       ],
       isSticky: false,
       isAbsot: false,
@@ -199,7 +184,6 @@ export default {
   watch: {
     userLanguage(newVal) {
       document.title = newVal == "1" ? "课程项目" : "Programmes"
-      /* this.isEmpowerment(newVal) */
     },
     '$route'(to, from) {
      this.scrollToHash()
@@ -236,27 +220,6 @@ export default {
       }
     },
 
-    /* handleScroll() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const contentBodyHeight = document.querySelector('.content-body').offsetHeight;
-
-            if (scrollTop + windowHeight >= contentBodyHeight + 900) {
-                // 当 leftList 到达 content-body 底部时停止跟随滚动
-                this.isSticky = false;
-                this.isAbsot = true
-            } else if (scrollTop > 800) {
-                // 滚动超过 800px 时，将 leftList 设置为 fixed
-                this.isSticky = true;
-                this.isAbsot = false
-            } else {
-                // 其他情况下，leftList 不是 fixed
-                this.isSticky = false;
-                this.isAbsot = false
-            }
-        }, */
-
     fllowUpdate() {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -277,29 +240,6 @@ export default {
       elements.forEach((element) => {
         observer.observe(element);
       });
-
-      /* window.addEventListener('floowscroll', () => {
-                elements.forEach(element => {
-                    const targetTop = element.getBoundingClientRect().top;
-                    const scrollThreshold = window.innerHeight * 0.3; // 定义滚动的顶部区域阈值为视口高度的30%
-
-                    if (targetTop <= scrollThreshold) {
-                        this.currentTemplate = element.id;
-                    }
-                });
-            }); */
-    },
-
-    isEmpowerment(val) {
-      if (val.name == '全面赋能' || val.name == '在读学生画像') {
-        if (this.userLanguage == '1') {
-          return true
-        } else {
-          return false
-        }
-      } else {
-        return true
-      }
     },
 
     Jump(path) {
@@ -314,19 +254,6 @@ export default {
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    // 加载SEO
-    const websiteSchema = { 
-      "@context": "https://schema.org", 
-      "@type": "WebSite", 
-      "name": "NISS-JNU Chinese MBA in Singapore", 
-      "description": "The Jinan University MBA  Chinese program is dedicated to cultivating business leaders with a global perspective and innovative capabilities. Join this program to embark on a new chapter in your career and advance to higher levels of management!", 
-      "url": "https://www.niss.edu.sg/jnumba" 
-    }
-    const script = document.createElement('script'); 
-    script.type = 'application/ld+json'; 
-    script.textContent = JSON.stringify(websiteSchema); 
-    document.head.appendChild(script)
-
     this.scrollToHash();
     if (this.$route.params.anchor) {
       let str = "options" + this.$route.params.anchor;
@@ -338,7 +265,6 @@ export default {
       this.fllowUpdate();
     }
     document.title = this.userLanguage == "1" ? "课程项目" : "Programmes"
-    /* this.isEmpowerment(this.userLanguage) */
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前f
