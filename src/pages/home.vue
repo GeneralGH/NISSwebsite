@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-    <div class="content-two" ref="contentTwo">
+    <div class="content-two" ref="contentTwo" style="position: relative;">
       <div class="content-info" id="content-info">
         <div class="info-left content-se">
           <div class="title" v-show="currentScroll == 0">
@@ -61,24 +61,31 @@
                 : "JNU MBA PROGRAM"
             }}
           </div>
-          <!-- <div class="subTitle" v-show="currentScroll == 0">
-            {{
-              userLanguage == "2"
-                ? "暨南大学新加坡MBA项目"
-                : "JNU MBA PROGRAM"
-            }}
-          </div> -->
 
-          <div class="title" v-show="currentScroll == 1">
+          <div class="title" v-show="currentScroll == 1" :style="isSmallScreen ? 'margin-bottom: 0 ;' : ''">
+            <p style="position: absolute;" class="title-space-two">
+              {{
+                userLanguage == "1"
+                  ? `南特高等商学院`
+                  : "Doctor of Business"
+              }}
+            </p>
+            <p style="position: absolute;" class="title-space-one">
+              {{
+                userLanguage == "1"
+                  ? `亚太中文工商管理博士`
+                  : "Administration Program (Mandarin)"
+              }}
+            </p>
+          </div>
+
+          <div class="title" v-show="currentScroll == 2">
             {{ userLanguage == "1" ? "高管教育" : "Executive Education" }}
           </div>
-          <!-- <div class="subTitle" v-show="currentScroll == 2">
-            {{ userLanguage == "2" ? "高级管理教育" : "Executive Education" }}
-          </div> -->
 
           <img v-show="currentScroll == 0" src='../../assets/home/mba.png' alt="" />
-
-          <img v-show="currentScroll == 1" src='../../assets/home/highEdu.png' alt="" />
+          <img v-show="currentScroll == 1" src='../../assets/home/DBA.png' alt=""  class="DBA-img-space"/>
+          <img v-show="currentScroll == 2" src='../../assets/home/highEdu.png' alt="" />
         </div>
         <div class="info-right" id="contentTwoRight" ref="contentTwoRight">
           <div class="info-item" v-for="(item, index) in scrollList" :key="index">
@@ -262,6 +269,7 @@ export default {
         size: 20,
         language: "",
       },
+      isSmallScreen: false,
     };
   },
   computed: {
@@ -316,7 +324,6 @@ export default {
           }
           inner.scrollTop = scrollTop;
         } else if (inv <= 0 && scrollTop > 0) {
-          console.log("beforeScrollTop", scrollTop);
           //向上滚动
           event.preventDefault();
           if (scrollTop - inv <= 0) {
@@ -355,11 +362,13 @@ export default {
     },
 
     jump(item, index) {
-      /* if (index == 1) {
-        return;
-      } */
       this.currentScroll = index;
-      this.scrollList = index ? this.highEduList : this.infoTwoList;
+      if (index == 0) {
+        this.scrollList = this.infoTwoList
+      }
+      if (index == 2) {
+        this.scrollList = this.highEduList
+      }
     },
 
     initList() {
@@ -427,6 +436,7 @@ export default {
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
+    this.isSmallScreen = window.innerWidth <= 720
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
@@ -607,6 +617,17 @@ export default {
 </script>
 
 <style scoped lang="less">
+.title-space-one {
+  width: 800px;
+  top: -50px;
+}
+.title-space-two {
+  width: 800px;
+  top: -100px
+}
+.DBA-img-space {
+  padding-top: 50px;
+}
 /deep/ img {
   -webkit-user-drag: none;
 
@@ -626,6 +647,18 @@ export default {
 }
 
 @media (max-width: 720px) {
+  .title-space-one, .title-space-two {
+    width: 600px !important;
+  }
+  .title-space-one {
+    display: none !important;
+  }
+  .title-space-two{
+    display: none !important;
+  }
+  .DBA-img-space {
+    /* padding-top: 100px !important; */
+  }
   .header-mobile {
     width: 100%;
     z-index: 99999 !important;

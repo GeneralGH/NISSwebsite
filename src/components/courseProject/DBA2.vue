@@ -8,13 +8,13 @@
                 {{
                 userLanguage == "1"
                     ? "南特高等商学院亚太中文工商管理博士项目坚持“管理精英通过研究解决商业问题”，在坚持严格的学术标准前提下，根据学员的实际情况及亚太区域的商业环境，采用课堂教学、论文工作坊、专家指导、学术研讨、研究进展汇报等多种方式相结合的综合培养体系。"
-                    : "The Audencia Asia-Pacific Doctor of Business Administration Program (Mandarin) adheres to the principle of “solving business challenges through management research.” While maintaining rigorous academic standards, the program incorporates participants’ practical experiences and considers the Asia-Pacific business environment. The curriculum employs a blended approach, combining classroom lectures, research workshops, expert guidance, academic seminars, progress reviews, and more."
+                    : `The Audencia Asia-Pacific Doctor of Business Administration Program (Mandarin) adheres to the principle of "solving business challenges through management research." While maintaining rigorous academic standards, the program incorporates participants' practical experiences and considers the Asia-Pacific business environment. The curriculum employs a blended approach, combining classroom lectures, research workshops, expert guidance, academic seminars, progress reviews, and more.`
                 }}
             </div>
             <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
                 {{
                 userLanguage == "1"
-                    ? "项目课程设置包括研究基础模块、研究专题模块及研究实践模块（课题研究及博士论文撰写）。"
+                    ? "项目课程设置包括研究基础模块、研究专题模块及研究实践模块(课题研究及博士论文撰写)。"
                     : `The program is structured into three types of modules: research foundation modules, specialized research topics, and research workshops.`
                 }}
             </div>

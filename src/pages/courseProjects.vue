@@ -203,7 +203,7 @@ export default {
     },
     '$route'(to, from) {
      this.scrollToHash()
-    }
+    },
   },
   //方法集合
   methods: {
@@ -216,14 +216,11 @@ export default {
           if(element){
             element.style.scrollMarginTop = "110px"; 
             element .scrollIntoView({ behavior: 'smooth' });
-  
           }
-          this.isScrolling = false;
-        
       });
     },
     scrollToAnchor(anchor) {
-        clearTimeout(this.scrollTimeout)
+      clearTimeout(this.scrollTimeout)
       this.isScrolling = false;
       const element = document.getElementById(anchor);
       if (element) {
@@ -236,26 +233,26 @@ export default {
       }
     },
 
-    /* handleScroll() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const contentBodyHeight = document.querySelector('.content-body').offsetHeight;
+    handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const contentBodyHeight = document.querySelector('.content-body').offsetHeight;
 
-            if (scrollTop + windowHeight >= contentBodyHeight + 900) {
-                // 当 leftList 到达 content-body 底部时停止跟随滚动
-                this.isSticky = false;
-                this.isAbsot = true
-            } else if (scrollTop > 800) {
-                // 滚动超过 800px 时，将 leftList 设置为 fixed
-                this.isSticky = true;
-                this.isAbsot = false
-            } else {
-                // 其他情况下，leftList 不是 fixed
-                this.isSticky = false;
-                this.isAbsot = false
-            }
-        }, */
+        if (scrollTop + windowHeight >= contentBodyHeight + 900) {
+            // 当 leftList 到达 content-body 底部时停止跟随滚动
+            this.isSticky = false;
+            this.isAbsot = true
+        } else if (scrollTop > 800) {
+            // 滚动超过 800px 时，将 leftList 设置为 fixed
+            this.isSticky = true;
+            this.isAbsot = false
+        } else {
+            // 其他情况下，leftList 不是 fixed
+            this.isSticky = false;
+            this.isAbsot = false
+        }
+    },
 
     fllowUpdate() {
       const observer = new IntersectionObserver(
@@ -276,18 +273,7 @@ export default {
       const elements = document.querySelectorAll("[id]");
       elements.forEach((element) => {
         observer.observe(element);
-      });
-
-      /* window.addEventListener('floowscroll', () => {
-                elements.forEach(element => {
-                    const targetTop = element.getBoundingClientRect().top;
-                    const scrollThreshold = window.innerHeight * 0.3; // 定义滚动的顶部区域阈值为视口高度的30%
-
-                    if (targetTop <= scrollThreshold) {
-                        this.currentTemplate = element.id;
-                    }
-                });
-            }); */
+      })
     },
 
     isEmpowerment(val) {
@@ -303,7 +289,11 @@ export default {
     },
 
     Jump(path) {
-      this.$router.push(path)
+      if (path == '/consultationForm') {
+        this.$router.push({name: 'consultationForm', params: { type: 1 }})
+      } else {
+        this.$router.push(path)
+      }
       window.scrollTo({
         top: 0,
         behavior: 'auto' // 可选，使用平滑滚动效果
@@ -315,7 +305,7 @@ export default {
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     // 加载SEO
-    const websiteSchema = { 
+    /* const websiteSchema = { 
       "@context": "https://schema.org", 
       "@type": "WebSite", 
       "name": "NISS-JNU Chinese MBA in Singapore", 
@@ -325,8 +315,8 @@ export default {
     const script = document.createElement('script'); 
     script.type = 'application/ld+json'; 
     script.textContent = JSON.stringify(websiteSchema); 
-    document.head.appendChild(script)
-
+    document.head.appendChild(script) */
+    
     this.scrollToHash();
     if (this.$route.params.anchor) {
       let str = "options" + this.$route.params.anchor;
@@ -344,7 +334,7 @@ export default {
   beforeMount() {}, //生命周期 - 挂载之前f
   beforeUpdate() {}, //生命周期 - 更新之前
   updated() {
-    this.scrollToHash();
+    /* this.scrollToHash() */
   }, //生命周期 - 更新之后
   beforeDestroy() {
     /* window.removeEventListener('scroll', this.handleScroll); */

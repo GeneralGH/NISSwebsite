@@ -25,7 +25,7 @@
           <img src="../../assets/header/logo.png" alt="" />
         </div>
         <div class="header-nav">
-          <div v-for="(item, index) in navList" class="nav-item" @click="toPage(item)"
+          <div v-for="(item, index) in navList" class="nav-item" @click="toPage(item)" @mouseenter="classShow(item)"
             :style="currentPath == item.path ? `color: #FF9C00;` : ''">
             {{ userLanguage == "1" ? item.name : item.nameEn }}
           </div>
@@ -58,9 +58,12 @@
           </div>
         </div>
       </div>
-      <transition name="slide-down">
-        <SuspendedWindow v-show="openWindow" />
-      </transition>
+      <!-- <transition name="slide-down"> -->
+        <div @mouseleave="openWindow = false" v-show="openWindow">
+          <SuspendedWindow />
+        </div>
+        
+     <!--  </transition> -->
       <Overlay :visible.sync="isOverlayVisible">
         <div style="color: #ffffff">
           <div class="menu-area">
@@ -73,7 +76,7 @@
             <div class="menu-one">{{ userLanguage == '1' ? '首页' : 'Home' }}</div>
           </div>
           <div class="menu-content" v-if="showChildren === true">
-            <div class="menu-one" v-if="index === 0" v-for="(item, index) in displayMenu" :key="index"
+            <div class="menu-one" v-if="index == 0" v-for="(item, index) in displayMenu" :key="index"
               :class="{ 'overlay-color': currentPath == item.path }" @click="handleClick(item, index)">
               {{ userLanguage == "1" ? item.item : item.nameEn || item }}
             </div>
@@ -183,17 +186,13 @@ export default {
           path: "/jnumba",
           children: [
             {
-              item: "项目概述",
-              nameEn: "Program Overview",
+              item: "MBA",
+              nameEn: "MBA",
             },
             {
-              item: "课程体系",
-              nameEn: "Curriculum System",
-            },
-            {
-              item: "招生信息",
-              nameEn: "Admissions Information",
-            },
+              item: "DBA",
+              nameEn: "DBA",
+            }
           ],
         },
         {
@@ -277,7 +276,11 @@ export default {
       if (val) {
         headerNavArea.style.backgroundColor = `rgba(22, 58, 107, 1)`;
       } else {
-        headerNavArea.style.backgroundColor = `rgba(22, 58, 107, 0)`;
+        const containerHeight = document.getElementById("container").offsetHeight;
+        const scrollHeight = window.scrollY;
+        const opacity = scrollHeight / containerHeight;
+
+        headerNavArea.style.backgroundColor = `rgba(22, 58, 107, ${opacity})`;
       }
     }
   },
@@ -310,7 +313,7 @@ export default {
         this.showChildren = true;
       } else if (elementId) {
         this.hideOverlay();
-        router.push({ path: "/jnumba", hash: `#${elementId}` });
+        router.push({ path: "/jnumba" });
       } else if (item.path) {
         this.hideOverlay();
         router.push(item.path);
@@ -319,8 +322,8 @@ export default {
           behavior: "instant", // 可选，使用平滑滚动效果
         });
       } else {
-        if (item.item == '课程项目') {
-          router.push({ path: "/jnumba" })
+        if (item.item.item == 'MBA' || item.item.item == 'DBA') {
+          router.push({ path: item.item.item == 'MBA' ? "/jnumba" : "/DBArouter" })
           window.scrollTo({
             top: 0,
             behavior: "instant", // 可选，使用平滑滚动效果
@@ -379,7 +382,6 @@ export default {
       }
       // 判断是否展开课程项目
       if (item.name == '课程项目') {
-        this.openWindow = !this.openWindow
         return
       }
       // 判断是否为外部链接
@@ -398,6 +400,10 @@ export default {
           params.type = 2
         }
         this.$router.push({name: 'consultationForm', params: params})
+        window.scrollTo({
+          top: 0,
+          behavior: "instant", // 可选，使用平滑滚动效果
+        });
         return
       }
       this.$router.push(item.path)
@@ -456,6 +462,14 @@ export default {
       this.$store.dispatch("setUserLanguage", item.value);
       /* this.isRotated = !this.isRotated; */
     },
+
+    classShow(item) {
+      if (item.name == '课程项目') {
+        this.openWindow = true
+      } else {
+        this.openWindow = false
+      }
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
@@ -473,6 +487,9 @@ export default {
 
     if (!this.isNoTopImgPages.includes(this.currentPath)) {
       window.addEventListener("scroll", () => {
+        if (this.openWindow) {
+          return
+        }
         const scrollHeight = window.scrollY;
         const opacity = scrollHeight / containerHeight;
 
@@ -545,7 +562,6 @@ export default {
   width: 100%;
   height: 100px;
   z-index: 200;
-  transition: background-color 1s ease;
   /* left: 50%;
     transform: translateX(-50%); */
 }
@@ -654,10 +670,14 @@ export default {
     /* margin: 0 150px; */
     font-size: 20px;
     width: 1060px;
+    height: 100%;
 
     .nav-item {
       cursor: pointer;
       user-select: none;
+      height: 100%;
+      display: flex;
+      align-items: center;
     }
   }
 
@@ -820,17 +840,16 @@ export default {
 }
 
 /* 定义过渡效果的CSS */
-.slide-down-enter-active, .slide-down-leave-active {
-  transition: all 1s ease; /* 过渡效果持续1秒，使用ease缓动函数 */
-}
+// .slide-down-enter-active, .slide-down-leave-active {
+//   transition: all 1s ease; 
+// }
+// .slide-down-enter {
+//   transform: translateY(-30%); 
+//   opacity: 0; 
+// }
  
-.slide-down-enter {
-  transform: translateY(-100%); /* 进入时从上方向下移动，初始位置在视口上方 */
-  opacity: 0; /* 进入时透明度为0，实现淡入效果 */
-}
- 
-.slide-down-leave-to /* 在Vue 2.1.8及以上版本中，使用.slide-down-leave-to */ {
-  transform: translateY(-100%); /* 退出时从下方向上反向移动，最终位置在视口下方 */
-  opacity: 0; /* 退出时透明度为0，实现淡出效果 */
-}
+// .slide-down-leave-to /* 在Vue 2.1.8及以上版本中，使用.slide-down-leave-to */ {
+//   transform: translateY(-30%); 
+//   opacity: 0; 
+// }
 </style>

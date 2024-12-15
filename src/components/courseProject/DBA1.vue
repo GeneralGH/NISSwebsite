@@ -12,11 +12,31 @@
                 }}
             </div>
             <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
+              <img style="width: 100%; background-color: transparent; display: block;" src="../../../assets/DBA/学校介绍配图.png"/>
+            </div>
+            <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
                 {{
                 userLanguage == "1"
                     ? "法国南特高等商学院是法国最早获得国际权威商学院三项认证（EQUIS、AACSB、AMBA）的精英商学院之一（全球仅1%的商学院同时获得以上三项认证），同时也是久负盛名的法国精英教育大学校联盟（CGE）成员以及法国顶级高商五校联盟SAI成员。学院在英国《金融时报》（Financial Times）、《经济学人》（The Economist）排名中常念位列法国十大商学院之列，在法国、欧洲乃至全球均享有很高的声誉。"
-                    : `Audencia Business School is one of the first elite French business schools to achieve the "triple crown" accreditation (EQUIS, AACSB, and AMBA), a distinction held by only 1% of business schools worldwide. Audencia is also a member of the Conférence des Grandes Écoles (CGE) and the SAI consortium of France’s top five business schools. Regularly ranked among the top 10 business schools in France by Financial Times and The Economist, Audencia has an excellent reputation in France, Europe, and globally.`
+                    : `Audencia Business School is one of the first elite French business schools to achieve the "triple crown" accreditation (EQUIS, AACSB, and AMBA), a distinction held by only 1% of business schools worldwide. Audencia is also a member of the Conférence des Grandes Écoles (CGE) and the SAI consortium of France's top five business schools. Regularly ranked among the top 10 business schools in France by Financial Times and The Economist, Audencia has an excellent reputation in France, Europe, and globally.`
                 }}
+            </div>
+            <div class="one-imgs">
+              <img v-show="!isSmallScreen && userLanguage == '1'" src="../../../assets/DBA/equis.png" alt="" />
+              <img v-show="!isSmallScreen && userLanguage == '1'" src="../../../assets/DBA/aacsb.png" alt="" />
+              <img v-show="!isSmallScreen && userLanguage == '1'" src="../../../assets/DBA/amba.png" alt="" />
+
+              <img v-show="!isSmallScreen && userLanguage != '1'" src="../../../assets/DBA/equis-en.png" alt="" />
+              <img v-show="!isSmallScreen && userLanguage != '1'" src="../../../assets/DBA/aacsb-en.png" alt="" />
+              <img v-show="!isSmallScreen && userLanguage != '1'" src="../../../assets/DBA/amba-en.png" alt="" />
+
+              <img v-show="isSmallScreen && userLanguage == '1'" src="../../../assets/DBA/Mequis.png" alt="" />
+              <img v-show="isSmallScreen && userLanguage == '1'" src="../../../assets/DBA/Maacsb.png" alt="" />
+              <img v-show="isSmallScreen && userLanguage == '1'" src="../../../assets/DBA/Mamba.png" alt="" />
+
+              <img v-show="isSmallScreen && userLanguage != '1'" src="../../../assets/DBA/Mequis-en.png" alt="" />
+              <img v-show="isSmallScreen && userLanguage != '1'" src="../../../assets/DBA/Maacsb-en.png" alt="" />
+              <img v-show="isSmallScreen && userLanguage != '1'" src="../../../assets/DBA/Mamba-en.png" alt="" />
             </div>
         </div>
 
@@ -30,7 +50,7 @@
                     : "To tackle the challenges of rapid global political and economic shifts, technological advancements, and industrial transformation, leaders across industries are increasingly tasked with employing innovative methodologies and systemic intellectual frameworks to guide their practices. To address these challenges, Nanyang Institute of Social Sciences (NISS) collaborates with Audencia Business School to launch the Audencia Asia-Pacific Doctor of Business Administration Program (Mandarin) in Singapore."
                 }}
             </div>
-            <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
+            <div class="info-content p-space lineSpace" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
                 {{
                 userLanguage == "1"
                     ? "学员将管理前沿理论学习、管理研究方法学习与自身的行业实践相结合，聚焦于研究并解决自己所处行业或组织内部的核心问题，探索前沿实践，推动智识升级，引领商业变革，创造属于自己的商业影响与价值，成为管理研究与管理应用相结合的学者型管理精英。"
@@ -38,17 +58,81 @@
                 }}
             </div>
 
-            <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
-                {{ userLanguage == "1" ? "学制：3年（最长可延期至5年）" : `Duration: 3 years (extendable up to 5 years)` }}
+            <div class="two-imgs" v-if="userLanguage == '1'">
+              <div class="img-item-one">
+                <img src="../../../assets/courseProjects/two.png" alt="" />
+                <div class="tow-title">
+                  {{ userLanguage == "1" ? "在新加坡" : "In Singapore" }}<br />{{
+                    userLanguage == "1" ? "中文授课" : "Taught in Chinese"
+                  }}
+                </div>
+              </div>
+
+              <div class="img-item-one">
+                <img src="../../../assets/DBA/mode-of-deliver.png" alt="" />
+                <div class="tow-title">
+                  {{ userLanguage == "1" ? "三年学制" : "Spring and Autumn" }}<br />{{
+                    userLanguage == "1" ? "在职学习" : "Rolling Admissions"
+                  }}
+                </div>
+              </div>
+              
+              <div class="img-item-one">
+                <img src="../../../assets/DBA/certifacate.png" alt="" />
+                <div class="tow-title">
+                  {{ userLanguage == "1" ? "证书授予" : "2-Year Program" }}<br />{{
+                    userLanguage == "1" ? "南特高等商学院工商管理博士学位证书" : "Part-Time Study"
+                  }}
+                </div>
+              </div>
             </div>
-            <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
-                {{ userLanguage == "1" ? "学习语言：中文（法国教授授课语言为英文，提供中文翻译）" : `Language of Instruction: Chinese (Lectures by French professors are delivered in English with Chinese interpretation)` }}
+
+            <div class="two-imgs" v-if="userLanguage == '2'">
+              <div class="img-item">
+                <img src="../../../assets/courseProjects/Program/location.png" alt="" />
+                <div class="tow-title">
+                  <div>Location</div>
+                  <div class="subTitle">Singapore</div>
+                </div>
+              </div>
+              <div class="img-item">
+                <img src="../../../assets/courseProjects/Program/mode-of-delivery.png" alt="" />
+                <div class="tow-title">
+                  <div>Mode of Delivery</div>
+                  <div class="subTitle">Face-to-face</div>
+                </div>
+              </div>
+              <div class="img-item">
+                <img src="../../../assets/courseProjects/Program/format.png" alt="" />
+                <div class="tow-title">
+                  <div>Format</div>
+                  <div class="subTitle">Part-time</div>
+                </div>
+              </div>
             </div>
-            <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
-                {{ userLanguage == "1" ? "学习形式：在职学习" : `Mode of Delivery: Part-time` }}
-            </div>
-            <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
-                {{ userLanguage == "1" ? "证书授予：南特高等商学院工商管理博士学位证书" : `Degree Awarded: Doctor of Business Administration from Audencia Business School` }}
+
+            <div class="two-imgs" v-if="userLanguage == '2'">
+              <div class="img-item">
+                <img src="../../../assets/courseProjects/Program/Language-of-Instruction.png" alt="" />
+                <div class="tow-title">
+                  <div>Language of Instruction</div>
+                  <div class="subTitle">Chinese</div>
+                </div>
+              </div>
+              <div class="img-item">
+                <img src="../../../assets/courseProjects/Program/Duration.png" alt="" />
+                <div class="tow-title">
+                  <div>Duration</div>
+                  <div class="subTitle">36 months</div>
+                </div>
+              </div>
+              <div class="img-item">
+                <img src="../../../assets/DBA/certifacate.png" alt="" />
+                <div class="tow-title">
+                  <div>Certificate Awarded</div>
+                  <div class="subTitle">Doctor of Business Administration from Audencia Business School</div>
+                </div>
+              </div>
             </div>
         </div>
 
@@ -84,6 +168,7 @@ export default {
     data() {
         //这里存放数据
         return {
+          isSmallScreen: false,
         };
     },
     computed: {
@@ -100,7 +185,7 @@ export default {
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
-
+      this.isSmallScreen = window.innerWidth <= 720
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
@@ -246,5 +331,9 @@ export default {
 
 .fourImg {
   width: 100%;
+}
+
+.lineSpace {
+  margin-bottom: 80px;
 }
 </style>

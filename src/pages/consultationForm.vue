@@ -15,8 +15,8 @@
           <p>
             {{
               userLanguage == "1"
-                ? "如有任何疑问，您也可以拨打 +65 6320 3596，直接联络我们。"
-                : "If you have any questions, please also feel free to contact us directly at +65 6320 3596."
+                ? `如有任何疑问，您也可以拨打 +${contactPhone}，直接联络我们。`
+                : `If you have any questions, please also feel free to contact us directly at +${contactPhone}.`
             }}
           </p>
         </div>
@@ -416,7 +416,7 @@ export default {
       ],
       programOptions: [
         { label: "暨南大学新加坡中文MBA", labelEn: 'JNU MBA Program', value: 1 },
-        { label: "南特高等商学院亚太中文DBA", labelEn: 'Asia-pacific DBA Program（Chinese）', value: 2 },
+        { label: "南特高等商学院亚太中文DBA", labelEn: 'Asia-pacific DBA Program(Mandarin)', value: 2 },
         { label: "高管教育", labelEn: 'Executive Education', value: 3 },
       ],
       knowingChannelOptions: [
@@ -688,6 +688,7 @@ export default {
           },
         ],
       },
+      contactPhone: ''
     };
   },
   computed: {
@@ -773,10 +774,14 @@ export default {
     // 输出source参数的值
     if (this.$route.params.type == 1) {
       this.$refs.projectSelectRef.optionChange(this.programOptions[0])
-    }
-    if (this.$route.params.type == 2) {
+      this.contactPhone = '65 6320 3595'
+    } else if (this.$route.params.type == 2) {
       this.$refs.projectSelectRef.optionChange(this.programOptions[1])
+      this.contactPhone = '65 6518 9987'
+    } else {
+      this.contactPhone = '65 6592 0000'
     }
+    
   },
   beforeCreate() { }, //生命周期 - 创建之前
   beforeMount() { }, //生命周期 - 挂载之前
