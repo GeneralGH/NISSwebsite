@@ -383,6 +383,7 @@ export default {
   top: 150px;
   height: 1080px;
   box-sizing: border-box;
+  margin-top: -13px;
   // padding-left: 100px;
 }
 

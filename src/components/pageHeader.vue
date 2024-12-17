@@ -101,7 +101,8 @@
     <!-- 各个页面不同展示 -->
     <div class="articleHeader" v-if="isNoTopImgPages.includes(currentPath)"></div>
     <HomeHeader v-if="currentPath == '/'" />
-    <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/jnumba' || currentPath == '/DBArouter'" />
+    <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/jnumba'" />
+    <DBAhader :imgUrl="imgUrl" v-if="currentPath == '/DBArouter'"/>
     <TeachingStaffHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
       v-if="currentPath == '/faculty'" />
@@ -136,6 +137,7 @@
 //例如：import 《组件名称》 from '《组件路径》';
 import HomeHeader from "./headerContent/homeHeader.vue";
 import CourseProjects from "./headerContent/courseProjectsHeader.vue";
+import DBAhader from "./headerContent/DBAhader.vue";
 import TeachingStaffHeader from "./headerContent/teachingStaffHeader.vue";
 import AboutUsHeader from "./headerContent/aboutUsHeader.vue";
 import AlumniStyleHeader from "./headerContent/alumniStyleHeader.vue";
@@ -165,7 +167,8 @@ export default {
     AlumniStyleHeader,
     ConsultationFormHeader,
     PromotionAmbassador,
-    SuspendedWindow
+    SuspendedWindow,
+    DBAhader
   },
   data() {
     //这里存放数据
@@ -446,6 +449,9 @@ export default {
           break;
         case "/Ambassador":
           id = 21
+          break;
+        case "/DBArouter":
+          id = 23
           break;
       }
       if (id) {

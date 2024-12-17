@@ -6,8 +6,9 @@
             <div class="content-area">
                 <div style="display: flex; flex-wrap: wrap;">
                     <div class="content-item" v-for="(item, index) in projectList" :key="index">
-                        <div class="name">{{ item.name }}</div>
-                        <div class="title"  @click="toPage(item)" @mouseenter="imgChange(item)" @mouseleave="imgHide(item)">{{ item.title }}</div>
+                        <div class="name">{{ userLanguage == '1' ? item.name : item.nameEn }}</div>
+                        <div class="title" @click="toPage(item)" @mouseenter="imgChange(item)"
+                            @mouseleave="imgHide(item)">{{ userLanguage == '1' ? item.title : item.titleEn }}</div>
                     </div>
                 </div>
                 <div>
@@ -34,18 +35,22 @@ export default {
             MBA: MBA,
             NANTE: NANTE,
             projectList: [
-                { name: 'MBA课程项目', title: '暨南大学新加坡中文MBA', path: "/jnumba", imgObj: MBA },
-                { name: 'DBA课程项目', title: '南特高等商学院亚太中文工商管理博士', path: "/DBArouter", imgObj: NANTE },
+                { name: '硕士课程项目', nameEn: "Master's Program", title: '暨南大学中文MBA(新加坡班)', titleEn: 'JNU MBA Program (Mandarin)', path: "/jnumba", imgObj: MBA },
+                { name: '博士课程项目', nameEn: 'Doctorate Program', title: '南特高等商学院亚太中文工商管理博士', titleEn: 'Audencia Business School Asia-pacific Doctor of Business Administration Program (Mandarin)', path: "/DBArouter", imgObj: NANTE },
                 /* { name: '高管教育', title: '高管教育' }, */
             ],
             imgShow: false,
             currentIMG: null
         };
     },
-    //监听属性 类似于data概念
-    computed: {},
-    //监控data中的数据变化
-    watch: {},
+    computed: {
+        userLanguage() {
+            return this.$store.state.userLanguage;
+        },
+    },
+    watch: {
+        userLanguage(newVal) { },
+    },
     //方法集合
     methods: {
         toPage(item) {
@@ -84,6 +89,7 @@ export default {
 .cover {
     height: 100px;
 }
+
 .suspendedWindow {
     width: 100%;
     /* height: 150vh; */
@@ -95,7 +101,9 @@ export default {
     .topArea {
         height: 560px;
         background: white;
-        -moz-box-shadow:0px 5px 20px #6E6E6E; -webkit-box-shadow:0px 5px 20px #6E6E6E; box-shadow:0px 5px 20px #6E6E6E;
+        -moz-box-shadow: 0px 5px 20px #6E6E6E;
+        -webkit-box-shadow: 0px 5px 20px #6E6E6E;
+        box-shadow: 0px 5px 20px #6E6E6E;
     }
 
     .content-area {
@@ -119,7 +127,7 @@ export default {
                 font-weight: 300;
                 margin-bottom: 10px;
             }
-            
+
             .title {
                 cursor: pointer;
                 font-weight: 500;

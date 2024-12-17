@@ -29,7 +29,7 @@
           </div>
           <div class="line"></div>
           <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
-            {{ userLanguage == "1" ? "培养融贯中西知行合一的高层次人才" : "To cultivate high-level talents integrating Chinese and Western and connecting theory with practice" }}
+            {{ userLanguage == "1" ? "培养融贯东西知行合一的高层次人才" : "To cultivate high-level talents integrating Eastern and Western and connecting theory with practice" }}
           </div>
         </div>
       </div>

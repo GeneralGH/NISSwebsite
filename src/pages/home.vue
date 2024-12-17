@@ -31,15 +31,15 @@
             @mouseleave="isHovered = -1" @mouseenter="jump(item, index)" :class="{ 'is-hovered': isHovered == index }">
             <div style="width: 100%">
               <div class="info-title">
-                <div>{{ userLanguage == "1" ? item.title : item.titleEn }}</div>
+                <div :class="userLanguage == '1' ? isSmallScreen ? 'title-en-m' : '' : isSmallScreen ? 'title-en-m' : 'title-en' ">{{ userLanguage == "1" ? item.title : item.titleEn }}</div>
                 <div class="info-line">
                   <div v-show="isHovered == index"></div>
                 </div>
               </div>
               <div class="info-subTitle">
-                <div :class="str == '（新加坡班）' ? 'textLeft' : ''" v-for="str in item.subTitle"
+                <div :class="[str == '（新加坡班）' ? 'textLeft' : '', isSmallScreen ? 'subTitle-m-z' : '']" v-for="str in item.subTitle"
                   v-show="userLanguage == '1'">{{ str }}</div>
-                <div v-for="str in item.subTitleEn" v-show="userLanguage == '2'">{{ str }}</div>
+                <div :class="isSmallScreen ? 'subTitle-m' : ''" v-for="str in item.subTitleEn" v-show="userLanguage == '2'">{{ str }}</div>
               </div>
               <div class="line" v-show="isHovered == index"></div>
             </div>
@@ -172,21 +172,21 @@ export default {
       currentScroll: 0,
       infoList: [
         {
-          title: "MBA",
-          titleEn: "MBA",
-          subTitle: ['暨南大学', '中文MBA', '（新加坡班）'],
+          title: "硕士项目",
+          titleEn: "Master's Program",
+          subTitle: ['暨南大学中文MBA', '（新加坡班）'],
           subTitleEn: ['JNU MBA Program', '(Mandarin)'],
           path: "/jnumba",
         },
         {
           title: "博士项目",
-          titleEn: "DBA",
+          titleEn: "Doctorate Program",
           subTitle: ['南特高等商学院', '亚太中文工商管理博士'],
           subTitleEn: ['Audencia Asia-pacific ', 'Doctor of Business Administration', 'Program (Mandarin)'],
         },
         {
-          title: "EE",
-          titleEn: "EE",
+          title: "非学位项目",
+          titleEn: "Non-Degree Program",
           subTitle: ["高管教育"],
           subTitleEn: ['Executive Education'],
         },
@@ -1163,5 +1163,21 @@ body {
 
 .textLeft {
   margin-left: -13px;
+}
+
+.title-en {
+  font-size: 36px !important;
+}
+
+.title-en-m {
+  font-size: 28px !important;
+}
+
+.subTitle-m {
+  font-size: 18px !important;
+}
+
+.subTitle-m-z {
+  font-size: 20px !important;
 }
 </style>
