@@ -99,7 +99,7 @@ export default {
           nameEn: 'Contact Us',
           list: [
             {
-              name: `地址：30 Orange Grove Road, #07-77 RELC Building，Singapore 258352`,
+              name: `地址：30 Orange Grove Road, #07-77 RELC Building,Singapore 258352`,
               nameEn: 'Address: 30 Orange Grove Road, #07-77 RELC Building, Singapore 258352'
             },
             { name: '邮箱：enquiry@niss.edu.sg', nameEn: 'Email: enquiry@niss.edu.sg' },

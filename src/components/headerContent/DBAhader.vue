@@ -35,7 +35,12 @@ export default {
     //方法集合
     methods: {
         jump() {
-            let targetUrl = JSON.parse(this.imgUrl.targetUrl)
+            this.$router.push({name: 'consultationForm', params: { type: 2 }})
+            window.scrollTo({
+                top: 0,
+                behavior: 'auto' // 可选，使用平滑滚动效果
+            });
+            /* let targetUrl = JSON.parse(this.imgUrl.targetUrl)
             if (targetUrl.type == 1) {
                 this.$router.push(targetUrl.value)
             }
@@ -44,7 +49,7 @@ export default {
             }
             if (targetUrl.type == 3) {
                 this.$router.push({ path: `/article?id=${targetUrl.value}` });
-            }
+            } */
         }
     },
     //生命周期 - 创建完成（可以访问当前this实例）

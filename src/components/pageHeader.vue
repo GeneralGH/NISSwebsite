@@ -193,8 +193,8 @@ export default {
               nameEn: "MBA",
             },
             {
-              item: "DBA",
-              nameEn: "DBA",
+              item: "南特工商管理博士",
+              nameEn: "Doctor of Business Administration",
             }
           ],
         },
@@ -325,7 +325,7 @@ export default {
           behavior: "instant", // 可选，使用平滑滚动效果
         });
       } else {
-        if (item.item.item == 'MBA' || item.item.item == 'DBA') {
+        if (item.item.item == 'MBA' || item.item.item == '南特工商管理博士') {
           router.push({ path: item.item.item == 'MBA' ? "/jnumba" : "/DBArouter" })
           window.scrollTo({
             top: 0,

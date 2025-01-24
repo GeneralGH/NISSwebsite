@@ -25,7 +25,7 @@
           <div class="title">{{ userLanguage == '1' ? '申请流程' : 'Application Process' }}</div>
           <div class="line"></div>
           <div class="space-two">
-              <t-image style="width: 90%; background-color: transparent;" :src="userLanguage == '1' ? applyImg : applyImgEn" fit="cover" position="center" :lazy="true" />
+              <t-image class="applyImg" style="width: 90%; background-color: transparent;" :src="userLanguage == '1' ? applyImg : applyImgEn" fit="cover" position="center" :lazy="true" />
           </div>
       </div>
 
@@ -34,7 +34,7 @@
           <div class="line"></div>
           <div class="info-content space-one">
             <div class="space-two">
-                <img style="width: 60%;" :src="userLanguage == '1' ? schoolDate : schoolDateEn" alt="">
+                <img class="schoolDateImg" style="width: 60%;" :src="userLanguage == '1' ? schoolDate : schoolDateEn" alt="">
             </div>
             <div class="info-content des">
                 {{ userLanguage == '1' ? '以下举例说明：' : 'Here are some examples to illustrate:' }} 
@@ -122,6 +122,12 @@ export default {
 }
 .space-two{
   width: 100%;
+}
+.applyImg {
+  width: 100% !important;
+}
+.schoolDateImg {
+  width: 80% !important;
 }
 }
 

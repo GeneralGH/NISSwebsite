@@ -80,13 +80,13 @@ export default {
           oneCardList: [
             {
               list: [
-                { name: "管理研究方法", nameEn: "Management Research Methodology" },
+                { name: "管理研究方法", nameEn: "Research Methods for Management" },
               ],
             },
             {
               list: [
-                { name: "定性研究方法", nameEn: "Qualitative Research Methods" },
-                { name: "定量研究方法", nameEn: "Quantitative Research Methods" }
+                { name: "定性研究方法", nameEn: "Qualitative Management Research Methods" },
+                { name: "定量研究方法", nameEn: "Quantitative Management Research Methods" }
               ],
             }
           ],
@@ -94,7 +94,7 @@ export default {
             {
               list: [
                 { name: "管理心理与行为研究", nameEn: "Research in Management Psychology and Behavior" },
-                { name: "环境、社会和治理和绿色金融", nameEn: "ESG and Green Finance" },
+                { name: "环境、社会和公司治理与企业战略", nameEn: "ESG and Corporate Strategy" },
                 { name: "全球化与管理研究", nameEn: "Globalization & Management Research" },
                 { name: "可持续消费行为与市场研究", nameEn: "Sustainable Consumer Behavior and Market Research" },
                 { name: "管理学理论发展趋势", nameEn: "Trend of Management Theory Development" },
@@ -113,12 +113,12 @@ export default {
           threeCardList: [
             {
               list: [
-                { name: "论文工作坊I：研究计划书推进论文工作坊", nameEn: "Workshop1: Research Proposal Development Workshop" },
+                { name: "论文工作坊 I：研究计划书推进论文工作坊", nameEn: "Workshop I: Research Proposal Development Workshop" },
               ],
             },
             {
               list: [
-                { name: "论文工作坊II：论文写作工作坊", nameEn: "Workshop2: Thesis Completion Workshop" }
+                { name: "论文工作坊 II：论文写作工作坊", nameEn: "Workshop II: Thesis Completion Workshop" }
               ],
             }
           ],
@@ -168,6 +168,7 @@ export default {
   }
   .title{
     margin-left: 30px;
+    width: 700px !important;
   }
   .one-imgs img{
     width: 10rem !important;
@@ -303,7 +304,7 @@ export default {
 }
 
 .small-card {
-  height: 150px;
+  height: 180px;
 }
 
 .module-card {

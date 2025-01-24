@@ -215,7 +215,7 @@ export default {
   }
 
   .img-item {
-    flex-basis: calc(45% - 9px) !important;
+    flex-basis: calc(33% - 9px) !important;
   }
 
   .networkingList {

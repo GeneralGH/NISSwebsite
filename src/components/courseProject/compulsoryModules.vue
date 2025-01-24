@@ -69,7 +69,7 @@
 
     <div class="content-item" id="options2-3">
       <div class="title">
-        {{ userLanguage == "1" ? "国际交换" : "Overseas Module" }}
+        {{ userLanguage == "1" ? "国际交换" : "Overseas Exchange" }}
       </div>
       <div class="line"></div>
       <div class="info-content" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">

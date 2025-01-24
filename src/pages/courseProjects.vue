@@ -142,7 +142,7 @@ export default {
             { name: "选修模块", nameEn: "Elective Modules", id: "options2-2" },
             {
               name: "国际交换",
-              nameEn: "Overseas Module",
+              nameEn: "Overseas Exchange",
               id: "options2-3",
             },
           ],

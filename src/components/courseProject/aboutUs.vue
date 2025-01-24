@@ -64,7 +64,7 @@
       <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         {{
           userLanguage == "1"
-            ? "项目面向华侨、港澳台地区人士和非中国籍人士招生，采取“申请审核制”，无需参加笔试，通过面试择优录取。"
+            ? "项目面向华侨、港澳台地区人士和非中国籍人士招生，采取“申请审核制”，无需参加MBA联考，通过面试择优录取。"
             : "JNU MBA Program aims to provide quality education on business management for young managers on the uptrend in their careers, and help them understand the culture of Chinese business, expand their developing space and improve their leadership and problem-solving capacity."
         }}
       </div>

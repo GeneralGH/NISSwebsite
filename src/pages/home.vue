@@ -92,7 +92,7 @@
             <div :class="userLanguage == '1' ? 'title' : 'titleEn'" style="width: 150%;">
               {{ userLanguage == "1" ? item.title : item.titleEn }}
             </div>
-            <div class="titleEn" v-show="item.twoTitleEn && userLanguage == 2">
+            <div class="titleEn" v-show="item.twoTitleEn && userLanguage == 2" style="width: 150%;">
               {{ item.twoTitleEn }}
             </div>
             <div class="subTitle" style="width: 130%;">
@@ -216,6 +216,34 @@ export default {
           titleEn: "Elite Platform",
           subTitle: "交良师、结益友、融资源的终身学习平台",
           subTitleEn: "Engaging with Inspiring Mentors | Connecting with Valuable Peers | Collaborating with Extensive Resources",
+        }
+      ],
+      DBAList: [
+        {
+          title: "欧洲一流商学院",
+          titleEn: "A Leading European",
+          twoTitleEn: 'Business School',
+          subTitle: "百年名校、法国精英“大学校”联盟成员",
+          subTitleEn: "A Century of Academic Excellence | Member of France's Prestigious “Grande École”",
+        },
+        {
+          title: "顶级认证",
+          titleEn: "Triple Crown Accreditation",
+          subTitle: "EQUIS、AACSB、AMBA三冠认证，全球仅1%",
+          subTitleEn: "EQUIS, AACSB, AMBA – Top 1% Worldwide",
+        },
+        {
+          title: "全球名师",
+          titleEn: "World-Class Faculty",
+          subTitle: "法、中、港澳台知名教授，融贯东西，知行合一",
+          subTitleEn: "Renowned professors worldwide integrating Chinese and Western",
+        },
+        {
+          title: "工商管理最高学位",
+          titleEn: "The Highest Degree in ",
+          twoTitleEn: 'Business Administration',
+          subTitle: "贡献商业新知，成就学者型管理精英",
+          subTitleEn: "Advancing cutting-edge business knowledge | Cultivating scholar-practitioner leaders",
         }
       ],
       highEduList: [
@@ -365,6 +393,9 @@ export default {
       this.currentScroll = index;
       if (index == 0) {
         this.scrollList = this.infoTwoList
+      }
+      if (index == 1) {
+        this.scrollList = this.DBAList
       }
       if (index == 2) {
         this.scrollList = this.highEduList
