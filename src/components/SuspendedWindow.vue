@@ -36,7 +36,7 @@ export default {
             NANTE: NANTE,
             projectList: [
                 { name: '硕士课程项目', nameEn: "Master's Program", title: '暨南大学中文MBA(新加坡班)', titleEn: 'JNU MBA Program (Mandarin)', path: "/jnumba", imgObj: MBA },
-                { name: '博士课程项目', nameEn: 'Doctorate Program', title: '南特高等商学院亚太中文工商管理博士', titleEn: 'Audencia Business School Asia-pacific Doctor of Business Administration Program (Mandarin)', path: "/DBArouter", imgObj: NANTE },
+                { name: '博士课程项目', nameEn: 'Doctorate Program', title: '南特高等商学院亚太中文工商管理博士', titleEn: 'Audencia Business School Asia-pacific Doctor of Business Administration Program (Mandarin)', path: "/audenciadba", imgObj: NANTE },
                 /* { name: '高管教育', title: '高管教育' }, */
             ],
             imgShow: false,

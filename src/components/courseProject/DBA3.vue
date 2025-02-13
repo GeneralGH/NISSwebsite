@@ -50,14 +50,14 @@
           </div>
       </div>
 
-      <div class="content-item" id="options3-5">
-            <div class="title">{{ userLanguage == '1' ? '学费及奖学金' : 'Tuition Fees and Scholarship' }}</div>
-            <div class="line"></div>
-            <div class="info-content space-one">
-                · {{ userLanguage == '1' ? '申请费：S$800（Excluding GST）' : 'Application and interview fees: S$800 (Exclusive of GST)' }}<br>
-                · {{ userLanguage == '1' ? '项目总学费：S$129,800（Excluding GST）' : 'Tuition fees: S$129,800 (Exclusive of GST)' }}
-            </div>
-        </div> 
+      <!-- <div class="content-item" id="options3-5">
+          <div class="title">{{ userLanguage == '1' ? '学费及奖学金' : 'Tuition Fees and Scholarship' }}</div>
+          <div class="line"></div>
+          <div class="info-content space-one">
+              · {{ userLanguage == '1' ? '申请费：S$800（Excluding GST）' : 'Application and interview fees: S$800 (Exclusive of GST)' }}<br>
+              · {{ userLanguage == '1' ? '项目总学费：S$129,800（Excluding GST）' : 'Tuition fees: S$129,800 (Exclusive of GST)' }}
+          </div>
+      </div>  -->
   </div>
 </template>
 

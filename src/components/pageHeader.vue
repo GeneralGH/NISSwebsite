@@ -102,7 +102,7 @@
     <div class="articleHeader" v-if="isNoTopImgPages.includes(currentPath)"></div>
     <HomeHeader v-if="currentPath == '/'" />
     <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/jnumba'" />
-    <DBAhader :imgUrl="imgUrl" v-if="currentPath == '/DBArouter'"/>
+    <DBAhader :imgUrl="imgUrl" v-if="currentPath == '/audenciadba'"/>
     <TeachingStaffHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
       v-if="currentPath == '/faculty'" />
@@ -326,7 +326,7 @@ export default {
         });
       } else {
         if (item.item.item == 'MBA' || item.item.item == '南特工商管理博士') {
-          router.push({ path: item.item.item == 'MBA' ? "/jnumba" : "/DBArouter" })
+          router.push({ path: item.item.item == 'MBA' ? "/jnumba" : "/audenciadba" })
           window.scrollTo({
             top: 0,
             behavior: "instant", // 可选，使用平滑滚动效果
@@ -399,7 +399,7 @@ export default {
         if (this.$route.name == 'jnumba') {
           params.type = 1
         }
-        if (this.$route.name == 'DBArouter') {
+        if (this.$route.name == 'audenciadba') {
           params.type = 2
         }
         this.$router.push({name: 'consultationForm', params: params})
@@ -450,7 +450,7 @@ export default {
         case "/Ambassador":
           id = 21
           break;
-        case "/DBArouter":
+        case "/audenciadba":
           id = 23
           break;
       }

@@ -44,8 +44,8 @@ const routes = [
         }
     },
     {
-        name: 'DBArouter',
-        path: '/DBArouter',
+        name: 'audenciadba',
+        path: '/audenciadba',
         component: DBA
     },
     {

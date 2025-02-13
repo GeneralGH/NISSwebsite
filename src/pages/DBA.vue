@@ -162,11 +162,11 @@ export default {
               nameEn: "Commencement and Graduation",
               id: "options3-4",
             },
-            {
+            /* {
               name: "学费及奖学金",
               nameEn: "Tuition Fees and Scholarship",
               id: "options3-5",
-            },
+            }, */
           ],
         },
       ],
