@@ -250,7 +250,7 @@ export default {
         {
           name: "WhatsApp",
           nameEn: "WhatsApp",
-          path: "/send?phone=6563203595",
+          path: "/send?phone=6563203596",
           imgPath: WhatsappImg,
           unImgPath: unWhatsappImg,
         },
@@ -388,7 +388,7 @@ export default {
         return
       }
       // 判断是否为外部链接
-      if (item.path.includes("6563203595")) {
+      if (item.path.includes("6563203596")) {
         const fullURL = `https://api.whatsapp.com${item.path}`;
         window.open(fullURL, "_blank"); // 新标签页打开外链
         return; // 跳过后续逻辑

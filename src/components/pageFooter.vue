@@ -127,7 +127,7 @@ export default {
           // 复制成功
           this.$message.success('电话号码已成功复制')
         }) */
-        window.open('https://api.whatsapp.com/send?phone=6563203595', '_blank');
+        window.open('https://api.whatsapp.com/send?phone=6563203596', '_blank');
     },
 
     toOther(url) {

@@ -34,11 +34,11 @@
                                     <td style="text-align: center;"><strong>Area (SQM)</strong></td>
                                     <td style="text-align: center;"><strong>Capacity (No. of students)</strong></td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td style="text-align: center;">506</td>
                                     <td style="text-align: center;">100</td>
                                     <td style="text-align: center;">60</td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td style="text-align: center;">07-01A</td>
                                     <td style="text-align: center;">94</td>

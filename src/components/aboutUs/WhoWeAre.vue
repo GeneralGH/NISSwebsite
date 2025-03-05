@@ -10,7 +10,7 @@
         {{
           userLanguage == "1"
             ? "南洋社会科学学院是在新加坡教育部SkillsFuture Singapore注册的高等教育机构，致力于构筑融汇东西方优质高等教育资源的终身学习平台。学院分别与中国顶尖高校、西方杰出高等教育机构合作，解析和传播支撑中国成功高速发展的理论与实践，研究和传授西方社科领域教研的最新发展方向与成果，培养兼具东方智慧与全球视野的复合型人才。"
-            : "Nanyang Institute of Social Sciences (NISS) is an institute of higher education registered with SkillsFuture Singapore (SSG) under the Ministry of Education of Singapore, aiming to create a lifelong learning platform that incorporates quality higher education resources from the East and the West. NISS cooperates with top universities in China and outstanding higher education institutions in the West. It seeks to deconstruct and disseminate the theories and experiences that support China's rapid economic development, share the cutting-edge research of western social sciences, and cultivate interdisciplinary talents with eastern wisdom and global vision."
+            : "Nanyang Institute of Social Sciences (NISS) is an institute of higher education registered with SkillsFuture Singapore (SSG) under the Ministry of Education of Singapore, aiming to create a lifelong learning platform that incorporates quality higher education resources from the East and the West. NISS cooperates with top universities in China and outstanding higher education institutions in the West. It seeks to deconstruct and disseminate the theories and practices that support China's rapid economic development, share the cutting-edge research of western social sciences, and cultivate interdisciplinary talents with eastern wisdom and global vision."
         }}
       </div>
       <div class="card-container">
