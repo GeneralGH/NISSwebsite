@@ -85,8 +85,8 @@ export default {
                 { img: two }
             ],
             twoList: [
-                { img: three },
-                { img: four },
+                //{ img: three },
+                //{ img: four },
                 { img: five },
                 { img: six }
             ],

@@ -13,6 +13,7 @@ import MbaProfessors from './pages/mbaProfessors.vue'
 import PromotionAmbassador from './pages/promotionAmbassador.vue'
 import PromotionAmbassadorDetail from './pages/promotionAmbassadorDetail.vue'
 import DBA from './pages/DBA.vue'
+import studentCodeOfConduct from './pages/studentCodeOfConduct.vue'
 import Vue from 'vue';
 
 Vue.use(VueRouter)
@@ -126,6 +127,11 @@ const routes = [
         name: 'AmbassadorDetail',
         path: '/AmbassadorDetail',
         component: PromotionAmbassadorDetail
+    },
+    {
+        name: 'studentCodeOfConduct',
+        path: '/student-code-of-conduct',
+        component: studentCodeOfConduct
     },
     {
         path: '*',
