@@ -13,6 +13,7 @@ import MbaProfessors from './pages/mbaProfessors.vue'
 import PromotionAmbassador from './pages/promotionAmbassador.vue'
 import PromotionAmbassadorDetail from './pages/promotionAmbassadorDetail.vue'
 import DBA from './pages/DBA.vue'
+import Contract from './pages/contract.vue'
 import studentCodeOfConduct from './pages/studentCodeOfConduct.vue'
 import Vue from 'vue';
 
@@ -132,6 +133,11 @@ const routes = [
         name: 'studentCodeOfConduct',
         path: '/student-code-of-conduct',
         component: studentCodeOfConduct
+    },
+    {
+        name: 'contract',
+        path: '/contract',
+        component: Contract
     },
     {
         path: '*',

@@ -17,7 +17,7 @@
             <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
                 {{
                 userLanguage == "1"
-                    ? "法国南特高等商学院是法国最早获得国际权威商学院三项认证（EQUIS、AACSB、AMBA）的精英商学院之一（全球仅1%的商学院同时获得以上三项认证），同时也是久负盛名的法国精英教育大学校联盟（CGE）成员以及法国顶级高商五校联盟SAI成员。学院在英国《金融时报》（Financial Times）、《经济学人》（The Economist）排名中常念位列法国十大商学院之列，在法国、欧洲乃至全球均享有很高的声誉。"
+                    ? "法国南特高等商学院是法国最早获得国际权威商学院三项认证（EQUIS、AACSB、AMBA）的精英商学院之一（全球仅1%的商学院同时获得以上三项认证），同时也是久负盛名的法国精英教育大学校联盟（CGE）成员以及法国顶级高商五校联盟SAI成员。学院在英国《金融时报》（Financial Times）、《经济学人》（The Economist）排名中常年位列法国十大商学院之列，在法国、欧洲乃至全球均享有很高的声誉。"
                     : `Audencia Business School is one of the first elite French business schools to achieve the "triple crown" accreditation (EQUIS, AACSB, and AMBA), a distinction held by only 1% of business schools worldwide. Audencia is also a member of the Conférence des Grandes Écoles (CGE) and the SAI consortium of France's top five business schools. Regularly ranked among the top 10 business schools in France by Financial Times and The Economist, Audencia has an excellent reputation in France, Europe, and globally.`
                 }}
             </div>
