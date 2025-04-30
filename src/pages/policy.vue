@@ -12,7 +12,7 @@
 
       <div class="article-area">
         <div class="article-content">
-          <div class="commonText">This Privacy Policy discloses the privacy practices for www.niss.edu.sg, the main Nanyang International Business Institute website. By using this website, you are consenting to our collection and use of information in accordance with this Privacy Policy.</div>
+          <div class="commonText">This Privacy Policy discloses the privacy practices for www.niss.edu.sg, the main Nanyang Institute of Social Sciences website. By using this website, you are consenting to our collection and use of information in accordance with this Privacy Policy.</div>
           <div class="commonText subTitle">What information do we gather about you?</div>
         </div>
 

@@ -39,7 +39,7 @@ export default {
   //方法集合
   methods: {
     toMbaProfessors() {
-      this.$router.push('/mbaProfessors')
+      this.$router.push('/Professors')
       window.scrollTo({
         top: 0
       });

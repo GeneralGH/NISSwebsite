@@ -33,6 +33,23 @@
           </div>
         </div>
       </div>
+      <div class="card-container">
+        <div class="module-card" style="width: 100% !important;">
+          <div class="title">
+            {{ userLanguage == "1" ? "价值观" : "Values" }}
+          </div>
+          <div class="line"></div>
+          <div class="card-content" :class="userLanguage == '1' ? 'content' : 'contentEn'">
+            {{ userLanguage == "1" ? "热爱" : "Passion" }}
+          </div>
+          <div class="card-content" :class="userLanguage == '1' ? 'content' : 'contentEn'">
+            {{ userLanguage == "1" ? "创造" : "Innovation" }}
+          </div>
+          <div class="card-content" :class="userLanguage == '1' ? 'content' : 'contentEn'">
+            {{ userLanguage == "1" ? "和谐" : "Harmony" }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -113,5 +130,9 @@ export default {
 .card-container{
     display: flex;
     justify-content: space-between;
+  }
+
+  .card-content {
+    margin-bottom: 15px;
   }
 </style>

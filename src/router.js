@@ -10,6 +10,7 @@ import HighEdu from './pages/highEdu.vue'
 import Policy from './pages/policy.vue'
 import ContactUs from './pages/contactUs.vue'
 import MbaProfessors from './pages/mbaProfessors.vue'
+import Professors from './pages/Professors.vue'
 import PromotionAmbassador from './pages/promotionAmbassador.vue'
 import PromotionAmbassadorDetail from './pages/promotionAmbassadorDetail.vue'
 import DBA from './pages/DBA.vue'
@@ -111,10 +112,15 @@ const routes = [
             description: '如需了解更多南洋社会科学学院课程信息或申请详情，欢迎访问我们的办公室，或发送邮件至enquiry@niss.edu.sg联系我们的团队。'
         }
     },
-    {
+    /* {
         name: 'mbaProfessors',
         path: '/mbaProfessors',
         component: MbaProfessors
+    }, */
+    {
+        name: 'Professors',
+        path: '/Professors',
+        component: Professors
     },
     {
         name: 'Ambassador',

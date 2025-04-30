@@ -263,7 +263,7 @@ export default {
         { label: "En", value: "2" },
       ],
       isSmallScreen: false,
-      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors', '/AmbassadorDetail', '/student-code-of-conduct', '/contract'],
+      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors', '/Professors', '/AmbassadorDetail', '/student-code-of-conduct', '/contract'],
       openWindow: false
     };
   },
