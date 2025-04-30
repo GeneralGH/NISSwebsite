@@ -34,19 +34,27 @@
         </div>
       </div>
       <div class="card-container">
-        <div class="module-card" style="width: 100% !important;">
+        <div class="module-card moblie-card" style="width: 100% !important;">
           <div class="title">
             {{ userLanguage == "1" ? "价值观" : "Values" }}
           </div>
           <div class="line"></div>
-          <div class="card-content" :class="userLanguage == '1' ? 'content' : 'contentEn'">
-            {{ userLanguage == "1" ? "热爱" : "Passion" }}
+          <div class="phone-content">
+            <div class="card-content" :class="userLanguage == '1' ? 'content' : 'contentEn'">
+              {{ userLanguage == "1" ? "热爱" : "Passion" }}
+            </div>
+            <div class="card-content" :class="userLanguage == '1' ? 'content' : 'contentEn'">
+              {{ userLanguage == "1" ? "创造" : "Innovation" }}
+            </div>
+            <div class="card-content" :class="userLanguage == '1' ? 'content' : 'contentEn'">
+              {{ userLanguage == "1" ? "和谐" : "Harmony" }}
+            </div>
           </div>
-          <div class="card-content" :class="userLanguage == '1' ? 'content' : 'contentEn'">
-            {{ userLanguage == "1" ? "创造" : "Innovation" }}
-          </div>
-          <div class="card-content" :class="userLanguage == '1' ? 'content' : 'contentEn'">
-            {{ userLanguage == "1" ? "和谐" : "Harmony" }}
+
+          <div class="pc-content">
+            <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
+              {{ userLanguage == "1" ? "热爱 | 创造 | 和谐" : "Passion | Innovation | Harmony" }}
+            </div>
           </div>
         </div>
       </div>
@@ -103,8 +111,12 @@ export default {
 
     .module-card {
       width: 100% !important;
-      min-height: 400px !important;
+      min-height: 400px;
     }
+
+    /* .moblie-card {
+      min-height: 200px !important;
+    } */
   }
   .content{
     font-size: 40px !important;
@@ -119,8 +131,13 @@ export default {
     width: 300px !important;
   }
 
+  .phone-content {
+    display: block !important;
+  }
 
-
+  .pc-content {
+    display: none !important;
+  }
 }
 
 .module-card {
@@ -128,11 +145,24 @@ export default {
 }
 
 .card-container{
-    display: flex;
-    justify-content: space-between;
-  }
+  display: flex;
+  justify-content: space-between;
+}
 
-  .card-content {
-    margin-bottom: 15px;
-  }
+.card-content {
+  margin-bottom: 15px;
+}
+
+
+.moblie-card {
+  min-height: 400px !important;
+}
+
+.pc-content {
+  display: block;
+}
+
+.phone-content {
+  display: none;
+}
 </style>
