@@ -263,7 +263,7 @@ export default {
         { label: "En", value: "2" },
       ],
       isSmallScreen: false,
-      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors', '/Professors', '/AmbassadorDetail', '/student-code-of-conduct', '/contract'],
+      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors', '/Professors', '/AmbassadorDetail', '/student-code-of-conduct', '/contract', '/fee-protection-scheme', '/privacypolicy'],
       openWindow: false
     };
   },
@@ -279,11 +279,15 @@ export default {
       if (val) {
         headerNavArea.style.backgroundColor = `rgba(22, 58, 107, 1)`;
       } else {
-        const containerHeight = document.getElementById("container").offsetHeight;
-        const scrollHeight = window.scrollY;
-        const opacity = scrollHeight / containerHeight;
+        if (this.isNoTopImgPages.includes(this.currentPath)) {
+          headerNavArea.style.backgroundColor = `rgba(22, 58, 107, 1)`;
+        } else {
+          const containerHeight = document.getElementById("container").offsetHeight;
+          const scrollHeight = window.scrollY;
+          const opacity = scrollHeight / containerHeight;
 
-        headerNavArea.style.backgroundColor = `rgba(22, 58, 107, ${opacity})`;
+          headerNavArea.style.backgroundColor = `rgba(22, 58, 107, ${opacity})`;
+        }
       }
     }
   },

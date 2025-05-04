@@ -16,6 +16,8 @@ import PromotionAmbassadorDetail from './pages/promotionAmbassadorDetail.vue'
 import DBA from './pages/DBA.vue'
 import Contract from './pages/contract.vue'
 import studentCodeOfConduct from './pages/studentCodeOfConduct.vue'
+import FeeProtectionScheme from './pages/FeeProtectionScheme.vue'
+import Privacypolicy from './pages/Privacypolicy.vue'
 import Vue from 'vue';
 
 Vue.use(VueRouter)
@@ -144,6 +146,16 @@ const routes = [
         name: 'contract',
         path: '/contract',
         component: Contract
+    },
+    {
+        name: 'fee-protection-scheme',
+        path: '/fee-protection-scheme',
+        component: FeeProtectionScheme
+    },
+    {
+        name: 'privacypolicy',
+        path: '/privacypolicy',
+        component: Privacypolicy
     },
     {
         path: '*',

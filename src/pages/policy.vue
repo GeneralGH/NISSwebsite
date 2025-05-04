@@ -55,6 +55,11 @@
         </div>
         
       </div>
+      <br/>
+      <br/>
+      <br/>
+      <div class="mba-professors commonText" @click="toFeeProtectionScheme">Fee Protection Scheme</div>
+      <div class="mba-professors commonText" @click="toPrivacypolicy">Personal Data Protection Policy</div>
     </div>
     <PageFooter />
   </div>
@@ -82,14 +87,26 @@ export default {
   filter: {},
   //方法集合
   methods: {
-    
+    toFeeProtectionScheme() {
+      this.$router.push('/fee-protection-scheme')
+      window.scrollTo({
+        top: 0
+      });
+    },
+
+    toPrivacypolicy() {
+      this.$router.push('/privacypolicy')
+      window.scrollTo({
+        top: 0
+      });
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     // 加载SEO
-    const websiteSchema = { 
+    /* const websiteSchema = { 
       "@context": "https://schema.org", 
       "@type": "WebSite", 
       "name": "Policy-Nanyang Institute of Social Science", 
@@ -99,7 +116,7 @@ export default {
     const script = document.createElement('script'); 
     script.type = 'application/ld+json'; 
     script.textContent = JSON.stringify(websiteSchema); 
-    document.head.appendChild(script)
+    document.head.appendChild(script) */
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
@@ -351,5 +368,11 @@ export default {
 
 .article-content {
   margin-bottom: 30px;
+}
+
+.mba-professors {
+  margin-top: 30px;
+  cursor: pointer;
+  color: #0052d9;
 }
 </style>
