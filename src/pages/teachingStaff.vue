@@ -6,6 +6,7 @@
       <OurTeachers />
       <!-- <EliteTeam /> -->
       <MoreTeachers />
+      <div v-show="userLanguage == 2" class="commonText">Student-Teacher-Ratio = 3</div>
       <div v-show="userLanguage == 2" class="mba-professors commonText" @click="toMbaProfessors">The full list of our lecturers can be found here.</div>
     </div>
     <PageFooter />

@@ -55,11 +55,13 @@
         </div>
         
       </div>
+      <!-- <br/>
       <br/>
-      <br/>
-      <br/>
-      <div class="mba-professors commonText" @click="toFeeProtectionScheme">Fee Protection Scheme</div>
-      <div class="mba-professors commonText" @click="toPrivacypolicy">Personal Data Protection Policy</div>
+      <br/> -->
+      <!-- <div class="footerText">
+        <div class="mba-professors commonText" @click="toFeeProtectionScheme">Fee Protection Scheme</div>
+        <div class="mba-professors commonText" @click="toPrivacypolicy">Personal Data Protection Policy</div>
+      </div> -->
     </div>
     <PageFooter />
   </div>
@@ -133,6 +135,9 @@ export default {
   width: 100% !important;
 }
 @media (max-width: 720px) {
+  .footerText {
+    margin-bottom: 100px !important;
+  }
   .page-area {
     .path-list {
       margin-top: 20px;

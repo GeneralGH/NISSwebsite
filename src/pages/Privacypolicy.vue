@@ -100,6 +100,13 @@
           <div class="commonText subTitle">Updates to the Policy</div>
           <div class="commonText">We may update this Data Protection Policy from time to time without prior notice. The most current version will be published on our official website.</div>
         </div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="footerText">
+          <div class="mba-professors commonText" @click="toFeeProtectionScheme">Fee Protection Scheme</div>
+          <div class="mba-professors commonText" @click="toPolicy">Privacy Policy</div>
+        </div>
       </div>
     </div>
     <PageFooter />
@@ -128,6 +135,19 @@ export default {
   filter: {},
   //方法集合
   methods: {
+    toFeeProtectionScheme() {
+      this.$router.push('/fee-protection-scheme')
+      window.scrollTo({
+        top: 0
+      });
+    },
+
+    toPolicy() {
+      this.$router.push('/policy')
+      window.scrollTo({
+        top: 0
+      });
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
@@ -149,6 +169,9 @@ export default {
   width: 100% !important;
 }
 @media (max-width: 720px) {
+  .footerText {
+    margin-bottom: 100px !important;
+  }
   .page-area {
     .path-list {
       margin-top: 20px;

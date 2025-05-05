@@ -25,7 +25,7 @@
           <img @click="copyPhone" src="../../assets/footer/phone.png" alt="">
         </div>
       </div>
-      <div class="webSign">© 2024 NISS. All rights reserved.</div>
+      <div class="webSign">© 2025 NISS. All rights reserved.</div>
       <div class="back-top-area">
         <div class="order-message-area" @click="jump('/consultationForm')">
           <div :class="userLanguage == '1' ? 'zh' : 'en'">{{ userLanguage == '1' ? '预约一对一咨询' : 'Schedule an Info Session' }}</div>
@@ -61,7 +61,7 @@
         <div>PEI Registration No. 201813165E</div>
         <div>Registration Period: 10/05/2024 - 09/05/2028</div>
       </div>
-      <div class="web-sign">© 2024 NISS. All rights reserved.</div>
+      <div class="web-sign">© 2025 NISS. All rights reserved.</div>
     </div>
   </div>
 </template>
@@ -91,7 +91,7 @@ export default {
           nameEn: 'Links',
           list: [
             { name: '联系我们', nameEn: 'Contact Us', path: '/contactUs' },
-            { name: '相关政策', nameEn: 'Privacy Policy', path: '/policy' }
+            { name: '相关政策', nameEn: 'Policy', path: '/privacypolicy' }
           ]
         },
         {

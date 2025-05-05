@@ -87,7 +87,10 @@
             <div class="title">{{ userLanguage == '1' ? '学费及奖学金' : 'Tuition Fees and Scholarship' }}</div>
             <div class="line"></div>
             <div class="info-content des">
-                <p class="signOffset">·</p>{{ userLanguage == '1' ? '项目总学费：S$49,000（不含GST，2025年春季入学学费参考），分12期等额支付。' : 'S$49,000 (2024 Fall Intake, before Goods & Services Tax)' }}
+                <p class="signOffset">·</p>{{ userLanguage == '1' ? '项目总学费：S$49,000（不含GST，2025年秋季入学学费参考），分12期等额支付。' : 'S$49,000 (2025 Fall Intake, before Goods & Services Tax)' }}
+            </div>
+            <div class="info-content des">
+                <p class="signOffset">·</p>{{ userLanguage == '1' ? '早鸟奖学金：第一批次报名获得1200新币，第二批次报名获得600新币。' : 'Early Bird Scholarship: S$1,200 for first-round applicants, S$600 for second-round applicants.' }}
             </div>
             <div class="text-Offset info-content des">
                 <p v-show="userLanguage != '1'" class="signEnOffset">·</p>{{ userLanguage == '1' ? '· “骄傲传承”奖学金：获“项目宣传大使”推荐的申请人，可获“骄傲传承”奖学金，总额1200新币。' : `Honor Continuation Scholarship: Applicants recommended by a "Program Ambassador" are eligible for the Honor's Continuation Scholarship with a total award of S$1,200.` }}
