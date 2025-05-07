@@ -6,52 +6,101 @@
 
       <div class="article-info">
         <div class="article-title">
-          {{ userLanguage == "1" ? '相关政策' : 'Privacy Policy' }}
+          Student Grievance and Dispute Resolution Policy
         </div>
       </div>
 
       <div class="article-area">
         <div class="article-content">
-          <div class="commonText">This Privacy Policy discloses the privacy practices for www.niss.edu.sg, the main Nanyang Institute of Social Sciences website. By using this website, you are consenting to our collection and use of information in accordance with this Privacy Policy.</div>
-          <div class="commonText subTitle">What information do we gather about you?</div>
+          <div class="commonText subTitle">Nanyang Institute of Social Sciences (NISS)</div>
+          <div class="commonText">At NISS, we are committed to maintaining a fair, respectful, and supportive environment for all students. If you encounter any concern, grievance, or dispute during your studies with us, we encourage you to raise it promptly through the proper channels. We are here to help resolve issues in a professional, timely, and transparent manner.</div>
         </div>
 
         <div class="article-content">
-          <div class="commonText">We and our third-party vendors collect certain information regarding your use of www.niss.edu.sg, such as your IP address and browser type. Your session and the pages you visit on www.niss.edu.sg will be tracked, but you will remain anonymous. We may use your IP address to identify the general geographic area from which you are accessing www.niss.edu.sg. We connect data from different systems but do not link IP addresses to any personal information. We may also collect other information as described in this policy.</div>
-          <div class="commonText subTitle">What do we use your information for?</div>
+          <div class="commonText subTitle">1. Scope</div>
+          <div class="commonText">This policy applies to formal student grievances and disputes, including but not limited to:</div>
+          <ul>
+            <li class="commonText">Academic decisions (e.g. assessment results, awards)</li>
+            <li class="commonText">Administrative matters (e.g. course enrolment, attendance)</li>
+            <li class="commonText">Misconduct by staff or students</li>
+            <li class="commonText">Disciplinary actions (e.g. suspension, expulsion)</li>
+            <li class="commonText">Alleged unfair treatment or breaches of policy</li>
+          </ul>
+          <div class="commonText">Matters concerning student discipline or academic decisions will be handled under NISS’s established procedures, which take precedence over this grievance process.</div>
         </div>
 
         <div class="article-content">
-          <div class="commonText">We use the information we gather from you for systems administration purposes, abuse prevention, and to track user trends, and for the other purposes described in this policy. If you send us an email, the email address you provide may be used to send you information, respond to inquiries, and/or other requests or questions. We will not share, sell, rent, swap, or authorize any third party to use your email address for commercial purposes without your permission.</div>
-          <div class="commonText">User information may be shared with third-party vendors to the extent necessary to provide and improve web services or other communications to users. For example, we use third parties such as Chartbeat and Google Analytics to generate reports on site usage, web traffic, user behavior, and user interests in order to optimize our website for our visitors. We also use geographic, demographic, and interest-based reports of our website visitors to create custom audience lists. We prohibit any third parties who receive user information for this purpose from using or sharing user information for any purpose other than providing services for the benefit of our users.</div>
-          <div class="commonText">We may also provide your information to third parties in circumstances where we believe that doing so is necessary or appropriate to satisfy any applicable law, regulation, legal process or governmental request; detect, prevent or otherwise address fraud, security, or technical issues; or protect our rights and safety and the rights and safety of our users or others.</div>
-          <div class="commonText subTitle">How is this information collected and how can you opt out?</div>
+          <div class="commonText subTitle">2. Informal Resolution (Step 1)</div>
+          <div class="commonText">In many cases, concerns can be resolved quickly and informally. Students are encouraged to:</div>
+          <ul>
+            <li class="commonText">Speak directly with the relevant lecturer or staff member involved</li>
+            <li class="commonText">Clarify any misunderstanding or request further explanation</li>
+          </ul>
+          <div class="commonText">If the matter is not resolved or the student prefers not to address it informally, a formal grievance may be submitted.</div>
         </div>
 
         <div class="article-content">
-          <div class="commonText">Google and other third parties may use cookies, web beacons, and similar technologies to collect or receive information from this website and elsewhere on the Internet and use that information to provide measurement services and target ads. For more information on Google Analytics, consult their terms of use, privacy practices, and ads settings. You can opt out of the collection and use of this information through tools like the Network Advertising Initiative opt-out page.</div>
-          <div class="commonText subTitle">Cookies</div>
+          <div class="commonText subTitle">3. Formal Grievance Submission (Step 2)</div>
+          <ul>
+            <li class="commonText">Submit the grievance via the NISS Student Feedback Form: http://niss-edu.sg.mikecrm.com/KgSFLif</li>
+            <li class="commonText">Email the Academic Administration team at: admin@niss.edu.sg</li>
+          </ul>
+          <div class="commonText">Acknowledgement of receipt will be provided within 3 working days.</div>
         </div>
 
         <div class="article-content">
-          <div class="commonText">Cookies are small files that are stored on your computer (unless you block them). We use cookies to understand and save your preferences for future visits and compile aggregate data about site traffic and site interaction so that we can offer better site experiences and tools in the future. You may disable cookies through your individual browser options or you can opt out of the collection and use of this information through tools like the Network Advertising Initiative opt-out page.</div>
-          <div class="commonText subTitle">Other Websites and Cookies</div>
+          <div class="commonText subTitle">4. Investigation and Resolution (Step 3)</div>
+          <div class="commonText">NISS will investigate the grievance in a fair and impartial manner. You may be contacted for clarification or a meeting if needed.</div>
+          <div>
+            <table class="schtable" border="0" width="100%" cellspacing="0" cellpadding="0">
+              <tbody>
+                <tr class="topline">
+                  <td><strong>Stage</strong></td>
+                  <td><strong>Responsible Party</strong></td>
+                  <td><strong>Timeliness</strong></td>
+                </tr>
+                <tr>
+                  <td>Acknowledgement of grievance</td>
+                  <td>Academic Admin</td>
+                  <td>Within 3 working days</td>
+                </tr>
+                <tr>
+                  <td>Initial review and resolution</td>
+                  <td>Department Manager</td>
+                  <td>Within 7 working days</td>
+                </tr>
+                <tr>
+                  <td>Resolution by Management</td>
+                  <td>Dean Office</td>
+                  <td>Within 14 working days</td>
+                </tr>
+                <tr>
+                  <td>External mediation (if needed)</td>
+                  <td>Academic Admin via SSG</td>
+                  <td>By the end of 21 working days</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div class="article-content">
-          <div class="commonText">This website may contain links to other websites. We are not responsible for the privacy practices or the content of such websites.</div>
-          <div class="commonText">Cookies may be set by parties other than us. These“third-party cookies”may, for example, originate from websites such as YouTube, Twitter, Facebook, Soundcloud, or other social media services for which www.niss.edu.sg has implemented “plug-ins”. Since the cookie policies of these sites change over time, you should determine their policies by visiting the privacy policy pages of these sites directly.</div>
-          <div class="commonText subTitle">Information Protection</div>
+          <div class="commonText subTitle">5. External Dispute Resolution (Step 4)</div>
+          <div class="commonText">If the grievance remains or the student is not satisfied with the outcome, either party may refer the matter to the Singapore Mediation Centre (SMC) or the Singapore Institute of Arbitrators (SIArb) for mediation by following the SSG Private Education Mediation-Arbitration Scheme.</div>
         </div>
 
         <div class="article-content">
-          <div class="commonText">This site has reasonable security measures in place to help protect against the loss, misuse, and alteration of the information under our control. However, no method of transmission over the Internet or method of electronic storage is 100% secure.</div>
-          <div class="commonText subTitle">Changes to this Policy</div>
+          <div class="commonText subTitle">6. Confidentiality and Records</div>
+          <div class="commonText">All grievances and dispute cases will be treated confidentially. Records of the grievance, investigation, and outcome will be securely maintained by the Academic Administration Department.</div>
         </div>
 
         <div class="article-content">
-          <div class="commonText">This Privacy Policy may be amended from time to time. Any such changes will be posted on this page.</div>
-          <div class="commonText"><em>(As of 13/5/2022)</em></div>
+          <div class="commonText subTitle">7. Contact Us</div>
+          <div class="commonText">If you have a concern, grievance, or need help submitting a dispute:</div>
+          <div class="commonText">Academic Administration Office</div>
+          <div class="commonText">Address: 30 Orange Grove Road, #07-77 RELC Building, Singapore 258352</div>
+          <div class="commonText">Email: <a>jnumba.admin@niss.edu.sg</a></div>
+          <div class="commonText">Contact Number: +65 6592 0000</div>
         </div>
         
       </div>
@@ -111,6 +160,24 @@ export default {
 </script>
 
 <style scoped lang="less">
+.schtable {
+  border: 1px solid #e5e5e5 !important;
+}
+
+.schtable td {
+  line-height: 30px;
+  padding: 10px !important;
+  font-size: 20px !important;
+  border: 1px solid #e5e5e5 !important;
+  text-align: center;
+}
+
+.topline td {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 1px solid #fff !important;
+  background: #e5e5e5 !important;
+}
 /deep/ video {
   width: 100% !important;
 }
