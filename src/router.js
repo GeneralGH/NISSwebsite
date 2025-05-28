@@ -19,6 +19,7 @@ import studentCodeOfConduct from './pages/studentCodeOfConduct.vue'
 import FeeProtectionScheme from './pages/FeeProtectionScheme.vue'
 import Privacypolicy from './pages/Privacypolicy.vue'
 import Grievancepolicy from './pages/grievancepolicy.vue'
+import PrivateEducationAct from './pages/PrivateEducationAct.vue'
 import Vue from 'vue';
 
 Vue.use(VueRouter)
@@ -162,6 +163,11 @@ const routes = [
         name: 'grievancepolicy',
         path: '/grievancepolicy',
         component: Grievancepolicy
+    },
+    {
+        name: 'private-education-act',
+        path: '/private-education-act',
+        component: PrivateEducationAct
     },
     {
         path: '*',

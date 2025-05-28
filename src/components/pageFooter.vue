@@ -91,7 +91,8 @@ export default {
           nameEn: 'Links',
           list: [
             { name: '联系我们', nameEn: 'Contact Us', path: '/contactUs' },
-            { name: '相关政策', nameEn: 'Policy', path: '/privacypolicy' }
+            { name: '相关政策', nameEn: 'Policy', path: '/privacypolicy' },
+            { name: '相关法规', nameEn: 'Private Education Act', path: '/private-education-act' }
           ]
         },
         {

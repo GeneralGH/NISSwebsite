@@ -104,7 +104,7 @@
         <br/>
         <br/>
         <div class="footerText">
-          <div class="mba-professors commonText" @click="toFeeProtectionScheme">Fee Protection Scheme</div>
+          <!-- <div class="mba-professors commonText" @click="toFeeProtectionScheme">Fee Protection Scheme</div> -->
           <div class="mba-professors commonText" @click="toPolicy">Privacy Policy</div>
           <div class="mba-professors commonText" @click="toGrievancepolicy">Student Grievance and Dispute Resolution Policy</div>
         </div>
