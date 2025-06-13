@@ -90,6 +90,9 @@
                 <p class="signOffset">·</p>{{ userLanguage == '1' ? '项目总学费：S$49,000（不含GST，2025年秋季入学学费参考），分12期等额支付。' : 'S$49,000 (2025 Fall Intake, before Goods & Services Tax)' }}
             </div>
             <div class="info-content des">
+                <p class="signOffset">·</p>{{ userLanguage == '1' ? '申请及面试费：S$200（不含GST）。' : 'Application and Interview Fees: S$200 (before Goods & Services Tax)' }}
+            </div>
+            <div class="info-content des">
                 <p class="signOffset">·</p>{{ userLanguage == '1' ? '早鸟奖学金：第一批次报名获得1200新币，第二批次报名获得600新币。' : 'Early Bird Scholarship: S$1,200 for first-round applicants, S$600 for second-round applicants.' }}
             </div>
             <div class="text-Offset info-content des">
