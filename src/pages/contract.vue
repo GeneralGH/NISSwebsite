@@ -4,8 +4,8 @@
         <pageHeader />
         <div class="main">
             <div class="links">
-                <div class="linktext"><a :href="fileUrl">PRIVATEEDUCATION INSTITUTION-STUDENT CONTRACT</a></div>
-                <t-button size="large" @click="downPdf(fileUrl)">download</t-button>
+                <div class="linktext"><a :href="fileUrl">Sample of the Standard Private Education Institution-Student Contract Version 4.0</a></div>
+                <t-button size="large" @click="downPdf(fileUrl)">Download</t-button>
             </div>
         </div>
         <PageFooter />
@@ -37,7 +37,7 @@ export default {
                 const blobUrl = window.URL.createObjectURL(blob);
                 const link = document.createElement('a');
                 link.href = blobUrl;
-                link.download = 'PRIVATEEDUCATION INSTITUTION-STUDENT CONTRACT';
+                link.download = 'Sample of the Standard Private Education Institution-Student Contract Version 4.0.pdf';
                 document.body.appendChild(link);
                 link.click();
                 window.URL.revokeObjectURL(blobUrl); // 释放内存
