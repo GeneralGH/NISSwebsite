@@ -14,6 +14,9 @@
         <div class="logo">
           <img src="../../assets/header/logo.png" alt="">
         </div>
+        <div class="edutrustf">
+          <img src="../../assets/header/edutrustf.png" alt="">
+        </div>
         <div class="registration-info">
           <div>Nanyang Institute of Social Sciences</div>
           <div>PEI Registration No. 201813165E</div>
@@ -49,6 +52,9 @@
       <div class="mobile-web-info">
         <div class="logo">
           <img style="width: 100%; height: 100%;" src="../../assets/header/logo.png" alt="">
+        </div>
+        <div class="edutrustf">
+          <img style="width: 100%;" src="../../assets/header/edutrustf.png" alt="">
         </div>
         <div class="contact-information">
           <img @click="toOther('https://www.facebook.com/SGNISS/')" class="icon" src="../../assets/footer/facebook.png" alt="">
@@ -211,8 +217,13 @@ export default {
     align-items: center;
 
     .logo {
-      width: 213px;
-      height: 62px;
+      width: 220px;
+      /* height: 62px; */
+    }
+
+    .edutrustf {
+      width: 110px;
+      padding-left: 20px;
     }
 
     .contact-information {
@@ -366,12 +377,22 @@ export default {
     padding: 42px 0;
 
     .logo {
-      flex: 1;
+      //flex: 1;
+      width: 275px;
     }
 
     .logo img {
       width: 181px;
       height: 53px;
+      display: block;
+    }
+    
+    .edutrustf {
+      width: 240px;
+    }
+
+    .edutrustf img {
+      width: 55%;
       display: block;
     }
 
@@ -380,7 +401,7 @@ export default {
       font-weight: 300;
       font-size: 18px;
       color: #FFFFFF;
-      flex: 1;
+      //flex: 1;
 
       div {
         margin-bottom: 10px;
