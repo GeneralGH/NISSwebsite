@@ -263,7 +263,7 @@ export default {
         { label: "En", value: "2" },
       ],
       isSmallScreen: false,
-      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors', '/Professors', '/AmbassadorDetail', '/student-code-of-conduct', '/contract', '/fee-protection-scheme', '/privacypolicy', '/grievancepolicy', '/private-education-act'],
+      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors', '/Professors', '/AmbassadorDetail', '/student-code-of-conduct', '/contract', '/studenthandbook', '/fee-protection-scheme', '/privacypolicy', '/grievancepolicy', '/private-education-act'],
       openWindow: false
     };
   },

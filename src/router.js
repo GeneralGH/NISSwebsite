@@ -20,6 +20,7 @@ import FeeProtectionScheme from './pages/FeeProtectionScheme.vue'
 import Privacypolicy from './pages/Privacypolicy.vue'
 import Grievancepolicy from './pages/grievancepolicy.vue'
 import PrivateEducationAct from './pages/PrivateEducationAct.vue'
+import Studenthandbook from './pages/studenthandbook.vue'
 import Vue from 'vue';
 
 Vue.use(VueRouter)
@@ -168,6 +169,11 @@ const routes = [
         name: 'private-education-act',
         path: '/private-education-act',
         component: PrivateEducationAct
+    },
+    {
+        name: 'studenthandbook',
+        path: '/studenthandbook',
+        component: Studenthandbook
     },
     {
         path: '*',

@@ -18,6 +18,20 @@
                                 href="https://www.niss.edu.sg/contract" target="_blank">here</a>.
                         </div>
                     </t-collapse-panel>
+                    <t-collapse-panel header="Student Handbook">
+                        <div class="content">
+                            NISS Student Handbook Master of Business Administration (Mandarin)
+                            In line with academic and administrative requirements, Nanyang Institute of Social Sciences
+                            (NISS) has prepared a Student Handbook for all enrolled students.
+                        </div>
+                        <div class="content">
+                            The handbook serves as an official reference on academic integrity policies, code of conduct, and student support services.
+                        </div>
+                        <div class="content">
+                            Students may download the Student Handbook from <a
+                                href="https://www.niss.edu.sg/studenthandbook" target="_blank">here</a>.
+                        </div>
+                    </t-collapse-panel>
                     <t-collapse-panel header="Fee Protection Scheme (FPS)">
                         <div class="content">
                             Nanyang Institute of Social Sciences (NISS) has implemented a Fee
