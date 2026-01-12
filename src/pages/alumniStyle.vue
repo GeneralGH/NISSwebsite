@@ -4,7 +4,7 @@
     <pageHeader />
     <div class="page-area">
 
-      <div class="party">
+      <!-- <div class="party">
         <div class="party-title">
           {{ userLanguage == "1" ? "宣传大使" : "Ambassador" }}
         </div>
@@ -13,7 +13,7 @@
         <div @click="toXuanchuan">
           <t-image class="freeImg" :src="userLanguage == '1' ? xuanchuanImg.url : xuanchuanImg.urlEn" fit="cover" position="center" :lazy="true" style="width: 100%; cursor: pointer;" />
         </div>
-      </div>
+      </div> -->
 
       <div class="party">
         <div class="party-title">

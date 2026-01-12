@@ -21,7 +21,7 @@ export default {
     data() {
         //这里存放数据
         return {
-            fileUrl: 'https://www.niss.edu.sg/api//profile/upload/2025/08/22/NISS Student Handbook - V3.2_20250822211140A034.pdf'
+            fileUrl: 'https://www.niss.edu.sg/api//profile/upload/2025/09/13/NISS Student Handbook - V3.2 _20250913000454A059.pdf'
         };
     },
     //监听属性 类似于data概念
