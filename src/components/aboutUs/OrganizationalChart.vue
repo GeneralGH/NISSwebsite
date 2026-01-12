@@ -2,7 +2,8 @@
 <template>
     <div>
         <div class="OrganizationalChartImg">
-            <img src="../../../assets/aboutUs/OrganizationalChart.png" alt="">
+            <img class="pcOrg" src="../../../assets/aboutUs/OrganizationalChartNew.png" alt="">
+            <img class="phoneOrg" src="../../../assets/aboutUs/OrganizationalChartPhone.png" alt="">
             <div class="p-area p-one" @click="openDetail(DeanOffice)"></div>
             <div class="p-area p-two" @click="openDetail(MBA)"></div>
             <div class="p-area p-three" @click="openDetail(ExecutiveEducation)"></div>
@@ -106,11 +107,19 @@ export default {
         top: 155px !important;
         left: 470px !important;
     }
+
+    .pcOrg {
+        display: none !important;
+    }
+
+    .phoneOrg {
+        display: block !important;
+    }
 }
 
 
 .OrganizationalChartImg {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
     position: relative;
 }
@@ -150,5 +159,13 @@ img {
 .info-item {
     font-size: 20px;
     margin-bottom: 20px;
+}
+
+.pcOrg {
+    display: block;
+}
+
+.phoneOrg {
+    display: none;
 }
 </style>

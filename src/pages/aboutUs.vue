@@ -115,6 +115,18 @@ export default {
   created() { },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    const websiteSchema = { 
+      "@context": "https://schema.org", 
+      "@type": "WebSite", 
+      "name": "About Us-Nanyang Institute of Social Science", 
+      "description": "Nanyang Institute of Social Sciences (NISS) is an institute of higher education registered with SkillsFuture Singapore (SSG) under the Ministry of Education of Singapore, aiming to create a lifelong learning platform that incorporates quality higher education resources from the East and the West.", 
+      "url": "https://www.niss.edu.sg/aboutUs" 
+    }
+    const script = document.createElement('script'); 
+    script.type = 'application/ld+json'; 
+    script.textContent = JSON.stringify(websiteSchema); 
+    document.head.appendChild(script)
+
     this.initList();
     document.title = this.userLanguage == "1" ? "关于我们" : "About US";
   },

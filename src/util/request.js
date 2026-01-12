@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_HOST = 'https://www.niss.edu.sg/api'
+// const API_HOST = 'http://123.60.184.219:8060'
 
 const CODE = {
   LOGIN_TIMEOUT: 1000,

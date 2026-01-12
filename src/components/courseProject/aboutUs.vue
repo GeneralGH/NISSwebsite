@@ -57,14 +57,14 @@
       <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         {{
           userLanguage == "1"
-            ? "暨南大学新加坡中文MBA硕士学位项目（简称“暨南大学新加坡中文MBA项目”） 由南洋社会科学学院与暨南大学管理学院合作举办，是在新加坡以中文教学的工商管理硕士（MBA）项目，毕业后授予暨南大学工商管理硕士学位证书和硕士研究生毕业证书。"
+            ? "暨南大学中文MBA（新加坡班）由南洋社会科学学院与暨南大学管理学院合作举办，是在新加坡以中文教学的工商管理硕士（MBA）项目，毕业后授予暨南大学工商管理硕士学位证书和硕士研究生毕业证书。"
             : "Jinan University (JNU) is one of the first national institutions of higher education in China to develop business education. Business is also a strong discipline that JNU is proud of. In 1993, JNU became the first institution in South China to offer an MBA education."
         }}
       </div>
       <div class="info-content p-space" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         {{
           userLanguage == "1"
-            ? "项目面向华侨、港澳台地区人士和非中国籍人士招生，采取“申请审核制”，无需参加笔试，通过面试择优录取。"
+            ? "项目面向华侨、港澳台地区人士和非中国籍人士招生，采取“申请审核制”，无需参加MBA联考，通过面试择优录取。"
             : "JNU MBA Program aims to provide quality education on business management for young managers on the uptrend in their careers, and help them understand the culture of Chinese business, expand their developing space and improve their leadership and problem-solving capacity."
         }}
       </div>

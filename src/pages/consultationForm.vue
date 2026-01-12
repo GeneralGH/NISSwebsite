@@ -15,8 +15,8 @@
           <p>
             {{
               userLanguage == "1"
-                ? "如有任何疑问，您也可以拨打 +65 6320 3596，直接联络我们。"
-                : "If you have any questions, please also feel free to contact us directly at +65 6320 3596."
+                ? `如有任何疑问，您也可以拨打 +${contactPhone}，直接联络我们。`
+                : `If you have any questions, please also feel free to contact us directly at +${contactPhone}.`
             }}
           </p>
         </div>
@@ -39,6 +39,27 @@
                 </t-form-item>
               </div>
             </div>
+
+            <div class="form-item normal-item">
+              <div class="form-item-label">
+                {{
+                  userLanguage == "1"
+                    ? "手机号码" : "Mobile Number"
+                }}<span>*</span>
+              </div>
+              <div style="position: relative">
+                <t-form-item name="phone">
+                  <sInput :isPhone="true" v-model="formData.phone" :placeholder="userLanguage == '1'
+                    ? '请填写您的手机号码'
+                    : 'Please enter your mobile number'
+                    " />
+                </t-form-item>
+              </div>
+            </div>
+            
+          </div>
+
+          <div class="form-row">
             <div class="form-item normal-item">
               <div class="form-item-label">
                 {{ userLanguage == "1" ? "国籍" : "Nationality" }}<span>*</span>
@@ -51,29 +72,6 @@
                     " :options="nationalityOptions" :placeholder="userLanguage == '1'
                       ? '请填写您的国籍'
                       : 'Please select your nationality'
-                      " />
-                </t-form-item>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-item normal-item">
-              <div class="form-item-label">
-                {{
-                  userLanguage == "1"
-                    ? "所持新加坡居留身份"
-                    : "Residential Status in Singapore"
-                }}<span>*</span>
-              </div>
-              <div style="position: relative">
-                <t-form-item name="residence">
-                  <sSelect @optionChange="(item) => {
-                    formData.residence = userLanguage == '1' ? item.label : item.labelEn;
-                  }
-                    " :options="residenceStatusOptions" :placeholder="userLanguage == '1'
-                      ? '请选择您的新加坡居留身份'
-                      : 'Please select your residency status in Singapore'
                       " />
                 </t-form-item>
               </div>
@@ -97,7 +95,7 @@
             </div>
           </div>
 
-          <div class="form-row">
+          <!-- <div class="form-row">
             <div class="form-item full-item">
               <div class="form-item-label">
                 {{
@@ -122,9 +120,9 @@
                 </t-form-item>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="form-row">
+          <!-- <div class="form-row">
             <div class="form-item full-item">
               <div class="form-item-label">
                 {{ userLanguage == "1" ? "公司" : "Company" }}<span>*</span>
@@ -138,9 +136,9 @@
                 </t-form-item>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="form-row">
+          <!-- <div class="form-row">
             <div class="form-item full-item">
               <div class="form-item-label">
                 {{ userLanguage == "1" ? "职位" : "Position" }}<span>*</span>
@@ -154,9 +152,9 @@
                 </t-form-item>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="form-row">
+          <!-- <div class="form-row">
             <div class="form-item areaCode-item">
               <div class="form-item-label">
                 {{ userLanguage == "1" ? "区号" : "Area Code" }}
@@ -180,7 +178,7 @@
                 </t-form-item>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div class="form-row">
             <div class="form-item full-item">
@@ -199,7 +197,7 @@
             </div>
           </div>
 
-          <div class="form-row">
+          <!-- <div class="form-row">
             <div class="form-item full-item">
               <div class="form-item-label">
                 {{
@@ -220,7 +218,7 @@
                 </t-form-item>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div class="form-row">
             <div class="form-item full-item">
@@ -233,7 +231,7 @@
               </div>
               <div style="position: relative">
                 <t-form-item name="project">
-                  <sSelect @optionChange="(item) => {
+                  <sSelect ref="projectSelectRef" @optionChange="(item) => {
                     formData.project = userLanguage == '1' ? item.label : item.labelEn;
                   }
                     " :options="programOptions" :placeholder="userLanguage == '1'
@@ -374,6 +372,7 @@ export default {
   data() {
     //这里存放数据
     return {
+      lastSubmitTime: 0,
       urlSource: '',
       nationalityOptions: [
         { label: "新加坡", labelEn: 'Singaporean', value: 1 },
@@ -416,7 +415,7 @@ export default {
       ],
       programOptions: [
         { label: "暨南大学新加坡中文MBA", labelEn: 'JNU MBA Program', value: 1 },
-        // { label: "南特高等商学院亚太中文DBA", labelEn: 'Asia-pacific DBA Program（Chinese）', value: 2 },
+        { label: "南特高等商学院亚太中文DBA", labelEn: 'Asia-pacific DBA Program(Mandarin)', value: 2 },
         { label: "高管教育", labelEn: 'Executive Education', value: 3 },
       ],
       knowingChannelOptions: [
@@ -469,14 +468,14 @@ export default {
             trigger: "change",
           },
         ],
-        residence: [
+        /* residence: [
           {
             required: true,
             message: "所持新加坡居留身份必填",
             type: "error",
             trigger: "change",
           },
-        ],
+        ], */
         qualification: [
           {
             required: true,
@@ -485,30 +484,30 @@ export default {
             trigger: "change",
           },
         ],
-        residenceTime: [
+        /* residenceTime: [
           {
             required: true,
             message: "已在中国境外居住时间必填",
             type: "error",
             trigger: "change",
           },
-        ],
-        company: [
+        ], */
+        /* company: [
           {
             required: true,
             message: "公司必填",
             type: "error",
             trigger: "change",
           },
-        ],
-        post: [
+        ], */
+        /* post: [
           {
             required: true,
             message: "职位必填",
             type: "error",
             trigger: "change",
           },
-        ],
+        ], */
         phone: [
           {
             required: true,
@@ -529,14 +528,14 @@ export default {
             message: "请输入正确的邮箱地址",
           },
         ],
-        consultationMethods: [
+        /* consultationMethods: [
           {
             required: true,
             message: "以何种方式进行咨询必填",
             type: "error",
             trigger: "change",
           },
-        ],
+        ], */
         project: [
           {
             required: true,
@@ -587,14 +586,14 @@ export default {
             trigger: "change",
           },
         ],
-        residence: [
+        /* residence: [
           {
             required: true,
             message: "Required",
             type: "error",
             trigger: "change",
           },
-        ],
+        ], */
         qualification: [
           {
             required: true,
@@ -603,30 +602,30 @@ export default {
             trigger: "change",
           },
         ],
-        residenceTime: [
+        /* residenceTime: [
           {
             required: true,
             message: "Required",
             type: "error",
             trigger: "change",
           },
-        ],
-        company: [
+        ], */
+        /* company: [
           {
             required: true,
             message: "Required",
             type: "error",
             trigger: "change",
           },
-        ],
-        post: [
+        ], */
+        /* post: [
           {
             required: true,
             message: "Required",
             type: "error",
             trigger: "change",
           },
-        ],
+        ], */
         phone: [
           {
             required: true,
@@ -647,14 +646,14 @@ export default {
             message: "Required",
           },
         ],
-        consultationMethods: [
+        /* consultationMethods: [
           {
             required: true,
             message: "Required",
             type: "error",
             trigger: "change",
           },
-        ],
+        ], */
         project: [
           {
             required: true,
@@ -688,6 +687,7 @@ export default {
           },
         ],
       },
+      contactPhone: ''
     };
   },
   computed: {
@@ -706,6 +706,11 @@ export default {
       this.DateTimeOptions = e == 1 ? timelist.morningTimeSlots : timelist.afternoonTimeSlots
     },
     onSubmit({ validateResult, firstError }) {
+      const currentTime = new Date().getTime();
+      if (currentTime - this.lastSubmitTime < 5000) {
+        this.$message.warning({ content: '正在提交，请勿重复提交', placement: 'center' });
+        return;
+      }
       if (validateResult === true) {
         if (this.btnDisabled) {
           return;
@@ -714,6 +719,8 @@ export default {
           this.$message.error("请勾选隐私政策");
           return;
         }
+        // 更新上次提交时间戳
+        this.lastSubmitTime = currentTime;
         this.$request
           .post(formApi.addCustomerUrl, this.formData)
           .then((res) => {
@@ -721,6 +728,7 @@ export default {
               this.$message.error(res.data.msg);
               return;
             }
+            gtag('event', 'Form_Submit')
             this.btnDisabled = true;
             this.$message.success("提交成功，即将返回首页");
             setTimeout(() => {
@@ -735,12 +743,24 @@ export default {
         this.$message.warning(firstError);
       }
     },
-    submit() { },
+    submit() { }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() { },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    const websiteSchema = { 
+      "@context": "https://schema.org", 
+      "@type": "WebSite", 
+      "name": "Form-JNU Chinese MBA in Singapore", 
+      "description": "Thank you for your interest! Please complete the form below, and our team will contact you soon to discuss your fit and guide you through the application process.", 
+      "url": "https://www.niss.edu.sg/consultationForm" 
+    }
+    const script = document.createElement('script'); 
+    script.type = 'application/ld+json'; 
+    script.textContent = JSON.stringify(websiteSchema); 
+    document.head.appendChild(script)
+    
     this.$refs.sDatePicker.initDate();
     document.title = this.userLanguage == "1" ? "咨询表单" : "consultationForm";
     // 获取当前页面的完整URL
@@ -758,7 +778,16 @@ export default {
     this.DateTimeOptions = timelist.morningTimeSlots
 
     // 输出source参数的值
-    console.log(sourceValue); // 这里会输出参数source的值
+    if (this.$route.params.type == 1) {
+      this.$refs.projectSelectRef.optionChange(this.programOptions[0])
+      this.contactPhone = '65 6320 3595'
+    } else if (this.$route.params.type == 2) {
+      this.$refs.projectSelectRef.optionChange(this.programOptions[1])
+      this.contactPhone = '65 6518 9987'
+    } else {
+      this.contactPhone = '65 6592 0000'
+    }
+    
   },
   beforeCreate() { }, //生命周期 - 创建之前
   beforeMount() { }, //生命周期 - 挂载之前

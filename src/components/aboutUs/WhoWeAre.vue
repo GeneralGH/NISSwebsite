@@ -9,8 +9,8 @@
       <div class="commonText" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
         {{
           userLanguage == "1"
-            ? "南洋社会科学学院是在新加坡教育部SkillsFuture Singapore注册的高等教育机构，致力于构筑融汇东西方优质高等教育资源的终身学习平台。学院与顶尖高校、杰出高等教育机构合作，解析和传播支撑中国成功高速发展的理论与经验，研究和传授西方社科领域教研的最新发展方向与成果，培养兼具东方智慧与全球视野的复合型人才。"
-            : "Nanyang Institute of Social Sciences (NISS) is an institute of higher education registered with SkillsFuture Singapore (SSG) under the Ministry of Education of Singapore, aiming to create a lifelong learning platform that incorporates quality higher education resources from the East and the West. NISS cooperates with top universities and outstanding higher education institutions. It seeks to deconstruct and disseminate the theories and experiences that support China's rapid economic development, share the cutting-edge research of western social sciences, and cultivate interdisciplinary talents with eastern wisdom and global vision."
+            ? "南洋社会科学学院是在新加坡教育部SkillsFuture Singapore注册的高等教育机构，致力于构筑融汇东西方优质高等教育资源的终身学习平台。学院分别与中国顶尖高校、西方杰出高等教育机构合作，解析和传播支撑中国成功高速发展的理论与实践，研究和传授西方社科领域教研的最新发展方向与成果，培养兼具东方智慧与全球视野的复合型人才。"
+            : "Nanyang Institute of Social Sciences (NISS) is an institute of higher education registered with SkillsFuture Singapore (SSG) under the Ministry of Education of Singapore, aiming to create a lifelong learning platform that incorporates quality higher education resources from the East and the West. NISS cooperates with top universities in China and outstanding higher education institutions in the West. It seeks to deconstruct and disseminate the theories and practices that support China's rapid economic development, share the cutting-edge research of western social sciences, and cultivate interdisciplinary talents with eastern wisdom and global vision."
         }}
       </div>
       <div class="card-container">
@@ -29,7 +29,32 @@
           </div>
           <div class="line"></div>
           <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
-            {{ userLanguage == "1" ? "培养融贯中西知行合一的高层次人才" : "To cultivate high-level talents integrating Chinese and Western and connecting theory with practice" }}
+            {{ userLanguage == "1" ? "培养融贯东西知行合一的高层次人才" : "To cultivate high-level talents integrating Eastern and Western and connecting theory with practice" }}
+          </div>
+        </div>
+      </div>
+      <div class="card-container">
+        <div class="module-card moblie-card" style="width: 100% !important;">
+          <div class="title">
+            {{ userLanguage == "1" ? "价值观" : "Values" }}
+          </div>
+          <div class="line"></div>
+          <div class="phone-content">
+            <div class="card-content" :class="userLanguage == '1' ? 'content' : 'contentEn'">
+              {{ userLanguage == "1" ? "热爱" : "Passion" }}
+            </div>
+            <div class="card-content" :class="userLanguage == '1' ? 'content' : 'contentEn'">
+              {{ userLanguage == "1" ? "创造" : "Innovation" }}
+            </div>
+            <div class="card-content" :class="userLanguage == '1' ? 'content' : 'contentEn'">
+              {{ userLanguage == "1" ? "和谐" : "Harmony" }}
+            </div>
+          </div>
+
+          <div class="pc-content">
+            <div :class="userLanguage == '1' ? 'content' : 'contentEn'">
+              {{ userLanguage == "1" ? "热爱 | 创造 | 和谐" : "Passion | Innovation | Harmony" }}
+            </div>
           </div>
         </div>
       </div>
@@ -86,8 +111,12 @@ export default {
 
     .module-card {
       width: 100% !important;
-      min-height: 400px !important;
+      min-height: 400px;
     }
+
+    /* .moblie-card {
+      min-height: 200px !important;
+    } */
   }
   .content{
     font-size: 40px !important;
@@ -102,8 +131,13 @@ export default {
     width: 300px !important;
   }
 
+  .phone-content {
+    display: block !important;
+  }
 
-
+  .pc-content {
+    display: none !important;
+  }
 }
 
 .module-card {
@@ -111,7 +145,24 @@ export default {
 }
 
 .card-container{
-    display: flex;
-    justify-content: space-between;
-  }
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-content {
+  margin-bottom: 15px;
+}
+
+
+.moblie-card {
+  min-height: 400px !important;
+}
+
+.pc-content {
+  display: block;
+}
+
+.phone-content {
+  display: none;
+}
 </style>

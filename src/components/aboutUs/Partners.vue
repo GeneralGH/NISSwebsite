@@ -32,7 +32,7 @@
           </t-swiper-item>
         </t-swiper>
       </div>
-      <!-- <div class="bottom-list">
+      <div class="bottom-list">
         <div
           v-for="(item, index) in schoolList"
           :key="index"
@@ -50,11 +50,11 @@
             {{ item.title }}
           </div>
         </div>
-      </div> -->
-      <!-- <div class="index-list">
+      </div>
+      <div class="index-list">
         <div class="index" v-for="(item, index) in schoolList"
         :key="index" :style="{ backgroundColor : index == current ? '#E98225' : '#172C47' }"></div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -91,12 +91,12 @@ export default {
           subTitle: "名古屋商学院-AACSB国际认证",
           img: threeImg,
         }, */
-        /* {
+        {
           title: "南特高等商学院",
-          subTitle: "南特高等商学院-欧洲一流商学院",
+          subTitle: "南特高等商学院 - 欧洲一流商学院",
           subTitleEn: 'Audencia Business School',
           img: fourImg,
-        }, */
+        },
         /* {
           title: "萨兰托大学",
           subTitle: "萨兰托大学-意大利公立大学",
@@ -154,12 +154,13 @@ export default {
     margin: 0 auto;
     margin-top: 25px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     
     .index {
       width: 16px;
       height: 16px;
       border-radius: 50%;
+      margin-right: 30px;
     }
   }
 }
@@ -223,7 +224,7 @@ export default {
 
 .bottom-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-top: 25px;
 }
@@ -232,6 +233,7 @@ export default {
   width: 208px;
   height: 156px;
   border-radius: 30px;
+  margin-right: 50px;
 }
 
 .item-cover-title {
@@ -248,9 +250,5 @@ export default {
   line-height: 156px;
   font-weight: 400;
   font-size: 18px;
-}
-
-/deep/ .t-swiper__arrow {
-  display: none;
 }
 </style>

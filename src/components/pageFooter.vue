@@ -14,9 +14,12 @@
         <div class="logo">
           <img src="../../assets/header/logo.png" alt="">
         </div>
+        <div class="edutrustf">
+          <img src="../../assets/header/edutrustf.png" alt="">
+        </div>
         <div class="registration-info">
           <div>Nanyang Institute of Social Sciences</div>
-          <div>Registration No. 20183165E</div>
+          <div>PEI Registration No. 201813165E</div>
           <div>Registration Period: 10/05/2024 - 09/05/2028</div>
         </div>
         <div class="contact-information">
@@ -25,7 +28,7 @@
           <img @click="copyPhone" src="../../assets/footer/phone.png" alt="">
         </div>
       </div>
-      <div class="webSign">© 2024 NISS. All rights reserved.</div>
+      <div class="webSign">© 2025 NISS. All rights reserved.</div>
       <div class="back-top-area">
         <div class="order-message-area" @click="jump('/consultationForm')">
           <div :class="userLanguage == '1' ? 'zh' : 'en'">{{ userLanguage == '1' ? '预约一对一咨询' : 'Schedule an Info Session' }}</div>
@@ -50,6 +53,9 @@
         <div class="logo">
           <img style="width: 100%; height: 100%;" src="../../assets/header/logo.png" alt="">
         </div>
+        <div class="edutrustf">
+          <img style="width: 100%;" src="../../assets/header/edutrustf.png" alt="">
+        </div>
         <div class="contact-information">
           <img @click="toOther('https://www.facebook.com/SGNISS/')" class="icon" src="../../assets/footer/facebook.png" alt="">
           <img @click="toOther('https://www.linkedin.com/company/nanyang-institute-of-social-sciences/about/')" class="icon" src="../../assets/footer/ins.png" alt="">
@@ -58,10 +64,10 @@
       </div>
       <div class="registration-info">
         <div>Nanyang Institute of Social Sciences</div>
-        <div>Registration No. 20183165E</div>
+        <div>PEI Registration No. 201813165E</div>
         <div>Registration Period: 10/05/2024 - 09/05/2028</div>
       </div>
-      <div class="web-sign">© 2024 NISS. All rights reserved.</div>
+      <div class="web-sign">© 2025 NISS. All rights reserved.</div>
     </div>
   </div>
 </template>
@@ -81,8 +87,8 @@ export default {
           name: '项目导航',
           nameEn: 'Program Navigation',
           list: [
-            { name: 'MBA', nameEn: 'MBA', path: '/courseProjects' },
-            /* {name: 'DBA', nameEn: 'DBA', path: ''}, */
+            { name: 'MBA', nameEn: 'MBA', path: '/jnumba' },
+            { name: '南特工商管理博士', nameEn: 'Doctor of Business Administration', path: '/audenciadba'},
             { name: '高管教育', nameEn: 'Executive Education', path: '/highEdu' }
           ]
         },
@@ -91,7 +97,8 @@ export default {
           nameEn: 'Links',
           list: [
             { name: '联系我们', nameEn: 'Contact Us', path: '/contactUs' },
-            { name: '相关政策', nameEn: 'Privacy Policy', path: '/policy' }
+            { name: '相关政策', nameEn: 'Policy', path: '/privacypolicy' },
+            { name: '相关法规', nameEn: 'Private Education Act', path: '/private-education-act' }
           ]
         },
         {
@@ -99,7 +106,7 @@ export default {
           nameEn: 'Contact Us',
           list: [
             {
-              name: `地址：30 Orange Grove Road, #07-77 RELC Building，Singapore 258352`,
+              name: `地址：30 Orange Grove Road, #07-77 RELC Building,Singapore 258352`,
               nameEn: 'Address: 30 Orange Grove Road, #07-77 RELC Building, Singapore 258352'
             },
             { name: '邮箱：enquiry@niss.edu.sg', nameEn: 'Email: enquiry@niss.edu.sg' },
@@ -127,7 +134,7 @@ export default {
           // 复制成功
           this.$message.success('电话号码已成功复制')
         }) */
-        window.open('https://api.whatsapp.com/send?phone=6565303520', '_blank');
+        window.open('https://api.whatsapp.com/send?phone=6563203596', '_blank');
     },
 
     toOther(url) {
@@ -210,8 +217,13 @@ export default {
     align-items: center;
 
     .logo {
-      width: 213px;
-      height: 62px;
+      width: 220px;
+      /* height: 62px; */
+    }
+
+    .edutrustf {
+      width: 110px;
+      padding-left: 20px;
     }
 
     .contact-information {
@@ -365,12 +377,22 @@ export default {
     padding: 42px 0;
 
     .logo {
-      flex: 1;
+      //flex: 1;
+      width: 275px;
     }
 
     .logo img {
       width: 181px;
       height: 53px;
+      display: block;
+    }
+    
+    .edutrustf {
+      width: 240px;
+    }
+
+    .edutrustf img {
+      width: 55%;
       display: block;
     }
 
@@ -379,7 +401,7 @@ export default {
       font-weight: 300;
       font-size: 18px;
       color: #FFFFFF;
-      flex: 1;
+      //flex: 1;
 
       div {
         margin-bottom: 10px;

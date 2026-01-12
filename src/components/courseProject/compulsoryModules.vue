@@ -10,8 +10,8 @@
         <div :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
           {{
             userLanguage == "1"
-              ? "暨南大学新加坡MBA项目必修课分为职能模块、分析模块、领导力模块、综合模块、中国模块和学位论文六个模块，帮助学生从六大主要维度，奠定坚实的工商管理知识、理论与技能基础。学生须修满30个必修课学分。"
-              : "The core courses of Jinan University's Singapore MBA program are divided into six modules: Functional, Analytical, Leadership, Integrated, China, and Thesis modules. These modules help students establish a solid foundation in business administration knowledge, theory, and skills across six major dimensions. Students are required to complete 30 core course credits."
+              ? "暨南大学中文MBA（新加坡班）必修课分为职能模块、分析模块、领导力模块、综合模块、中国模块和学位论文六个模块，帮助学生从六大主要维度，奠定坚实的工商管理知识、理论与技能基础。学生须修满30个必修课学分。"
+              : "The core courses of JNU MBA Program are divided into six modules: Functional, Analytical, Leadership, Integrated, China, and Thesis modules. These modules help students establish a solid foundation in business administration knowledge, theory, and skills across six major dimensions. Students are required to complete 30 core course credits."
           }}
         </div>
         <div class="module-card-list">
@@ -37,8 +37,8 @@
         <div :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
           {{
             userLanguage == "1"
-              ? "暨南大学新加坡MBA项目选修课分为综合管理模块、创新创业模块、资本运营模块、营销管理模块、运营管理模块、整合实践模块六个方向，助力拓宽和加深学生在特定领域的认知。学生须修满12个选修课学分。"
-              : "The optional courses of Jinan University's Singapore MBA program are divided into six modules: Comprehensive Management, Innovation and Entrepreneurship, Capital Operations, Marketing Management, Operations Management, and Integrated Practice. These modules help broaden and deepen students' understanding in specific areas. Students are required to complete 12 elective course credits."
+              ? "暨南大学中文MBA（新加坡班）选修课分为综合管理模块、创新创业模块、资本运营模块、营销管理模块、运营管理模块、整合实践模块六个方向，助力拓宽和加深学生在特定领域的认知。学生须修满12个选修课学分。"
+              : "The optional courses of JNU MBA Program are divided into six modules: Comprehensive Management, Innovation and Entrepreneurship, Capital Operations, Marketing Management, Operations Management, and Integrated Practice. These modules help broaden and deepen students' understanding in specific areas. Students are required to complete 12 elective course credits."
           }}
         </div>
         <div class="module-card-list">
@@ -69,7 +69,7 @@
 
     <div class="content-item" id="options2-3">
       <div class="title">
-        {{ userLanguage == "1" ? "国际交换" : "Overseas Module" }}
+        {{ userLanguage == "1" ? "国际交换" : "Overseas Exchange" }}
       </div>
       <div class="line"></div>
       <div class="info-content" :style="{ textAlign: userLanguage == 1 ? 'justify' : 'left' }">
@@ -290,7 +290,7 @@ export default {
 @media(max-width:720px){
   .module-card {
     width:16rem !important;
-   margin-right: 0 !important;
+    margin-right: 0 !important;
     margin-left: 1rem !important;
     height: auto;
   }

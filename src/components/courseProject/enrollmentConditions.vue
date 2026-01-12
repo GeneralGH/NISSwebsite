@@ -51,6 +51,9 @@
             <div class="space-two">
                 <t-image style="width: 100%; background-color: transparent;" :src="userLanguage == '1' ? applyImg.url : applyImg.urlEn" fit="cover" position="center" :lazy="true" />
             </div>
+            <div class="ps last-ps" style="color: #172C47;">
+                * {{ userLanguage == '1' ? '未获本科或以上学位的申请人须参加校内加试。' : 'Non-degree holders are required to take an additional internal test before enrollment.' }}
+            </div>
         </div>
 
         <!-- <div class="content-item" id="options3-3">
@@ -81,12 +84,24 @@
         </div>
 
         <div class="content-item" id="options3-5">
-            <div class="title">{{ userLanguage == '1' ? '学费' : 'Tuition Fees' }}</div>
+            <div class="title">{{ userLanguage == '1' ? '学费及奖学金' : 'Tuition Fees and Scholarship' }}</div>
             <div class="line"></div>
             <div class="info-content des">
-                {{ userLanguage == '1' ? '项目总学费：S$49,000（不含GST，2025年春季入学学费参考），分12期等额支付。' : 'S$49,000 (2024 Fall Intake, before Goods & Services Tax)' }}
+                <p class="signOffset">·</p>{{ userLanguage == '1' ? '项目总学费：S$49,000（不含GST，2025年秋季入学学费参考），分12期等额支付。' : 'S$49,000 (2025 Fall Intake, before Goods & Services Tax)' }}
             </div>
-        </div>
+            <div class="info-content des">
+                <p class="signOffset">·</p>{{ userLanguage == '1' ? '申请及面试费：S$200（不含GST）。' : 'Application and Interview Fees: S$200 (before Goods & Services Tax)' }}
+            </div>
+            <div class="info-content des">
+                <p class="signOffset">·</p>{{ userLanguage == '1' ? '早鸟奖学金：第一批次报名获得1200新币，第二批次报名获得600新币。' : 'Early Bird Scholarship: S$1,200 for first-round applicants, S$600 for second-round applicants.' }}
+            </div>
+            <div class="text-Offset info-content des">
+                <p v-show="userLanguage != '1'" class="signEnOffset">·</p>{{ userLanguage == '1' ? '· “骄傲传承”奖学金：获“项目宣传大使”推荐的申请人，可获“骄傲传承”奖学金，总额1200新币。' : `Honor Continuation Scholarship: Applicants recommended by a "Program Ambassador" are eligible for the Honor's Continuation Scholarship with a total award of S$1,200.` }}
+            </div>
+            <div class="text-Offset info-content des">
+                <p v-show="userLanguage != '1'" class="signEnOffset">·</p>{{ userLanguage == '1' ? '· “骄傲同行”奖学金：申请人邀约优秀的朋友和自己共同就读项目，两人于同季成功入学后，可获“骄傲同行”奖学金，每人总额1200新币。' : `Honor Together Scholarship: Applicants who refer a friend to the course and are both successfully admitted in the same intake will each receive a scholarship of S$1,200.` }}
+            </div>
+        </div> 
     </div>
 </template>
 
@@ -259,5 +274,21 @@ export default {
     font-weight: 300;
     font-size: 16px;
     color: #172C47;
+}
+
+.text-Offset {
+    padding-left: 18px;
+}
+
+.signOffset {
+    display: inline;
+    margin-left: -13px;
+    margin-right: 15px;
+}
+
+.signEnOffset {
+    display: inline;
+    margin-left: 0px;
+    margin-right: 15px;
 }
 </style>

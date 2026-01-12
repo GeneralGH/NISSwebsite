@@ -31,14 +31,15 @@
             @mouseleave="isHovered = -1" @mouseenter="jump(item, index)" :class="{ 'is-hovered': isHovered == index }">
             <div style="width: 100%">
               <div class="info-title">
-                <div>{{ userLanguage == "1" ? item.title : item.titleEn }}</div>
+                <div :class="userLanguage == '1' ? isSmallScreen ? 'title-en-m' : '' : isSmallScreen ? 'title-en-m' : 'title-en' ">{{ userLanguage == "1" ? item.title : item.titleEn }}</div>
                 <div class="info-line">
                   <div v-show="isHovered == index"></div>
                 </div>
               </div>
               <div class="info-subTitle">
-                <div v-for="str in item.subTitle" v-show="userLanguage == '1'">{{ str }}</div>
-                <div v-for="str in item.subTitleEn" v-show="userLanguage == '2'">{{ str }}</div>
+                <div :class="[str == '（新加坡班）' ? 'textLeft' : '', isSmallScreen ? 'subTitle-m-z' : '']" v-for="str in item.subTitle"
+                  v-show="userLanguage == '1'">{{ str }}</div>
+                <div :class="isSmallScreen ? 'subTitle-m' : ''" v-for="str in item.subTitleEn" v-show="userLanguage == '2'">{{ str }}</div>
               </div>
               <div class="line" v-show="isHovered == index"></div>
             </div>
@@ -50,41 +51,48 @@
         </div>
       </div>
     </div>
-    <div class="content-two" ref="contentTwo">
+    <div class="content-two" ref="contentTwo" style="position: relative;">
       <div class="content-info" id="content-info">
         <div class="info-left content-se">
           <div class="title" v-show="currentScroll == 0">
             {{
               userLanguage == "1"
-                ? `暨南大学新加坡中文MBA项目`
+                ? `暨南大学中文MBA（新加坡班）`
                 : "JNU MBA PROGRAM"
             }}
           </div>
-          <!-- <div class="subTitle" v-show="currentScroll == 0">
-            {{
-              userLanguage == "2"
-                ? "暨南大学新加坡MBA项目"
-                : "JNU MBA PROGRAM"
-            }}
-          </div> -->
 
-          <div class="title" v-show="currentScroll == 1">
+          <div class="title" v-show="currentScroll == 1" :style="isSmallScreen ? 'margin-bottom: 0 ;' : ''">
+            <p style="position: absolute;" class="title-space-two">
+              {{
+                userLanguage == "1"
+                  ? `南特高等商学院`
+                  : "Doctor of Business"
+              }}
+            </p>
+            <p style="position: absolute;" class="title-space-one">
+              {{
+                userLanguage == "1"
+                  ? `亚太中文工商管理博士`
+                  : "Administration Program (Mandarin)"
+              }}
+            </p>
+          </div>
+
+          <div class="title" v-show="currentScroll == 2">
             {{ userLanguage == "1" ? "高管教育" : "Executive Education" }}
           </div>
-          <!-- <div class="subTitle" v-show="currentScroll == 2">
-            {{ userLanguage == "2" ? "高级管理教育" : "Executive Education" }}
-          </div> -->
 
           <img v-show="currentScroll == 0" src='../../assets/home/mba.png' alt="" />
-
-          <img v-show="currentScroll == 1" src='../../assets/home/highEdu.png' alt="" />
+          <img v-show="currentScroll == 1" src='../../assets/home/DBA.png' alt=""  class="DBA-img-space"/>
+          <img v-show="currentScroll == 2" src='../../assets/home/highEdu.png' alt="" />
         </div>
         <div class="info-right" id="contentTwoRight" ref="contentTwoRight">
           <div class="info-item" v-for="(item, index) in scrollList" :key="index">
             <div :class="userLanguage == '1' ? 'title' : 'titleEn'" style="width: 150%;">
               {{ userLanguage == "1" ? item.title : item.titleEn }}
             </div>
-            <div class="titleEn" v-show="item.twoTitleEn && userLanguage == 2">
+            <div class="titleEn" v-show="item.twoTitleEn && userLanguage == 2" style="width: 150%;">
               {{ item.twoTitleEn }}
             </div>
             <div class="subTitle" style="width: 130%;">
@@ -164,21 +172,21 @@ export default {
       currentScroll: 0,
       infoList: [
         {
-          title: "MBA",
-          titleEn: "MBA",
-          subTitle: ['暨南大学', '新加坡', '中文MBA', '项目'],
+          title: "硕士项目",
+          titleEn: "Master's Program",
+          subTitle: ['暨南大学中文MBA', '（新加坡班）'],
           subTitleEn: ['JNU MBA Program', '(Mandarin)'],
-          path: "/courseProjects",
+          path: "/jnumba",
         },
-        /* {
-          title: "DBA",
-          titleEn: "DBA",
-          subTitle: ['南特高等商学院', '亚太中文DBA项目'],
-          subTitleEn: ['Audencia Business School', 'Asia-Pacific DBA Program', '(Chinese)'],
-        }, */
         {
-          title: "EE",
-          titleEn: "EE",
+          title: "博士项目",
+          titleEn: "Doctorate Program",
+          subTitle: ['南特高等商学院', '亚太中文工商管理博士'],
+          subTitleEn: ['Audencia Asia-pacific ', 'Doctor of Business Administration', 'Program (Mandarin)'],
+        },
+        {
+          title: "非学位项目",
+          titleEn: "Non-Degree Program",
           subTitle: ["高管教育"],
           subTitleEn: ['Executive Education'],
         },
@@ -208,6 +216,34 @@ export default {
           titleEn: "Elite Platform",
           subTitle: "交良师、结益友、融资源的终身学习平台",
           subTitleEn: "Engaging with Inspiring Mentors | Connecting with Valuable Peers | Collaborating with Extensive Resources",
+        }
+      ],
+      DBAList: [
+        {
+          title: "欧洲一流商学院",
+          titleEn: "A Leading European",
+          twoTitleEn: 'Business School',
+          subTitle: "百年名校、法国精英“大学校”联盟成员",
+          subTitleEn: "A Century of Academic Excellence | Member of France's Prestigious “Grande École”",
+        },
+        {
+          title: "顶级认证",
+          titleEn: "Triple Crown Accreditation",
+          subTitle: "EQUIS、AACSB、AMBA三冠认证，全球仅1%",
+          subTitleEn: "EQUIS, AACSB, AMBA – Top 1% Worldwide",
+        },
+        {
+          title: "全球名师",
+          titleEn: "World-Class Faculty",
+          subTitle: "法、中、港澳台知名教授，融贯东西，知行合一",
+          subTitleEn: "Renowned professors worldwide integrating Chinese and Western",
+        },
+        {
+          title: "工商管理最高学位",
+          titleEn: "The Highest Degree in ",
+          twoTitleEn: 'Business Administration',
+          subTitle: "贡献商业新知，成就学者型管理精英",
+          subTitleEn: "Advancing cutting-edge business knowledge | Cultivating scholar-practitioner leaders",
         }
       ],
       highEduList: [
@@ -261,6 +297,7 @@ export default {
         size: 20,
         language: "",
       },
+      isSmallScreen: false,
     };
   },
   computed: {
@@ -315,7 +352,6 @@ export default {
           }
           inner.scrollTop = scrollTop;
         } else if (inv <= 0 && scrollTop > 0) {
-          console.log("beforeScrollTop", scrollTop);
           //向上滚动
           event.preventDefault();
           if (scrollTop - inv <= 0) {
@@ -354,11 +390,16 @@ export default {
     },
 
     jump(item, index) {
-      /* if (index == 1) {
-        return;
-      } */
       this.currentScroll = index;
-      this.scrollList = index ? this.highEduList : this.infoTwoList;
+      if (index == 0) {
+        this.scrollList = this.infoTwoList
+      }
+      if (index == 1) {
+        this.scrollList = this.DBAList
+      }
+      if (index == 2) {
+        this.scrollList = this.highEduList
+      }
     },
 
     initList() {
@@ -426,9 +467,114 @@ export default {
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
+    this.isSmallScreen = window.innerWidth <= 720
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    const websiteSchema = {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Nanyang Institute of Social Science",
+      "url": "https://www.niss.edu.sg/",
+      "description": "Nanyang Institute of Social Science offers advanced education opportunities in Singapore, specializing in MBA programs and professional development.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "30 Orange Grove Road, #07-77 RELC Building",
+        "addressLocality": "Singapore",
+        "postalCode": "258352"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+65 6592 0000",
+        "email": "enquiry@niss.edu.sg",
+        "contactType": "Customer Service"
+      },
+      "program": [
+        {
+          "@type": "EducationalOccupationalProgram",
+          "name": "JNU Chinese MBA program in Singapore",
+          "educationalCredentialAwarded": "MBA",
+          "hasCourse": {
+            "@type": "Course",
+            "courseMode": "Part-time",
+            "name": "JNU Chinese MBA(Singapore Class)"
+          }
+        }
+      ],
+      "@graph": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Nanyang Institute of Social Science",
+          "logo": "https://www.niss.edu.sg/assets/logo.12caeabd.png",
+          "url": "https://www.niss.edu.sg/",
+          "sameAs": [
+            "https://www.facebook.com/SGNISS",
+            "https://www.linkedin.com/company/nanyang-institute-of-social-sciences/"
+          ],
+          "brand": "NISS",
+          "slogan": "To be an invaluable lifelong learning platform"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "NISS-Nanyang Institute of Social Science",
+          "url": "https://www.niss.edu.sg/",
+          "description": "Explore educational programs, resources, and apply for MBA courses at Nanyang Institute of Social Science.",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.niss.edu.sg/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "inLanguage": [
+            "en",
+            "zh"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Home-anyang Institute of Social Science",
+          "url": "https://www.niss.edu.sg/",
+          "description": "Welcome to the Nanyang Institute of Social Science, offering quality education in Singapore.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "NISS-Nanyang Institute of Social Science",
+            "url": "https://www.niss.edu.sg/"
+          },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.niss.edu.sg/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "About Us",
+                "item": "https://www.niss.edu.sg/aboutUs"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Programs",
+                "item": "https://www.niss.edu.sg/jnumba"
+              }
+            ]
+          },
+          "primaryImageOfPage": "https://www.niss.edu.sg/api//profile/upload/2024/11/04/学校封面图_20241104175653A057.jpg"
+        }
+      ]
+    }
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(websiteSchema);
+    document.head.appendChild(script)
+
+
     const windowHeight = window.innerHeight;
     const contentTwoElement = document.querySelector(".content-two");
     const infoRight = document.getElementById("content-info");
@@ -502,6 +648,17 @@ export default {
 </script>
 
 <style scoped lang="less">
+.title-space-one {
+  width: 800px;
+  top: -50px;
+}
+.title-space-two {
+  width: 800px;
+  top: -100px
+}
+.DBA-img-space {
+  padding-top: 50px;
+}
 /deep/ img {
   -webkit-user-drag: none;
 
@@ -521,6 +678,18 @@ export default {
 }
 
 @media (max-width: 720px) {
+  .title-space-one, .title-space-two {
+    width: 600px !important;
+  }
+  .title-space-one {
+    display: none !important;
+  }
+  .title-space-two{
+    display: none !important;
+  }
+  .DBA-img-space {
+    /* padding-top: 100px !important; */
+  }
   .header-mobile {
     width: 100%;
     z-index: 99999 !important;
@@ -1021,5 +1190,25 @@ body {
   /* 对于IE和Edge */
   scrollbar-width: none;
   /* 对于Firefox */
+}
+
+.textLeft {
+  margin-left: -13px;
+}
+
+.title-en {
+  font-size: 36px !important;
+}
+
+.title-en-m {
+  font-size: 28px !important;
+}
+
+.subTitle-m {
+  font-size: 18px !important;
+}
+
+.subTitle-m-z {
+  font-size: 20px !important;
 }
 </style>

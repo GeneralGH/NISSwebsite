@@ -9,7 +9,7 @@
                         <li>Developing and reviewing the policies and procedures on all academic matters of NISS. These
                             include ensuring that the content and duration of the modules and subjects as well as entry
                             and graduation requirements of the courses are appropriate and approving the deployment of
-                            teachers based on the requirements stipulated by the CPE of Singapore.</li>
+                            teachers based on the requirements stipulated by the SSG of Singapore.</li>
                         <li>Facilitating NISS to implement and comply with the policies and procedures developed.</li>
                         <li>Reviewing the academic policies and procedures annually.</li>
                     </ul>

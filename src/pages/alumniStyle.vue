@@ -3,61 +3,17 @@
   <div>
     <pageHeader />
     <div class="page-area">
-      <div class="party">
-        <!-- <div class="party-title" id="school">
-          {{ userLanguage == "1" ? "精英网络" : "Alumni Network" }}
+
+      <!-- <div class="party">
+        <div class="party-title">
+          {{ userLanguage == "1" ? "宣传大使" : "Ambassador" }}
         </div>
         <div class="party-line"></div>
 
-        <div class="party-content">
-          <div>
-            <img class="content-image" :src="JNUniversityNetwork" alt="" />
-            <div class="content-p">
-              {{ userLanguage == '1' ? '自南洋社会科学学院成立以来，每年有来自超过20多个行业的学生选择加入我们。我们的校友网络遍布世界各地，超过大半的校友在大型跨国公司任职，超过20%的校友创立了自己的企业。他们秉承着学院的价值观念，不断追求卓越，在各个经济领域展现出卓越才能，创造价值并服务社会。' : "Since its inception, the Nanyang School of Social Sciences has attracted students from over 20 industries each year. Our alumni network spans the globe, with more than half working in large multinational corporations and over 20% founding their own businesses. They uphold the school's values, continuously striving for excellence, showcasing their talents in various economic sectors, creating value, and serving society." }}
-            </div>
-          </div>
-        </div> -->
-
-        <!-- <div class="party-content">
-                    <div class="content-title">{{ userLanguage == '1' ? '暨南大学校友网络' : 'Jinan University Alumni Network' }}</div>
-                    <div class="content-area">
-                        <div><t-image class="content-image" :src="JNUniversityNetwork" fit="cover" position="center" :lazy="true" /></div>
-                        <div class="content-p">
-                            <p>
-                                {{ userLanguage == '1' ? textOne.text : textOne.textEn }}
-                            </p>
-                            <p>
-                                {{ userLanguage == '1' ? textTwo.text : textTwo.textEn }}
-                            </p>
-                            <p v-show="userLanguage == '1'">
-                                前中国国务院副总理吴学谦、李岚清，著名侨领、新加坡大学首任校长李光前，前泰国议会主席、副总理许敦茂，中国两院院士谭其骧、邓锡铭、侯芙生、曾毅，烈士江上青、陈镇和（华侨）、符保卢、符克（华侨），以及近年来内地和港澳台地区许多政府、工商及文教界知名人士均是暨南大学不同时期的杰出校友。
-                            </p>
-                            <div class="party-line content-line"></div>
-                            <p>
-                                {{ userLanguage == '1' ? '《福布斯》（Forbes）杂志曾于2006年评选管理学院为“校友满意度最高的中国商学院”。' : 'In 2006, Forbes magazine rated the management school as "the Chinese business school with the highest alumni satisfaction."' }}
-                            </p>
-                            <div class="party-line content-line"></div>
-                        </div>
-                    </div>
-                    <div class="content-title">{{ userLanguage == '1' ? '新加坡校友会' : 'Singapore Alumni Association' }}</div>
-                    <div class="content-area">
-                        <div><t-image class="content-image" :src="SingapoUniversityNetwork" fit="cover" position="center" :lazy="true" /></div>
-                        <div class="content-p">
-                            <p>
-                                {{ userLanguage == '1' ? 
-                                '新加坡暨南校友会早在 1941年4月已注册成立，是暨南大学成立较早、持续活动时间最长的校友会，也是新加坡最早成立的中国高校校友会。' :
-                                'The Jinan University Alumni Association in Singapore was registered as early as April 1941, making it one of the earliest established and longest-running alumni associations of Jinan University and the first Chinese university alumni association in Singapore.' }}
-                            </p>
-                            <p>
-                                {{ userLanguage == '1' ? 
-                                 '李光前、刘抗、庄右铭、陈共存等诸多新马地区有名的政商学界名人均有在暨南大学求学的经历。' :
-                                 'Many well-known figures in the political, business, and academic sectors of Singapore and Malaysia, such as Li Guangqian, Liu Kang, Zhuang Youming, and Chen Gongcun, have studied at Jinan University.'
-                                }}
-                            </p>
-                        </div>
-                    </div>
-                </div> -->
-      </div>
+        <div @click="toXuanchuan">
+          <t-image class="freeImg" :src="userLanguage == '1' ? xuanchuanImg.url : xuanchuanImg.urlEn" fit="cover" position="center" :lazy="true" style="width: 100%; cursor: pointer;" />
+        </div>
+      </div> -->
 
       <div class="party">
         <div class="party-title">
@@ -132,6 +88,10 @@ export default {
       freeImg: {
         url: '',
         urlEn: ''
+      },
+      xuanchuanImg: {
+        url: '',
+        urlEn: ''
       }
     };
   },
@@ -166,14 +126,39 @@ export default {
       this.listQuery.current = e.current
       this.initList()
     },
+
+    toXuanchuan() {
+      this.$router.push('/Ambassador')
+      window.scrollTo({
+        top: 0,
+        behavior: 'instant' // 可选，使用平滑滚动效果
+      })
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    // 加载SEO
+    const websiteSchema = { 
+      "@context": "https://schema.org", 
+      "@type": "WebSite", 
+      "name": "NISS-JNU Chinese MBA in Singapore", 
+      "description": "The Jinan University Chinese MBA program has a diverse alumni network, with members in key positions worldwide, actively engaging in industry development and social welfare.", 
+      "url": "https://www.niss.edu.sg/alumni" 
+    }
+    const script = document.createElement('script'); 
+    script.type = 'application/ld+json'; 
+    script.textContent = JSON.stringify(websiteSchema); 
+    document.head.appendChild(script)
+
+
     this.initList();
     this.$getPageContent(20).then((res) => {
       this.freeImg = res
+    });
+    this.$getPageContent(22).then((res) => {
+      this.xuanchuanImg = res
     });
     document.title = this.userLanguage == "1" ? "校友风采" : "Alumni";
   },

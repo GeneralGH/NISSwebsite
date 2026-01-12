@@ -2,18 +2,53 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8"/>
-    <link rel="icon" href="./assets/logo.ico"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./assets/logo.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.18.js"></script>
     <title>NISS</title>
 </head>
 
+<!-- Google tag (gtag.js) -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16743728308"></script>
+ <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-16743728308');</script>
+
+ <!-- Event snippet for Form_submit conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. --> <script> function gtag_report_conversion(url) { var callback = function () { if (typeof(url) != 'undefined') { window.location = url; } }; gtag('event', 'conversion', { 'send_to': 'AW-16743728308/YHVNCL7iweoZELSJhLA-', 'value': 1.0, 'currency': 'SGD', 'event_callback': callback }); return false; } </script>
+  
+<!-- Facebook Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+     fbq('init', '325324873250207'); 
+    fbq('track', 'PageView');
+    </script>
+    <noscript>
+     <img height="1" width="1" 
+    src="https://www.facebook.com/tr?id=325324873250207&ev=PageView
+    &noscript=1"/>
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'AW-16743728308');
+</script>    
+
 <body>
-<div id="app">
-    <router-view></router-view>
-</div>
-<script type="module" src="./src/main.js"></script>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+
 </body>
 
 </html>

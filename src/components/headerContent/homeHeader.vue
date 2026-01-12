@@ -73,7 +73,7 @@ export default {
       }
       if (targetUrl.type == 2) {
         this.$router.push({
-          name: "courseProjects",
+          name: "jnumba",
           params: { anchor: targetUrl.value },
         });
       }

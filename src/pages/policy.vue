@@ -12,12 +12,12 @@
 
       <div class="article-area">
         <div class="article-content">
-          <div class="commonText">This Privacy Policy discloses the privacy practices for www.nibi.edu.sg, the main Nanyang International Business Institute website. By using this website, you are consenting to our collection and use of information in accordance with this Privacy Policy.</div>
+          <div class="commonText">This Privacy Policy discloses the privacy practices for www.niss.edu.sg, the main Nanyang Institute of Social Sciences website. By using this website, you are consenting to our collection and use of information in accordance with this Privacy Policy.</div>
           <div class="commonText subTitle">What information do we gather about you?</div>
         </div>
 
         <div class="article-content">
-          <div class="commonText">We and our third-party vendors collect certain information regarding your use of www.nibi.edu.sg, such as your IP address and browser type. Your session and the pages you visit on www.nibi.edu.sg will be tracked, but you will remain anonymous. We may use your IP address to identify the general geographic area from which you are accessing www.nibi.edu.sg. We connect data from different systems but do not link IP addresses to any personal information. We may also collect other information as described in this policy.</div>
+          <div class="commonText">We and our third-party vendors collect certain information regarding your use of www.niss.edu.sg, such as your IP address and browser type. Your session and the pages you visit on www.niss.edu.sg will be tracked, but you will remain anonymous. We may use your IP address to identify the general geographic area from which you are accessing www.niss.edu.sg. We connect data from different systems but do not link IP addresses to any personal information. We may also collect other information as described in this policy.</div>
           <div class="commonText subTitle">What do we use your information for?</div>
         </div>
 
@@ -40,7 +40,7 @@
 
         <div class="article-content">
           <div class="commonText">This website may contain links to other websites. We are not responsible for the privacy practices or the content of such websites.</div>
-          <div class="commonText">Cookies may be set by parties other than us. These“third-party cookies”may, for example, originate from websites such as YouTube, Twitter, Facebook, Soundcloud, or other social media services for which www.nibi.edu.sg has implemented “plug-ins”. Since the cookie policies of these sites change over time, you should determine their policies by visiting the privacy policy pages of these sites directly.</div>
+          <div class="commonText">Cookies may be set by parties other than us. These“third-party cookies”may, for example, originate from websites such as YouTube, Twitter, Facebook, Soundcloud, or other social media services for which www.niss.edu.sg has implemented “plug-ins”. Since the cookie policies of these sites change over time, you should determine their policies by visiting the privacy policy pages of these sites directly.</div>
           <div class="commonText subTitle">Information Protection</div>
         </div>
 
@@ -82,12 +82,23 @@ export default {
   filter: {},
   //方法集合
   methods: {
-    
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    // 加载SEO
+    /* const websiteSchema = { 
+      "@context": "https://schema.org", 
+      "@type": "WebSite", 
+      "name": "Policy-Nanyang Institute of Social Science", 
+      "description": "This Privacy Policy outlines privacy practices for www.niss.edu.sg. By using our site, you consent to the collection and use of your information as described in this policy.", 
+      "url": "https://www.niss.edu.sg/policy" 
+    }
+    const script = document.createElement('script'); 
+    script.type = 'application/ld+json'; 
+    script.textContent = JSON.stringify(websiteSchema); 
+    document.head.appendChild(script) */
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
@@ -104,6 +115,9 @@ export default {
   width: 100% !important;
 }
 @media (max-width: 720px) {
+  .footerText {
+    margin-bottom: 100px !important;
+  }
   .page-area {
     .path-list {
       margin-top: 20px;
@@ -339,5 +353,11 @@ export default {
 
 .article-content {
   margin-bottom: 30px;
+}
+
+.mba-professors {
+  margin-top: 30px;
+  cursor: pointer;
+  color: #0052d9;
 }
 </style>

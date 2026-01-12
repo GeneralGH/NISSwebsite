@@ -15,12 +15,12 @@
             <div class="date">
                 <div class="year-month-area">
                     <div class="month">
-                        <sSelect :isDate="true" ref="monthSelect" @optionChange="monthChange" :type="'time'" :options="monthOptions"
-                            :placeholder="'请选择月份'" />
+                        <sSelect :isDate="true" ref="monthSelect" @optionChange="monthChange" :type="'time'"
+                            :options="monthOptions" :placeholder="'请选择月份'" />
                     </div>
                     <div class="year">
-                        <sSelect :isDate="true" ref="yearSelect" @optionChange="yearChange" :type="'time'" :options="yearOptions"
-                            :placeholder="'请选择年份'" />
+                        <sSelect :isDate="true" ref="yearSelect" @optionChange="yearChange" :type="'time'"
+                            :options="yearOptions" :placeholder="'请选择年份'" />
                     </div>
                 </div>
 
@@ -32,10 +32,10 @@
                     </div>
                     <div class="weekDays">
                         <div v-for="item in preDayd" style="flex-basis: 14.28%;">
-                            <div class="day-item" style="color: #999;">{{ preDays - (firstDay - 1 - item) }}</div>
+                            <div class="day-item" style="color: #999;">{{  }}</div>
                         </div>
                         <div v-for="item in dates" style="flex-basis: 14.28%;">
-                            <div :class="['day-item', { 'day-item-check': item.date == currentDate }]"
+                            <div :class="['day-item', { 'day-item-check': item.date == currentDate }, { 'day-disabled': item.isSunday == 0 || item.isSunday == 6 }]"
                                 @click="clickDay(item)">{{ item.date }}</div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ export default {
             yearOptions: [],
             month: '',
             year: '',
-            weekList: ['一', '二', '三', '四', '五', '六', '日'],
+            weekList: ['日', '一', '二', '三', '四', '五', '六', ],
             dates: [],
             currentDate: '',
             preDays: 30,
@@ -100,7 +100,7 @@ export default {
         },
 
         'firstDay'(val) {
-            this.preDayd = val - 1
+            this.preDayd = val > 0 ? val : 0
         }
     },
     //方法集合
@@ -120,17 +120,17 @@ export default {
         },
 
         initDate() {
-      const date = new Date();
-      let year = date.getFullYear().toString();
-      let month = (date.getMonth() + 1).toString();
+            const date = new Date();
+            let year = date.getFullYear().toString();
+            let month = (date.getMonth() + 1).toString();
 
-      const monthItem = this.monthOptions.find(option => option.value === month);
-      this.$refs.monthSelect.chooseLabel = monthItem.label;
-      this.$refs.yearSelect.chooseLabel = year;
+            const monthItem = this.monthOptions.find(option => option.value === month);
+            this.$refs.monthSelect.chooseLabel = monthItem.label;
+            this.$refs.yearSelect.chooseLabel = year;
 
-      this.yearChange({ value: year });
-      this.monthChange({ value: month });
-    },
+            this.yearChange({ value: year });
+            this.monthChange({ value: month });
+        },
 
         monthChange(e) {
             if (!this.year) {
@@ -156,32 +156,36 @@ export default {
         },
 
         getDaysInMonth(year, month) {
-      const daysInMonth = new Date(year, month, 0).getDate();
-      const dates = [];
-      const firstDay = new Date(year, month - 1, 1).getDay();
+            const daysInMonth = new Date(year, month, 0).getDate();
+            const dates = [];
+            this.firstDay = new Date(year, parseInt(month) - 1, 1).getDay();
 
-      for (let day = 1; day <= daysInMonth; day++) {
-        const formattedDate = day.toLocaleString('en-US', { minimumIntegerDigits: 2 });
+            for (let day = 1; day <= daysInMonth; day++) {
+                const formattedDate = day.toLocaleString('en-US', { minimumIntegerDigits: 2 });
+                const isSunday = new Date(year, parseInt(month) - 1, day).getDay()
+                dates.push({
+                    date: formattedDate,
+                    isSunday: isSunday
+                });
+            }
+            return dates;
+        },
 
-        dates.push({
-          date: formattedDate,
-        });
-      }
-      return dates;
-    },
-
-    getPreMonthDays() {
-      let month = parseInt(this.month, 10) - 1;
-      let year = parseInt(this.year, 10);
-      if (month === 0) {
-        year--;
-        month = 12;
-      }
-      const days = new Date(year, month, 0).getDate();
-      this.preDays = days;
-    },
+        getPreMonthDays() {
+            let month = parseInt(this.month, 10) - 1;
+            let year = parseInt(this.year, 10);
+            if (month === 0) {
+                year--;
+                month = 12;
+            }
+            const days = new Date(year, month, 0).getDate();
+            this.preDays = days;
+        },
 
         clickDay(item) {
+            if (item.isSunday == 0 || item.isSunday == 6) {
+                return
+            }
             this.currentDate = item.date
             this.isRotated = false
             this.chooseLabel = `${this.year}-${this.month}-${item.date}`
@@ -206,7 +210,7 @@ export default {
         beforeMount() { }, //生命周期 - 挂载之前
         beforeUpdate() { }, //生命周期 - 更新之前
         updated() { }, //生命周期 - 更新之后
-        beforeDestroy() {  }, //生命周期 - 销毁之前
+        beforeDestroy() { }, //生命周期 - 销毁之前
         destroyed() { }, //生命周期 - 销毁完成
         activated() { }, //如果页面有keep-alive缓存功能，这个函数会触发
     }
@@ -338,5 +342,15 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.day-disabled {
+    cursor: not-allowed !important;
+    color: #999;
+}
+
+.day-disabled:hover {
+    color: #999 !important;
+    background-color: white !important;
 }
 </style>

@@ -6,6 +6,7 @@
       <OurTeachers />
       <!-- <EliteTeam /> -->
       <MoreTeachers />
+      <div v-show="userLanguage == 2" class="commonText">Student-Teacher-Ratio = 3</div>
       <div v-show="userLanguage == 2" class="mba-professors commonText" @click="toMbaProfessors">The full list of our lecturers can be found here.</div>
     </div>
     <PageFooter />
@@ -39,7 +40,7 @@ export default {
   //方法集合
   methods: {
     toMbaProfessors() {
-      this.$router.push('/mbaProfessors')
+      this.$router.push('/Professors')
       window.scrollTo({
         top: 0
       });
@@ -49,6 +50,19 @@ export default {
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    // 加载SEO
+    const websiteSchema = { 
+      "@context": "https://schema.org", 
+      "@type": "WebSite", 
+      "name": "NISS-JNU Chinese MBA in Singapore", 
+      "description": "The Jinan University Chinese MBA program boasts an excellent faculty team. The professors possess a solid theoretical foundation and extensive practical experience, enabling them to combine the latest management concepts with real-world cases, providing high-quality education for students.", 
+      "url": "https://www.niss.edu.sg/faculty" 
+    }
+    const script = document.createElement('script'); 
+    script.type = 'application/ld+json'; 
+    script.textContent = JSON.stringify(websiteSchema); 
+    document.head.appendChild(script)
+
     document.title = this.userLanguage == "1" ? "师资力量" : "Faculty";
   },
   beforeCreate() {}, //生命周期 - 创建之前

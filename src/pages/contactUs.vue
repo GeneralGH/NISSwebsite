@@ -105,6 +105,19 @@ export default {
   created() { },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
+    // 加载SEO
+    const websiteSchema = { 
+      "@context": "https://schema.org", 
+      "@type": "WebSite", 
+      "name": "Contact Us-Nanyang Institute of Social Science", 
+      "description": "Connect with us to learn more about our programs, services, and opportunities. We're here to help with any questions or support you need!", 
+      "url": "https://www.niss.edu.sg/contactUs" 
+    }
+    const script = document.createElement('script'); 
+    script.type = 'application/ld+json'; 
+    script.textContent = JSON.stringify(websiteSchema); 
+    document.head.appendChild(script)
+
     const loader = new Loader({
       apiKey: "AIzaSyDPPxEAU_t7roulHWxO6AaosCx8JC9ylz8",
       version: "weekly",

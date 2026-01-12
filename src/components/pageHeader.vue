@@ -25,7 +25,11 @@
           <img src="../../assets/header/logo.png" alt="" />
         </div>
         <div class="header-nav">
+<<<<<<< HEAD
           <div v-for="(item, index) in navList" class="nav-item" @click="toPage(item)"
+=======
+          <div v-for="(item, index) in navList" class="nav-item" @click="toPage(item)" @mouseenter="classShow(item)"
+>>>>>>> e80d29b6bbc89b14d0abeb97d34c4f5941fa4960
             :style="currentPath == item.path ? `color: #FF9C00;` : ''">
             {{ userLanguage == "1" ? item.name : item.nameEn }}
           </div>
@@ -34,7 +38,7 @@
           <div class="header-language">
             <div class="flex" @click="languageChange({ value: userLanguage == '1' ? '2' : '1' })">
               <div class="langeContent">
-                {{ userLanguage == "1" ? "中文" : "English" }}
+                {{ userLanguage == "1" ? "English" : "中文" }}
               </div>
               <!-- <img
                 :class="{ rotated: isRotated }"
@@ -58,9 +62,18 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD
 
       <SuspendedWindow v-show="openWindow" />
 
+=======
+      <!-- <transition name="slide-down"> -->
+        <div @mouseleave="openWindow = false" v-show="openWindow">
+          <SuspendedWindow />
+        </div>
+        
+     <!--  </transition> -->
+>>>>>>> e80d29b6bbc89b14d0abeb97d34c4f5941fa4960
       <Overlay :visible.sync="isOverlayVisible">
         <div style="color: #ffffff">
           <div class="menu-area">
@@ -73,7 +86,11 @@
             <div class="menu-one">{{ userLanguage == '1' ? '首页' : 'Home' }}</div>
           </div>
           <div class="menu-content" v-if="showChildren === true">
+<<<<<<< HEAD
             <div class="menu-one" v-if="index === 0" v-for="(item, index) in displayMenu" :key="index"
+=======
+            <div class="menu-one" v-if="index == 0" v-for="(item, index) in displayMenu" :key="index"
+>>>>>>> e80d29b6bbc89b14d0abeb97d34c4f5941fa4960
               :class="{ 'overlay-color': currentPath == item.path }" @click="handleClick(item, index)">
               {{ userLanguage == "1" ? item.item : item.nameEn || item }}
             </div>
@@ -98,10 +115,11 @@
     <!-- 各个页面不同展示 -->
     <div class="articleHeader" v-if="isNoTopImgPages.includes(currentPath)"></div>
     <HomeHeader v-if="currentPath == '/'" />
-    <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/courseProjects'" />
+    <CourseProjects :imgUrl="imgUrl" v-if="currentPath == '/jnumba'" />
+    <DBAhader :imgUrl="imgUrl" v-if="currentPath == '/audenciadba'"/>
     <TeachingStaffHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/teachingStaff'" />
+      v-if="currentPath == '/faculty'" />
     <AboutUsHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
       v-if="currentPath == '/aboutUs'" />
@@ -110,7 +128,10 @@
       v-if="currentPath == '/consultationForm'" />
     <AlumniStyleHeader
       :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
-      v-if="currentPath == '/alumniStyle'" />
+      v-if="currentPath == '/alumni'" />
+    <PromotionAmbassador
+      :imgUrl="userLanguage == '1' ? (isSmallScreen ? imgUrl.mUrl : imgUrl.url) : (isSmallScreen ? imgUrl.mUrlEn : imgUrl.urlEn)"
+      v-if="currentPath == '/Ambassador'" />
 
     <div class="sidebar" :class="{
       'sidebar-zh': userLanguage == '1',
@@ -130,10 +151,12 @@
 //例如：import 《组件名称》 from '《组件路径》';
 import HomeHeader from "./headerContent/homeHeader.vue";
 import CourseProjects from "./headerContent/courseProjectsHeader.vue";
+import DBAhader from "./headerContent/DBAhader.vue";
 import TeachingStaffHeader from "./headerContent/teachingStaffHeader.vue";
 import AboutUsHeader from "./headerContent/aboutUsHeader.vue";
 import AlumniStyleHeader from "./headerContent/alumniStyleHeader.vue";
 import ConsultationFormHeader from "./headerContent/consultationFormHeader.vue";
+import PromotionAmbassador from "./headerContent/promotionAmbassador.vue";
 
 import ApplyImg from "../../assets/header/silderIcon/Apply.png";
 import ProjectImg from "../../assets/header/silderIcon/Project.png";
@@ -144,9 +167,15 @@ import unProjectImg from "../../assets/header/silderIcon/uncheckProject.png";
 import unChatImg from "../../assets/header/silderIcon/uncheckSide.png";
 import Overlay from "../components/Overlay.vue";
 import router from "../router.js";
+<<<<<<< HEAD
 
 import SuspendedWindow from "./SuspendedWindow.vue";
 
+=======
+import WhatsappImg from "../../assets/header/silderIcon/Whatsapp.png"
+import unWhatsappImg from "../../assets/header/silderIcon/ncheckWhatsapp.png"
+import SuspendedWindow from "./SuspendedWindow.vue";
+>>>>>>> e80d29b6bbc89b14d0abeb97d34c4f5941fa4960
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {
@@ -157,7 +186,13 @@ export default {
     AboutUsHeader,
     AlumniStyleHeader,
     ConsultationFormHeader,
+<<<<<<< HEAD
     SuspendedWindow
+=======
+    PromotionAmbassador,
+    SuspendedWindow,
+    DBAhader
+>>>>>>> e80d29b6bbc89b14d0abeb97d34c4f5941fa4960
   },
   data() {
     //这里存放数据
@@ -175,32 +210,28 @@ export default {
         {
           item: "课程项目",
           nameEn: "Programmes",
-          path: "/courseProjects",
+          path: "/jnumba",
           children: [
             {
-              item: "项目概述",
-              nameEn: "Program Overview",
+              item: "MBA",
+              nameEn: "MBA",
             },
             {
-              item: "课程体系",
-              nameEn: "Curriculum System",
-            },
-            {
-              item: "招生信息",
-              nameEn: "Admissions Information",
-            },
+              item: "南特工商管理博士",
+              nameEn: "Doctor of Business Administration",
+            }
           ],
         },
         {
           item: "师资力量",
           nameEn: "Faculty",
-          path: "/teachingStaff",
+          path: "/faculty",
           children: [],
         },
         {
           item: "学员社区",
           nameEn: "Students",
-          path: "/alumniStyle",
+          path: "/alumni",
           children: [],
         },
         {
@@ -219,21 +250,21 @@ export default {
       navList: [
         { name: "首页", nameEn: "Home", path: "/" },
         { name: "关于我们", nameEn: "About Us", path: "/aboutUs" },
-        { name: "课程项目", nameEn: "Programmes", path: "/courseProjects" },
-        { name: "师资力量", nameEn: "Faculty", path: "/teachingStaff" },
-        { name: "学员社区", nameEn: "Students", path: "/alumniStyle" },
+        { name: "课程项目", nameEn: "Programmes", path: "/jnumba" },
+        { name: "师资力量", nameEn: "Faculty", path: "/faculty" },
+        { name: "学员社区", nameEn: "Students", path: "/alumni" },
       ],
       currentPath: "/",
       bgHeigth: "",
       sidebarList: [
-        /* {
-          name: "立即申请",
-          nameEn: "Apply Now",
-          path: "",
-          imgPath: ApplyImg,
-          unImgPath: unApplyImg,
-        },
         {
+          name: "1对1咨询",
+          nameEn: "Schedule an Info Session",
+          path: "/consultationForm",
+          imgPath: ChatImg,
+          unImgPath: unChatImg,
+        },
+        /* {
           name: "项目导览",
           nameEn: "Program Overview",
           path: "",
@@ -241,11 +272,11 @@ export default {
           unImgPath: unProjectImg,
         }, */
         {
-          name: "1对1咨询",
-          nameEn: "Schedule an Info Session",
-          path: "/consultationForm",
-          imgPath: ChatImg,
-          unImgPath: unChatImg,
+          name: "WhatsApp",
+          nameEn: "WhatsApp",
+          path: "/send?phone=6563203596",
+          imgPath: WhatsappImg,
+          unImgPath: unWhatsappImg,
         },
       ],
       isHovered: -1,
@@ -256,7 +287,11 @@ export default {
         { label: "En", value: "2" },
       ],
       isSmallScreen: false,
+<<<<<<< HEAD
       isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors'],
+=======
+      isNoTopImgPages: ['/article', '/highEdu', '/policy', '/contactUs', '/mbaProfessors', '/Professors', '/AmbassadorDetail', '/student-code-of-conduct', '/contract', '/studenthandbook', '/fee-protection-scheme', '/privacypolicy', '/grievancepolicy', '/private-education-act'],
+>>>>>>> e80d29b6bbc89b14d0abeb97d34c4f5941fa4960
       openWindow: false
     };
   },
@@ -267,6 +302,25 @@ export default {
   },
   watch: {
     userLanguage(newVal) { },
+<<<<<<< HEAD
+=======
+    'openWindow' (val) {
+      const headerNavArea = document.querySelector(".header-nav-area")
+      if (val) {
+        headerNavArea.style.backgroundColor = `rgba(22, 58, 107, 1)`;
+      } else {
+        if (this.isNoTopImgPages.includes(this.currentPath)) {
+          headerNavArea.style.backgroundColor = `rgba(22, 58, 107, 1)`;
+        } else {
+          const containerHeight = document.getElementById("container").offsetHeight;
+          const scrollHeight = window.scrollY;
+          const opacity = scrollHeight / containerHeight;
+
+          headerNavArea.style.backgroundColor = `rgba(22, 58, 107, ${opacity})`;
+        }
+      }
+    }
+>>>>>>> e80d29b6bbc89b14d0abeb97d34c4f5941fa4960
   },
   //方法集合
   methods: {
@@ -297,7 +351,7 @@ export default {
         this.showChildren = true;
       } else if (elementId) {
         this.hideOverlay();
-        router.push({ path: "/courseProjects", hash: `#${elementId}` });
+        router.push({ path: "/jnumba" });
       } else if (item.path) {
         this.hideOverlay();
         router.push(item.path);
@@ -306,8 +360,8 @@ export default {
           behavior: "instant", // 可选，使用平滑滚动效果
         });
       } else {
-        if (item.item == '课程项目') {
-          router.push({ path: "/courseProjects" })
+        if (item.item.item == 'MBA' || item.item.item == '南特工商管理博士') {
+          router.push({ path: item.item.item == 'MBA' ? "/jnumba" : "/audenciadba" })
           window.scrollTo({
             top: 0,
             behavior: "instant", // 可选，使用平滑滚动效果
@@ -364,11 +418,54 @@ export default {
       if (!item.path) {
         return;
       }
+<<<<<<< HEAD
       if (item.name == '课程项目') {
         this.openWindow = !this.openWindow
         return
       }
       this.$router.push(item.path);
+=======
+      // 判断是否展开课程项目
+      if (item.name == '课程项目') {
+        return
+      }
+      // 判断是否为外部链接
+      if (item.path.includes("6563203596")) {
+        const fullURL = `https://api.whatsapp.com${item.path}`;
+        window.open(fullURL, "_blank"); // 新标签页打开外链
+        return; // 跳过后续逻辑
+      }
+      // 判断跳转表单页带参
+      if (item.path == '/consultationForm') {
+        let params = { type: 0 }
+        if (this.$route.name == 'jnumba') {
+          params.type = 1
+        }
+        if (this.$route.name == 'audenciadba') {
+          params.type = 2
+        }
+        this.$router.push({name: 'consultationForm', params: params})
+        window.scrollTo({
+          top: 0,
+          behavior: "instant", // 可选，使用平滑滚动效果
+        });
+        return
+      }
+      this.$router.push(item.path)
+      /* // 判断是否为内部路由
+      if (item.path.startsWith("/")) {
+        if (this.$route.fullPath !== item.path) {
+          this.$router.push(item.path).catch((err) => {
+            if (err.name !== "NavigationDuplicated") {
+              console.error(err); // 捕获并忽略重复导航错误
+            }
+          });
+        } else {
+        }
+      } */
+
+      // 内部路由跳转后滚动到顶部
+>>>>>>> e80d29b6bbc89b14d0abeb97d34c4f5941fa4960
       window.scrollTo({
         top: 0,
         behavior: "instant", // 可选，使用平滑滚动效果
@@ -378,20 +475,26 @@ export default {
     async getPageHedaerImg() {
       let id = null;
       switch (this.currentPath) {
-        case "/courseProjects":
+        case "/jnumba":
           id = 3;
           break;
-        case "/teachingStaff":
+        case "/faculty":
           id = 15;
           break;
         case "/aboutUs":
           id = 1;
           break;
-        case "/alumniStyle":
+        case "/alumni":
           id = 2;
           break;
         case "/consultationForm":
           id = 19;
+          break;
+        case "/Ambassador":
+          id = 21
+          break;
+        case "/audenciadba":
+          id = 23
           break;
       }
       if (id) {
@@ -408,6 +511,14 @@ export default {
       this.$store.dispatch("setUserLanguage", item.value);
       /* this.isRotated = !this.isRotated; */
     },
+
+    classShow(item) {
+      if (item.name == '课程项目') {
+        this.openWindow = true
+      } else {
+        this.openWindow = false
+      }
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
@@ -425,6 +536,9 @@ export default {
 
     if (!this.isNoTopImgPages.includes(this.currentPath)) {
       window.addEventListener("scroll", () => {
+        if (this.openWindow) {
+          return
+        }
         const scrollHeight = window.scrollY;
         const opacity = scrollHeight / containerHeight;
 
@@ -436,7 +550,11 @@ export default {
   },
   beforeCreate() { }, //生命周期 - 创建之前
   beforeMount() { }, //生命周期 - 挂载之前
+<<<<<<< HEAD
   beforeUpdate() { }, //生命周期 - 更新之前
+=======
+  beforeUpdate() {}, //生命周期 - 更新之前
+>>>>>>> e80d29b6bbc89b14d0abeb97d34c4f5941fa4960
   updated() { }, //生命周期 - 更新之后
   beforeDestroy() { }, //生命周期 - 销毁之前
   destroyed() { }, //生命周期 - 销毁完成
@@ -517,7 +635,18 @@ export default {
 
 @media (max-width: 720px) {
   .sidebar {
-    /* display: none !important; */
+    width: 92px !important;
+    /* 缩小宽度 */
+    height: 200px !important;
+    /* 高度保持自适应 */
+    font-size: 14px !important;
+    z-index: 200 !important;
+
+    /* 字体缩小 */
+    img {
+      width: 48px !important;
+      height: 48px !important;
+    }
   }
 
   .header-nav {
@@ -594,9 +723,14 @@ export default {
     /* margin: 0 150px; */
     font-size: 20px;
     width: 1060px;
+    height: 100%;
 
     .nav-item {
       cursor: pointer;
+      user-select: none;
+      height: 100%;
+      display: flex;
+      align-items: center;
     }
   }
 
@@ -698,13 +832,13 @@ export default {
 }
 
 .sidebar-zh {
-  width: 91px;
-  height: 195px;
+  width: 137px;
+  height: 293px;
 }
 
 .sidebar-en {
-  width: 120px;
-  height: 205px;
+  width: 137px;
+  height: 293px;
 }
 
 .sidebar {
@@ -714,7 +848,7 @@ export default {
   right: 0;
   bottom: 50%;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 24px;
   display: flex;
   flex-direction: column;
@@ -737,8 +871,8 @@ export default {
   }
 
   img {
-    width: 47px;
-    height: 47px;
+    width: 68px;
+    height: 68px;
   }
 }
 
@@ -757,4 +891,18 @@ export default {
   width: 85%;
   font-size: 24px;
 }
+
+/* 定义过渡效果的CSS */
+// .slide-down-enter-active, .slide-down-leave-active {
+//   transition: all 1s ease; 
+// }
+// .slide-down-enter {
+//   transform: translateY(-30%); 
+//   opacity: 0; 
+// }
+ 
+// .slide-down-leave-to /* 在Vue 2.1.8及以上版本中，使用.slide-down-leave-to */ {
+//   transform: translateY(-30%); 
+//   opacity: 0; 
+// }
 </style>

@@ -8,9 +8,17 @@ import PageFooter from './components/pageFooter.vue';
 import axiosInstance from './util/request';
 import scroll from 'vue-seamless-scroll'
 import store from './store/index.js';
+import MetaInfo from 'vue-meta-info';
+import VueMeta from 'vue-meta';
+ 
+Vue.use(VueMeta, {
+  // 配置项
+  keyName: 'metaInfo', // 组件中用来定义元信息的属性名
+});
 
 Vue.use(scroll)
 Vue.use(scroll,{componentName: 'scroll-seamless'})
+Vue.use(MetaInfo)
 // import './util/flexible.js'
 import './util/rem'
 
@@ -64,5 +72,8 @@ Vue.prototype.$getPageContent = function(id) {
 new Vue({
   store,
   router,
-  render: (h) => h(App)
+  render: (h) => h(App),
+  mounted() {
+    document.dispatchEvent(new Event('render-event'))
+  }
 }).$mount('#app');

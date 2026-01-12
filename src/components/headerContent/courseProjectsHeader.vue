@@ -30,7 +30,6 @@ export default {
     //监控data中的数据变化
     watch: {
         'imgUrl' (val) {
-            console.log(val)
         }
     },
     //方法集合
@@ -41,7 +40,7 @@ export default {
                 this.$router.push(targetUrl.value)
             }
             if (targetUrl.type == 2) {
-                this.$router.push({ name: 'courseProjects', params: { anchor: targetUrl.value } })
+                this.$router.push({ name: 'jnumba', params: { anchor: targetUrl.value } })
             }
             if (targetUrl.type == 3) {
                 this.$router.push({ path: `/article?id=${targetUrl.value}` });
